@@ -2,8 +2,10 @@
 
 ## 3.1 Creating project specific ansible configuration
 ###  Ansible configuration file
-In chapter3 directory create a file called ansible.cfg
+In `/vagrant` directory create a file called `ansible.cfg`
+
 Put the following content in ansible.cfg
+
 {title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 [defaults]
