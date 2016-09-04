@@ -32,12 +32,15 @@ It should contain the following tree structure, create these files and folders.
 {title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 .
+├── ansible.cfg
 ├── app.yml
+├── httpd.conf
+├── index.html
+├── myhosts.ini
+├── playbook.yml
 ├── roles
 │   ├── apache
 │   │   ├── files
-│   │   │   ├── httpd.conf
-│   │   │   └── index.html
 │   │   ├── handlers
 │   │   │   └── main.yml
 │   │   ├── meta
@@ -48,11 +51,12 @@ It should contain the following tree structure, create these files and folders.
 │   │       ├── main.yml
 │   │       └── start.yml
 │   └── base
-│       ├── meta
-│       │   └── main.yml
-│       └── tasks
-│           └── main.yml
-└── site.yml
+│       ├── meta
+│       │   └── main.yml
+│       └── tasks
+│           └── main.yml
+├── site.yml
+└── test.txt
 ~~~~~~~  
 
 #### 5.2.1 Tasks directory
