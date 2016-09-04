@@ -1,0 +1,5 @@
+---
+- hosts: app
+  become: true
+  roles:
+    - apache
