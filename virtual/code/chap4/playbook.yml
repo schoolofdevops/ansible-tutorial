@@ -17,13 +17,3 @@
 
       - name: start ntp service
         service: name=ntpd state=started enabled=yes
-
-  - name: App Server Configurations
-    hosts: app
-    become: true
-    tasks:
-      - name: create app user
-        user: name=app state=present uid=5003
-
-      - name: install git
-        yum:  name=tree  state=present
