@@ -1,7 +1,7 @@
 # Chapter 4
-
-## 4.1 Creating our first playbook
-### 4.1.1 Playbook file
+## Playbooks
+### 4.1 Creating our first playbook
+#### 4.1.1 Playbook file
 Change your current directory to chapter 4
 Create a file edit playbook.yml  and put the following content
 
@@ -28,7 +28,7 @@ Create a file edit playbook.yml  and put the following content
         service: name=ntpd state=started enabled=yes
 ~~~~~~~  
 
-## 4.2 Running our playbook  
+### 4.2 Running our playbook  
 To implement the playbook, we need to run the following command  
 
 {title="Listing ", lang=html, linenos=off}
@@ -84,7 +84,7 @@ changed: [192.168.61.12]
 changed: [192.168.61.14]
 ~~~~~~~
 
-## 4.3 Adding second play in the playbook  
+### 4.3 Adding second play in the playbook  
 Add the following block of code in playbook.yml file and save it  
 
 {title="Listing ", lang=html, linenos=off}
@@ -94,7 +94,7 @@ Add the following block of code in playbook.yml file and save it
   become: true
   tasks:
     - name: create app user
-      user: name=app state=present uid=5002
+      user: name=app state=present uid=5003
 
     - name: install git
       yum:  name=git  state=present
@@ -171,7 +171,7 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=6    changed=0    unreachable=0    failed=0
 ~~~~~~~
 
-## 4.4 Limiting the execution to particular group  
+### 4.4 Limiting the execution to particular group  
 
 Now run the following command to restrict the playbook execution to *app servers*  
 
@@ -230,3 +230,6 @@ PLAY RECAP *********************************************************************
 192.168.61.13              : ok=9    changed=0    unreachable=0    failed=0
 
 ~~~~~~~
+
+### 4.5 Exercise:
+1.

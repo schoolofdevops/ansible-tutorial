@@ -148,5 +148,22 @@ PLAY RECAP *********************************************************************
 192.168.61.13              : ok=2    changed=1    unreachable=0    failed=0
 ~~~~~~~
 
-## 5.3 Exercises
+## 5.3 Ansible-Galaxy  
+### Creating a directory using ansible-galaxy  
+To create a new role called *starter*,  
+
+{title="Listing ", lang=html, linenos=off}
+~~~~~~~
+ansible-galaxy init --init-path roles/ --offline starter
+~~~~~~~  
+
+This will create that repo in *roles* directory  
+
+{title="Listing ", lang=html, linenos=off}
+~~~~~~~
+- starter was created successfully
+~~~~~~~  
+
+
+## 5.4 Exercises
 1. Create roles for *db* and *loadbalancer* following the same workflow
