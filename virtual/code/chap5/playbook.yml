@@ -1,0 +1,29 @@
+---
+  - name: Base Configurations for ALL hosts
+    hosts: all
+    become: true
+    tasks:
+      - name: create admin user
+        user: name=admin state=present uid=5001
+
+      - name: remove dojo
+        user: name=dojo  state=present
+
+      - name: install tree
+        yum:  name=tree  state=present
+
+      - name: install ntp
+        yum:  name=ntp   state=present
+
+      - name: start ntp service
+        service: name=ntpd state=started enabled=yes
+
+  - name: App Server Configurations
+    hosts: app
+    become: true
+    tasks:
+      - name: create app user
+        user: name=app state=present uid=5002
+
+      - name: install git
+        yum:  name=tree  state=present
