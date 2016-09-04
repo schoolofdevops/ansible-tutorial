@@ -145,5 +145,5 @@ ansible app -m copy -a "src=/vagrant/code/test.txt dest=/tmp/test.txt"
 ## 3.6 Exercises :
 ### Try these...
 1. Add another group called *lb* in inventory with respective host ip
-2. Add a user called *joe* to the *app* host group. Make sure that user has a home using appropriate Ad-Hoc command.
+2. Add a user called *joe* app servers. Make sure that user has a home directory.
 3. Install the package cowsay using the correct Ad-Hoc command.
