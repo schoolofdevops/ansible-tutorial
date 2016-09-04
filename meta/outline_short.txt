@@ -1,19 +1,17 @@
 Docker Primer
 
-	Chapter xx  :  Introduction to Ansible
-	Chapter xx  :  Setting up the Learning Envioronment
-	Chapter xx  :  Ad Hoc Server Management
-	Chapter xx  :  Writing Simple Playbooks
-	Chapter xx  :  Roles
-	Chapter xx  :  Variables and Templates
-	Chapter xx  :  Control Structures - Conditionals and Iterators
-	Chapter xx  :  Node Discovery and Clustering
-	Chapter xx  :  Managing Multiple Environments
-	Chapter xx  :  Deployment Orchestration
-	Chapter xx  :  Extending Ansible
-	Chapter xx  :  Ansible and Docker
-	Chapter xx  :  Ansible and Cloud (AWS)
-	Chapter xx  :  Ansible Best Practices
-	Chapter xx  :  Demos
-
-	
+	Chapter 01  :  Introduction to Ansible
+	Chapter 02  :  Setting up the Learning Envioronment
+	Chapter 03  :  Getting Started with Ansible - Ad Hoc Server Management
+	Chapter 04  :  Writing our first Playbook
+	Chapter 05  :  Roles
+	Chapter 06  :  Variables and Templates
+	Chapter 07  :  Control Structures - Conditionals and Iterators
+	Chapter 08  :  Node Discovery and Clustering
+	Chapter 09  :  Managing Multiple Environments
+	Chapter 10  :  Deployment Orchestration
+	Chapter 11  :  Extending Ansible
+	Chapter 12  :  Ansible and Docker
+	Chapter 13  :  Ansible and Cloud (AWS)
+	Chapter 14  :  Ansible Best Practices
+	Chapter 15  :  Demos
