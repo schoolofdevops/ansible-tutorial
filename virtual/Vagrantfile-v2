@@ -47,10 +47,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  config.vm.provision "shell", inline: <<-SHELL
-    mkdir -p /etc/yum.repos.d/repo.bkp && mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/repo.bkp/ && mv /etc/yum.repos.d/repo.bkp/local_* /etc/yum.repos.d/
-  SHELL
-
   config.vm.provision "file", source: "rpm/", destination: "/tmp/"
 
   config.vm.provision "shell", inline: <<-SHELL
