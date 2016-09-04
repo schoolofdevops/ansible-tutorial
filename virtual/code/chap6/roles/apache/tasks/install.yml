@@ -1,0 +1,4 @@
+---
+# tasks file for starter
+ - name: install apache web server
+   yum: name=httpd state=present 

@@ -1,0 +1,3 @@
+---
+  - name: Site Wide Playbook
+    include: app.yml

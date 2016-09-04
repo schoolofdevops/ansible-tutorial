@@ -24,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "app1" do |app|
     app.vm.network :private_network, ip: "192.168.61.12"
-    app.vm.hostname = "app1"
+    app.vm.hostname = "app"
     app.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--memory", "384"]
     end
@@ -32,7 +32,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "app2" do |app|
     app.vm.network :private_network, ip: "192.168.61.13"
-    app.vm.hostname = "app2"
+    app.vm.hostname = "app"
     app.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--memory", "384"]
     end
