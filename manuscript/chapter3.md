@@ -86,7 +86,7 @@ ansible all -m ping
 ~~~~~~~
 
 ## 3.4 Ad Hoc commands:
-Try running following Ad-Hoc commands...
+Try running following *fire-and-forget* Ad-Hoc commands...
 ### 3.4.1 Run *hostname* command on all hosts
 Let us print the hostname of all the hosts
 {title="Listing ", lang=html, linenos=off}
