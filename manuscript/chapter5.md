@@ -6,7 +6,7 @@ In this tutorial we are going to create simple, static role for apache which wil
   * Start httpd service
   * Add a notification and a  handler so that whenever the configuration is updated, service is automatically restarted.
 
-### 5.1 Creating Role Scaffolding  for Apache
+### 5.1 Creating Role Scaffolding for Apache
   * Change working  directory to **/vagrant/code/chap5**
 
         ``` cd  /vagrant/code/chap5 ```
@@ -105,7 +105,7 @@ To have these tasks being called, include them into main task.
 [Output]
 
 ```
-PLAY [app] *********************************************************************
+PLAY [Playbook to configure App Servers] *********************************************************************
 
 TASK [setup] *******************************************************************
 ok: [192.168.61.12]
@@ -126,7 +126,7 @@ PLAY RECAP *********************************************************************
 
 
 #### 5.3 Managing Configuration files for Apache
-  * Copy *index.html* and *httpd.conf* from `chap5` to */roles/apache/files/* directory  
+  * Copy *index.html* and *httpd.conf* from *chap5/helper* to */roles/apache/files/* directory  
 
   * Create a task file at **roles/apache/tasks/config.yml** to manage files.    
 
@@ -144,55 +144,54 @@ PLAY RECAP *********************************************************************
         mode=0777
 ~~~~~~~  
 
-
-
-
-#### 5.2.3 Meta directory
-*roles/apache/meta/main.yml* this file, should contain...  
-
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
----
-dependencies:
- - {role: base}
-~~~~~~~  
-
-
-
-
-
-#### 5.2.4 Handlers directory  
+### 5.4 Handlers directory  
 Put following content in *roles/apache/handlers/main.yml*  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ---
 - name: Restart apache service
   service: name=httpd state=restarted
-~~~~~~~
+~~~~~~~  
+[Output]  
+```
 
+PLAY [Playbook to configure App Servers] ***************************************
 
+TASK [setup] *******************************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
 
+TASK [apache : Installing Apache...] *******************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
 
+TASK [apache : Starting Apache...] *********************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
 
+TASK [apache : Copying configuration files...] *********************************
+changed: [192.168.61.12]
+changed: [192.168.61.13]
 
-* Create *site.yml* in chap5 directory and put  
+TASK [apache : Copying index.html file...] *************************************
+changed: [192.168.61.12]
+changed: [192.168.61.13]
 
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
----
-- include: app.yml
-~~~~~~~
+RUNNING HANDLER [apache : Restart apache service] ******************************
+changed: [192.168.61.12]
+changed: [192.168.61.13]
 
+PLAY RECAP *********************************************************************
+192.168.61.12              : ok=6    changed=4    unreachable=0    failed=0
+192.168.61.13              : ok=6    changed=4    unreachable=0    failed=0
 
+```  
 
-
-### 5.3 Testing our role...  
+### 5.5  Test Apache Role
 Now let's test the role that we have created...  
 Create a file *app.yml* in `chap5` directory.
 Edit *app.yml* file and make sure it **only** contains following content.  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ---
 - hosts: app
@@ -200,19 +199,11 @@ Edit *app.yml* file and make sure it **only** contains following content.
   roles:
     - apache
 ~~~~~~~  
+Run the playbook  
+``` ansible-playbook app.yml ```   
 
-
-Then run the ansible-playbook command  
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
-ansible-playbook playbook.yml
-~~~~~~~  
-
-
-The output will be,  
-
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
+[Output]  
+```
 PLAY [App server configurations] ***********************************************
 
 TASK [setup] *******************************************************************
@@ -226,13 +217,93 @@ changed: [192.168.61.12]
 PLAY RECAP *********************************************************************
 192.168.61.12              : ok=2    changed=1    unreachable=0    failed=0
 192.168.61.13              : ok=2    changed=1    unreachable=0    failed=0
+```
+
+### 5.6 Add dependency to a role  
+Create a base role with ansible-galaxy utility,  
+``` ➜  base ansible-galaxy init --offline --init-path roles/ base ```  
+Put the following content to */roles/base/tasks/main.yml*  
+```
+---
+  - name: Base Configurations for ALL hosts
+    hosts: all
+    become: true
+    tasks:
+      - name: create admin user
+        user: name=admin state=present uid=5001
+
+      - name: remove dojo
+        user: name=dojo  state=present
+
+      - name: install tree
+        yum:  name=tree  state=present
+
+      - name: install ntp
+        yum:  name=ntp   state=present
+
+      - name: start ntp service
+        service: name=ntpd state=started enabled=yes
+
+```  
+Add base role dependency to apache role,  
+*roles/apache/meta/main.yml* this file, should contain...  
+
 ~~~~~~~
+---
+dependencies:
+ - {role: base}
+~~~~~~~  
+Now check how dependency works,  
+```
+➜  chap6 ansible-playbook site.yml
+
+PLAY [Playbook to configure App Servers] ***************************************
+
+TASK [setup] *******************************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [base : create admin user] ************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [base : remove dojo] ******************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [base : install tree] *****************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [base : install ntp] ******************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [base : start ntp service] ************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [apache : Installing Apache...] *******************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [apache : Starting Apache...] *********************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [apache : Copying configuration files...] *********************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [apache : Copying index.html file...] *************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+PLAY RECAP *********************************************************************
+192.168.61.12              : ok=10   changed=0    unreachable=0    failed=0
+192.168.61.13              : ok=10   changed=0    unreachable=0    failed=0
+```
 
 
-
-## 5.4 Exercises
-1. Create roles for *db* and *loadbalancer* following the same workflow
-=======
-## 5.3 Exercises
+### 5.7 Exercises
 1. Create roles for *db* and *lb* following the same workflow
->>>>>>> origin/master
