@@ -306,4 +306,7 @@ PLAY RECAP *********************************************************************
 
 
 ### 5.7 Exercises
-1. Create roles for *db* and *lb* following the same workflow
+1. Create scaffolding for **mariadb** role and **haproxy**
+2. Install *mariadb* and *haproxy* in respective nodes
+3. Make *haproxy* role dependent on *base* role
+4. Create *db* and *lb* playbooks and make them available in **site wide playbook**

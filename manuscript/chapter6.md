@@ -83,12 +83,15 @@ In this part of tutorial, we will learn about the variables and templates in Ans
 ### 6.2 Templates  
 * Create template for apache configuration  
   * This template will change **port number**, **document root** and **index.html** of apache server  
-  * ** copy ** *httpd.conf* and *index.html* file from *roles/apache/files/* to *roles/apache/templates*  
+  * ** copy ** *httpd.conf* file from *roles/apache/files/* to *roles/apache/templates*  
 
     ```
-    cp roles/apache/files/* roles/apache/templates
+    cp roles/apache/files/httpd.conf roles/apache/templates
     ```
-  * Change your working directory to templates
+  * Change your working directory to templates  
+    ```
+    cd roles/apache/templates
+    ```
   * Lets edit httpd.conf file first
     * Rename the file
     ```
@@ -375,7 +378,7 @@ In this part of tutorial, we will learn about the variables and templates in Ans
   * Replace **copy** module with **template** modules as follows,  
   ```
   ---
-  - name: Creating configuration templates...
+  - name: Creating configuration from templates...
     template: src=httpd.conf.j2
               dest=/etc/httpd.conf
               owner=root group=root mode=0644
@@ -446,4 +449,30 @@ PLAY RECAP *********************************************************************
 192.168.61.12              : ok=11   changed=3    unreachable=0    failed=0
 192.168.61.13              : ok=11   changed=3    unreachable=0    failed=0
 
+  ```   
+  * For better understanding, check your apache tree with the one mentioned below  
   ```
+  roles/apache
+  ├── defaults
+  │   └── main.yml
+  ├── files
+  │   └── index.html
+  ├── handlers
+  │   └── main.yml
+  ├── meta
+  │   └── main.yml
+  ├── README.md
+  ├── tasks
+  │   ├── config.yml
+  │   ├── install.yml
+  │   ├── main.yml
+  │   └── start.yml
+  ├── templates
+  │   └── httpd.conf.j2
+  ├── tests
+  │   ├── inventory
+  │   └── test.yml
+  └── vars
+      └── main.yml
+
+  ```  
