@@ -6,9 +6,7 @@ The default configurations for ansible resides at /etc/ansible/ansible.cfg. Inst
 
 ###  Ansible configuration file
 
-  * Change into /vagrant/code/chapter3 directory on your ansible host. Create a file called ansible.cfg  
-
-Add  the following content in ansible.cfg
+Change into /vagrant/code/chapter3 directory on your ansible host. Create a file called ansible.cfg  Add  the following contents to the file.
 
 ~~~~~~~
 [defaults]
@@ -17,29 +15,10 @@ remote_user = vagrant
 inventory   = myhosts.ini
 ~~~~~~~
 
-## 3.2 Setting up inventory of hosts  
-### Inventories:  
+## 3.2 Creating Host Inventory  
 
-For setting up inventories, create a new file called *myhosts.ini*   
-Let's create a group called *localhost* by editing myhosts.ini  
-
-~~~~~~~
-[local]
-localhost ansible_connection=local
-~~~~~~~
-
-Adding other groups to the inventory file
-
-~~~~~~~
-[app]
-192.168.61.12
-192.168.61.13
-
-[db]
-192.168.61.11
-~~~~~~~
-
-Now save and quit the file. This is called an inventory and this is how it should look like...  
+Create a new file called *myhosts.ini* in the same directory.
+Let's create three groups as follows,
 
 ~~~~~~~
 [local]
@@ -54,7 +33,11 @@ localhost ansible_connection=local
 
 ~~~~~~~
 
-Make sure it has a *.ini* extension.  
+* First group contains the localhost, the control host. Since it does not need to be connected over ssh, it mandates we add ansible_connection=local option
+* Second group contains  Application Servers. We will add  two app servers to this group.
+* Third group holds the information about the database servers.
+
+The inventory file should look like below.
 
 
 ## 3.3 Setting up passwordless ssh access to inventory hosts  

@@ -1,11 +1,13 @@
-# Chapter 4
-## Playbooks
-### 4.1 Creating our first playbook
-#### 4.1.1 Playbook file
-Change your current directory to chapter 4
-Create a file edit playbook.yml  and put the following content
+# Chapter 4 : Learning to Write Playbooks
 
-{title="Listing ", lang=html, linenos=off}
+In this tutorial we are going to create a simple playbook to add system users, install and start ntp service and some basic utilities.
+
+
+### 4.1 Creating our first playbook
+
+  * Change working directory to /vagrant/code/chap4
+  * Create playbook.yml and add the content below
+
 ~~~~~~~
 ---
   - name: Base Configurations for ALL hosts
@@ -28,17 +30,38 @@ Create a file edit playbook.yml  and put the following content
         service: name=ntpd state=started enabled=yes
 ~~~~~~~  
 
-### 4.2 Running our playbook  
-To implement the playbook, we need to run the following command  
+### 4.2 Running the  playbook  
+To run the playbook, we are going to execute **ansible-playbook** command. Lets first examine the options that this command supports.
 
-{title="Listing ", lang=html, linenos=off}
+```
+ansible-playbook --help
+
+Usage: ansible-playbook playbook.yml
+
+Options:
+  --ask-become-pass     ask for privilege escalation password
+  -k, --ask-pass        ask for connection password
+  --ask-su-pass         ask for su password (deprecated, use become)
+  -K, --ask-sudo-pass   ask for sudo password (deprecated, use become)
+  --ask-vault-pass      ask for vault password
+  -b, --become          run operations with become (nopasswd implied)
+  --become-method=BECOME_METHOD
+                        privilege escalation method to use (default=sudo),
+                        valid choices: [ sudo | su | pbrun | pfexec | runas |
+                        doas ]
+
+.......
+```
+
+To run the playbook, we could call YAML file as an argument. Since we have already defined the inventory and configurations, additional options are not necessary at this time.
+
 ~~~~~~~
 ansible-playbook playbook.yml
 ~~~~~~~
 
-This will give us the following output  
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
+[output]
+
 PLAY [Base Configurations for ALL hosts] ***************************************
 
 TASK [setup] *******************************************************************
@@ -85,9 +108,9 @@ changed: [192.168.61.14]
 ~~~~~~~
 
 ### 4.3 Adding second play in the playbook  
-Add the following block of code in playbook.yml file and save it  
 
-{title="Listing ", lang=html, linenos=off}
+Lets add a second play specific to app servers. Add the following block of code in playbook.yml file and save   
+
 ~~~~~~~
 - name: App Server Configurations
   hosts: app
@@ -103,8 +126,12 @@ Add the following block of code in playbook.yml file and save it
 
 Run the playbook again...  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
+ansible-playbook playbook.yml
+~~~~~~~
+
+~~~~~~~
+
 PLAY [Base Configurations for ALL hosts] ***************************************
 
 TASK [setup] *******************************************************************
@@ -171,11 +198,10 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=6    changed=0    unreachable=0    failed=0
 ~~~~~~~
 
-### 4.4 Limiting the execution to particular group  
+### 4.4 Limiting the execution to a particular group  
 
 Now run the following command to restrict the playbook execution to *app servers*  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ansible-playbook playbook.yml --limit app
 ~~~~~~~
