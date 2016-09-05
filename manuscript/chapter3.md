@@ -1,8 +1,8 @@
-# Chapter 3
+# Chapter 3 : Getting Started with Ansible (Ad Hoc Server Management)
 
 ## 3.1 Creating Project Specific Ansible Configuration
 
-Lets create a custom configuration file for our project. This will override the values int he default file at /etc/ansible/ansible/cfg.
+The default configurations for ansible resides at /etc/ansible/ansible.cfg. Instead of relying on defaults, we are going to creates  a custom configuration file for our project. The advantage with that is we could take this configurations on any host and execute it the same way, without touching the default system configurations.  This custom configurations will essentially  override the values in /etc/ansible/ansible/cfg.
 
 ###  Ansible configuration file
 
@@ -208,6 +208,7 @@ localhost | SUCCESS | rc=0 >>
 192.168.61.11 | SUCCESS | rc=0 >>
  13:17:14 up  1:36,  2 users,  load average: 0.00, 0.00, 0.00
 ~~~~~~~
+
 
 ### 3.4.3 Check memory info on app servers  
 Does my app servers have any disk space *free*?  
@@ -466,4 +467,4 @@ File will be copied over to our app server machines...
 ## 3.6 Exercises :
 1. Add another group called *lb* in inventory with respective host ip
 2. Add a user called *joe* in app servers. Make sure that user has a home directory.
-3. Install the package cowsay using the correct Ad-Hoc command.
+3. Install the package git using the correct Ad-Hoc command.
