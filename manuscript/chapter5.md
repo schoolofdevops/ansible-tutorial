@@ -9,7 +9,7 @@ In this tutorial we are going to create simple, static role for apache which wil
 ### 5.1 Creating Role Scaffolding for Apache
   * Change working  directory to **/vagrant/code/chap5**
 
-        ``` cd  /vagrant/code/chap5 ```
+      ``` cd  /vagrant/code/chap5 ```
 
   * Create roles directory
 
