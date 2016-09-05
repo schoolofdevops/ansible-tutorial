@@ -1,11 +1,14 @@
 # Chapter 4 : Learning to Write Playbooks
 
+<iframe src="//schoolofdevops.slides.com/schoolofdevops/playbooks-9/embed" width="576" height="420" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
 In this tutorial we are going to create a simple playbook to add system users, install and start ntp service and some basic utilities.
 
 
 ### 4.1 Creating our first playbook
 
-  * Change working directory to /vagrant/code/chap4
+  * Change working directory to /vagrant/code/chap4  
+     ``` cd /vagrant/code/chap4 ```  
   * Create playbook.yml and add the content below
 
 ~~~~~~~
@@ -35,6 +38,11 @@ To run the playbook, we are going to execute **ansible-playbook** command. Lets 
 
 ```
 ansible-playbook --help
+
+```
+
+```
+[output]
 
 Usage: ansible-playbook playbook.yml
 
