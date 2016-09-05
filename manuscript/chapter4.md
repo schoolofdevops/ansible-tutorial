@@ -1,7 +1,5 @@
 # Chapter 4 : Learning to Write Playbooks
 
-<iframe src="//schoolofdevops.slides.com/schoolofdevops/playbooks-9/embed" width="576" height="420" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
 In this tutorial we are going to create a simple playbook to add system users, install and start ntp service and some basic utilities.
 
 
@@ -265,5 +263,8 @@ PLAY RECAP *********************************************************************
 
 ~~~~~~~
 
-### 4.5 Exercise:
-1.
+## Exercise:
+Create a Playbook with the following specifications,
+  * It should apply only for database hosts
+  * Should use become method
+  * Should create a user called dbadmin with shell as "/bin/bash"

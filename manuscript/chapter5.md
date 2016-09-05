@@ -1,87 +1,129 @@
 # Chapter 5  
-## Writing modularizing code - Roles  
 
-### 5.1 Creating site-wide playbook
-Change your directory to `chap5`
+In this tutorial we are going to create simple, static role for apache which will,
+  * Install **httpd** package
+  * Configure **httpd.conf**, manage it as a static file
+  * Start httpd service
+  * Add a notification and a  handler so that whenever the configuration is updated, service is automatically restarted.
 
-Create *site.yml* in chap5 directory and put  
+### 5.1 Creating Role Scaffolding  for Apache
+  * Change working  directory to **/vagrant/code/chap5**
+        ``` cd  /vagrant/code/chap5 ```
 
-{title="Listing ", lang=html, linenos=off}
+  * Create roles directory
+       ``` mkdir roles ```
+
+  * Generate role scaffolding using ansible-galaxy
+       ``` ansible-galaxy init --offline --init-path=roles  apache ```
+
+  * Validate
+       ``` tree roles/ ```     
+
+```
+[Output]
+
+  roles/
+    └── apache
+        ├── defaults
+        │   └── main.yml
+        ├── files
+        ├── handlers
+        │   └── main.yml
+        ├── meta
+        │   └── main.yml
+        ├── README.md
+        ├── tasks
+        │   └── main.yml
+        ├── templates
+        ├── tests
+        │   ├── inventory
+        │   └── test.yml
+        └── vars
+            └── main.yml
+
+```
+
+
+### 5.2 Writing Tasks to Install and Start  Apache Web Service
+
+We are going to create three different tasks files, one for each phase of application lifecycle
+  * Install
+  * Configure
+  * Start Service
+
+To being with, in this part, we will install and start apache.
+
+  *  To install apache, Create *roles/apache/tasks/install.yml*
+
 ~~~~~~~
 ---
-- include: app.yml
-~~~~~~~
-
-Create *app.yml* in the same directory with the following content
-
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
----
-- hosts: app
-  become: true
-  roles:
-    - apache
-~~~~~~~
-
-### 5.2 Building our first *role*  
-Now the chap5 directory contains the files that we have already created  
-Now create a directory called *roles*  
-Inside *roles* folder, create another folder called *apache*  
-It should contain the following tree structure, create these files and folders.  
-
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
-.
-├── ansible.cfg
-├── app.yml
-├── httpd.conf
-├── index.html
-├── myhosts.ini
-├── playbook.yml
-├── roles
-│   ├── apache
-│   │   ├── files
-│   │   ├── handlers
-│   │   │   └── main.yml
-│   │   ├── meta
-│   │   │   └── main.yml
-│   │   └── tasks
-│   │       ├── config.yml
-│   │       ├── install.yml
-│   │       ├── main.yml
-│   │       └── start.yml
-│   └── base
-│       ├── meta
-│       │   └── main.yml
-│       └── tasks
-│           └── main.yml
-├── site.yml
-└── test.txt
-~~~~~~~  
-
-#### 5.2.1 Tasks directory
-
-Edit *roles/apache/tasks/install.yml*,  
-
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
----
-- name: Installing Apache...
+- name: Install Apache...
   yum: name=httpd state=latest
 ~~~~~~~  
 
-In *roles/apache/tasks/start.yml*, put  
 
-{title="Listing ", lang=html, linenos=off}
+  * To start the service, create  *roles/apache/tasks/start.yml* with the following content  
+
 ~~~~~~~
 ---
 - name: Starting Apache...
   service: name=httpd state=started
 ~~~~~~~  
 
-In *roles/apache/tasks/config.yml*, put  
 
-{title="Listing ", lang=html, linenos=off}
+To have these tasks being called, include them into main task.
+
+  * Edit roles/apache/tasks/main.yml
+
+```
+---
+# tasks file for apache
+- include: install.yml
+- include: start.yml
+```
+
+  * Create a playbook for app servers at /vagrant/chap5/app.yml with following contents
+
+  ```
+  ---
+  - hosts: app
+    become: true
+    roles:
+      - apache
+  ```
+
+  * Apply app.yml with ansible-playbook
+
+  ```
+  ansible-playbook app.yml
+  ```
+
+```
+[Output]
+PLAY [app] *********************************************************************
+
+TASK [setup] *******************************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [apache : Install Apache...] **********************************************
+changed: [192.168.61.13]
+changed: [192.168.61.12]
+
+TASK [apache : Starting Apache...] *********************************************
+changed: [192.168.61.13]
+changed: [192.168.61.12]
+
+PLAY RECAP *********************************************************************
+192.168.61.12              : ok=3    changed=2    unreachable=0    failed=0
+192.168.61.13              : ok=3    changed=2    unreachable=0    failed=0
+```
+
+
+#### 5.3 Managing Configuration files for Apache
+
+  * Create a task file to copy over configuration files. Create it  at  *roles/apache/tasks/config.yml*,   
+
 ~~~~~~~
 ---
 - name: Copying configuration files...
@@ -89,6 +131,7 @@ In *roles/apache/tasks/config.yml*, put
         dest=/etc/httpd.conf
         owner=root group=root mode=0644
   notify: Restart apache service
+
 - name: Copying index.html file...
   copy: src=index.html
         dest=/var/www/html/index.html
@@ -109,6 +152,10 @@ dependencies:
  - {role: base}
 ~~~~~~~  
 
+
+
+
+
 #### 5.2.4 Handlers directory  
 Put following content in *roles/apache/handlers/main.yml*  
 
@@ -118,6 +165,22 @@ Put following content in *roles/apache/handlers/main.yml*
 - name: Restart apache service
   service: name=httpd state=restarted
 ~~~~~~~
+
+
+
+
+
+
+  * Create *site.yml* in chap5 directory and put  
+
+{title="Listing ", lang=html, linenos=off}
+~~~~~~~
+---
+- include: app.yml
+~~~~~~~
+
+
+
 
 ### 5.3 Testing our role...  
 Now let's test the role that we have created...  
@@ -160,22 +223,6 @@ PLAY RECAP *********************************************************************
 192.168.61.13              : ok=2    changed=1    unreachable=0    failed=0
 ~~~~~~~
 
-<<<<<<< HEAD
-## 5.3 Ansible-Galaxy  
-### Creating a directory using ansible-galaxy  
-To create a new role called *starter*,  
-
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
-ansible-galaxy init --init-path roles/ --offline starter
-~~~~~~~  
-
-This will create that repo in *roles* directory  
-
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
-- starter was created successfully
-~~~~~~~  
 
 
 ## 5.4 Exercises
