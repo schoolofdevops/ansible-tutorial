@@ -47,8 +47,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
+  config.vm.provision "file", source: "rpm/", destination: "/tmp/"
+
   config.vm.provision "shell", inline: <<-SHELL
-    mkdir -p /etc/yum.repos.d/repo.bkp && mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/repo.bkp/ && mv /etc/yum.repos.d/repo.bkp/local_* /etc/yum.repos.d/
+    mkdir -p /etc/yum.repos.d/repo.bkp && mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/repo.bkp/ && mv /etc/yum.repos.d/repo.bkp/local_* /etc/yum.repos.d/ && mv /tmp/rpm/php-xml-5.3.3-46.el6_7.1.x86_64.rpm /usr/local/repos/lamp/. && createrepo /usr/local/repos/lamp/. && yum clean metadata
   SHELL
 
 end

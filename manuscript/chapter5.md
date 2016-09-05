@@ -1,8 +1,10 @@
 # Chapter 5  
 ## Writing modularizing code - Roles  
 
-### 5.1 Creating site-wide playbook  
-Create *site.yml* in chapter 5 directory and put  
+### 5.1 Creating site-wide playbook
+Change your directory to `chap5`
+
+Create *site.yml* in chap5 directory and put  
 
 {title="Listing ", lang=html, linenos=off}
 ~~~~~~~
@@ -15,24 +17,30 @@ Create *app.yml* in the same directory with the following content
 {title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ---
-- include: app.yml
+- hosts: app
+  become: true
+  roles:
+    - apache
 ~~~~~~~
 
 ### 5.2 Building our first *role*  
-Change your directory to chapter 5. This directory contains the files that we have already created  
+Now the chap5 directory contains the files that we have already created  
 Now create a directory called *roles*  
 Inside *roles* folder, create another folder called *apache*  
-It should contain following tree structure. Create these files and folders.  
+It should contain the following tree structure, create these files and folders.  
 
 {title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 .
+├── ansible.cfg
 ├── app.yml
+├── httpd.conf
+├── index.html
+├── myhosts.ini
+├── playbook.yml
 ├── roles
 │   ├── apache
 │   │   ├── files
-│   │   │   ├── httpd.conf
-│   │   │   └── index.html
 │   │   ├── handlers
 │   │   │   └── main.yml
 │   │   ├── meta
@@ -43,11 +51,12 @@ It should contain following tree structure. Create these files and folders.
 │   │       ├── main.yml
 │   │       └── start.yml
 │   └── base
-│       ├── meta
-│       │   └── main.yml
-│       └── tasks
-│           └── main.yml
-└── site.yml
+│       ├── meta
+│       │   └── main.yml
+│       └── tasks
+│           └── main.yml
+├── site.yml
+└── test.txt
 ~~~~~~~  
 
 #### 5.2.1 Tasks directory
@@ -61,7 +70,7 @@ Edit *roles/apache/tasks/install.yml*,
   yum: name=httpd state=latest
 ~~~~~~~  
 
-In *tasks/start.yml*, put  
+In *roles/apache/tasks/start.yml*, put  
 
 {title="Listing ", lang=html, linenos=off}
 ~~~~~~~
@@ -70,55 +79,58 @@ In *tasks/start.yml*, put
   service: name=httpd state=started
 ~~~~~~~  
 
-In *tasks/config.yml*, put  
+In *roles/apache/tasks/config.yml*, put  
 
 {title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ---
 - name: Copying configuration files...
-  copy: src=/code/chp5/roles/apache/files/httpd.conf
+  copy: src=httpd.conf
         dest=/etc/httpd.conf
         owner=root group=root mode=0644
-        state=started
+  notify: Restart apache service
+- name: Copying index.html file...
+  copy: src=index.html
+        dest=/var/www/html/index.html
+        mode=0777
 ~~~~~~~  
 
 #### 5.2.2 Files directory
 
-Copy *index.html* and *httpd.conf* from chapter5 to */roles/apache/files/* directory  
+Copy *index.html* and *httpd.conf* from `chap5` to */roles/apache/files/* directory  
 
 #### 5.2.3 Meta directory
-*main.yml* in this directory, should contain...  
+*roles/apache/meta/main.yml* this file, should contain...  
 
 {title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ---
-dependencies: [role:base]
+dependencies:
+ - {role: base}
 ~~~~~~~  
 
 #### 5.2.4 Handlers directory  
-Put following content in */handlers/main.yml*  
+Put following content in *roles/apache/handlers/main.yml*  
 
 {title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ---
-depedencies:
-  - {role: base}
+- name: Restart apache service
+  service: name=httpd state=restarted
 ~~~~~~~
 
 ### 5.3 Testing our role...  
 Now let's test the role that we have created...  
-Create a file *app.yml* inside */roles*
+Create a file *app.yml* in `chap5` directory.
 Edit *app.yml* file and make sure it **only** contains following content.  
 
 {title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ---
-  - name: App server configurations
-    hosts: app
-    become: true
-    roles:
-      - apache
-
+- hosts: app
+  become: true
+  roles:
+    - apache
 ~~~~~~~  
 
 
@@ -148,6 +160,7 @@ PLAY RECAP *********************************************************************
 192.168.61.13              : ok=2    changed=1    unreachable=0    failed=0
 ~~~~~~~
 
+<<<<<<< HEAD
 ## 5.3 Ansible-Galaxy  
 ### Creating a directory using ansible-galaxy  
 To create a new role called *starter*,  
@@ -167,3 +180,7 @@ This will create that repo in *roles* directory
 
 ## 5.4 Exercises
 1. Create roles for *db* and *loadbalancer* following the same workflow
+=======
+## 5.3 Exercises
+1. Create roles for *db* and *lb* following the same workflow
+>>>>>>> origin/master
