@@ -125,7 +125,7 @@ PLAY RECAP *********************************************************************
 ```
 
 
-#### 5.3 Managing Configuration files for Apache
+### 5.3 Managing Configuration files for Apache
   * Copy *index.html* and *httpd.conf* from *chap5/helper* to */roles/apache/files/* directory  
 
   * Create a task file at **roles/apache/tasks/config.yml** to manage files.    
