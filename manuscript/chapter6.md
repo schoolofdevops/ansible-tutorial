@@ -5,7 +5,7 @@ In this part of tutorial, we will learn about the variables and templates in Ans
 * Automatic Variable - Facts
   * Run the following command to see to facts of db servers  
   ```
-  ansible db -m setup | less
+  ansible db -m setup
   ```
 
 
