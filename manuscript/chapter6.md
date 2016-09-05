@@ -83,10 +83,12 @@ In this part of tutorial, we will learn about the variables and templates in Ans
 ### 6.2 Templates  
 * Create template for apache configuration  
   * This template will change **port number**, **document root** and **index.html** of apache server  
-  * ** move ** httpd.conf and index.html file from *roles/apache/files/* to *roles/apache/templates*  and change your working directory to the later(templates)
+  * ** move ** httpd.conf and index.html file from *roles/apache/files/* to *roles/apache/templates*  
+
     ```
     mv roles/apache/files/* roles/apache/templates
     ```
+  * Change your working directory to templates
   * Lets edit httpd.conf file first
     * Rename the file
     ```
