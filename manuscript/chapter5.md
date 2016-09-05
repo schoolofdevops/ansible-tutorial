@@ -145,7 +145,7 @@ PLAY RECAP *********************************************************************
 ~~~~~~~  
 
 ### 5.4 Handlers directory  
-Put following content in *roles/apache/handlers/main.yml*  
+  * Put following content in *roles/apache/handlers/main.yml*  
 
 ~~~~~~~
 ---
@@ -188,9 +188,9 @@ PLAY RECAP *********************************************************************
 ```  
 
 ### 5.5  Test Apache Role
-Now let's test the role that we have created...  
-Create a file *app.yml* in `chap5` directory.
-Edit *app.yml* file and make sure it **only** contains following content.  
+  * Now let's test the role that we have created...  
+  * Create a file *app.yml* in `chap5` directory.
+  * Edit *app.yml* file and make sure it **only** contains following content.  
 
 ~~~~~~~
 ---
@@ -199,7 +199,7 @@ Edit *app.yml* file and make sure it **only** contains following content.
   roles:
     - apache
 ~~~~~~~  
-Run the playbook  
+  * Run the playbook  
 ``` ansible-playbook app.yml ```   
 
 [Output]  
@@ -220,9 +220,9 @@ PLAY RECAP *********************************************************************
 ```
 
 ### 5.6 Add dependency to a role  
-Create a base role with ansible-galaxy utility,  
+  * Create a base role with ansible-galaxy utility,  
 ``` ➜  base ansible-galaxy init --offline --init-path roles/ base ```  
-Put the following content to */roles/base/tasks/main.yml*  
+  * Put the following content to */roles/base/tasks/main.yml*  
 ```
 ---
   - name: Base Configurations for ALL hosts
@@ -245,15 +245,15 @@ Put the following content to */roles/base/tasks/main.yml*
         service: name=ntpd state=started enabled=yes
 
 ```  
-Add base role dependency to apache role,  
-*roles/apache/meta/main.yml* this file, should contain...  
+  * Add base role dependency to apache role,  
+  *roles/apache/meta/main.yml* this file, should contain...  
 
 ~~~~~~~
 ---
 dependencies:
  - {role: base}
 ~~~~~~~  
-Now check how dependency works,  
+  * Now check how dependency works,  
 ```
 ➜  chap6 ansible-playbook site.yml
 
