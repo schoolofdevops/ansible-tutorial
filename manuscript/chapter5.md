@@ -8,15 +8,19 @@ In this tutorial we are going to create simple, static role for apache which wil
 
 ### 5.1 Creating Role Scaffolding  for Apache
   * Change working  directory to **/vagrant/code/chap5**
+
         ``` cd  /vagrant/code/chap5 ```
 
   * Create roles directory
+
        ``` mkdir roles ```
 
   * Generate role scaffolding using ansible-galaxy
+
        ``` ansible-galaxy init --offline --init-path=roles  apache ```
 
   * Validate
+
        ``` tree roles/ ```     
 
 ```
@@ -51,7 +55,7 @@ We are going to create three different tasks files, one for each phase of applic
   * Configure
   * Start Service
 
-To being with, in this part, we will install and start apache.
+To begin with, in this part, we will install and start apache.
 
   *  To install apache, Create *roles/apache/tasks/install.yml*
 
@@ -98,8 +102,9 @@ To have these tasks being called, include them into main task.
   ansible-playbook app.yml
   ```
 
-```
 [Output]
+
+```
 PLAY [app] *********************************************************************
 
 TASK [setup] *******************************************************************
@@ -121,8 +126,9 @@ PLAY RECAP *********************************************************************
 
 
 #### 5.3 Managing Configuration files for Apache
+  * Copy *index.html* and *httpd.conf* from `chap5` to */roles/apache/files/* directory  
 
-  * Create a task file to copy over configuration files. Create it  at  *roles/apache/tasks/config.yml*,   
+  * Create a task file at **roles/apache/tasks/config.yml** to manage files.    
 
 ~~~~~~~
 ---
@@ -138,9 +144,8 @@ PLAY RECAP *********************************************************************
         mode=0777
 ~~~~~~~  
 
-#### 5.2.2 Files directory
 
-Copy *index.html* and *httpd.conf* from `chap5` to */roles/apache/files/* directory  
+
 
 #### 5.2.3 Meta directory
 *roles/apache/meta/main.yml* this file, should contain...  
@@ -171,7 +176,7 @@ Put following content in *roles/apache/handlers/main.yml*
 
 
 
-  * Create *site.yml* in chap5 directory and put  
+* Create *site.yml* in chap5 directory and put  
 
 {title="Listing ", lang=html, linenos=off}
 ~~~~~~~
