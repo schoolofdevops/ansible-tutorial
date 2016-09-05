@@ -1,11 +1,15 @@
 # Chapter 3
 
-## 3.1 Creating project specific ansible configuration
-###  Ansible configuration file
-In chapter3 directory create a file called ansible.cfg  
-Put the following content in ansible.cfg
+## 3.1 Creating Project Specific Ansible Configuration
 
-{title="Listing ", lang=html, linenos=off}
+Lets create a custom configuration file for our project. This will override the values int he default file at /etc/ansible/ansible/cfg.
+
+###  Ansible configuration file
+
+  * Change into /vagrant/code/chapter3 directory on your ansible host. Create a file called ansible.cfg  
+
+Add  the following content in ansible.cfg
+
 ~~~~~~~
 [defaults]
 
@@ -19,13 +23,13 @@ inventory   = myhosts.ini
 For setting up inventories, create a new file called *myhosts.ini*   
 Let's create a group called *localhost* by editing myhosts.ini  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 [local]
 localhost ansible_connection=local
 ~~~~~~~
+
 Adding other groups to the inventory file
-{title="Listing ", lang=html, linenos=off}
+
 ~~~~~~~
 [app]
 192.168.61.12
@@ -37,7 +41,6 @@ Adding other groups to the inventory file
 
 Now save and quit the file. This is called an inventory and this is how it should look like...  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 [local]
 localhost ansible_connection=local
@@ -59,13 +62,12 @@ Make sure it has a *.ini* extension.
 
 Now on control host, execute the following command  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ssh-keygen -t rsa
 ~~~~~~~
 
 Now press enter for the passphrase and other queries.
-{title="Listing ", lang=html, linenos=off}
+
 ~~~~~~~
 Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa):
@@ -94,7 +96,6 @@ The key's randomart image is:
 ### 3.3.2 Copying public key to inventory hosts  
 Copy public key of control node to other hosts  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ssh-copy-id vagrant@192.168.61.11
 
@@ -107,7 +108,6 @@ ssh-copy-id vagrant@192.168.61.14
 
 See this example output to verify with your output  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 The authenticity of host '192.168.61.11 (192.168.61.11)' can't be established.
 RSA key fingerprint is 32:7f:ad:d7:da:63:32:b6:a9:ff:59:af:09:1e:56:22.
@@ -121,7 +121,6 @@ The password for user *vagrant* is *vagrant*
 ### 3.3.3 Validate the passwordless login  
 Let us check the connection of control node with other hosts  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ssh vagrant@192.168.61.11
 
@@ -135,14 +134,12 @@ ssh vagrant@192.168.61.14
 ### 3.3.4 Ansible ping  
 We will use Ansible to make sure all the hosts are reachable  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ansible all -m ping
 ~~~~~~~  
 
 Output of this command will be...  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 192.168.61.13 | SUCCESS => {
     "changed": false,
@@ -168,14 +165,12 @@ Try running following *fire-and-forget* Ad-Hoc commands...
 ### 3.4.1 Run *hostname* command on all hosts  
 Let us print the hostname of all the hosts  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ansible all -a hostname
 ~~~~~~~  
 
 The output will be...  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 localhost | SUCCESS | rc=0 >>
 ansible
@@ -194,14 +189,12 @@ app
 ### 3.4.2 Check the *uptime*  
 How long the hosts are *up*?  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ansible all -a uptime
 ~~~~~~~  
 
 The output will be...  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 localhost | SUCCESS | rc=0 >>
  13:17:13 up  2:21,  1 user,  load average: 0.16, 0.03, 0.01
@@ -219,14 +212,12 @@ localhost | SUCCESS | rc=0 >>
 ### 3.4.3 Check memory info on app servers  
 Does my app servers have any disk space *free*?  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 ansible app -a free
 ~~~~~~~  
 
 The output will be...  
 
-{title="Listing ", lang=html, linenos=off}
 ~~~~~~~
 192.168.61.13 | SUCCESS | rc=0 >>
              total       used       free     shared    buffers     cached
