@@ -182,8 +182,8 @@ changed: [192.168.61.12]
 changed: [192.168.61.13]
 
 PLAY RECAP *********************************************************************
-192.168.61.12              : ok=6    changed=4    unreachable=0    failed=0
-192.168.61.13              : ok=6    changed=4    unreachable=0    failed=0
+192.168.61.12              : ok=6    changed=3    unreachable=0    failed=0
+192.168.61.13              : ok=6    changed=3    unreachable=0    failed=0
 
 ```  
 
