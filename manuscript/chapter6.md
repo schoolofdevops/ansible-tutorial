@@ -94,7 +94,10 @@ In this part of tutorial, we will learn about the variables and templates in Ans
     ```
     mv httpd.conf httpd.conf.j2
     ```  
-    * Change static values into variables in *httpd.conf.j2*  
+    * Change following static values into variables in *httpd.conf.j2*  
+      * Listen
+      * DocumentRoot
+      * DirectoryIndex
     ```
     ServerTokens OS
 
