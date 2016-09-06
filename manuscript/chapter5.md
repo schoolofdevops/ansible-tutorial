@@ -262,7 +262,8 @@ We will create a site wide playbook, which will call all the plays required to c
   ~~~~~~~  
 
 
-    * Execute sitewide playbook as
+
+  * Execute sitewide playbook as
 
 
 ```
@@ -333,7 +334,7 @@ PLAY RECAP *********************************************************************
 
   ```
 
-  
+
   * Create a Role to install and configure MySQL server   
      *    Create role scaffold for mysql  using ansible-galaxy init  
      *   Create task to install "mysql-server" package using yum module   
