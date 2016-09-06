@@ -1,4 +1,4 @@
-# Chapter 5  
+# Chapter 5  : Working with Roles
 
 In this tutorial we are going to create simple, static role for apache which will,
   * Install **httpd** package
@@ -57,7 +57,7 @@ We are going to create three different tasks files, one for each phase of applic
 
 To begin with, in this part, we will install and start apache.
 
-  *  To install apache, Create *roles/apache/tasks/install.yml*
+  *  To install apache, Create **roles/apache/tasks/install.yml**
 
 ~~~~~~~
 ---
@@ -66,7 +66,7 @@ To begin with, in this part, we will install and start apache.
 ~~~~~~~  
 
 
-  * To start the service, create  *roles/apache/tasks/start.yml* with the following content  
+  * To start the service, create  **roles/apache/tasks/start.yml** with the following content  
 
 ~~~~~~~
 ---
@@ -126,7 +126,9 @@ PLAY RECAP *********************************************************************
 
 
 ### 5.3 Managing Configuration files for Apache
-  * Copy *index.html* and *httpd.conf* from *chap5/helper* to */roles/apache/files/* directory  
+  * Copy **index.html** and **httpd.conf** from **chap5/helper** to **/roles/apache/files/** directory    
+
+  ``` cp helper/index.html helper/httpd.conf roles/apache/files/  ```  
 
   * Create a task file at **roles/apache/tasks/config.yml** to manage files.    
 
@@ -145,7 +147,7 @@ PLAY RECAP *********************************************************************
 
 #### 5.3.2 Adding Notifications and Handlers   
 
-  * Update resource which copies **httpd.conf**  to sent a notification to restart  service.
+  * Previously we have create a task in roles/apache/tasks/config.yml to copy over httpd.conf to the app server. Update this file to send a notification to restart  service on configuration update.  You simply have to add the line which starts with **notify**
 
 ```
   - name: Copying configuration files...
@@ -201,6 +203,9 @@ PLAY RECAP *********************************************************************
 
 ```  
 
+## Troubleshooting Exercise
+
+Did the above command added the configuration files and restarted the service ? But we have already written **config.yml**. Troubleshoot why its not being run and fix it before you proceed.
 
 
 ### 5.4 Base Role and Role Nesting
@@ -246,7 +251,7 @@ dependencies:
 
 We will create a site wide playbook, which will call all the plays required to configure the complete infrastructure. Currently we have a single  playbook for App Servers. However, in future we would create many.
 
-    * Create **site.yml** in `/vagrant/chap5` directory and add the following content
+  * Create **site.yml** in /vagrant/chap5 directory and add the following content
 
   ~~~~~~~
   ---
@@ -262,6 +267,10 @@ We will create a site wide playbook, which will call all the plays required to c
 
 ```
 ansible-playbook site.yml
+```
+
+[Output]
+
 ```
 
 PLAY [Playbook to configure App Servers] ***************************************
@@ -313,11 +322,13 @@ PLAY RECAP *********************************************************************
 
 
 ## Exercises
-1. Update httpd.conf and change some configuration parameters. Validate the service restarts on configuration updates by applying the sitewide playbook.
+  * Update httpd.conf and change some configuration parameters. Validate the service restarts on configuration updates by applying the sitewide playbook.
 
-2. Create a Role to install and configure MySQL server
-  2.1 Create role scaffold for mysql  using ansible-galaxy
-  2.2 Create task to install mysql-server and MySQL-python
-  2.3 Start mysqld service
-  2.4 Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts. Use helper/my.cnf as a reference 
-  2.5 Write a handler to restart the service on configuration change
+  * Create a Role to install and configure MySQL server   
+     *    Create role scaffold for mysql  using ansible-galaxy init  
+     *   Create task to install "mysql-server" package using yum module   
+     *   Install  MySQL-python using rpm. You could fetch this rpm from https://s3-us-west-2.amazonaws.com/ansible-training-centos-box/rpm/MySQL-python-1.2.3-0.3.c1.1.el6.x86_64.rpm  
+     *    Create a task to start mysqld service   
+     *   Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts. Use helper/my.cnf as a reference  
+     *    Write a handler to restart the service on configuration change. Add a notification from the copy resource created earlier.  
+     *     Create  db.yml playbook for configuring all database servers. Create definition with to configure **db** group and to apply **mysql** role.   

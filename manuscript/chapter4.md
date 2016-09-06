@@ -19,7 +19,7 @@ In this tutorial we are going to create a simple playbook to add system users, i
         user: name=admin state=present uid=5001
 
       - name: remove dojo
-        user: name=dojo  state=present
+        user: name=dojo  state=absent
 
       - name: install tree
         yum:  name=tree  state=present
@@ -263,10 +263,22 @@ PLAY RECAP *********************************************************************
 
 ~~~~~~~
 
+
 ## Exercise:
 Create a Playbook with the following specifications,
   * It should apply only on local host (ansible host)
   * Should use become method
   * Should create a **user** called webadmin with shell as "/bin/sh"
   * Should install and start **nginx** service
-  * Should **deploy** a sample html app into the default web root directory of nginx using ansible's **git** module. Source repository for the app is at https://github.com/schoolofdevops/html-sample-app
+  * Should **deploy** a sample html app into the default web root directory of nginx using ansible's **git** module.
+    * Source repo:  https://github.com/schoolofdevops/html-sample-app
+    * Deploy Path : /usr/share/nginx/html/app
+    * The user to deploy the app would be nginx 
+
+
+#####  TODO for Course Creator:
+   - Fail the task (w.g. service name = ntp).
+   - It will create a retry file
+   Use that to feed into to ansible-playbook with --limit option
+   e.g.
+   ``` ansible-playbook playbook.yml --limit @/tmp/playbook.rerty
