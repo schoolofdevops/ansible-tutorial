@@ -266,6 +266,10 @@ We will create a site wide playbook, which will call all the plays required to c
 ansible-playbook site.yml
 ```
 
+[Output]
+
+```
+
 PLAY [Playbook to configure App Servers] ***************************************
 
 TASK [setup] *******************************************************************
