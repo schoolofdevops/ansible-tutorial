@@ -136,7 +136,6 @@ PLAY RECAP *********************************************************************
   copy: src=httpd.conf
         dest=/etc/httpd.conf
         owner=root group=root mode=0644
-  notify: Restart apache service
 
 - name: Copying index.html file...
   copy: src=index.html
@@ -144,14 +143,29 @@ PLAY RECAP *********************************************************************
         mode=0777
 ~~~~~~~  
 
-### 5.4 Handlers directory  
-  * Put following content in *roles/apache/handlers/main.yml*  
+#### 5.3.2 Adding Notifications and Handlers   
+
+  * Update resource which copies **httpd.conf**  to sent a notification to restart  service.
+
+```
+  - name: Copying configuration files...
+    copy: src=httpd.conf
+          dest=/etc/httpd.conf
+          owner=root group=root mode=0644
+    notify: Restart apache service
+```
+
+  * Create the notification handler by updating   **roles/apache/handlers/main.yml**  
 
 ~~~~~~~
 ---
 - name: Restart apache service
   service: name=httpd state=restarted
 ~~~~~~~  
+
+``` ansible-playbook app.yml ```   
+
+
 [Output]  
 ```
 
@@ -187,44 +201,19 @@ PLAY RECAP *********************************************************************
 
 ```  
 
-### 5.5  Test Apache Role
-  * Now let's test the role that we have created...  
-  * Create a file *app.yml* in `chap5` directory.
-  * Edit *app.yml* file and make sure it **only** contains following content.  
 
-~~~~~~~
----
-- hosts: app
-  become: true
-  roles:
-    - apache
-~~~~~~~  
-  * Run the playbook  
-``` ansible-playbook app.yml ```   
 
-[Output]  
-```
-PLAY [App server configurations] ***********************************************
+### 5.4 Base Role and Role Nesting
 
-TASK [setup] *******************************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [apache : Installing Apache...] *******************************************
-changed: [192.168.61.13]
-changed: [192.168.61.12]
-
-PLAY RECAP *********************************************************************
-192.168.61.12              : ok=2    changed=1    unreachable=0    failed=0
-192.168.61.13              : ok=2    changed=1    unreachable=0    failed=0
-```
-
-### 5.6 Add dependency to a role  
   * Create a base role with ansible-galaxy utility,  
-``` ➜  base ansible-galaxy init --offline --init-path roles/ base ```  
-  * Put the following content to */roles/base/tasks/main.yml*  
+``` ansible-galaxy init --offline --init-path=roles base ```  
+
+  * Create tasks for base role by editing  **/roles/base/tasks/main.yml**  
+
 ```
 ---
+# tasks file for base
+# file: roles/base/tasks/main.yml
   - name: Base Configurations for ALL hosts
     hosts: all
     become: true
@@ -245,15 +234,36 @@ PLAY RECAP *********************************************************************
         service: name=ntpd state=started enabled=yes
 
 ```  
-  * Add base role dependency to apache role,  
-  *roles/apache/meta/main.yml* this file, should contain...  
 
+  * Add base role dependency to apache role,  
+  * Update meta data for Apache by editing **roles/apache/meta/main.yml** and adding the following
 ~~~~~~~
 ---
 dependencies:
  - {role: base}
 ~~~~~~~  
-  * Now check how dependency works,  
+
+
+
+
+### 5.5  Creating a Site Wide Playbook
+
+We will create a site wide playbook, which will call all the plays required to configure the complete infrastructure. Currently we have a single  playbook for App Servers. However, in future we would create many.
+
+    * Create **site.yml** in `/vagrant/chap5` directory and add the following content
+
+  ~~~~~~~
+  ---
+  - hosts: app
+    become: true
+    roles:
+      - apache
+  ~~~~~~~  
+    * Run the playbook  
+
+
+
+
 ```
 ➜  chap6 ansible-playbook site.yml
 
