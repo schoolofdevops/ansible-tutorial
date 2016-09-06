@@ -321,9 +321,9 @@ PLAY RECAP *********************************************************************
 ## Exercises
 1. Update httpd.conf and change some configuration parameters. Validate the service restarts on configuration updates by applying the sitewide playbook.
 
-2. Create a Role to install and configure MySQL server
-  2.1 Create role scaffold for mysql  using ansible-galaxy
-  2.2 Create task to install mysql-server and MySQL-python
-  2.3 Start mysqld service
-  2.4 Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts. Use helper/my.cnf as a reference
-  2.5 Write a handler to restart the service on configuration change
+2. Create a Role to install and configure MySQL server  
+  2.1 Create role scaffold for mysql  using ansible-galaxy  
+  2.2 Create task to install mysql-server and MySQL-python  
+  2.3 Start mysqld service  
+  2.4 Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts. Use helper/my.cnf as a reference  
+  2.5 Write a handler to restart the service on configuration change  
