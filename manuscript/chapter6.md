@@ -1,5 +1,4 @@
-# Chapter 6  
-## Dynamic Code - Variables and Templates  
+# Chapter 6: Variables and Templates  
 In this  tutorial, we  are going to make the roles that we created earlier dynamic by adding templates and defining varaibles.
 
 ### Variables  
@@ -270,9 +269,9 @@ changed: [192.168.61.13]
 PLAY RECAP *********************************************************************
 192.168.61.12              : ok=11   changed=3    unreachable=0    failed=0
 192.168.61.13              : ok=11   changed=3    unreachable=0    failed=0
+```
 
-
-### 6.4 Playing with Variable Precedence Rules
+### 6.5 Playing with Variable Precedence Rules
 
 Lets define the variables from couple of other places, to learn about the Precedence rules. We will create,
    * group_vars
