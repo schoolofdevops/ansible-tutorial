@@ -97,9 +97,9 @@ In this  tutorial, we  are going to make the roles that we created earlier dynam
 
       - name: print registered variable
         debug: var=result
-...
+```
 
-Execute the playbook to display information about the registered variable. 
+Execute the playbook to display information about the registered variable.
 ```
 ansible-playbook  register.yml
 
