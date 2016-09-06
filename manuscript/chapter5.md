@@ -147,7 +147,7 @@ PLAY RECAP *********************************************************************
 
 #### 5.3.2 Adding Notifications and Handlers   
 
-  * Update resource which copies **httpd.conf**  to send  notification to restart  service on configuration update.
+  * Previously we have create a task in roles/apache/tasks/config.yml to copy over httpd.conf to the app server. Update this file to send a notification to restart  service on configuration update.  You simply have to add the line which starts with **notify**
 
 ```
   - name: Copying configuration files...
