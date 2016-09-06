@@ -263,3 +263,10 @@ PLAY RECAP *********************************************************************
       └── main.yml
 
   ```  
+
+## Exercise
+
+  * Generate MySQL Configurations dynaically using templates and modules.
+    * Create a template for my.cnf.  Name it as roles/mysql/templates/my.cnf.j2
+    * Replace parameter values with tempates variables
+    * Define variables in role defaults.
