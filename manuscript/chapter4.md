@@ -265,6 +265,8 @@ PLAY RECAP *********************************************************************
 
 ## Exercise:
 Create a Playbook with the following specifications,
-  * It should apply only for database hosts
+  * It should apply only on local host (ansible host)
   * Should use become method
-  * Should create a user called dbadmin with shell as "/bin/bash"
+  * Should create a **user** called webadmin with shell as "/bin/sh"
+  * Should install and start **nginx** service
+  * Should **deploy** a sample html app into the default web root directory of nginx using ansible's **git** module. Source repository for the app is at https://github.com/schoolofdevops/html-sample-app
