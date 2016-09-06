@@ -19,7 +19,7 @@ In this tutorial we are going to create a simple playbook to add system users, i
         user: name=admin state=present uid=5001
 
       - name: remove dojo
-        user: name=dojo  state=present
+        user: name=dojo  state=absent
 
       - name: install tree
         yum:  name=tree  state=present
