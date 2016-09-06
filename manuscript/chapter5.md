@@ -203,6 +203,9 @@ PLAY RECAP *********************************************************************
 
 ```  
 
+## Troubleshooting Exercise
+
+Did the above command added the configuration files and restarted the service ? But we have already written **config.yml**. Troubleshoot why its not being run and fix it. 
 
 
 ### 5.4 Base Role and Role Nesting
