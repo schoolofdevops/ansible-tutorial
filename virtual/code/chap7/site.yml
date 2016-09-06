@@ -1,3 +1,5 @@
 ---
-  - name: Site Wide Playbook
-    include: app.yml
+  # This is a sitewide playbook
+  # filename: site.yml
+  - include: db.yml
+  - include: app.yml

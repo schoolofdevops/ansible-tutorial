@@ -2,5 +2,8 @@
   - name: Playbook to configure App Servers
     hosts: app
     become: true
+    vars:
+      fav:
+        fruit: mango
     roles:
-      - apache
+    - apache

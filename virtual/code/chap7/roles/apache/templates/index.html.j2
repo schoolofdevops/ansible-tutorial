@@ -1,0 +1,21 @@
+<html>
+<body>
+  <h1>  Welcome to Ansible training! </h1>
+
+  <h2> SYSTEM INFO </h2>
+  <h4>  ========================= </h4>
+  <h3> Operating System : {{ ansible_distribution }} </h3>
+  <h3> IP Address : {{ ansible_eth1['ipv4']['address'] }} </h3>
+
+
+  <h2>  My Favourites </h2>
+  <h4>  ========================= </h4>
+
+  <h3> color     : {{ fav['color'] }} </h3>
+  <h3> fruit     : {{ fav['fruit']   }} </h3>
+  <h3> car       : {{ fav['car']   }} </h3>
+  <h3> laptop    : {{ fav['laptop']   }} </h3>
+  <h4>  ========================= </h4>
+
+</body>
+</html>

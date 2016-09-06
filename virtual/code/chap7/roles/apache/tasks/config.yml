@@ -1,10 +1,10 @@
 ---
-- name: Copying configuration files...
-  copy: src=httpd.conf
-        dest=/etc/httpd.conf
-        owner=root group=root mode=0644
+- name: Creating configuration from templates...
+  template: src=httpd.conf.j2
+            dest=/etc/httpd.conf
+            owner=root group=root mode=0644
   notify: Restart apache service
 - name: Copying index.html file...
-  copy: src=index.html
+  template: src=index.html.j2
         dest=/var/www/html/index.html
         mode=0777
