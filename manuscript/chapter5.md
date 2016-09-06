@@ -337,9 +337,8 @@ PLAY RECAP *********************************************************************
 
   * Create a Role to install and configure MySQL server   
      *    Create role scaffold for mysql  using ansible-galaxy init  
-     *   Create task to install "mysql-server" package using yum module   
-     *   Install  MySQL-python using rpm. You could fetch this rpm from https://s3-us-west-2.amazonaws.com/ansible-training-centos-box/rpm/MySQL-python-1.2.3-0.3.c1.1.el6.x86_64.rpm  
+     *   Create task to install "mysql-server" and "MySQL-python" packages using yum module   
      *    Create a task to start mysqld service   
      *   Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts. Use helper/my.cnf as a reference  
      *    Write a handler to restart the service on configuration change. Add a notification from the copy resource created earlier.  
-     *     Create  db.yml playbook for configuring all database servers. Create definition with to configure **db** group and to apply **mysql** role.   
+     *     Create  **db.yml** playbook for configuring all database servers. Create definitions to configure **db** group and to apply **mysql** role.   
