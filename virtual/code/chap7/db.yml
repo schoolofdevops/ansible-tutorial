@@ -4,3 +4,8 @@
     become: true
     roles:
     - mysql
+    vars:
+      mysql:
+        server: true
+        config:
+          bind: "{{ ansible_eth1.ipv4.address }}"
