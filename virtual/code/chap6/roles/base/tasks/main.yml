@@ -1,5 +1,4 @@
-# tasks file for base
-# file: roles/base/tasks/main.yml
+---
   - name: create admin user
     user: name=admin state=present uid=5001
 
@@ -14,4 +13,3 @@
 
   - name: start ntp service
     service: name=ntpd state=started enabled=yes
-

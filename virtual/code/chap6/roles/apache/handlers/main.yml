@@ -1,4 +1,3 @@
 ---
-# handlers file for apache
 - name: Restart apache service
   service: name=httpd state=restarted

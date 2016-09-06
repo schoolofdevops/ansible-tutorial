@@ -1,2 +1,3 @@
 ---
-# defaults file for apache
+# defaults file for starter
+httpd_port: 8080
