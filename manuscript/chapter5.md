@@ -205,7 +205,7 @@ PLAY RECAP *********************************************************************
 
 ## Troubleshooting Exercise
 
-Did the above command added the configuration files and restarted the service ? But we have already written **config.yml**. Troubleshoot why its not being run and fix it. 
+Did the above command added the configuration files and restarted the service ? But we have already written **config.yml**. Troubleshoot why its not being run and fix it before you proceed.
 
 
 ### 5.4 Base Role and Role Nesting
@@ -325,8 +325,10 @@ PLAY RECAP *********************************************************************
 1. Update httpd.conf and change some configuration parameters. Validate the service restarts on configuration updates by applying the sitewide playbook.
 
 2. Create a Role to install and configure MySQL server  
-  2.1 Create role scaffold for mysql  using ansible-galaxy  
-  2.2 Create task to install mysql-server and MySQL-python  
-  2.3 Start mysqld service  
+  2.1 Create role scaffold for mysql  using ansible-galaxy init
+  2.2 Create task to install "mysql-server" package using yum module
+  2.3  Install  MySQL-python using rpm. You could fetch this rpm from https://s3-us-west-2.amazonaws.com/ansible-training-centos-box/rpm/MySQL-python-1.2.3-0.3.c1.1.el6.x86_64.rpm
+  2.3 Create a task to start mysqld service  
   2.4 Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts. Use helper/my.cnf as a reference  
-  2.5 Write a handler to restart the service on configuration change  
+  2.5 Write a handler to restart the service on configuration change. Add a notification from the copy resource created earlier.
+  2.6 Create  db.yml playbook for configuring all database servers. Create definition with to configure **db** group and to apply **mysql** role.   
