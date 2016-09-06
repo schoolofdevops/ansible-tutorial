@@ -3,7 +3,15 @@
 In this  tutorial, we  are going to make the roles that we created earlier dynamic by adding templates and defining varaibles.
 
 ### 6.1 Variables  
-* Automatic Variable - Facts
+
+Variables are of two types
+  * Automatic Variables/ Facts
+  * User Defined Variables
+
+Lets try to discover information about our systems by using facts.
+
+#### Finding Facts About Systems
+
   * Run the following command to see to facts of db servers  
   ```
   ansible db -m setup
@@ -62,7 +70,7 @@ In this  tutorial, we  are going to make the roles that we created earlier dynam
 
 ```
 
-  * Filter facts  
+#### Filter facts  
 
   * Use filter attribute to extract specific data  
 
@@ -82,7 +90,7 @@ In this  tutorial, we  are going to make the roles that we created earlier dynam
 }  
 ```
 
-* Registered variables
+#### Registering  Variables
   Lets create a playbook to run a shell command, register the result and display the value of registered variable.
 
   Create **register.yml** in chap6 directory
