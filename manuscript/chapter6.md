@@ -1,5 +1,5 @@
 # Chapter 6: Variables and Templates  
-In this  tutorial, we  are going to make the roles that we created earlier dynamic by adding templates and defining varaibles.
+In this  tutorial, we  are going to make the roles that we created earlier dynamically by adding templates and defining variables.
 
 ### Variables  
 
