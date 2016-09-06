@@ -248,7 +248,7 @@ dependencies:
 
 We will create a site wide playbook, which will call all the plays required to configure the complete infrastructure. Currently we have a single  playbook for App Servers. However, in future we would create many.
 
-    * Create **site.yml** in `/vagrant/chap5` directory and add the following content
+  * Create **site.yml** in /vagrant/chap5 directory and add the following content
 
   ~~~~~~~
   ---
