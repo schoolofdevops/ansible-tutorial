@@ -23,10 +23,10 @@
   shell: mysql --user=root --password="{{ MYSQL_DEFAULT_PASS }}" --connect-expired-password mysql < /root/.mysql_reset_pass.sql
   run_once: true
   ignore_errors: yes
-  
+
 - name: create mysql creds file
   template: >
     src=my.cnf.j2
     dest=/root/.my.cnf
 
-- mysql_user: name=bob password=12345 priv=*.*:ALL,GRANT state=present
+- mysql_user: name=gojo password=yodojo priv=*.*:ALL,GRANT state=present
