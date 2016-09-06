@@ -57,7 +57,7 @@ We are going to create three different tasks files, one for each phase of applic
 
 To begin with, in this part, we will install and start apache.
 
-  *  To install apache, Create *roles/apache/tasks/install.yml*
+  *  To install apache, Create **roles/apache/tasks/install.yml**
 
 ~~~~~~~
 ---
@@ -66,7 +66,7 @@ To begin with, in this part, we will install and start apache.
 ~~~~~~~  
 
 
-  * To start the service, create  *roles/apache/tasks/start.yml* with the following content  
+  * To start the service, create  **roles/apache/tasks/start.yml** with the following content  
 
 ~~~~~~~
 ---
@@ -126,7 +126,9 @@ PLAY RECAP *********************************************************************
 
 
 ### 5.3 Managing Configuration files for Apache
-  * Copy *index.html* and *httpd.conf* from *chap5/helper* to */roles/apache/files/* directory  
+  * Copy **index.html** and **httpd.conf** from **chap5/helper** to **/roles/apache/files/** directory    
+
+  ``` cp helper/index.html helper/httpd.conf roles/apache/files/  ```  
 
   * Create a task file at **roles/apache/tasks/config.yml** to manage files.    
 
@@ -145,7 +147,7 @@ PLAY RECAP *********************************************************************
 
 #### 5.3.2 Adding Notifications and Handlers   
 
-  * Update resource which copies **httpd.conf**  to sent a notification to restart  service.
+  * Update resource which copies **httpd.conf**  to send  notification to restart  service on configuration update.
 
 ```
   - name: Copying configuration files...
@@ -319,5 +321,5 @@ PLAY RECAP *********************************************************************
   2.1 Create role scaffold for mysql  using ansible-galaxy
   2.2 Create task to install mysql-server and MySQL-python
   2.3 Start mysqld service
-  2.4 Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts. Use helper/my.cnf as a reference 
+  2.4 Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts. Use helper/my.cnf as a reference
   2.5 Write a handler to restart the service on configuration change
