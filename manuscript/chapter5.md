@@ -339,6 +339,7 @@ PLAY RECAP *********************************************************************
      *    Create role scaffold for mysql  using ansible-galaxy init  
      *   Create task to install "mysql-server" and "MySQL-python" packages using yum module   
      *    Create a task to start mysqld service   
-     *   Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts. Use helper/my.cnf as a reference  
-     *    Write a handler to restart the service on configuration change. Add a notification from the copy resource created earlier.  
+     *   Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts. Use helper/my.cnf as a reference. The destination for this file is /etv/my.cnf on db servers.
+     *    Write a handler to restart the service on configuration change. Add a notification from the copy resource created earlier.
+     * Add a dependency on base role in the metadata for mysql role.  
      *     Create  **db.yml** playbook for configuring all database servers. Create definitions to configure **db** group and to apply **mysql** role.   
