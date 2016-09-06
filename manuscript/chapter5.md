@@ -324,6 +324,16 @@ PLAY RECAP *********************************************************************
 ## Exercises
   * Update httpd.conf and change some configuration parameters. Validate the service restarts on configuration updates by applying the sitewide playbook.
 
+  * Pre Task to be run before creating MySQL Role
+
+  From Ansible Control node run the following command to enable repositories. This is needed in order to install some of the db packages.
+
+  ```
+   ansible db -s -a "cp -r /etc/yum.repos.d/repo.bkp/* /etc/yum.repos.d/"
+
+  ```
+
+  
   * Create a Role to install and configure MySQL server   
      *    Create role scaffold for mysql  using ansible-galaxy init  
      *   Create task to install "mysql-server" package using yum module   
