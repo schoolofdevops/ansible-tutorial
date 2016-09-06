@@ -64,13 +64,15 @@ In this  tutorial, we  are going to make the roles that we created earlier dynam
 
   * Filter facts  
 
-    * Use filter attribute to extract specific data  
-        ```
+  * Use filter attribute to extract specific data  
+
+  ```
         ansible db -m setup -a "filter=ansible_distribution"
 
-        ```
+  ```
 
   [Output]  
+
 ```
 192.168.61.11 | SUCCESS => {
   "ansible_facts": {
@@ -80,11 +82,34 @@ In this  tutorial, we  are going to make the roles that we created earlier dynam
 }  
 ```
 
+* Registered variables
+  Lets create a playbook to run a shell command, register the result and display the value of registered variable.
+
+  Create **register.yml** in chap6 directory
+```
+---
+  - name: register variable example
+    hosts: local
+    tasks:
+      - name: run a shell command and rerister result
+        shell: "/sbin/ifconfig eth1"
+        register: result
+
+      - name: print registered variable
+        debug: var=result
+...
+
+Execute the playbook to display information about the registered variable. 
+```
+ansible-playbook  register.yml
+
+```
+
 
 ### 6.2 Creating Templates for Apache
 * Create template for apache configuration  
   * This template will change **port number**, **document root** and **index.html** for  apache server  
-  * Copy ** *httpd.conf* file from *roles/apache/files/* to *roles/apache/templates*  
+  * Copy **httpd.conf** file from **roles/apache/files/** to **roles/apache/templates**  
 
     ```
     cp roles/apache/files/httpd.conf roles/apache/templates/httpd.conf.j2
@@ -93,12 +118,12 @@ In this  tutorial, we  are going to make the roles that we created earlier dynam
     ```
     cd roles/apache/templates
     ```
-    * Change values of following  parameters by using template variables *httpd.conf.j2*  
+    * Change values of following  parameters by using template variables in **httpd.conf.j2**
       * Listen
       * DocumentRoot
       * DirectoryIndex   
 
-    Following code depicts only the parameters changed. Rest of the configurations remain as is
+    Following code depicts only the parameters changed. Rest of the configurations in *httpd.conf.j2* remain as is
     ```
 
     Listen {{ apache_port }}
