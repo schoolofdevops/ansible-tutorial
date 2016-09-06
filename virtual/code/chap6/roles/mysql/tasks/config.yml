@@ -1,0 +1,6 @@
+---
+- name: Copying configuration files...
+  copy: src=my.cnf
+        dest=/etc/my.cnf
+        owner=root group=root mode=0644
+  notify: restart mysql
