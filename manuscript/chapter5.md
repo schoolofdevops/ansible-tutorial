@@ -214,28 +214,24 @@ PLAY RECAP *********************************************************************
 ---
 # tasks file for base
 # file: roles/base/tasks/main.yml
-  - name: Base Configurations for ALL hosts
-    hosts: all
-    become: true
-    tasks:
-      - name: create admin user
-        user: name=admin state=present uid=5001
+  - name: create admin user
+    user: name=admin state=present uid=5001
 
-      - name: remove dojo
-        user: name=dojo  state=present
+  - name: remove dojo
+    user: name=dojo  state=present
 
-      - name: install tree
-        yum:  name=tree  state=present
+  - name: install tree
+    yum:  name=tree  state=present
 
-      - name: install ntp
-        yum:  name=ntp   state=present
+  - name: install ntp
+    yum:  name=ntp   state=present
 
-      - name: start ntp service
-        service: name=ntpd state=started enabled=yes
+  - name: start ntp service
+    service: name=ntpd state=started enabled=yes
 
 ```  
 
-  * Add base role dependency to apache role,  
+  * Define base role as a dependency for  apache role,  
   * Update meta data for Apache by editing **roles/apache/meta/main.yml** and adding the following
 ~~~~~~~
 ---
@@ -254,18 +250,19 @@ We will create a site wide playbook, which will call all the plays required to c
 
   ~~~~~~~
   ---
-  - hosts: app
-    become: true
-    roles:
-      - apache
+  # This is a sitewide playbook
+  # filename: site.yml
+  - include: app.yml
+
   ~~~~~~~  
-    * Run the playbook  
 
 
+    * Execute sitewide playbook as
 
 
 ```
-➜  chap6 ansible-playbook site.yml
+ansible-playbook site.yml
+```
 
 PLAY [Playbook to configure App Servers] ***************************************
 
@@ -315,8 +312,12 @@ PLAY RECAP *********************************************************************
 ```
 
 
-### 5.7 Exercises
-1. Create scaffolding for **mariadb** role and **haproxy**
-2. Make *haproxy* role dependent on *base* role
-3. Create *db* and *lb* playbooks and make them available in **site wide playbook**  
-4. Install *mariadb* and *haproxy* in respective nodes
+## Exercises
+1. Update httpd.conf and change some configuration parameters. Validate the service restarts on configuration updates by applying the sitewide playbook.
+
+2. Create a Role to install and configure MariaDB, a open source fork of MySQL.
+  2.1 Create role scaffold for mariadb  using ansible-galaxy
+  2.2 Create task to install MariaDB-server and MySQL-python
+  2.3 Start maridb service
+  2.4 Manage my.cnf by creating a centrailized copy in role and writing a task to coy it to all db hosts.  
+  2.5 Write a handler to restart the service on configuration change
