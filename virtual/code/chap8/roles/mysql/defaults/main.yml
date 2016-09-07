@@ -1,0 +1,17 @@
+---
+# defaults file for mysql
+mysql_root_db_pass: p@sswOrd1234
+mysql:
+  config:
+    user: mysql
+    port: 3350
+    datadir: /var/lib/mysql
+    bind: 127.0.0.1
+    pid: /var/run/mysqld/mysqld.sock
+    socket: /var/run/mysqld/mysql.sock
+    cnfpath: /etc/mysql/my.cnf
+service: mysql
+pkg:
+  server: mysql-server
+  client: mysql-client
+server: false

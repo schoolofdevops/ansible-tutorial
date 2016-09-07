@@ -1,0 +1,3 @@
+---
+  - name: Install mysql servers
+    service: name=mysqld state=started
