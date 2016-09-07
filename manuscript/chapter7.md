@@ -243,3 +243,12 @@ changed: [192.168.61.13] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pix
    ```
     ansible-playbook db.yml
    ```
+
+## Exercises
+  * Create a entry for one more database user by defining it in group_vars/all. Observe the output by running db.yml playbook and validate if the user is been actually created on the mysql server.
+
+  * Update index.html.j2 to iterate over the dictionary of favorites and generate html content to display it instead of adding multiple lines.
+
+  * Define a hash/dictionary  of apache virtual hosts to be created  and create a template which would iterate over that dictionary and create vhost configurations.
+
+  * Learn about what else you could loop over, as well as how to do so by reading this document http://docs.ansible.com/ansible/playbooks_loops.html#id12
