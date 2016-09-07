@@ -1,9 +1,9 @@
 ---
-# packsges list
+# packages list
 demolist:
   packages:
     - atk
     - flac
     - eggdbus
-    - polkit
     - pixman
+    - polkit

@@ -17,4 +17,4 @@
   - name: install a list of packages
     yum:
       name: "{{ item }}"
-    with_items: demolist.packages
+    with_items: "{{ demolist.packages }}"

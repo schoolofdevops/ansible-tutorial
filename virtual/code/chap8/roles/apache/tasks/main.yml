@@ -1,5 +1,4 @@
 ---
 - include: install.yml
-  when: ansible_os_family == 'RedHat'
 - include: start.yml
 - include: config.yml

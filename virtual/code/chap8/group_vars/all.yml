@@ -5,13 +5,18 @@
   mysql_bind: "{{ ansible_eth0.ipv4.address }}"
   mysql:
     databases:
-      fifalive:
+      infinity:
         state: present
-      fifanews:
+      peace:
         state: present
     users:
-      fifa:
-        pass: supersecure1234
+      dojo:
+        pass: PassWord@1234
+        host: '%'
+        priv: '*.*:ALL'
+        state: present
+      koko:
+        pass: f8Usg3ord@1we28
         host: '%'
         priv: '*.*:ALL'
         state: present

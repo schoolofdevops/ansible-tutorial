@@ -196,8 +196,10 @@ changed: [192.168.61.13] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pix
   * Edit *group_vars/all* file from the **parent directory** and define a dictionary of mysql databases and users to be created
 
 ```
----  
-#filename: group_vars/all
+---
+  fav:
+    color: blue
+    fruit: peach
   mysql_bind: "{{ ansible_eth0.ipv4.address }}"
   mysql:
     databases:
