@@ -151,13 +151,43 @@ skipping: [192.168.61.13]
 
   ```  
   * This will skip app.yml and apache role  
-  * Let's change it back to RedHat  
+  * Let's change it back to CentOS  
   ```
   ansible-playbook site.yml
   ```  
-  [Output]  
-  ```
 
-  ```  
 
 ### 7.2 Iterations  
+#### 7.2.1 Iteration over list  
+* Create a list of packages  
+  * Let us create the following list of packages in base role.  
+  * Edit *roles/base/defaults/main.yml* and put  
+  ```
+---
+# packsges list
+demolist:
+  packages:
+    - atk
+    - flac
+    - eggdbus
+    - pixman
+    - polkit
+
+  ```  
+  * Also edit *roles/base/tasks/main.yml* to include this Iteration
+  ```
+  - name: install a list of packages
+  yum:
+    name: "{{ item }}"
+  with_items: demolist.packages
+
+  ```  
+  * Let's check the output
+  ```
+  TASK [base : install a list of packages] ***************************************
+changed: [192.168.61.12] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pixman'])
+changed: [192.168.61.13] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pixman'])
+
+  ```  
+#### 7.2.2 Iterating over hash  
+  * 
