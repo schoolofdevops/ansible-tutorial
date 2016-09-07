@@ -227,3 +227,6 @@ changed: [192.168.61.13] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pix
   with_dict: "{{ mysql['users'] }}"
   ```  
   * Execute the *db* playbook to verify the output  
+   ```
+    ansible-playbook db.yml
+   ```
