@@ -190,4 +190,40 @@ changed: [192.168.61.13] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pix
 
   ```  
 #### 7.2.2 Iterating over hash  
-  * 
+  * This iteration can be done with using **with_dict** statement, let us see how  
+  * Edit *group_vars/all* file from the **parent directory** with the following code.
+---  ```
+#filename: group_vars/all
+  mysql_bind: "{{ ansible_eth0.ipv4.address }}"
+  mysql:
+    databases:
+      fifalive:
+        state: present
+      fifanews:
+        state: present
+  users:
+    fifa:
+      pass: supersecure1234
+      host: '%'
+      priv: '*.*:ALL'
+      state: present
+
+  ```
+  * **Append** the following iteration in *roles/mysql/tasks/config.yml*
+  ```
+  - name: create mysql databases
+  mysql_db:
+    name: "{{ item.key }}"
+    state: "{{ item.value.state }}"
+  with_dict: "{{ mysql['databases'] }}"
+
+  - name: create mysql users
+  mysql_user:
+    name: "{{ item.key }}"
+    host: "{{ item.value.host }}"
+    password: "{{ item.value.pass }}"
+    priv: "{{ item.value.priv }}"
+    state: "{{ item.value.state }}"
+  with_dict: "{{ mysql['users'] }}"
+  ```  
+  * Execute the *db* playbook to verify the output  
