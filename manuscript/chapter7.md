@@ -21,7 +21,7 @@ When statement becomes helpful, when you will want to skip a particular step on 
   ```
   * This will include *install.yml* only if the OS family is Redhat, otherwise it will skip the installation playbook  
 
-#### 7.1.2 Configuring MySQL server based on variable  
+#### 7.1.2 Configuring MySQL server based on boolean flag
   * Edit *roles/mysql/tasks/main.yml* and add when statements,  
   ```
   ---
@@ -78,7 +78,7 @@ When statement becomes helpful, when you will want to skip a particular step on 
 
   * These conditions will run flawlessly, because we have already defined these Variables  
 
-#### 7.1.4 Running only one tasks  
+#### 7.1.4 Running One Time Tasks
   * To see how this works, lets take a look at the code in *roles/mysql/tasks/config.yml*  
   ```
           [...]
@@ -91,16 +91,11 @@ When statement becomes helpful, when you will want to skip a particular step on 
   ```   
   * In some cases there may be a need to only run a task one time and only on one host. This can be achieved by configuring “run_once” on a task  
 
-#### 7.1.5 Conditional execution of roles  
+#### 7.1.5 Conditional Execution of Roles  
   * This will execute app playbook only if the node is running **RedHat** family  
-  * Put the following code, in *site.yml* to see how this works  
+  * Update app.yml to restrict role to be run only on RedHat platform.
   ```
-  ---
-  # This is a sitewide playbook
-  # filename: site.yml
-  - include: db.yml
-  - include: app.yml
-    when: ansible_distribution == 'Debian'
+
   ```  
 
   * Let's run this code  
@@ -164,7 +159,7 @@ skipping: [192.168.61.13]
   * Edit *roles/base/defaults/main.yml* and put  
   ```
 ---
-# packsges list
+# packages list
 demolist:
   packages:
     - atk
@@ -174,14 +169,15 @@ demolist:
     - polkit
 
   ```  
-  * Also edit *roles/base/tasks/main.yml* to include this Iteration
-  ```
-  - name: install a list of packages
-  yum:
-    name: "{{ item }}"
-  with_items: demolist.packages
+  * Also edit *roles/base/tasks/main.yml* to iterate over this list of items and install packages
 
-  ```  
+```
+  - name: install a list of packages
+    yum:
+      name: "{{ item }}"
+    with_items: {{ demolist.packages }}
+
+```  
   * Let's check the output
   ```
   TASK [base : install a list of packages] ***************************************
@@ -189,43 +185,52 @@ changed: [192.168.61.12] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pix
 changed: [192.168.61.13] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pixman'])
 
   ```  
-#### 7.2.2 Iterating over hash  
+#### 7.2.2 Iterating over a Hash Table/Dictionary
   * This iteration can be done with using **with_dict** statement, let us see how  
-  * Edit *group_vars/all* file from the **parent directory** with the following code.
----  ```
+  * Edit *group_vars/all* file from the **parent directory** and define a dictionary of mysql databases and users to be created
+
+```
+---  
 #filename: group_vars/all
   mysql_bind: "{{ ansible_eth0.ipv4.address }}"
   mysql:
     databases:
-      fifalive:
+      infinity:
         state: present
-      fifanews:
+      peace:
         state: present
-  users:
-    fifa:
-      pass: supersecure1234
-      host: '%'
-      priv: '*.*:ALL'
-      state: present
+    users:
+      dojo:
+        pass: PassWord@1234
+        host: '%'
+        priv: '*.*:ALL'
+        state: present
+      koko:
+        pass: f8Usg3ord@1we28
+        host: '%'
+        priv: '*.*:ALL'
+        state: present
 
-  ```
+```
   * **Append** the following iteration in *roles/mysql/tasks/config.yml*
-  ```
+
+```
   - name: create mysql databases
-  mysql_db:
-    name: "{{ item.key }}"
-    state: "{{ item.value.state }}"
-  with_dict: "{{ mysql['databases'] }}"
+    mysql_db:
+      name: "{{ item.key }}"
+      state: "{{ item.value.state }}"
+    with_dict: "{{ mysql['databases'] }}"
 
   - name: create mysql users
-  mysql_user:
-    name: "{{ item.key }}"
-    host: "{{ item.value.host }}"
-    password: "{{ item.value.pass }}"
-    priv: "{{ item.value.priv }}"
-    state: "{{ item.value.state }}"
-  with_dict: "{{ mysql['users'] }}"
-  ```  
+    mysql_user:
+      name: "{{ item.key }}"
+      host: "{{ item.value.host }}"
+      password: "{{ item.value.pass }}"
+      priv: "{{ item.value.priv }}"
+      state: "{{ item.value.state }}"
+    with_dict: "{{ mysql['users'] }}"
+
+```  
   * Execute the *db* playbook to verify the output  
    ```
     ansible-playbook db.yml
