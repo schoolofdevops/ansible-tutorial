@@ -98,7 +98,7 @@ Lets try to discover information about our systems by using facts.
   - name: register variable example
     hosts: local
     tasks:
-      - name: run a shell command and rerister result
+      - name: run a shell command and register result
         shell: "/sbin/ifconfig eth1"
         register: result
 
