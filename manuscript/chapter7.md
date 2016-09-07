@@ -245,7 +245,7 @@ changed: [192.168.61.13] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pix
    ```
 
 ## Exercises
-  * Create a entry for one more database user by defining it in group_vars/all. Observe the output by running db.yml playbook and validate if the user is been actually created on the mysql server.
+  * Define dictionary of properties for a new database user  in group_vars/all. Observe if it gets created automatically  output by running db.yml playbook. Validate if the user is been actually present by logging on to the mysql server and checking status.
 
   * Update index.html.j2 to iterate over the dictionary of favorites and generate html content to display it instead of adding multiple lines.
 
