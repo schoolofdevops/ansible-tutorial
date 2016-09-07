@@ -94,9 +94,18 @@ When statement becomes helpful, when you will want to skip a particular step on 
 #### 7.1.5 Conditional Execution of Roles  
   * This will execute app playbook only if the node is running **RedHat** family  
   * Update app.yml to restrict role to be run only on RedHat platform.
-  ```
 
-  ```  
+```
+  ---
+    - name: Playbook to configure App Servers
+      hosts: app
+      become: true
+      vars:
+        fav:
+          fruit: mango
+      roles:
+      - { role: apache, when: ansible_os_family == 'RedHat' }
+```  
 
   * Let's run this code  
   ```
@@ -145,11 +154,8 @@ skipping: [192.168.61.12]
 skipping: [192.168.61.13]
 
   ```  
-  * This will skip app.yml and apache role  
-  * Let's change it back to CentOS  
-  ```
-  ansible-playbook site.yml
-  ```  
+
+**Exercise**: Try using **Debian** instead of **RedHat** . You shall see app role being skipped altogether. Don't forget to put it back after you try this out.
 
 
 ### 7.2 Iterations  
