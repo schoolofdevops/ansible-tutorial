@@ -1,0 +1,9 @@
+---
+apache_port: 80
+custom_root: /var/www/html
+apache_index: index.html
+fav:
+  color: white
+  car: fiat
+  laptop: dell
+  fruit: apple
