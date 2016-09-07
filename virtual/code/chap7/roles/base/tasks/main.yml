@@ -13,8 +13,3 @@
 
   - name: start ntp service
     service: name=ntpd state=started enabled=yes
-
-  - name: install a list of packages
-    yum:
-      name: "{{ item }}"
-    with_items: "{{ demolist.packages }}"
