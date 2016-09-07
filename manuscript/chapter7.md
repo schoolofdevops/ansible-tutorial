@@ -214,24 +214,35 @@ code
             state: present
       ```
 
-  * **Append** the following iteration in *roles/mysql/tasks/config.yml*
-  ```
-  - name: create mysql databases
-  mysql_db:
-    name: "{{ item.key }}"
-    state: "{{ item.value.state }}"
-  with_dict: "{{ mysql['databases'] }}"
+  * **Append** the following iteration in *roles/mysql/tasks/config.yml*  
+      ```
+      - name: create mysql databases
+      mysql_db:
+        name: "{{ item.key }}"
+        state: "{{ item.value.state }}"
+      with_dict: "{{ mysql['databases'] }}"
 
-  - name: create mysql users
-  mysql_user:
-    name: "{{ item.key }}"
-    host: "{{ item.value.host }}"
-    password: "{{ item.value.pass }}"
-    priv: "{{ item.value.priv }}"
-    state: "{{ item.value.state }}"
-  with_dict: "{{ mysql['users'] }}"
-  ```  
+      - name: create mysql users
+      mysql_user:
+        name: "{{ item.key }}"
+        host: "{{ item.value.host }}"
+        password: "{{ item.value.pass }}"
+        priv: "{{ item.value.priv }}"
+        state: "{{ item.value.state }}"
+      with_dict: "{{ mysql['users'] }}"
+      ```  
   * Execute the *db* playbook to verify the output  
    ```
     ansible-playbook db.yml
-   ```
+   ```  
+   [Output]  
+
+    ```
+      TASK [mysql : create mysql databases] ******************************************
+      changed: [192.168.61.11] => (item={'value': {u'state': u'present'}, 'key': u'fifanews'})
+      changed: [192.168.61.11] => (item={'value': {u'state': u'present'}, 'key': u'fifalive'})
+
+      TASK [mysql : create mysql users] **********************************************
+      changed: [192.168.61.11] => (item={'value': {u'host': u'%', u'priv': u'*.*:ALL', u'state': u'present', u'pass': u'supersecure1234'}, 'key': u'fifa'})
+
+    ```
