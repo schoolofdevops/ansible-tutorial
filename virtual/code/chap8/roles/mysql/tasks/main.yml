@@ -1,5 +1,5 @@
 ---
-# tasks file for apache
+# tasks file for mysql
 - include: install.yml
 
 - include: start.yml

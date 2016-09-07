@@ -344,7 +344,7 @@ If you view the content of the html file generated, you would notice the followi
 
 
 ## Exercises
-  * Create host specific variables in hosts_vars/HOSTNAME for one of the app servers, and define some variables values specific to the host. See the output after applying playbook on this node.
+  * Create host specific variables in host_vars/HOSTNAME for one of the app servers, and define some variables values specific to the host. See the output after applying playbook on this node.
 
   * Generate MySQL Configurations dynaically using templates and modules.
     * Create a template for my.cnf.  Name it as roles/mysql/templates/my.cnf.j2
