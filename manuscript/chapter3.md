@@ -8,19 +8,21 @@ The default configurations for ansible resides at /etc/ansible/ansible.cfg. Inst
 
 Change into /vagrant/code/chapter3 directory on your ansible host. Create a file called ansible.cfg  Add  the following contents to the file.
 
-~~~~~~~
-[defaults]
+```
 
 remote_user = vagrant
 inventory   = myhosts.ini
-~~~~~~~
+
+```
+
 
 ## 3.2 Creating Host Inventory  
 
 Create a new file called *myhosts.ini* in the same directory.
 Let's create three groups as follows,
 
-~~~~~~~
+```
+
 [local]
 localhost ansible_connection=local
 
@@ -31,8 +33,7 @@ localhost ansible_connection=local
 [db]
 192.168.61.11
 
-~~~~~~~
-
+```
 * First group contains the localhost, the control host. Since it does not need to be connected over ssh, it mandates we add ansible_connection=local option
 * Second group contains  Application Servers. We will add  two app servers to this group.
 * Third group holds the information about the database servers.
@@ -45,13 +46,12 @@ The inventory file should look like below.
 
 Now on control host, execute the following command  
 
-~~~~~~~
+```
 ssh-keygen -t rsa
-~~~~~~~
-
+```
 Now press enter for the passphrase and other queries.
 
-~~~~~~~
+```
 Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa):
 Created directory '/root/.ssh'.
@@ -74,12 +74,12 @@ The key's randomart image is:
 |                E|
 +-----------------+
 
-~~~~~~~
+```
 
 ### 3.3.2 Copying public key to inventory hosts  
 Copy public key of control node to other hosts  
 
-~~~~~~~
+```
 ssh-copy-id vagrant@192.168.61.11
 
 ssh-copy-id vagrant@192.168.61.12
@@ -87,43 +87,46 @@ ssh-copy-id vagrant@192.168.61.12
 ssh-copy-id vagrant@192.168.61.13
 
 ssh-copy-id vagrant@192.168.61.14
-~~~~~~~  
+```   
 
 See this example output to verify with your output  
 
-~~~~~~~
+
+```
+
 The authenticity of host '192.168.61.11 (192.168.61.11)' can't be established.
 RSA key fingerprint is 32:7f:ad:d7:da:63:32:b6:a9:ff:59:af:09:1e:56:22.
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added '192.168.61.11' (RSA) to the list of known hosts.
 
-~~~~~~~  
+```  
 
 The password for user *vagrant* is *vagrant*  
 
 ### 3.3.3 Validate the passwordless login  
 Let us check the connection of control node with other hosts  
 
-~~~~~~~
-ssh vagrant@192.168.61.11
+```ssh vagrant@192.168.61.11
 
 ssh vagrant@192.168.61.12
 
 ssh vagrant@192.168.61.13
 
 ssh vagrant@192.168.61.14
-~~~~~~~
-
+```
 ### 3.3.4 Ansible ping  
 We will use Ansible to make sure all the hosts are reachable  
 
-~~~~~~~
+```
+
 ansible all -m ping
-~~~~~~~  
+
+```
 
 Output of this command will be...  
 
-~~~~~~~
+```
+
 192.168.61.13 | SUCCESS => {
     "changed": false,
     "ping": "pong"
@@ -140,21 +143,24 @@ localhost | SUCCESS => {
     "changed": false,
     "ping": "pong"
 }
-~~~~~~~
-
+```
 ## 3.4 Ad Hoc commands:  
 Try running following *fire-and-forget* Ad-Hoc commands...  
 
 ### 3.4.1 Run *hostname* command on all hosts  
 Let us print the hostname of all the hosts  
 
-~~~~~~~
+```
+
 ansible all -a hostname
-~~~~~~~  
+
+```
+
 
 The output will be...  
 
-~~~~~~~
+```
+
 localhost | SUCCESS | rc=0 >>
 ansible
 
@@ -167,18 +173,20 @@ app
 192.168.61.13 | SUCCESS | rc=0 >>
 app
 
-~~~~~~~
-
+```
 ### 3.4.2 Check the *uptime*  
 How long the hosts are *up*?  
 
-~~~~~~~
+```
+
 ansible all -a uptime
-~~~~~~~  
+
+```   
 
 The output will be...  
 
-~~~~~~~
+```
+
 localhost | SUCCESS | rc=0 >>
  13:17:13 up  2:21,  1 user,  load average: 0.16, 0.03, 0.01
 
@@ -190,19 +198,21 @@ localhost | SUCCESS | rc=0 >>
 
 192.168.61.11 | SUCCESS | rc=0 >>
  13:17:14 up  1:36,  2 users,  load average: 0.00, 0.00, 0.00
-~~~~~~~
-
+```
 
 ### 3.4.3 Check memory info on app servers  
 Does my app servers have any disk space *free*?  
 
-~~~~~~~
+```
+
 ansible app -a free
-~~~~~~~  
+
+```  
 
 The output will be...  
 
-~~~~~~~
+```
+
 192.168.61.13 | SUCCESS | rc=0 >>
              total       used       free     shared    buffers     cached
 Mem:        372916     121480     251436        776      11160      46304
@@ -214,39 +224,41 @@ Swap:      4128764          0    4128764
 Mem:        372916     121984     250932        776      11228      46336
 -/+ buffers/cache:      64420     308496
 Swap:      4128764          0    4128764
-~~~~~~~  
 
+```
 
 ### 3.4.4 Installing packages  
 Let us *install* Docker on app servers  
 
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
+```
+
 ansible app -a "yum install -y docker-engine"
-~~~~~~~  
+
+```
 
 This command will fail.
 
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
+
+```
+
 192.168.61.13 | FAILED | rc=1 >>
 Loaded plugins: fastestmirror, prioritiesYou need to be root to perform this command.
 
 192.168.61.12 | FAILED | rc=1 >>
 Loaded plugins: fastestmirror, prioritiesYou need to be root to perform this command.
-~~~~~~~  
+```  
 
 Run the fillowing command with sudo permissions.  
 
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
+```
 ansible app -s -a "yum install -y docker-engine"
-~~~~~~~  
+
+```   
 
 This will install docker in our app servers  
 
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
+```
+
 192.168.61.12 | SUCCESS | rc=0 >>
 Loaded plugins: fastestmirror, priorities
 Setting up Install Process
@@ -329,30 +341,29 @@ Installed:
 
 Complete!
 
-~~~~~~~
+```
 
 ### 3.4.5 Running commands one machine at a time  
 Do you want a command to run on *one machine at a time* ?  
 
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
+
+```
+
 ansible all -f 1 -a "free"
-~~~~~~~  
+
+```   
 
 ## 3.5 Using *modules* to manage the state of infrastructure  
 ### 3.5.1 Creating users and groups using *user* and *group*  
 To create a group  
 
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
+```
 ansible app -s -m group -a "name=admin state=present"
-~~~~~~~  
+```   
 
 The output will be,
 
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
-192.168.61.13 | SUCCESS => {
+```192.168.61.13 | SUCCESS => {
     "changed": true,
     "gid": 501,
     "name": "admin",
@@ -366,19 +377,18 @@ The output will be,
     "state": "present",
     "system": false
 }
-~~~~~~~
 
+```
 To create a user  
 
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
+
+```
 ansible app -s -m user -a "name=devops group=admin createhome=yes"
-~~~~~~~  
+```  
 
 This will create user *devops*,
 
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
+```
 192.168.61.13 | SUCCESS => {
     "changed": true,
     "comment": "",
@@ -403,21 +413,20 @@ This will create user *devops*,
     "system": false,
     "uid": 501
 }
-~~~~~~~
 
+```
 ### 3.5.2 Copy a file using *copy* modules  
 We will copy file from control node to app servers.  
 
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
+
+```
+
 ansible app -m copy -a "src=/vagrant/test.txt dest=/tmp/test.txt"
-~~~~~~~  
+```   
 
 File will be copied over to our app server machines...  
 
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
-192.168.61.13 | SUCCESS => {
+```192.168.61.13 | SUCCESS => {
     "changed": true,
     "checksum": "3160f8f941c330444aac253a9e6420cd1a65bfe2",
     "dest": "/tmp/test.txt",
@@ -445,8 +454,8 @@ File will be copied over to our app server machines...
     "state": "file",
     "uid": 500
 }
-~~~~~~~
 
+```
 ## 3.6 Exercises :
 1. Add another group called *lb* in inventory with respective host ip
 2. Add a user called *joe* in app servers. Make sure that user has a home directory.
