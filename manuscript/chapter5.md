@@ -9,19 +9,22 @@ In this tutorial we are going to create simple, static role for apache which wil
 ### 5.1 Creating Role Scaffolding for Apache
   * Change working  directory to **/vagrant/code/chap5**
 
-      ``` cd  /vagrant/code/chap5 ```
+```
+       cd  /vagrant/code/chap5
+```
 
   * Create roles directory
 
-       ``` mkdir roles ```
-
+```         mkdir roles
+```
   * Generate role scaffolding using ansible-galaxy
 
-       ``` ansible-galaxy init --offline --init-path=roles  apache ```
-
+```         ansible-galaxy init --offline --init-path=roles  apache
+```
   * Validate
 
-       ``` tree roles/ ```     
+```       tree roles/
+       ```     
 
 ```
 [Output]
@@ -59,20 +62,20 @@ To begin with, in this part, we will install and start apache.
 
   *  To install apache, Create **roles/apache/tasks/install.yml**
 
-~~~~~~~
+```
 ---
 - name: Install Apache...
   yum: name=httpd state=latest
-~~~~~~~  
+```  
 
 
   * To start the service, create  **roles/apache/tasks/start.yml** with the following content  
 
-~~~~~~~
+```
 ---
 - name: Starting Apache...
   service: name=httpd state=started
-~~~~~~~  
+```  
 
 
 To have these tasks being called, include them into main task.
@@ -88,19 +91,19 @@ To have these tasks being called, include them into main task.
 
   * Create a playbook for app servers at /vagrant/chap5/app.yml with following contents
 
-  ```
+```
   ---
   - hosts: app
     become: true
     roles:
       - apache
-  ```
+```
 
   * Apply app.yml with ansible-playbook
 
-  ```
+```
   ansible-playbook app.yml
-  ```
+```
 
 [Output]
 
@@ -128,11 +131,13 @@ PLAY RECAP *********************************************************************
 ### 5.3 Managing Configuration files for Apache
   * Copy **index.html** and **httpd.conf** from **chap5/helper** to **/roles/apache/files/** directory    
 
-  ``` cp helper/index.html helper/httpd.conf roles/apache/files/  ```  
+```
+    cp helper/index.html helper/httpd.conf roles/apache/files/  
+```  
 
   * Create a task file at **roles/apache/tasks/config.yml** to manage files.    
 
-~~~~~~~
+```
 ---
 - name: Copying configuration files...
   copy: src=httpd.conf
@@ -143,7 +148,7 @@ PLAY RECAP *********************************************************************
   copy: src=index.html
         dest=/var/www/html/index.html
         mode=0777
-~~~~~~~  
+```  
 
 #### 5.3.2 Adding Notifications and Handlers   
 
@@ -159,13 +164,15 @@ PLAY RECAP *********************************************************************
 
   * Create the notification handler by updating   **roles/apache/handlers/main.yml**  
 
-~~~~~~~
+```
 ---
 - name: Restart apache service
   service: name=httpd state=restarted
-~~~~~~~  
+```  
 
-``` ansible-playbook app.yml ```   
+```
+  ansible-playbook app.yml
+```   
 
 
 [Output]  
@@ -211,7 +218,9 @@ Did the above command added the configuration files and restarted the service ? 
 ### 5.4 Base Role and Role Nesting
 
   * Create a base role with ansible-galaxy utility,  
-``` ansible-galaxy init --offline --init-path=roles base ```  
+```
+  ansible-galaxy init --offline --init-path=roles base
+```  
 
   * Create tasks for base role by editing  **/roles/base/tasks/main.yml**  
 
@@ -238,11 +247,11 @@ Did the above command added the configuration files and restarted the service ? 
 
   * Define base role as a dependency for  apache role,  
   * Update meta data for Apache by editing **roles/apache/meta/main.yml** and adding the following
-~~~~~~~
+```
 ---
 dependencies:
  - {role: base}
-~~~~~~~  
+```  
 
 
 
@@ -253,13 +262,13 @@ We will create a site wide playbook, which will call all the plays required to c
 
   * Create **site.yml** in /vagrant/chap5 directory and add the following content
 
-  ~~~~~~~
+```
   ---
   # This is a sitewide playbook
   # filename: site.yml
   - include: app.yml
 
-  ~~~~~~~  
+```  
 
 
 
@@ -329,10 +338,11 @@ PLAY RECAP *********************************************************************
 
   From Ansible Control node run the following command to enable repositories. This is needed in order to install some of the db packages.
 
-  ```
-   ansible db -s -a "cp -r /etc/yum.repos.d/repo.bkp/* /etc/yum.repos.d/"
+```
 
-  ```
+    ansible db -s -a "cp -r /etc/yum.repos.d/repo.bkp/* /etc/yum.repos.d/"
+
+```
 
 
   * Create a Role to install and configure MySQL server   

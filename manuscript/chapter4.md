@@ -6,9 +6,9 @@ In this tutorial we are going to create a simple playbook to add system users, i
 ### 4.1 Creating our first playbook
 
   * Change working directory to /vagrant/code/chap4  
-     ```
+```
      cd /vagrant/code/chap4
-     ```  
+```  
   * Create playbook.yml and add the content below
 
 ```
