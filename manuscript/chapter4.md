@@ -6,10 +6,12 @@ In this tutorial we are going to create a simple playbook to add system users, i
 ### 4.1 Creating our first playbook
 
   * Change working directory to /vagrant/code/chap4  
-     ``` cd /vagrant/code/chap4 ```  
+     ```
+     cd /vagrant/code/chap4
+     ```  
   * Create playbook.yml and add the content below
 
-~~~~~~~
+```
 ---
   - name: Base Configurations for ALL hosts
     hosts: all
@@ -29,7 +31,7 @@ In this tutorial we are going to create a simple playbook to add system users, i
 
       - name: start ntp service
         service: name=ntpd state=started enabled=yes
-~~~~~~~  
+```  
 
 ### 4.2 Running the  playbook  
 To run the playbook, we are going to execute **ansible-playbook** command. Lets first examine the options that this command supports.
@@ -61,11 +63,11 @@ Options:
 
 To run the playbook, we could call YAML file as an argument. Since we have already defined the inventory and configurations, additional options are not necessary at this time.
 
-~~~~~~~
+```
 ansible-playbook playbook.yml
-~~~~~~~
+```
 
-~~~~~~~
+```
 [output]
 
 PLAY [Base Configurations for ALL hosts] ***************************************
@@ -111,13 +113,13 @@ changed: [localhost]
 changed: [192.168.61.13]
 changed: [192.168.61.12]
 changed: [192.168.61.14]
-~~~~~~~
+```
 
 ### 4.3 Adding second play in the playbook  
 
 Lets add a second play specific to app servers. Add the following block of code in playbook.yml file and save   
 
-~~~~~~~
+```
 - name: App Server Configurations
   hosts: app
   become: true
@@ -128,15 +130,15 @@ Lets add a second play specific to app servers. Add the following block of code 
     - name: install git
       yum:  name=git  state=present
 
-~~~~~~~  
+```  
 
 Run the playbook again...  
 
-~~~~~~~
+```
 ansible-playbook playbook.yml
-~~~~~~~
+```
 
-~~~~~~~
+```
 
 PLAY [Base Configurations for ALL hosts] ***************************************
 
@@ -202,20 +204,19 @@ PLAY RECAP *********************************************************************
 192.168.61.13              : ok=9    changed=1    unreachable=0    failed=0
 192.168.61.14              : ok=6    changed=0    unreachable=0    failed=0
 localhost                  : ok=6    changed=0    unreachable=0    failed=0
-~~~~~~~
+```
 
 ### 4.4 Limiting the execution to a particular group  
 
 Now run the following command to restrict the playbook execution to *app servers*  
 
-~~~~~~~
+```
 ansible-playbook playbook.yml --limit app
-~~~~~~~
+```
 
 This will give us the following output, plays will be executed only on app servers...  
 
-{title="Listing ", lang=html, linenos=off}
-~~~~~~~
+```
 
 PLAY [Base Configurations for ALL hosts] ***************************************
 
@@ -261,7 +262,7 @@ PLAY RECAP *********************************************************************
 192.168.61.12              : ok=9    changed=0    unreachable=0    failed=0
 192.168.61.13              : ok=9    changed=0    unreachable=0    failed=0
 
-~~~~~~~
+```
 
 
 ## Exercise:
@@ -273,7 +274,7 @@ Create a Playbook with the following specifications,
   * Should **deploy** a sample html app into the default web root directory of nginx using ansible's **git** module.
     * Source repo:  https://github.com/schoolofdevops/html-sample-app
     * Deploy Path : /usr/share/nginx/html/app
-    * The user to deploy the app would be nginx 
+    * The user to deploy the app would be nginx
 
 
 #####  TODO for Course Creator:
@@ -281,4 +282,6 @@ Create a Playbook with the following specifications,
    - It will create a retry file
    Use that to feed into to ansible-playbook with --limit option
    e.g.
-   ``` ansible-playbook playbook.yml --limit @/tmp/playbook.rerty
+   ```
+    ansible-playbook playbook.yml --limit @/tmp/playbook.rerty
+   ```
