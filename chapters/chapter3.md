@@ -366,7 +366,8 @@ ansible app -s -m group -a "name=admin state=present"
 
 The output will be,
 
-```192.168.61.13 | SUCCESS => {
+```
+192.168.61.13 | SUCCESS => {
     "changed": true,
     "gid": 501,
     "name": "admin",
@@ -423,13 +424,13 @@ We will copy file from control node to app servers.
 
 
 ```
-
 ansible app -m copy -a "src=/vagrant/test.txt dest=/tmp/test.txt"
 ```   
 
 File will be copied over to our app server machines...  
 
-```192.168.61.13 | SUCCESS => {
+```
+192.168.61.13 | SUCCESS => {
     "changed": true,
     "checksum": "3160f8f941c330444aac253a9e6420cd1a65bfe2",
     "dest": "/tmp/test.txt",
