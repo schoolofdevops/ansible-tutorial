@@ -1,0 +1,11 @@
+---
+slug: ansible_tutorial
+filename: ansible_tutorial
+title: Ansible Tutorial
+subtitle: Learn Ansible Step by Step
+description: This book is a  tutorial to learn automating with Ansible.
+author: Gourav Shah
+copyright: 2016
+uuid: bb24958f-f821-4f96-8f6d-d650d032d2f8
+pdf_preview_page_range: 1..30
+epub_mobi_preview_chapter_range: 0..1
