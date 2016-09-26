@@ -9,12 +9,9 @@ The default configurations for ansible resides at /etc/ansible/ansible.cfg. Inst
 Change into /vagrant/code/chapter3 directory on your ansible host. Create a file called ansible.cfg  Add  the following contents to the file.
 
 ```
-
 remote_user = vagrant
 inventory   = myhosts.ini
-
-```
-
+```  
 
 ## 3.2 Creating Host Inventory  
 
@@ -22,7 +19,6 @@ Create a new file called *myhosts.ini* in the same directory.
 Let's create three groups as follows,
 
 ```
-
 [local]
 localhost ansible_connection=local
 
@@ -32,14 +28,13 @@ localhost ansible_connection=local
 
 [db]
 192.168.61.11
+```  
 
-```
 * First group contains the localhost, the control host. Since it does not need to be connected over ssh, it mandates we add ansible_connection=local option
 * Second group contains  Application Servers. We will add  two app servers to this group.
-* Third group holds the information about the database servers.
+* Third group holds the information about the database servers.  
 
-The inventory file should look like below.
-
+The inventory file should look like below.  
 
 ## 3.3 Setting up passwordless ssh access to inventory hosts  
 ### 3.3.1 Generating ssh keypair on control host  
@@ -73,10 +68,10 @@ The key's randomart image is:
 |                .|
 |                E|
 +-----------------+
-
 ```
 
 ### 3.3.2 Copying public key to inventory hosts  
+
 Copy public key of control node to other hosts  
 
 ```
@@ -91,30 +86,31 @@ ssh-copy-id vagrant@192.168.61.14
 
 See this example output to verify with your output  
 
-
 ```
-
 The authenticity of host '192.168.61.11 (192.168.61.11)' can't be established.
 RSA key fingerprint is 32:7f:ad:d7:da:63:32:b6:a9:ff:59:af:09:1e:56:22.
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added '192.168.61.11' (RSA) to the list of known hosts.
-
 ```  
 
 The password for user *vagrant* is *vagrant*  
 
 ### 3.3.3 Validate the passwordless login  
+
 Let us check the connection of control node with other hosts  
 
-```ssh vagrant@192.168.61.11
+```
+ssh vagrant@192.168.61.11
 
 ssh vagrant@192.168.61.12
 
 ssh vagrant@192.168.61.13
 
 ssh vagrant@192.168.61.14
-```
+```  
+
 ### 3.3.4 Ansible ping  
+
 We will use Ansible to make sure all the hosts are reachable  
 
 ```
@@ -123,7 +119,7 @@ ansible all -m ping
 
 ```
 
-Output of this command will be...  
+[Output]  
 
 ```
 
@@ -143,24 +139,23 @@ localhost | SUCCESS => {
     "changed": false,
     "ping": "pong"
 }
-```
+```  
+
 ## 3.4 Ad Hoc commands:  
+
 Try running following *fire-and-forget* Ad-Hoc commands...  
 
 ### 3.4.1 Run *hostname* command on all hosts  
+
 Let us print the hostname of all the hosts  
 
 ```
-
 ansible all -a hostname
-
 ```
 
-
-The output will be...  
+[output]  
 
 ```
-
 localhost | SUCCESS | rc=0 >>
 ansible
 
@@ -172,18 +167,17 @@ app
 
 192.168.61.13 | SUCCESS | rc=0 >>
 app
+```  
 
-```
 ### 3.4.2 Check the *uptime*  
+
 How long the hosts are *up*?  
 
 ```
-
 ansible all -a uptime
-
 ```   
 
-The output will be...  
+[Output]
 
 ```
 
@@ -204,15 +198,12 @@ localhost | SUCCESS | rc=0 >>
 Does my app servers have any disk space *free*?  
 
 ```
-
 ansible app -a free
-
 ```  
 
-The output will be...  
+[Output]  
 
 ```
-
 192.168.61.13 | SUCCESS | rc=0 >>
              total       used       free     shared    buffers     cached
 Mem:        372916     121480     251436        776      11160      46304
@@ -224,23 +215,21 @@ Swap:      4128764          0    4128764
 Mem:        372916     121984     250932        776      11228      46336
 -/+ buffers/cache:      64420     308496
 Swap:      4128764          0    4128764
-
 ```
 
 ### 3.4.4 Installing packages  
+
 Let us *install* Docker on app servers  
 
 ```
-
 ansible app -a "yum install -y docker-engine"
-
 ```
 
 This command will fail.
 
+[Output]  
 
 ```
-
 192.168.61.13 | FAILED | rc=1 >>
 Loaded plugins: fastestmirror, prioritiesYou need to be root to perform this command.
 
@@ -252,13 +241,13 @@ Run the fillowing command with sudo permissions.
 
 ```
 ansible app -s -a "yum install -y docker-engine"
-
 ```   
 
 This will install docker in our app servers  
 
-```
+[Output]  
 
+```
 192.168.61.12 | SUCCESS | rc=0 >>
 Loaded plugins: fastestmirror, priorities
 Setting up Install Process
@@ -340,17 +329,14 @@ Installed:
   docker-engine.x86_64 0:1.7.1-1.el6
 
 Complete!
-
 ```
 
 ### 3.4.5 Running commands one machine at a time  
+
 Do you want a command to run on *one machine at a time* ?  
 
-
 ```
-
 ansible all -f 1 -a "free"
-
 ```   
 
 ## 3.5 Using *modules* to manage the state of infrastructure  
@@ -361,9 +347,10 @@ To create a group
 ansible app -s -m group -a "name=admin state=present"
 ```   
 
-The output will be,
+The output will be,  
 
-```192.168.61.13 | SUCCESS => {
+```
+192.168.61.13 | SUCCESS => {
     "changed": true,
     "gid": 501,
     "name": "admin",
@@ -378,9 +365,9 @@ The output will be,
     "system": false
 }
 
-```
-To create a user  
+```  
 
+To create a user  
 
 ```
 ansible app -s -m user -a "name=devops group=admin createhome=yes"
@@ -414,13 +401,13 @@ This will create user *devops*,
     "uid": 501
 }
 
-```
+```  
+
 ### 3.5.2 Copy a file using *copy* modules  
 We will copy file from control node to app servers.  
 
 
 ```
-
 ansible app -m copy -a "src=/vagrant/test.txt dest=/tmp/test.txt"
 ```   
 
@@ -454,9 +441,9 @@ File will be copied over to our app server machines...
     "state": "file",
     "uid": 500
 }
+```  
 
-```
-## 3.6 Exercises :
-1. Add another group called *lb* in inventory with respective host ip
-2. Add a user called *joe* in app servers. Make sure that user has a home directory.
-3. Install the package git using the correct Ad-Hoc command.
+## 3.6 Exercises :  
+1. Add another group called *lb* in inventory with respective host ip 
+2. Add a user called *joe* in app servers. Make sure that user has a home directory  
+3. Install the package git using the correct *Ad-Hoc* command  

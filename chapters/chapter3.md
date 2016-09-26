@@ -108,7 +108,8 @@ The password for user *vagrant* is *vagrant*
 ### Validate the passwordless login  
 Let us check the connection of control node with other hosts  
 
-```ssh vagrant@192.168.61.11
+```
+ssh vagrant@192.168.61.11
 
 ssh vagrant@192.168.61.12
 
@@ -365,7 +366,8 @@ ansible app -s -m group -a "name=admin state=present"
 
 The output will be,
 
-```192.168.61.13 | SUCCESS => {
+```
+192.168.61.13 | SUCCESS => {
     "changed": true,
     "gid": 501,
     "name": "admin",
@@ -422,13 +424,13 @@ We will copy file from control node to app servers.
 
 
 ```
-
 ansible app -m copy -a "src=/vagrant/test.txt dest=/tmp/test.txt"
 ```   
 
 File will be copied over to our app server machines...  
 
-```192.168.61.13 | SUCCESS => {
+```
+192.168.61.13 | SUCCESS => {
     "changed": true,
     "checksum": "3160f8f941c330444aac253a9e6420cd1a65bfe2",
     "dest": "/tmp/test.txt",
