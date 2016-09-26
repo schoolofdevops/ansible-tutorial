@@ -15,19 +15,24 @@ In this tutorial we are going to create simple, static role for apache which wil
 
   * Create roles directory
 
-```         mkdir roles
+```
+         mkdir roles
 ```
   * Generate role scaffolding using ansible-galaxy
 
-```         ansible-galaxy init --offline --init-path=roles  apache
+```
+         ansible-galaxy init --offline --init-path=roles  apache
 ```
   * Validate
 
-```       tree roles/
-       ```     
+```
+       tree roles/
+```     
+
+[Output]
 
 ```
-[Output]
+
 
   roles/
     └── apache
@@ -60,7 +65,7 @@ We are going to create three different tasks files, one for each phase of applic
 
 To begin with, in this part, we will install and start apache.
 
-  *  To install apache, Create **roles/apache/tasks/install.yml**
+  *  To install apache, Create **roles/apache/tasks/install.yml**  
 
 ```
 ---
@@ -71,6 +76,7 @@ To begin with, in this part, we will install and start apache.
 
   * To start the service, create  **roles/apache/tasks/start.yml** with the following content  
 
+
 ```
 ---
 - name: Starting Apache...
@@ -80,7 +86,8 @@ To begin with, in this part, we will install and start apache.
 
 To have these tasks being called, include them into main task.
 
-  * Edit roles/apache/tasks/main.yml
+  * Edit roles/apache/tasks/main.yml  
+
 
 ```
 ---
@@ -152,7 +159,8 @@ PLAY RECAP *********************************************************************
 
 #### Adding Notifications and Handlers   
 
-  * Previously we have create a task in roles/apache/tasks/config.yml to copy over httpd.conf to the app server. Update this file to send a notification to restart  service on configuration update.  You simply have to add the line which starts with **notify**
+  * Previously we have create a task in roles/apache/tasks/config.yml to copy over httpd.conf to the app server. Update this file to send a notification to restart  service on configuration update.  You simply have to add the line which starts with **notify**  
+
 
 ```
   - name: Copying configuration files...
@@ -174,8 +182,8 @@ PLAY RECAP *********************************************************************
   ansible-playbook app.yml
 ```   
 
-
 [Output]  
+
 ```
 
 PLAY [Playbook to configure App Servers] ***************************************
@@ -215,9 +223,10 @@ PLAY RECAP *********************************************************************
 Did the above command added the configuration files and restarted the service ? But we have already written **config.yml**. Troubleshoot why its not being run and fix it before you proceed.
 
 
-### Base Role and Role Nesting
+### Base Role and Role Nesting  
 
   * Create a base role with ansible-galaxy utility,  
+
 ```
   ansible-galaxy init --offline --init-path=roles base
 ```  
@@ -241,12 +250,13 @@ Did the above command added the configuration files and restarted the service ? 
     yum:  name=ntp   state=present
 
   - name: start ntp service
-    service: name=ntpd state=started enabled=yes
+    service: name=ntpd state=started enabled=yes  
 
 ```  
 
   * Define base role as a dependency for  apache role,  
-  * Update meta data for Apache by editing **roles/apache/meta/main.yml** and adding the following
+  * Update meta data for Apache by editing **roles/apache/meta/main.yml** and adding the following  
+
 ```
 ---
 dependencies:
@@ -270,16 +280,14 @@ We will create a site wide playbook, which will call all the plays required to c
 
 ```  
 
-
-
-  * Execute sitewide playbook as
+  * Execute sitewide playbook as  
 
 
 ```
 ansible-playbook site.yml
 ```
 
-[Output]
+[Output]  
 
 ```
 
@@ -329,10 +337,11 @@ PLAY RECAP *********************************************************************
 192.168.61.12              : ok=10   changed=0    unreachable=0    failed=0
 192.168.61.13              : ok=10   changed=0    unreachable=0    failed=0
 
-```
+```  
 
 
-## Exercises
+## Exercises  
+
   * Update httpd.conf and change some configuration parameters. Validate the service restarts on configuration updates by applying the sitewide playbook.
 
   * Pre Task to be run before creating MySQL Role
