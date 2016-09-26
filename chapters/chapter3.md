@@ -108,7 +108,8 @@ The password for user *vagrant* is *vagrant*
 ### Validate the passwordless login  
 Let us check the connection of control node with other hosts  
 
-```ssh vagrant@192.168.61.11
+```
+ssh vagrant@192.168.61.11
 
 ssh vagrant@192.168.61.12
 
