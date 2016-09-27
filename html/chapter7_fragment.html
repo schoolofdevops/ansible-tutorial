@@ -1,0 +1,257 @@
+<div id="cid14" data-tralics-id="cid14" class="chapter" data-number="4" data-chapter="chapter7"><h1><a href="chapter7_fragment.html#cid14" class="heading hyperref"><span class="number">Chapter 4 </span>Control Structures</a></h1>
+<p>In Chapter 7, we will learn about the aspects of conditionals and iterations that affects program’s execution flow in Ansible</p>
+<p class="noindent">Control structures are of two different type</p>
+<p class="noindent">* Conditional
+* Iterative</p>
+</div><div id="cid15" data-tralics-id="cid15" class="section" data-number="4.1"><h2><a href="chapter7_fragment.html#cid15" class="heading hyperref"><span class="number">4.1 </span>Conditionals</a></h2>
+<p>Conditionals structures allow Ansible to choose an alternate path.<span class="intersentencespace"></span> Ansible does this by using <em>when</em> statements</p>
+<p class="noindent">### 7.1 <strong>When</strong> statements</p>
+<p class="noindent">When statement becomes helpful, when you will want to skip a particular step on a particular host</p>
+<div id="uid52" data-tralics-id="uid52" class="subsubsection" data-number="4.1.1.1"><h4><a href="#uid52" class="heading">Selectively calling install tasks based on platform</a></h4>
+<ul>
+<li>Edit <em>roles/apache/tasks/main.yml</em>,
+“‘
+—
+</li>
+<li>include: install.yml
+when: ansible_os_family == ‘RedHat’
+</li>
+<li>include: start.yml
+</li>
+<li>include: config.yml
+</li></ul>
+<p>“‘
+* This will include <em>install.yml</em> only if the OS family is Redhat, otherwise it will skip the installation playbook</p>
+</div>
+<div id="uid57" data-tralics-id="uid57" class="subsubsection" data-number="4.1.1.2"><h4><a href="#uid57" class="heading">Configuring MySQL server based on boolean flag</a></h4>
+<ul>
+<li>Edit <em>roles/mysql/tasks/main.yml</em> and add when statements,
+“‘
+—
+# tasks file for mysql
+</li>
+<li>include: install.yml
+</li>
+<li>include: start.yml
+when: mysql.server
+</li>
+<li>include: config.yml
+when: mysql.server
+“‘
+</li>
+<li>Edit <em>db.yml</em> as follows,
+“‘
+—
+<ul>
+<li>name: Playbook to configure DB Servers
+hosts: db
+become: true
+roles:
+<ul>
+<li>mysql
+vars:
+mysql:
+server: true
+config:
+bind: “{{ ansible_eth1.ipv4.address }}”
+</li></ul>
+</li></ul>
+</li></ul>
+<p>“‘</p>
+</div>
+<div id="uid65" data-tralics-id="uid65" class="subsubsection" data-number="4.1.1.3"><h4><a href="#uid65" class="heading">Adding conditionals in Jinja2 templates</a></h4>
+<ul>
+<li>Put the following content in <em>roles/mysql/templates/my.cnf.j2</em>
+“‘
+[mysqld]
+</li></ul>
+<p>{% if mysql.config.datadir is defined %}
+datadir={{ mysql[‘config’][‘datadir’] }}
+{% endif %}</p>
+<p>{% if mysql.config.socket is defined %}
+socket={{ mysql[‘config’][‘socket’] }}
+{% endif %}</p>
+<p>symbolic-links=0
+log-error=/var/log/mysqld.log</p>
+<p>{% if mysql.config.pid is defined %}
+pid-file={{ mysql[‘config’][‘pid’]}}
+{% endif %}</p>
+<p>[client]
+user=root
+password={{ mysql_root_db_pass }}
+“‘</p>
+<ul>
+<li>These conditions will run flawlessly, because we have already defined these Variables
+</li></ul>
+</div>
+<div id="uid68" data-tralics-id="uid68" class="subsubsection" data-number="4.1.1.4"><h4><a href="#uid68" class="heading">Running One Time Tasks</a></h4>
+<ul>
+<li>To see how this works, lets take a look at the code in <em>roles/mysql/tasks/config.yml</em>
+“‘
+[…]
+</li>
+<li>name: reset default root password
+shell: mysql –user=root –password=”{{ MYSQL_DEFAULT_PASS }}” –connect-expired-password mysql &lt; /root/.mysql_reset_pass.sql
+run_once: true
+ignore_errors: yes
+[…]
+</li></ul>
+<p>“‘</p>
+<p class="noindent">* In some cases there may be a need to only run a task one time and only on one host.<span class="intersentencespace"></span> This can be achieved by configuring “run_once” on a task</p>
+</div>
+<div id="uid71" data-tralics-id="uid71" class="subsubsection" data-number="4.1.1.5"><h4><a href="#uid71" class="heading">Conditional Execution of Roles</a></h4>
+<ul>
+<li>This will execute app playbook only if the node is running <strong>RedHat</strong> family
+</li>
+<li>Update app.yml to restrict role to be run only on RedHat platform.<span class="intersentencespace"></span>
+</li></ul>
+<div class="code"><div class="highlight"><pre>  ---
+    - name: Playbook to configure App Servers
+      hosts: app
+      become: true
+      vars:
+        fav:
+          fruit: mango
+      roles:
+      - { role: apache, when: ansible_os_family == 'RedHat' }
+```  
+
+  * Let's run this code  
+  ```
+  ansible-playbook site.yml
+  ```
+  [Output]  
+  ```
+  TASK [setup] *******************************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [base : create admin user] ************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [base : remove dojo] ******************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [base : install tree] *****************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [base : install ntp] ******************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [base : start ntp service] ************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [apache : Installing Apache...] *******************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [apache : Starting Apache...] *********************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [apache : Creating configuration from templates...] ***********************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [apache : Copying index.html file...] *************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+  ```  
+
+**Exercise**: Try using **Debian** instead of **RedHat** . You shall see app role being skipped altogether. Don't forget to put it back after you try this out.
+
+
+### Iterations  
+#### Iteration over list  
+* Create a list of packages  
+  * Let us create the following list of packages in base role.  
+  * Edit *roles/base/defaults/main.yml* and put  
+  ```
+---
+# packages list
+demolist:
+  packages:
+    - atk
+    - flac
+    - eggdbus
+    - pixman
+    - polkit
+
+  ```  
+  * Also edit *roles/base/tasks/main.yml* to iterate over this list of items and install packages
+</pre></div></div>
+<p>- name: install a list of packages
+yum:
+name: “{{ item }}”
+with_items: {{ demolist.packages }}</p>
+<p><code>
+* Let’s check the output
+</code>
+TASK [base : install a list of packages] <strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong>***
+changed: [192.168.61.12] =&gt; (item=[u’atk’, u’flac’, u’eggdbus’, u’polkit’, u’pixman’])
+changed: [192.168.61.13] =&gt; (item=[u’atk’, u’flac’, u’eggdbus’, u’polkit’, u’pixman’])</p>
+<p>“‘</p>
+<p class="noindent">#### Iterating over a Hash Table/Dictionary
+* This iteration can be done with using <strong>with_dict</strong> statement, let us see how</p>
+<p class="noindent">* Edit <em>group_vars/all</em> file from the <strong>parent directory</strong> and define a dictionary of mysql databases and users to be created</p>
+<div class="code"><div class="highlight"><pre>---
+  fav:
+    color: blue
+    fruit: peach
+  mysql_bind: "{{ ansible_eth0.ipv4.address }}"
+  mysql:
+    databases:
+      infinity:
+        state: present
+      peace:
+        state: present
+    users:
+      dojo:
+        pass: PassWord@1234
+        host: '%'
+        priv: '*.*:ALL'
+        state: present
+      koko:
+        pass: f8Usg3ord@1we28
+        host: '%'
+        priv: '*.*:ALL'
+        state: present
+</pre></div></div>
+<p>* <strong>Append</strong> the following iteration in <em>roles/mysql/tasks/config.yml</em></p>
+<div class="code"><div class="highlight"><pre>  - name: create mysql databases
+    mysql_db:
+      name: "{{ item.key }}"
+      state: "{{ item.value.state }}"
+    with_dict: "{{ mysql['databases'] }}"
+
+  - name: create mysql users
+    mysql_user:
+      name: "{{ item.key }}"
+      host: "{{ item.value.host }}"
+      password: "{{ item.value.pass }}"
+      priv: "{{ item.value.priv }}"
+      state: "{{ item.value.state }}"
+    with_dict: "{{ mysql['users'] }}"
+
+```  
+  * Execute the *db* playbook to verify the output  
+   ```
+    ansible-playbook db.yml
+   ```
+
+## Exercises
+  * Define dictionary of properties for a new database user  in group_vars/all. Observe if it gets created automatically  output by running db.yml playbook. Validate if the user is been actually present by logging on to the mysql server and checking status.
+
+  * Update index.html.j2 to iterate over the dictionary of favorites and generate html content to display it instead of adding multiple lines.
+
+  * Define a hash/dictionary  of apache virtual hosts to be created  and create a template which would iterate over that dictionary and create vhost configurations.
+
+  * Learn about what else you could loop over, as well as how to do so by reading this document http://docs.ansible.com/ansible/playbooks_loops.html#id12
+</pre></div></div>
+</div></div>
