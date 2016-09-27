@@ -39,7 +39,7 @@
     
     <div id="book">
       <div id="frontmatter" data-number="0"><div id="title_page"><h1 class="title">Ansible Tutorial</h1><h1 class="subtitle">Learn Ansible Step by Step</h1><h2 class="author">Gourav Shah</h2></div>
-<h1 class="contents">Contents</h1><div id="table_of_contents"><ul><li class="chapter-star"><a href="#preface" class="heading hyperref">Preface</a></li><li class="chapter"><a href="#cid1" class="heading hyperref"><span class="number">Chapter 1 </span>Getting Started with Ansible (Ad Hoc Server Management)</a></li><li><ul><li class="section"><a href="#cid2" class="heading hyperref"><span class="number">1.1 </span>Creating Project Specific Ansible Configuration</a></li><li><ul><li class="subsection"><a href="#uid1" class="heading hyperref"><span class="number">1.1.1 </span>Ansible configuration file</a></li></ul></li><li class="section"><a href="#cid3" class="heading hyperref"><span class="number">1.2 </span>Creating Host Inventory</a></li><li class="section"><a href="#cid4" class="heading hyperref"><span class="number">1.3 </span>Setting up passwordless ssh access to inventory hosts</a></li><li><ul><li class="subsection"><a href="#uid5" class="heading hyperref"><span class="number">1.3.1 </span>Generating ssh keypair on control host</a></li><li class="subsection"><a href="#uid6" class="heading hyperref"><span class="number">1.3.2 </span>Copying public key to inventory hosts</a></li><li class="subsection"><a href="#uid7" class="heading hyperref"><span class="number">1.3.3 </span>Validate the passwordless login</a></li><li class="subsection"><a href="#uid8" class="heading hyperref"><span class="number">1.3.4 </span>Ansible ping</a></li></ul></li><li class="section"><a href="#cid5" class="heading hyperref"><span class="number">1.4 </span>Ad Hoc commands:</a></li><li><ul><li class="subsection"><a href="#uid9" class="heading hyperref"><span class="number">1.4.1 </span>Run <em>hostname</em> command on all hosts</a></li><li class="subsection"><a href="#uid10" class="heading hyperref"><span class="number">1.4.2 </span>Check the <em>uptime</em></a></li><li class="subsection"><a href="#uid11" class="heading hyperref"><span class="number">1.4.3 </span>Check memory info on app servers</a></li><li class="subsection"><a href="#uid12" class="heading hyperref"><span class="number">1.4.4 </span>Installing packages</a></li><li class="subsection"><a href="#uid13" class="heading hyperref"><span class="number">1.4.5 </span>Running commands one machine at a time</a></li></ul></li><li class="section"><a href="#cid6" class="heading hyperref"><span class="number">1.5 </span>Using <em>modules</em> to manage the state of infrastructure</a></li><li><ul><li class="subsection"><a href="#uid14" class="heading hyperref"><span class="number">1.5.1 </span>Creating users and groups using <em>user</em> and <em>group</em></a></li><li class="subsection"><a href="#uid15" class="heading hyperref"><span class="number">1.5.2 </span>Copy a file using <em>copy</em> modules</a></li></ul></li><li class="section"><a href="#cid7" class="heading hyperref"><span class="number">1.6 </span>Exercises :</a></li></ul></li><li class="chapter"><a href="#cid8" class="heading hyperref"><span class="number">Chapter 2 </span>Learning to Write Playbooks</a></li><li><ul><li class="section"><a href="#cid9" class="heading hyperref"><span class="number">2.1 </span>Creating our first playbook</a></li><li class="section"><a href="#cid10" class="heading hyperref"><span class="number">2.2 </span>Running the playbook</a></li><li class="section"><a href="#cid11" class="heading hyperref"><span class="number">2.3 </span>Adding second play in the playbook</a></li><li class="section"><a href="#cid12" class="heading hyperref"><span class="number">2.4 </span>Limiting the execution to a particular group</a></li><li class="section"><a href="#cid13" class="heading hyperref"><span class="number">2.5 </span>Exercise:</a></li></ul></li><li class="chapter"><a href="#cid14" class="heading hyperref"><span class="number">Chapter 3 </span>Working with Roles</a></li><li><ul><li class="section"><a href="#cid15" class="heading hyperref"><span class="number">3.1 </span>Creating Role Scaffolding for Apache</a></li><li class="section"><a href="#cid16" class="heading hyperref"><span class="number">3.2 </span>Writing Tasks to Install and Start Apache Web Service</a></li><li class="section"><a href="#cid17" class="heading hyperref"><span class="number">3.3 </span>Managing Configuration files for Apache</a></li><li class="section"><a href="#cid18" class="heading hyperref"><span class="number">3.4 </span>Adding Notifications and Handlers</a></li><li class="section"><a href="#cid19" class="heading hyperref"><span class="number">3.5 </span>Troubleshooting Exercise</a></li><li class="section"><a href="#cid20" class="heading hyperref"><span class="number">3.6 </span>Base Role and Role Nesting</a></li><li class="section"><a href="#cid21" class="heading hyperref"><span class="number">3.7 </span>Creating a Site Wide Playbook</a></li><li class="section"><a href="#cid22" class="heading hyperref"><span class="number">3.8 </span>Exercises</a></li></ul></li><li class="chapter"><a href="#cid23" class="heading hyperref"><span class="number">Chapter 4 </span>Variables and Templates</a></li><li><ul><li class="section"><a href="#cid24" class="heading hyperref"><span class="number">4.1 </span>Variables</a></li><li class="section"><a href="#cid25" class="heading hyperref"><span class="number">4.2 </span>Finding Facts About Systems</a></li><li class="section"><a href="#cid26" class="heading hyperref"><span class="number">4.3 </span>Filtering facts</a></li><li class="section"><a href="#cid27" class="heading hyperref"><span class="number">4.4 </span>Registering Variables</a></li><li class="section"><a href="#cid28" class="heading hyperref"><span class="number">4.5 </span>Creating Templates for Apache</a></li><li class="section"><a href="#cid29" class="heading hyperref"><span class="number">4.6 </span>Defining Default Variables</a></li><li class="section"><a href="#cid30" class="heading hyperref"><span class="number">4.7 </span>Updating Tasks to use Templates</a></li><li><ul><li class="subsection"><a href="#uid87" class="heading hyperref"><span class="number">4.7.1 </span>Validating</a></li></ul></li><li class="section"><a href="#cid31" class="heading hyperref"><span class="number">4.8 </span>Playing with Variable Precedence Rules</a></li><li class="section"><a href="#cid32" class="heading hyperref"><span class="number">4.9 </span>Exercises</a></li></ul></li><li class="chapter"><a href="#cid33" class="heading hyperref"><span class="number">Chapter 5 </span>Control Structures</a></li><li><ul><li class="section"><a href="#cid34" class="heading hyperref"><span class="number">5.1 </span>Conditionals</a></li></ul></li></ul></div>
+<h1 class="contents">Contents</h1><div id="table_of_contents"><ul><li class="chapter-star"><a href="#preface" class="heading hyperref">Preface</a></li><li class="chapter"><a href="#cid1" class="heading hyperref"><span class="number">Chapter 1 </span>Getting Started with Ansible (Ad Hoc Server Management)</a></li><li><ul><li class="section"><a href="#cid2" class="heading hyperref"><span class="number">1.1 </span>Creating Project Specific Ansible Configuration</a></li><li><ul><li class="subsection"><a href="#uid1" class="heading hyperref"><span class="number">1.1.1 </span>Ansible configuration file</a></li></ul></li><li class="section"><a href="#cid3" class="heading hyperref"><span class="number">1.2 </span>Creating Host Inventory</a></li><li class="section"><a href="#cid4" class="heading hyperref"><span class="number">1.3 </span>Setting up passwordless ssh access to inventory hosts</a></li><li><ul><li class="subsection"><a href="#uid5" class="heading hyperref"><span class="number">1.3.1 </span>Generating ssh keypair on control host</a></li><li class="subsection"><a href="#uid6" class="heading hyperref"><span class="number">1.3.2 </span>Copying public key to inventory hosts</a></li><li class="subsection"><a href="#uid7" class="heading hyperref"><span class="number">1.3.3 </span>Validate the passwordless login</a></li><li class="subsection"><a href="#uid8" class="heading hyperref"><span class="number">1.3.4 </span>Ansible ping</a></li></ul></li><li class="section"><a href="#cid5" class="heading hyperref"><span class="number">1.4 </span>Ad Hoc commands:</a></li><li><ul><li class="subsection"><a href="#uid9" class="heading hyperref"><span class="number">1.4.1 </span>Run <em>hostname</em> command on all hosts</a></li><li class="subsection"><a href="#uid10" class="heading hyperref"><span class="number">1.4.2 </span>Check the <em>uptime</em></a></li><li class="subsection"><a href="#uid11" class="heading hyperref"><span class="number">1.4.3 </span>Check memory info on app servers</a></li><li class="subsection"><a href="#uid12" class="heading hyperref"><span class="number">1.4.4 </span>Installing packages</a></li><li class="subsection"><a href="#uid13" class="heading hyperref"><span class="number">1.4.5 </span>Running commands one machine at a time</a></li></ul></li><li class="section"><a href="#cid6" class="heading hyperref"><span class="number">1.5 </span>Using <em>modules</em> to manage the state of infrastructure</a></li><li><ul><li class="subsection"><a href="#uid14" class="heading hyperref"><span class="number">1.5.1 </span>Creating users and groups using <em>user</em> and <em>group</em></a></li><li class="subsection"><a href="#uid15" class="heading hyperref"><span class="number">1.5.2 </span>Copy a file using <em>copy</em> modules</a></li></ul></li><li class="section"><a href="#cid7" class="heading hyperref"><span class="number">1.6 </span>Exercises :</a></li></ul></li><li class="chapter"><a href="#cid8" class="heading hyperref"><span class="number">Chapter 2 </span>Learning to Write Playbooks</a></li><li><ul><li class="section"><a href="#cid9" class="heading hyperref"><span class="number">2.1 </span>Creating our first playbook</a></li><li class="section"><a href="#cid10" class="heading hyperref"><span class="number">2.2 </span>Running the playbook</a></li><li class="section"><a href="#cid11" class="heading hyperref"><span class="number">2.3 </span>Adding second play in the playbook</a></li><li class="section"><a href="#cid12" class="heading hyperref"><span class="number">2.4 </span>Limiting the execution to a particular group</a></li><li class="section"><a href="#cid13" class="heading hyperref"><span class="number">2.5 </span>Exercise:</a></li></ul></li><li class="chapter"><a href="#cid14" class="heading hyperref"><span class="number">Chapter 3 </span>Working with Roles</a></li><li><ul><li class="section"><a href="#cid15" class="heading hyperref"><span class="number">3.1 </span>Creating Role Scaffolding for Apache</a></li><li class="section"><a href="#cid16" class="heading hyperref"><span class="number">3.2 </span>Writing Tasks to Install and Start Apache Web Service</a></li><li class="section"><a href="#cid17" class="heading hyperref"><span class="number">3.3 </span>Managing Configuration files for Apache</a></li><li class="section"><a href="#cid18" class="heading hyperref"><span class="number">3.4 </span>Adding Notifications and Handlers</a></li><li class="section"><a href="#cid19" class="heading hyperref"><span class="number">3.5 </span>Troubleshooting Exercise</a></li><li class="section"><a href="#cid20" class="heading hyperref"><span class="number">3.6 </span>Base Role and Role Nesting</a></li><li class="section"><a href="#cid21" class="heading hyperref"><span class="number">3.7 </span>Creating a Site Wide Playbook</a></li><li class="section"><a href="#cid22" class="heading hyperref"><span class="number">3.8 </span>Exercises</a></li></ul></li><li class="chapter"><a href="#cid23" class="heading hyperref"><span class="number">Chapter 4 </span>Variables and Templates</a></li><li><ul><li class="section"><a href="#cid24" class="heading hyperref"><span class="number">4.1 </span>Variables</a></li><li class="section"><a href="#cid25" class="heading hyperref"><span class="number">4.2 </span>Finding Facts About Systems</a></li><li class="section"><a href="#cid26" class="heading hyperref"><span class="number">4.3 </span>Filtering facts</a></li><li class="section"><a href="#cid27" class="heading hyperref"><span class="number">4.4 </span>Registering Variables</a></li><li class="section"><a href="#cid28" class="heading hyperref"><span class="number">4.5 </span>Creating Templates for Apache</a></li><li class="section"><a href="#cid29" class="heading hyperref"><span class="number">4.6 </span>Defining Default Variables</a></li><li class="section"><a href="#cid30" class="heading hyperref"><span class="number">4.7 </span>Updating Tasks to use Templates</a></li><li><ul><li class="subsection"><a href="#uid87" class="heading hyperref"><span class="number">4.7.1 </span>Validating</a></li></ul></li><li class="section"><a href="#cid31" class="heading hyperref"><span class="number">4.8 </span>Playing with Variable Precedence Rules</a></li><li class="section"><a href="#cid32" class="heading hyperref"><span class="number">4.9 </span>Exercises</a></li></ul></li><li class="chapter"><a href="#cid33" class="heading hyperref"><span class="number">Chapter 5 </span>Control Structures</a></li><li><ul><li class="section"><a href="#cid34" class="heading hyperref"><span class="number">5.1 </span>Conditionals</a></li><li class="section"><a href="#cid35" class="heading hyperref"><span class="number">5.2 </span><strong>When</strong> statements</a></li><li><ul><li class="subsection"><a href="#uid101" class="heading hyperref"><span class="number">5.2.1 </span>Selectively calling install tasks based on platform</a></li><li class="subsection"><a href="#uid104" class="heading hyperref"><span class="number">5.2.2 </span>Configuring MySQL server based on boolean flag</a></li><li class="subsection"><a href="#uid107" class="heading hyperref"><span class="number">5.2.3 </span>Adding conditionals in Jinja2 templates</a></li><li class="subsection"><a href="#uid110" class="heading hyperref"><span class="number">5.2.4 </span>Running One Time Tasks</a></li><li class="subsection"><a href="#uid113" class="heading hyperref"><span class="number">5.2.5 </span>Conditional Execution of Roles</a></li><li class="subsection"><a href="#uid117" class="heading hyperref"><span class="number">5.2.6 </span>Exercise</a></li></ul></li><li class="section"><a href="#cid36" class="heading hyperref"><span class="number">5.3 </span>Iterations</a></li><li><ul><li class="subsection"><a href="#uid118" class="heading hyperref"><span class="number">5.3.1 </span>Iteration over list</a></li><li class="subsection"><a href="#uid124" class="heading hyperref"><span class="number">5.3.2 </span>Iterating over a Hash Table/Dictionary</a></li></ul></li><li class="section"><a href="#cid37" class="heading hyperref"><span class="number">5.4 </span>Exercises</a></li></ul></li></ul></div>
 <div class="chapter-star" id="preface"><h1><a href="#preface" class="heading hyperref">Preface</a></h1>
 <p>This is an example of “frontmatter”, which comes before the main text of the book.</p>
 </div></div>
@@ -1288,180 +1288,182 @@ touch all.yml
 <div id="cid33" data-tralics-id="cid33" class="chapter" data-number="5"><h1><a href="#cid33" class="heading hyperref"><span class="number">Chapter 5 </span>Control Structures</a></h1>
 <p>In Chapter 7, we will learn about the aspects of conditionals and iterations that affects program’s execution flow in Ansible</p>
 <p class="noindent">Control structures are of two different type</p>
-<p class="noindent">* Conditional
-* Iterative</p>
+<ul>
+<li>Conditional
+</li>
+<li>Iterative
+</li></ul>
 </div>
 <div id="cid34" data-tralics-id="cid34" class="section" data-number="5.1"><h2><a href="#cid34" class="heading hyperref"><span class="number">5.1 </span>Conditionals</a></h2>
 <p>Conditionals structures allow Ansible to choose an alternate path.<span class="intersentencespace"></span> Ansible does this by using <em>when</em> statements</p>
-<p class="noindent">### 7.1 <strong>When</strong> statements</p>
-<p class="noindent">When statement becomes helpful, when you will want to skip a particular step on a particular host</p>
-<div id="uid99" data-tralics-id="uid99" class="subsubsection" data-number="5.1.1.1"><h4><a href="#uid99" class="heading">Selectively calling install tasks based on platform</a></h4>
+</div>
+<div id="cid35" data-tralics-id="cid35" class="section" data-number="5.2"><h2><a href="#cid35" class="heading hyperref"><span class="number">5.2 </span><strong>When</strong> statements</a></h2>
+<p>When statement becomes helpful, when you will want to skip a particular step on a particular host</p>
+<div id="uid101" data-tralics-id="uid101" class="subsection" data-number="5.2.1"><h3><a href="#uid101" class="heading hyperref"><span class="number">5.2.1 </span>Selectively calling install tasks based on platform</a></h3>
 <ul>
 <li>Edit <em>roles/apache/tasks/main.yml</em>,
-“‘
-—
-</li>
-<li>include: install.yml
-when: ansible_os_family == ‘RedHat’
-</li>
-<li>include: start.yml
-</li>
-<li>include: config.yml
 </li></ul>
-<p>“‘
-* This will include <em>install.yml</em> only if the OS family is Redhat, otherwise it will skip the installation playbook</p>
+<div class="code"><div class="highlight"><pre>---
+- include: install.yml
+  when: ansible_os_family == 'RedHat'
+- include: start.yml
+- include: config.yml
+</pre></div></div>
+<ul>
+<li>This will include <em>install.yml</em> only if the OS family is Redhat, otherwise it will skip the installation playbook
+</li></ul>
 </div>
-<div id="uid104" data-tralics-id="uid104" class="subsubsection" data-number="5.1.1.2"><h4><a href="#uid104" class="heading">Configuring MySQL server based on boolean flag</a></h4>
+<div id="uid104" data-tralics-id="uid104" class="subsection" data-number="5.2.2"><h3><a href="#uid104" class="heading hyperref"><span class="number">5.2.2 </span>Configuring MySQL server based on boolean flag</a></h3>
 <ul>
 <li>Edit <em>roles/mysql/tasks/main.yml</em> and add when statements,
-“‘
-—
+</li></ul>
+<div class="code"><div class="highlight"><pre>---
 # tasks file for mysql
-</li>
-<li>include: install.yml
-</li>
-<li>include: start.yml
-when: mysql.server
-</li>
-<li>include: config.yml
-when: mysql.server
-“‘
-</li>
+- include: install.yml
+
+- include: start.yml
+  when: mysql.server
+
+- include: config.yml
+  when: mysql.server
+</pre></div></div>
+<ul>
 <li>Edit <em>db.yml</em> as follows,
-“‘
-—
-<ul>
-<li>name: Playbook to configure DB Servers
-hosts: db
-become: true
-roles:
-<ul>
-<li>mysql
-vars:
-mysql:
-server: true
-config:
-bind: “{{ ansible_eth1.ipv4.address }}”
 </li></ul>
-</li></ul>
-</li></ul>
-<p>“‘</p>
+<div class="code"><div class="highlight"><pre>---
+  - name: Playbook to configure DB Servers
+    hosts: db
+    become: true
+    roles:
+    - mysql
+    vars:
+      mysql:
+        server: true
+        config:
+          bind: "{{ ansible_eth1.ipv4.address }}"
+</pre></div></div>
 </div>
-<div id="uid112" data-tralics-id="uid112" class="subsubsection" data-number="5.1.1.3"><h4><a href="#uid112" class="heading">Adding conditionals in Jinja2 templates</a></h4>
+<div id="uid107" data-tralics-id="uid107" class="subsection" data-number="5.2.3"><h3><a href="#uid107" class="heading hyperref"><span class="number">5.2.3 </span>Adding conditionals in Jinja2 templates</a></h3>
 <ul>
 <li>Put the following content in <em>roles/mysql/templates/my.cnf.j2</em>
-“‘
-[mysqld]
 </li></ul>
-<p>{% if mysql.config.datadir is defined %}
-datadir={{ mysql[‘config’][‘datadir’] }}
-{% endif %}</p>
-<p>{% if mysql.config.socket is defined %}
-socket={{ mysql[‘config’][‘socket’] }}
-{% endif %}</p>
-<p>symbolic-links=0
-log-error=/var/log/mysqld.log</p>
-<p>{% if mysql.config.pid is defined %}
-pid-file={{ mysql[‘config’][‘pid’]}}
-{% endif %}</p>
-<p>[client]
+<div class="code"><div class="highlight"><pre>[mysqld]
+
+{% if mysql.config.datadir is defined %}
+datadir={{ mysql['config']['datadir'] }}
+{% endif %}
+
+{% if mysql.config.socket is defined %}
+socket={{ mysql['config']['socket'] }}
+{% endif %}
+
+symbolic-links=0
+log-error=/var/log/mysqld.log
+
+{% if mysql.config.pid is defined %}
+pid-file={{ mysql['config']['pid']}}
+{% endif %}
+
+[client]
 user=root
 password={{ mysql_root_db_pass }}
-“‘</p>
+</pre></div></div>
 <ul>
 <li>These conditions will run flawlessly, because we have already defined these Variables
 </li></ul>
 </div>
-<div id="uid115" data-tralics-id="uid115" class="subsubsection" data-number="5.1.1.4"><h4><a href="#uid115" class="heading">Running One Time Tasks</a></h4>
+<div id="uid110" data-tralics-id="uid110" class="subsection" data-number="5.2.4"><h3><a href="#uid110" class="heading hyperref"><span class="number">5.2.4 </span>Running One Time Tasks</a></h3>
 <ul>
 <li>To see how this works, lets take a look at the code in <em>roles/mysql/tasks/config.yml</em>
-“‘
-[…]
-</li>
-<li>name: reset default root password
-shell: mysql –user=root –password=”{{ MYSQL_DEFAULT_PASS }}” –connect-expired-password mysql &lt; /root/.mysql_reset_pass.sql
+</li></ul>
+<div class="code"><div class="highlight"><pre>        [...]
+- name: reset default root password
+shell: mysql --user=root --password="{{ MYSQL_DEFAULT_PASS }}" --connect-expired-password mysql &lt; /root/.mysql_reset_pass.sql
 run_once: true
 ignore_errors: yes
-[…]
+       [...]
+</pre></div></div>
+<ul>
+<li>In some cases there may be a need to only run a task one time and only on one host.<span class="intersentencespace"></span> This can be achieved by configuring “run_once” on a task
 </li></ul>
-<p>“‘</p>
-<p class="noindent">* In some cases there may be a need to only run a task one time and only on one host.<span class="intersentencespace"></span> This can be achieved by configuring “run_once” on a task</p>
 </div>
-<div id="uid118" data-tralics-id="uid118" class="subsubsection" data-number="5.1.1.5"><h4><a href="#uid118" class="heading">Conditional Execution of Roles</a></h4>
+<div id="uid113" data-tralics-id="uid113" class="subsection" data-number="5.2.5"><h3><a href="#uid113" class="heading hyperref"><span class="number">5.2.5 </span>Conditional Execution of Roles</a></h3>
 <ul>
 <li>This will execute app playbook only if the node is running <strong>RedHat</strong> family
 </li>
 <li>Update app.yml to restrict role to be run only on RedHat platform.<span class="intersentencespace"></span>
 </li></ul>
-<div class="code"><div class="highlight"><pre>  ---
-    - name: Playbook to configure App Servers
-      hosts: app
-      become: true
-      vars:
-        fav:
-          fruit: mango
-      roles:
-      - { role: apache, when: ansible_os_family == 'RedHat' }
-```  
-
-  * Let's run this code  
-  ```
-  ansible-playbook site.yml
-  ```
-  [Output]  
-  ```
-  TASK [setup] *******************************************************************
+<div class="code"><div class="highlight"><pre>---
+  - name: Playbook to configure App Servers
+    hosts: app
+    become: true
+    vars:
+      fav:
+        fruit: mango
+    roles:
+    - { role: apache, when: ansible_os_family == 'RedHat' }
+</pre></div></div>
+<ul>
+<li>Let’s run this code
+</li></ul>
+<div class="code"><div class="highlight"><pre>ansible-playbook site.yml
+</pre></div></div>
+<p>[Output]</p>
+<p class="noindent"></p><div class="code"><div class="highlight"><pre>TASK [setup] *****************************************************************
 ok: [192.168.61.12]
 ok: [192.168.61.13]
 
-TASK [base : create admin user] ************************************************
+TASK [base : create admin user] **********************************************
 skipping: [192.168.61.12]
 skipping: [192.168.61.13]
 
-TASK [base : remove dojo] ******************************************************
+TASK [base : remove dojo] ****************************************************
 skipping: [192.168.61.12]
 skipping: [192.168.61.13]
 
-TASK [base : install tree] *****************************************************
+TASK [base : install tree] ***************************************************
 skipping: [192.168.61.12]
 skipping: [192.168.61.13]
 
-TASK [base : install ntp] ******************************************************
+TASK [base : install ntp] ****************************************************
 skipping: [192.168.61.12]
 skipping: [192.168.61.13]
 
-TASK [base : start ntp service] ************************************************
+TASK [base : start ntp service] **********************************************
 skipping: [192.168.61.12]
 skipping: [192.168.61.13]
 
-TASK [apache : Installing Apache...] *******************************************
+TASK [apache : Installing Apache...] *****************************************
 skipping: [192.168.61.12]
 skipping: [192.168.61.13]
 
-TASK [apache : Starting Apache...] *********************************************
+TASK [apache : Starting Apache...] *******************************************
 skipping: [192.168.61.12]
 skipping: [192.168.61.13]
 
-TASK [apache : Creating configuration from templates...] ***********************
+TASK [apache : Creating configuration from templates...] *********************
 skipping: [192.168.61.12]
 skipping: [192.168.61.13]
 
-TASK [apache : Copying index.html file...] *************************************
+TASK [apache : Copying index.html file...] ***********************************
 skipping: [192.168.61.12]
 skipping: [192.168.61.13]
-
-  ```  
-
-**Exercise**: Try using **Debian** instead of **RedHat** . You shall see app role being skipped altogether. Don't forget to put it back after you try this out.
-
-
-### Iterations  
-#### Iteration over list  
-* Create a list of packages  
-  * Let us create the following list of packages in base role.  
-  * Edit *roles/base/defaults/main.yml* and put  
-  ```
----
+</pre></div></div>
+</div>
+<div id="uid117" data-tralics-id="uid117" class="subsection" data-number="5.2.6"><h3><a href="#uid117" class="heading hyperref"><span class="number">5.2.6 </span>Exercise</a></h3>
+<p>Try using <strong>Debian</strong> instead of <strong>RedHat</strong> .<span class="intersentencespace"></span> You shall see app role being skipped altogether.<span class="intersentencespace"></span> Don’t forget to put it back after you try this out.</p>
+</div></div>
+<div id="cid36" data-tralics-id="cid36" class="section" data-number="5.3"><h2><a href="#cid36" class="heading hyperref"><span class="number">5.3 </span>Iterations</a></h2>
+<div id="uid118" data-tralics-id="uid118" class="subsection" data-number="5.3.1"><h3><a href="#uid118" class="heading hyperref"><span class="number">5.3.1 </span>Iteration over list</a></h3>
+<ul>
+<li>Create a list of packages
+<ul>
+<li>Let us create the following list of packages in base role.<span class="intersentencespace"></span>
+</li>
+<li>Edit <em>roles/base/defaults/main.yml</em> and put
+</li></ul>
+</li></ul>
+<div class="code"><div class="highlight"><pre>---
 # packages list
 demolist:
   packages:
@@ -1470,24 +1472,29 @@ demolist:
     - eggdbus
     - pixman
     - polkit
-
-  ```  
-  * Also edit *roles/base/tasks/main.yml* to iterate over this list of items and install packages
 </pre></div></div>
-<p>- name: install a list of packages
-yum:
-name: “{{ item }}”
-with_items: {{ demolist.packages }}</p>
-<p><code>
-* Let’s check the output
-</code>
-TASK [base : install a list of packages] <strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong>***
-changed: [192.168.61.12] =&gt; (item=[u’atk’, u’flac’, u’eggdbus’, u’polkit’, u’pixman’])
-changed: [192.168.61.13] =&gt; (item=[u’atk’, u’flac’, u’eggdbus’, u’polkit’, u’pixman’])</p>
-<p>“‘</p>
-<p class="noindent">#### Iterating over a Hash Table/Dictionary
-* This iteration can be done with using <strong>with_dict</strong> statement, let us see how</p>
-<p class="noindent">* Edit <em>group_vars/all</em> file from the <strong>parent directory</strong> and define a dictionary of mysql databases and users to be created</p>
+<ul>
+<li>Also edit <em>roles/base/tasks/main.yml</em> to iterate over this list of items and install packages
+</li></ul>
+<div class="code"><div class="highlight"><pre>- name: install a list of packages
+  yum:
+    name: "{{ item }}"
+  with_items: {{ demolist.packages }}
+</pre></div></div>
+<ul>
+<li>Let’s check the output
+</li></ul>
+<div class="code"><div class="highlight"><pre>TASK [base : install a list of packages] ***************************************
+changed: [192.168.61.12] =&gt; (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pixman'])
+changed: [192.168.61.13] =&gt; (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pixman'])
+</pre></div></div>
+</div>
+<div id="uid124" data-tralics-id="uid124" class="subsection" data-number="5.3.2"><h3><a href="#uid124" class="heading hyperref"><span class="number">5.3.2 </span>Iterating over a Hash Table/Dictionary</a></h3>
+<ul>
+<li>This iteration can be done with using <strong>with_dict</strong> statement, let us see how
+</li>
+<li>Edit <em>group_vars/all</em> file from the <strong>parent directory</strong> and define a dictionary of mysql databases and users to be created
+</li></ul>
 <div class="code"><div class="highlight"><pre>---
   fav:
     color: blue
@@ -1511,38 +1518,41 @@ changed: [192.168.61.13] =&gt; (item=[u’atk’, u’flac’, u’eggdbus’, u
         priv: '*.*:ALL'
         state: present
 </pre></div></div>
-<p>* <strong>Append</strong> the following iteration in <em>roles/mysql/tasks/config.yml</em></p>
-<div class="code"><div class="highlight"><pre>  - name: create mysql databases
-    mysql_db:
-      name: "{{ item.key }}"
-      state: "{{ item.value.state }}"
-    with_dict: "{{ mysql['databases'] }}"
+<ul>
+<li><strong>Append</strong> the following iteration in <em>roles/mysql/tasks/config.yml</em>
+</li></ul>
+<div class="code"><div class="highlight"><pre>- name: create mysql databases
+  mysql_db:
+    name: "{{ item.key }}"
+    state: "{{ item.value.state }}"
+  with_dict: "{{ mysql['databases'] }}"
 
-  - name: create mysql users
-    mysql_user:
-      name: "{{ item.key }}"
-      host: "{{ item.value.host }}"
-      password: "{{ item.value.pass }}"
-      priv: "{{ item.value.priv }}"
-      state: "{{ item.value.state }}"
-    with_dict: "{{ mysql['users'] }}"
-
-```  
-  * Execute the *db* playbook to verify the output  
-   ```
-    ansible-playbook db.yml
-   ```
-
-## Exercises
-  * Define dictionary of properties for a new database user  in group_vars/all. Observe if it gets created automatically  output by running db.yml playbook. Validate if the user is been actually present by logging on to the mysql server and checking status.
-
-  * Update index.html.j2 to iterate over the dictionary of favorites and generate html content to display it instead of adding multiple lines.
-
-  * Define a hash/dictionary  of apache virtual hosts to be created  and create a template which would iterate over that dictionary and create vhost configurations.
-
-  * Learn about what else you could loop over, as well as how to do so by reading this document http://docs.ansible.com/ansible/playbooks_loops.html#id12
+- name: create mysql users
+  mysql_user:
+    name: "{{ item.key }}"
+    host: "{{ item.value.host }}"
+    password: "{{ item.value.pass }}"
+    priv: "{{ item.value.priv }}"
+    state: "{{ item.value.state }}"
+  with_dict: "{{ mysql['users'] }}"
+</pre></div></div>
+<ul>
+<li>Execute the <em>db</em> playbook to verify the output
+</li></ul>
+<div class="code"><div class="highlight"><pre>ansible-playbook db.yml
 </pre></div></div>
 </div></div>
+<div id="cid37" data-tralics-id="cid37" class="section" data-number="5.4"><h2><a href="#cid37" class="heading hyperref"><span class="number">5.4 </span>Exercises</a></h2>
+<ul>
+<li>Define dictionary of properties for a new database user in group_vars/all.<span class="intersentencespace"></span> Observe if it gets created automatically output by running db.yml playbook.<span class="intersentencespace"></span> Validate if the user is been actually present by logging on to the mysql server and checking status.<span class="intersentencespace"></span>
+</li>
+<li>Update index.html.j2 to iterate over the dictionary of favorites and generate html content to display it instead of adding multiple lines.<span class="intersentencespace"></span>
+</li>
+<li>Define a hash/dictionary of apache virtual hosts to be created and create a template which would iterate over that dictionary and create vhost configurations.<span class="intersentencespace"></span>
+</li>
+<li>Learn about what else you could loop over, as well as how to do so by reading this document http://docs.ansible.com/ansible/playbooks_loops.html#id12
+</li></ul>
+</div>
     </div>
   </body>
 </html>
