@@ -1,38 +1,55 @@
-# Working with Roles  
+\chapter{Working with Roles}
+
 In this tutorial we are going to create simple, static role for apache which will,
 
-* Install **httpd** package
-* Configure **httpd.conf**, manage it as a static file
-* Start httpd service
-* Add a notification and a  handler so that whenever the configuration is updated, service is automatically restarted.
+\begin{itemize}
+\item Install \textbf{httpd} package
+\item Configure \textbf{httpd.conf}, manage it as a static file
+\item Start httpd service
+\item Add a notification and a  handler so that whenever the configuration is updated, service is automatically restarted.
+\end{itemize}
 
-## Creating Role Scaffolding for Apache  
-* Change working  directory to **/vagrant/code/chap5**
+\section{Creating Role Scaffolding for Apache}
 
-```
+\begin{itemize}
+\item Change working  directory to \textbf{/vagrant/code/chap5}
+\end{itemize}
+
+%= lang:text
+\begin{code}
 cd  /vagrant/code/chap5
-```
+\end{code}
 
-* Create roles directory
+\begin{itemize}
+\item Create roles directory
+\end{itemize}
 
-```
+%= lang:text
+\begin{code}
 mkdir roles
-```
+\end{code}
 
-* Generate role scaffolding using ansible-galaxy
+\begin{itemize}
+\item Generate role scaffolding using ansible-galaxy
+\end{itemize}
 
-```
+%= lang:text
+\begin{code}
 ansible-galaxy init --offline --init-path=roles  apache
-```
+\end{code}
 
-* Validate
+\begin{itemize}
+\item Validate
+\end{itemize}
 
-```
+%= lang:text
+\begin{code}
 tree roles/
-```
+\end{code}
 
-[Output]  
-```
+[Output]\newline
+%= lang:text
+\begin{code}
 roles/
   └── apache
       ├── defaults
@@ -51,62 +68,81 @@ roles/
       │   └── test.yml
       └── vars
           └── main.yml
-```
+\end{code}
 
-## Writing Tasks to Install and Start Apache Web Service  
+\section{Writing Tasks to Install and Start Apache Web Service}
+
 We are going to create three different tasks files, one for each phase of application lifecycle
 
-* Install
-* Configure
-* Start Service
+\begin{itemize}
+\item Install
+\item Configure
+\item Start Service
+\end{itemize}
 
 To begin with, in this part, we will install and start apache.
 
-* To install apache, Create **roles/apache/tasks/install.yml**
+\begin{itemize}
+\item To install apache, Create \textbf{roles/apache/tasks/install.yml}
+\end{itemize}
 
-```
+%= lang:text
+\begin{code}
 ---
 - name: Install Apache...
   yum: name=httpd state=latest
-```
+\end{code}
 
-* To start the service, create  **roles/apache/tasks/start.yml** with the following content
+\begin{itemize}
+\item To start the service, create  \textbf{roles/apache/tasks/start.yml} with the following content
+\end{itemize}
 
-```
+%= lang:text
+\begin{code}
 ---
 - name: Starting Apache...
   service: name=httpd state=started
-```
+\end{code}
 
 To have these tasks being called, include them into main task.
 
-* Edit roles/apache/tasks/main.yml
+\begin{itemize}
+\item Edit roles/apache/tasks/main.yml
+\end{itemize}
 
-```
+%= lang:text
+\begin{code}
 ---
 # tasks file for apache
 - include: install.yml
 - include: start.yml
-```
+\end{code}
 
-* Create a playbook for app servers at /vagrant/chap5/app.yml with following contents
+\begin{itemize}
+\item Create a playbook for app servers at /vagrant/chap5/app.yml with following contents
+\end{itemize}
 
-```
+%= lang:text
+\begin{code}
 ---
 - hosts: app
   become: true
   roles:
     - apache
-```
+\end{code}
 
-* Apply app.yml with ansible-playbook
+\begin{itemize}
+\item Apply app.yml with ansible-playbook
+\end{itemize}
 
-```
+%= lang:text
+\begin{code}
 ansible-playbook app.yml
-```
+\end{code}
 
-[Output]  
-```
+[Output]\newline
+%= lang:text
+\begin{code}
 PLAY [Playbook to configure App Servers] ***************************************
 
 TASK [setup] *******************************************************************
@@ -124,18 +160,25 @@ changed: [192.168.61.12]
 PLAY RECAP *********************************************************************
 192.168.61.12              : ok=3    changed=2    unreachable=0    failed=0
 192.168.61.13              : ok=3    changed=2    unreachable=0    failed=0
-```
+\end{code}
 
-## Managing Configuration files for Apache  
-* Copy **index.html** and **httpd.conf** from **chap5/helper** to **/roles/apache/files/** directory
+\section{Managing Configuration files for Apache}
 
-```
+\begin{itemize}
+\item Copy \textbf{index.html} and \textbf{httpd.conf} from \textbf{chap5/helper} to \textbf{/roles/apache/files/} directory
+\end{itemize}
+
+%= lang:text
+\begin{code}
 cp helper/index.html helper/httpd.conf roles/apache/files/  
-```
+\end{code}
 
-* Create a task file at **roles/apache/tasks/config.yml** to manage files.
+\begin{itemize}
+\item Create a task file at \textbf{roles/apache/tasks/config.yml} to manage files.
+\end{itemize}
 
-```
+%= lang:text
+\begin{code}
 ---
 - name: Copying configuration files...
   copy: src=httpd.conf
@@ -146,35 +189,44 @@ cp helper/index.html helper/httpd.conf roles/apache/files/
   copy: src=index.html
         dest=/var/www/html/index.html
         mode=0777
-```
+\end{code}
 
-## Adding Notifications and Handlers  
-* Previously we have create a task in roles/apache/tasks/config.yml to copy over httpd.conf to the app server. Update this file to send a notification to restart  service on configuration update.  You simply have to add the line which starts with **notify**
+\section{Adding Notifications and Handlers}
 
-```
+\begin{itemize}
+\item Previously we have create a task in roles/apache/tasks/config.yml to copy over httpd.conf to the app server. Update this file to send a notification to restart  service on configuration update.  You simply have to add the line which starts with \textbf{notify}
+\end{itemize}
+
+%= lang:text
+\begin{code}
 - name: Copying configuration files...
   copy: src=httpd.conf
         dest=/etc/httpd.conf
         owner=root group=root mode=0644
   notify: Restart apache service
-```
+\end{code}
 
-* Create the notification handler by updating   **roles/apache/handlers/main.yml**
+\begin{itemize}
+\item Create the notification handler by updating   \textbf{roles/apache/handlers/main.yml}
+\end{itemize}
 
-```
+%= lang:text
+\begin{code}
 ---
 - name: Restart apache service
   service: name=httpd state=restarted
-```
+\end{code}
 
 Then run the app role
 
-```
+%= lang:text
+\begin{code}
 ansible-playbook app.yml
-```
+\end{code}
 
-[Output]  
-```
+[Output]\newline
+%= lang:text
+\begin{code}
 PLAY [Playbook to configure App Servers] ***************************************
 
 TASK [setup] *******************************************************************
@@ -204,21 +256,29 @@ changed: [192.168.61.13]
 PLAY RECAP *********************************************************************
 192.168.61.12              : ok=6    changed=3    unreachable=0    failed=0
 192.168.61.13              : ok=6    changed=3    unreachable=0    failed=0
-```
+\end{code}
 
-## Troubleshooting Exercise  
-Did the above command added the configuration files and restarted the service? But we have already written **config.yml**. Troubleshoot why its not being run and fix it before you proceed.
+\section{Troubleshooting Exercise}
 
-## Base Role and Role Nesting  
-* Create a base role with ansible-galaxy utility,
+Did the above command added the configuration files and restarted the service? But we have already written \textbf{config.yml}. Troubleshoot why its not being run and fix it before you proceed.
 
-```
+\section{Base Role and Role Nesting}
+
+\begin{itemize}
+\item Create a base role with ansible-galaxy utility,
+\end{itemize}
+
+%= lang:text
+\begin{code}
 ansible-galaxy init --offline --init-path=roles base
-```
+\end{code}
 
-* Create tasks for base role by editing  **/roles/base/tasks/main.yml**
+\begin{itemize}
+\item Create tasks for base role by editing  \textbf{/roles/base/tasks/main.yml}
+\end{itemize}
 
-```
+%= lang:text
+\begin{code}
 ---
 # tasks file for base
 # file: roles/base/tasks/main.yml
@@ -236,37 +296,48 @@ ansible-galaxy init --offline --init-path=roles base
 
   - name: start ntp service
     service: name=ntpd state=started enabled=yes  
-```
+\end{code}
 
-* Define base role as a dependency for  apache role,
-* Update meta data for Apache by editing **roles/apache/meta/main.yml** and adding the following
+\begin{itemize}
+\item Define base role as a dependency for  apache role,
+\item Update meta data for Apache by editing \textbf{roles/apache/meta/main.yml} and adding the following
+\end{itemize}
 
-```
+%= lang:text
+\begin{code}
 ---
 dependencies:
  - {role: base}
-```
+\end{code}
 
-## Creating a Site Wide Playbook  
+\section{Creating a Site Wide Playbook}
+
 We will create a site wide playbook, which will call all the plays required to configure the complete infrastructure. Currently we have a single  playbook for App Servers. However, in future we would create many.
 
-* Create **site.yml** in /vagrant/chap5 directory and add the following content
+\begin{itemize}
+\item Create \textbf{site.yml} in /vagrant/chap5 directory and add the following content
+\end{itemize}
 
-```
+%= lang:text
+\begin{code}
 ---
 # This is a site-wide playbook
 # filename: site.yml
 - include: app.yml
-```
+\end{code}
 
-* Execute site-wide playbook as  
+\begin{itemize}
+\item Execute site-wide playbook as
+\end{itemize}
 
-```
+%= lang:text
+\begin{code}
 ansible-playbook site.yml
-```
+\end{code}
 
-[Output]  
-```
+[Output]\newline
+%= lang:text
+\begin{code}
 PLAY [Playbook to configure App Servers] ***************************************
 
 TASK [setup] *******************************************************************
@@ -312,25 +383,35 @@ ok: [192.168.61.13]
 PLAY RECAP *********************************************************************
 192.168.61.12              : ok=10   changed=0    unreachable=0    failed=0
 192.168.61.13              : ok=10   changed=0    unreachable=0    failed=0
-```
+\end{code}
 
-## Exercises
+\section{Exercises}
 
-* Update httpd.conf and change some configuration parameters. Validate the service restarts on configuration updates by applying the sitewide playbook.
+\begin{itemize}
+\item Update httpd.conf and change some configuration parameters. Validate the service restarts on configuration updates by applying the sitewide playbook.
+\item Pre Task to be run before creating MySQL Role
 
-* Pre Task to be run before creating MySQL Role
+\begin{itemize}
+\item From Ansible Control node run the following command to enable repositories. This is needed in order to install some of the db packages.
+\end{itemize}
+\end{itemize}
 
-  * From Ansible Control node run the following command to enable repositories. This is needed in order to install some of the db packages.
-
-```
+%= lang:text
+\begin{code}
 ansible db -s -a "cp -r /etc/yum.repos.d/repo.bkp/* /etc/yum.repos.d/"
-```
+\end{code}
 
-  * Create a Role to install and configure MySQL server
-     * Create role scaffold for mysql  using ansible-galaxy init
-     * Create task to install "mysql-server" and "MySQL-python" packages using yum module
-     * Create a task to start mysqld service
-     * Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts. Use helper/my.cnf as a reference. The destination for this file is /etv/my.cnf on db servers.
-     * Write a handler to restart the service on configuration change. Add a notification from the copy resource created earlier.
-     * Add a dependency on base role in the metadata for mysql role.
-     * Create  **db.yml** playbook for configuring all database servers. Create definitions to configure **db** group and to apply **mysql** role.
+\begin{itemize}
+\item Create a Role to install and configure MySQL server
+
+
+\begin{itemize}
+\item Create role scaffold for mysql  using ansible-galaxy init
+\item Create task to install ``mysql-server'' and ``MySQL-python'' packages using yum module
+\item Create a task to start mysqld service
+\item Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts. Use helper/my.cnf as a reference. The destination for this file is /etv/my.cnf on db servers.
+\item Write a handler to restart the service on configuration change. Add a notification from the copy resource created earlier.
+\item Add a dependency on base role in the metadata for mysql role.
+\item Create  \textbf{db.yml} playbook for configuring all database servers. Create definitions to configure \textbf{db} group and to apply \textbf{mysql} role.
+\end{itemize}
+\end{itemize}

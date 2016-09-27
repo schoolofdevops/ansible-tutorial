@@ -17,7 +17,7 @@
           extensions: ["AMSmath.js", "AMSsymbols.js", "color.js"],
           equationNumbers: {
             autoNumber: "AMS",
-            formatNumber: function (n) { return "3" + '.' + n }
+            formatNumber: function (n) { return "4" + '.' + n }
           },
           Macros: {
             PolyTeX:    "Poly{\\TeX}",
@@ -38,15 +38,15 @@
   <body>
     
     <div id="book">
-      <div id="cid14" data-tralics-id="cid14" class="chapter" data-number="3" data-chapter="chapter6"><h1><a href="chapter6.html#cid14" class="heading hyperref"><span class="number">Chapter 3 </span>Variables and Templates</a></h1>
+      <div id="cid23" data-tralics-id="cid23" class="chapter" data-number="4" data-chapter="chapter6"><h1><a href="chapter6.html#cid23" class="heading hyperref"><span class="number">Chapter 4 </span>Variables and Templates</a></h1>
 <p>In this tutorial, we are going to make the roles that we created earlier dynamically by adding templates and defining variables.</p>
 </div>
-<div id="cid15" data-tralics-id="cid15" class="section" data-number="3.1"><h2><a href="chapter6.html#cid15" class="heading hyperref"><span class="number">3.1 </span>Variables</a></h2>
+<div id="cid24" data-tralics-id="cid24" class="section" data-number="4.1"><h2><a href="chapter6.html#cid24" class="heading hyperref"><span class="number">4.1 </span>Variables</a></h2>
 <p>Variables are of two types
 * Automatic Variables/ Facts
 * User Defined Variables</p>
 <p>Lets try to discover information about our systems by using facts.</p>
-<div id="uid32" data-tralics-id="uid32" class="subsection" data-number="3.1.1"><h3><a href="chapter6.html#uid32" class="heading hyperref"><span class="number">3.1.1 </span>Finding Facts About Systems</a></h3>
+<div id="uid69" data-tralics-id="uid69" class="subsection" data-number="4.1.1"><h3><a href="chapter6.html#uid69" class="heading hyperref"><span class="number">4.1.1 </span>Finding Facts About Systems</a></h3>
 <ul>
 <li>Run the following command to see to facts of db servers
 <div class="code"><div class="highlight"><pre>  ansible db -m setup
@@ -102,7 +102,7 @@
             }
 </pre></div></div>
 </div>
-<div id="uid34" data-tralics-id="uid34" class="subsection" data-number="3.1.2"><h3><a href="chapter6.html#uid34" class="heading hyperref"><span class="number">3.1.2 </span>Filtering facts</a></h3>
+<div id="uid71" data-tralics-id="uid71" class="subsection" data-number="4.1.2"><h3><a href="chapter6.html#uid71" class="heading hyperref"><span class="number">4.1.2 </span>Filtering facts</a></h3>
 <ul>
 <li>Use filter attribute to extract specific data
 </li></ul>
@@ -117,7 +117,7 @@
 }  
 </pre></div></div>
 </div>
-<div id="uid36" data-tralics-id="uid36" class="subsection" data-number="3.1.3"><h3><a href="chapter6.html#uid36" class="heading hyperref"><span class="number">3.1.3 </span>Registering Variables</a></h3>
+<div id="uid73" data-tralics-id="uid73" class="subsection" data-number="4.1.3"><h3><a href="chapter6.html#uid73" class="heading hyperref"><span class="number">4.1.3 </span>Registering Variables</a></h3>
 <p>Lets create a playbook to run a shell command, register the result and display the value of registered variable.</p>
 <p>Create <strong>register.yml</strong> in chap6 directory
 </p><div class="code"><div class="highlight"><pre>---
@@ -134,7 +134,7 @@
 <p>Execute the playbook to display information about the registered variable.<span class="intersentencespace"></span> </p><div class="code"><div class="highlight"><pre>ansible-playbook  register.yml
 </pre></div></div>
 </div></div>
-<div id="cid16" data-tralics-id="cid16" class="section" data-number="3.2"><h2><a href="chapter6.html#cid16" class="heading hyperref"><span class="number">3.2 </span>Creating Templates for Apache</a></h2>
+<div id="cid25" data-tralics-id="cid25" class="section" data-number="4.2"><h2><a href="chapter6.html#cid25" class="heading hyperref"><span class="number">4.2 </span>Creating Templates for Apache</a></h2>
 <ul>
 <li>Create template for apache configuration
 </li>
@@ -183,7 +183,7 @@ laptop: dell
 fruit: apple</p>
 <p>“‘</p>
 </div>
-<div id="cid17" data-tralics-id="cid17" class="section" data-number="3.3"><h2><a href="chapter6.html#cid17" class="heading hyperref"><span class="number">3.3 </span>Updating Tasks to use Templates</a></h2>
+<div id="cid26" data-tralics-id="cid26" class="section" data-number="4.3"><h2><a href="chapter6.html#cid26" class="heading hyperref"><span class="number">4.3 </span>Updating Tasks to use Templates</a></h2>
 <ul>
 <li>Since we are now using template instead of static file, we need to edit <em>roles/apache/tasks/config.yml</em> file and use template module
 </li>
@@ -261,7 +261,7 @@ PLAY RECAP *********************************************************************
 192.168.61.12              : ok=11   changed=3    unreachable=0    failed=0
 192.168.61.13              : ok=11   changed=3    unreachable=0    failed=0
 </pre></div></div>
-<div id="uid46" data-tralics-id="uid46" class="subsection" data-number="3.3.1"><h3><a href="chapter6.html#uid46" class="heading hyperref"><span class="number">3.3.1 </span>Playing with Variable Precedence Rules</a></h3>
+<div id="uid83" data-tralics-id="uid83" class="subsection" data-number="4.3.1"><h3><a href="chapter6.html#uid83" class="heading hyperref"><span class="number">4.3.1 </span>Playing with Variable Precedence Rules</a></h3>
 <p>Lets define the variables from couple of other places, to learn about the Precedence rules.<span class="intersentencespace"></span> We will create,</p>
 <p class="noindent">* group_vars</p>
 <p class="noindent">* playbook vars</p>
@@ -309,7 +309,7 @@ touch all.yml
 <li>value of car and laptop comes from role defaults
 </li></ul>
 </div></div>
-<div id="cid18" data-tralics-id="cid18" class="section" data-number="3.4"><h2><a href="chapter6.html#cid18" class="heading hyperref"><span class="number">3.4 </span>Exercises</a></h2>
+<div id="cid27" data-tralics-id="cid27" class="section" data-number="4.4"><h2><a href="chapter6.html#cid27" class="heading hyperref"><span class="number">4.4 </span>Exercises</a></h2>
 <ul>
 <li>Create host specific variables in host_vars/HOSTNAME for one of the app servers, and define some variables values specific to the host.<span class="intersentencespace"></span> See the output after applying playbook on this node.
 </li>

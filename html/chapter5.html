@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link href="stylesheets/pygments.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="stylesheets/softcover.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="stylesheets/custom.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    <title>ansible_tutorial</title>
+    
+      <script type="text/x-mathjax-config">
+              MathJax.Hub.Config({
+        "HTML-CSS": {
+          availableFonts: ["TeX"],
+        },
+        TeX: {
+          extensions: ["AMSmath.js", "AMSsymbols.js", "color.js"],
+          equationNumbers: {
+            autoNumber: "AMS",
+            formatNumber: function (n) { return "3" + '.' + n }
+          },
+          Macros: {
+            PolyTeX:    "Poly{\\TeX}",
+            PolyTeXnic: "Poly{\\TeX}nic",
+            "softcover": "\\texttt{softcover}",
+"unitvec": ["{\\hat #1}", 1]
+          }
+        },
+        showProcessingMessages: false,
+        messageStyle: "none",
+        imageFont: null
+      });
+
+      </script>
+      <script type="text/javascript" src="MathJax/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+    
+  </head>
+  <body>
+    
+    <div id="book">
+      <div id="cid14" data-tralics-id="cid14" class="chapter" data-number="3" data-chapter="chapter5"><h1><a href="chapter5.html#cid14" class="heading hyperref"><span class="number">Chapter 3 </span>Working with Roles</a></h1>
+<p>In this tutorial we are going to create simple, static role for apache which will,</p>
+<ul>
+<li>Install <strong>httpd</strong> package
+</li>
+<li>Configure <strong>httpd.conf</strong>, manage it as a static file
+</li>
+<li>Start httpd service
+</li>
+<li>Add a notification and a handler so that whenever the configuration is updated, service is automatically restarted.<span class="intersentencespace"></span>
+</li></ul>
+</div>
+<div id="cid15" data-tralics-id="cid15" class="section" data-number="3.1"><h2><a href="chapter5.html#cid15" class="heading hyperref"><span class="number">3.1 </span>Creating Role Scaffolding for Apache</a></h2>
+<ul>
+<li>Change working directory to <strong>/vagrant/code/chap5</strong>
+</li></ul>
+<div class="code"><div class="highlight"><pre>cd  /vagrant/code/chap5
+</pre></div></div>
+<ul>
+<li>Create roles directory
+</li></ul>
+<div class="code"><div class="highlight"><pre>mkdir roles
+</pre></div></div>
+<ul>
+<li>Generate role scaffolding using ansible-galaxy
+</li></ul>
+<div class="code"><div class="highlight"><pre>ansible-galaxy init --offline --init-path=roles  apache
+</pre></div></div>
+<ul>
+<li>Validate
+</li></ul>
+<div class="code"><div class="highlight"><pre>tree roles/
+</pre></div></div>
+<p>[Output]</p>
+<p class="noindent"></p><div class="code"><div class="highlight"><pre>roles/
+  └── apache
+      ├── defaults
+      │   └── main.yml
+      ├── files
+      ├── handlers
+      │   └── main.yml
+      ├── meta
+      │   └── main.yml
+      ├── README.md
+      ├── tasks
+      │   └── main.yml
+      ├── templates
+      ├── tests
+      │   ├── inventory
+      │   └── test.yml
+      └── vars
+          └── main.yml
+</pre></div></div>
+</div>
+<div id="cid16" data-tralics-id="cid16" class="section" data-number="3.2"><h2><a href="chapter5.html#cid16" class="heading hyperref"><span class="number">3.2 </span>Writing Tasks to Install and Start Apache Web Service</a></h2>
+<p>We are going to create three different tasks files, one for each phase of application lifecycle</p>
+<ul>
+<li>Install
+</li>
+<li>Configure
+</li>
+<li>Start Service
+</li></ul>
+<p>To begin with, in this part, we will install and start apache.</p>
+<ul>
+<li>To install apache, Create <strong>roles/apache/tasks/install.yml</strong>
+</li></ul>
+<div class="code"><div class="highlight"><pre>---
+- name: Install Apache...
+  yum: name=httpd state=latest
+</pre></div></div>
+<ul>
+<li>To start the service, create <strong>roles/apache/tasks/start.yml</strong> with the following content
+</li></ul>
+<div class="code"><div class="highlight"><pre>---
+- name: Starting Apache...
+  service: name=httpd state=started
+</pre></div></div>
+<p>To have these tasks being called, include them into main task.</p>
+<ul>
+<li>Edit roles/apache/tasks/main.yml
+</li></ul>
+<div class="code"><div class="highlight"><pre>---
+# tasks file for apache
+- include: install.yml
+- include: start.yml
+</pre></div></div>
+<ul>
+<li>Create a playbook for app servers at /vagrant/chap5/app.yml with following contents
+</li></ul>
+<div class="code"><div class="highlight"><pre>---
+- hosts: app
+  become: true
+  roles:
+    - apache
+</pre></div></div>
+<ul>
+<li>Apply app.yml with ansible-playbook
+</li></ul>
+<div class="code"><div class="highlight"><pre>ansible-playbook app.yml
+</pre></div></div>
+<p>[Output]</p>
+<p class="noindent"></p><div class="code"><div class="highlight"><pre>PLAY [Playbook to configure App Servers] ***************************************
+
+TASK [setup] *******************************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [apache : Install Apache...] **********************************************
+changed: [192.168.61.13]
+changed: [192.168.61.12]
+
+TASK [apache : Starting Apache...] *********************************************
+changed: [192.168.61.13]
+changed: [192.168.61.12]
+
+PLAY RECAP *********************************************************************
+192.168.61.12              : ok=3    changed=2    unreachable=0    failed=0
+192.168.61.13              : ok=3    changed=2    unreachable=0    failed=0
+</pre></div></div>
+</div>
+<div id="cid17" data-tralics-id="cid17" class="section" data-number="3.3"><h2><a href="chapter5.html#cid17" class="heading hyperref"><span class="number">3.3 </span>Managing Configuration files for Apache</a></h2>
+<ul>
+<li>Copy <strong>index.html</strong> and <strong>httpd.conf</strong> from <strong>chap5/helper</strong> to <strong>/roles/apache/files/</strong> directory
+</li></ul>
+<div class="code"><div class="highlight"><pre>cp helper/index.html helper/httpd.conf roles/apache/files/  
+</pre></div></div>
+<ul>
+<li>Create a task file at <strong>roles/apache/tasks/config.yml</strong> to manage files.<span class="intersentencespace"></span>
+</li></ul>
+<div class="code"><div class="highlight"><pre>---
+- name: Copying configuration files...
+  copy: src=httpd.conf
+        dest=/etc/httpd.conf
+        owner=root group=root mode=0644
+
+- name: Copying index.html file...
+  copy: src=index.html
+        dest=/var/www/html/index.html
+        mode=0777
+</pre></div></div>
+</div>
+<div id="cid18" data-tralics-id="cid18" class="section" data-number="3.4"><h2><a href="chapter5.html#cid18" class="heading hyperref"><span class="number">3.4 </span>Adding Notifications and Handlers</a></h2>
+<ul>
+<li>Previously we have create a task in roles/apache/tasks/config.yml to copy over httpd.conf to the app server.<span class="intersentencespace"></span> Update this file to send a notification to restart service on configuration update.<span class="intersentencespace"></span> You simply have to add the line which starts with <strong>notify</strong>
+</li></ul>
+<div class="code"><div class="highlight"><pre>- name: Copying configuration files...
+  copy: src=httpd.conf
+        dest=/etc/httpd.conf
+        owner=root group=root mode=0644
+  notify: Restart apache service
+</pre></div></div>
+<ul>
+<li>Create the notification handler by updating <strong>roles/apache/handlers/main.yml</strong>
+</li></ul>
+<div class="code"><div class="highlight"><pre>---
+- name: Restart apache service
+  service: name=httpd state=restarted
+</pre></div></div>
+<p>Then run the app role</p>
+<div class="code"><div class="highlight"><pre>ansible-playbook app.yml
+</pre></div></div>
+<p>[Output]</p>
+<p class="noindent"></p><div class="code"><div class="highlight"><pre>PLAY [Playbook to configure App Servers] ***************************************
+
+TASK [setup] *******************************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [apache : Installing Apache...] *******************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [apache : Starting Apache...] *********************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [apache : Copying configuration files...] *********************************
+changed: [192.168.61.12]
+changed: [192.168.61.13]
+
+TASK [apache : Copying index.html file...] *************************************
+changed: [192.168.61.12]
+changed: [192.168.61.13]
+
+RUNNING HANDLER [apache : Restart apache service] ******************************
+changed: [192.168.61.12]
+changed: [192.168.61.13]
+
+PLAY RECAP *********************************************************************
+192.168.61.12              : ok=6    changed=3    unreachable=0    failed=0
+192.168.61.13              : ok=6    changed=3    unreachable=0    failed=0
+</pre></div></div>
+</div>
+<div id="cid19" data-tralics-id="cid19" class="section" data-number="3.5"><h2><a href="chapter5.html#cid19" class="heading hyperref"><span class="number">3.5 </span>Troubleshooting Exercise</a></h2>
+<p>Did the above command added the configuration files and restarted the service?<span class="intersentencespace"></span> But we have already written <strong>config.yml</strong>.<span class="intersentencespace"></span> Troubleshoot why its not being run and fix it before you proceed.</p>
+</div>
+<div id="cid20" data-tralics-id="cid20" class="section" data-number="3.6"><h2><a href="chapter5.html#cid20" class="heading hyperref"><span class="number">3.6 </span>Base Role and Role Nesting</a></h2>
+<ul>
+<li>Create a base role with ansible-galaxy utility,
+</li></ul>
+<div class="code"><div class="highlight"><pre>ansible-galaxy init --offline --init-path=roles base
+</pre></div></div>
+<ul>
+<li>Create tasks for base role by editing <strong>/roles/base/tasks/main.yml</strong>
+</li></ul>
+<div class="code"><div class="highlight"><pre>---
+# tasks file for base
+# file: roles/base/tasks/main.yml
+  - name: create admin user
+    user: name=admin state=present uid=5001
+
+  - name: remove dojo
+    user: name=dojo  state=present
+
+  - name: install tree
+    yum:  name=tree  state=present
+
+  - name: install ntp
+    yum:  name=ntp   state=present
+
+  - name: start ntp service
+    service: name=ntpd state=started enabled=yes  
+</pre></div></div>
+<ul>
+<li>Define base role as a dependency for apache role,
+</li>
+<li>Update meta data for Apache by editing <strong>roles/apache/meta/main.yml</strong> and adding the following
+</li></ul>
+<div class="code"><div class="highlight"><pre>---
+dependencies:
+ - {role: base}
+</pre></div></div>
+</div>
+<div id="cid21" data-tralics-id="cid21" class="section" data-number="3.7"><h2><a href="chapter5.html#cid21" class="heading hyperref"><span class="number">3.7 </span>Creating a Site Wide Playbook</a></h2>
+<p>We will create a site wide playbook, which will call all the plays required to configure the complete infrastructure.<span class="intersentencespace"></span> Currently we have a single playbook for App Servers.<span class="intersentencespace"></span> However, in future we would create many.</p>
+<ul>
+<li>Create <strong>site.yml</strong> in /vagrant/chap5 directory and add the following content
+</li></ul>
+<div class="code"><div class="highlight"><pre>---
+# This is a site-wide playbook
+# filename: site.yml
+- include: app.yml
+</pre></div></div>
+<ul>
+<li>Execute site-wide playbook as
+</li></ul>
+<div class="code"><div class="highlight"><pre>ansible-playbook site.yml
+</pre></div></div>
+<p>[Output]</p>
+<p class="noindent"></p><div class="code"><div class="highlight"><pre>PLAY [Playbook to configure App Servers] ***************************************
+
+TASK [setup] *******************************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [base : create admin user] ************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [base : remove dojo] ******************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [base : install tree] *****************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [base : install ntp] ******************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [base : start ntp service] ************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [apache : Installing Apache...] *******************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [apache : Starting Apache...] *********************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [apache : Copying configuration files...] *********************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [apache : Copying index.html file...] *************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+PLAY RECAP *********************************************************************
+192.168.61.12              : ok=10   changed=0    unreachable=0    failed=0
+192.168.61.13              : ok=10   changed=0    unreachable=0    failed=0
+</pre></div></div>
+</div>
+<div id="cid22" data-tralics-id="cid22" class="section" data-number="3.8"><h2><a href="chapter5.html#cid22" class="heading hyperref"><span class="number">3.8 </span>Exercises</a></h2>
+<ul>
+<li>Update httpd.conf and change some configuration parameters.<span class="intersentencespace"></span> Validate the service restarts on configuration updates by applying the sitewide playbook.<span class="intersentencespace"></span>
+</li>
+<li>Pre Task to be run before creating MySQL Role
+<ul>
+<li>From Ansible Control node run the following command to enable repositories.<span class="intersentencespace"></span> This is needed in order to install some of the db packages.<span class="intersentencespace"></span>
+</li></ul>
+</li></ul>
+<div class="code"><div class="highlight"><pre>ansible db -s -a "cp -r /etc/yum.repos.d/repo.bkp/* /etc/yum.repos.d/"
+</pre></div></div>
+<ul>
+<li>Create a Role to install and configure MySQL server
+<ul>
+<li>Create role scaffold for mysql using ansible-galaxy init
+</li>
+<li>Create task to install “mysql-server” and “MySQL-python” packages using yum module
+</li>
+<li>Create a task to start mysqld service
+</li>
+<li>Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts.<span class="intersentencespace"></span> Use helper/my.cnf as a reference.<span class="intersentencespace"></span> The destination for this file is /etv/my.cnf on db servers.<span class="intersentencespace"></span>
+</li>
+<li>Write a handler to restart the service on configuration change.<span class="intersentencespace"></span> Add a notification from the copy resource created earlier.<span class="intersentencespace"></span>
+</li>
+<li>Add a dependency on base role in the metadata for mysql role.<span class="intersentencespace"></span>
+</li>
+<li>Create <strong>db.yml</strong> playbook for configuring all database servers.<span class="intersentencespace"></span> Create definitions to configure <strong>db</strong> group and to apply <strong>mysql</strong> role.<span class="intersentencespace"></span>
+</li></ul>
+</li></ul>
+</div>
+    </div>
+  </body>
+</html>

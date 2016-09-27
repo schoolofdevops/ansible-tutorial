@@ -1,13 +1,13 @@
-<div id="cid19" data-tralics-id="cid19" class="chapter" data-number="4" data-chapter="chapter7"><h1><a href="chapter7_fragment.html#cid19" class="heading hyperref"><span class="number">Chapter 4 </span>Control Structures</a></h1>
+<div id="cid28" data-tralics-id="cid28" class="chapter" data-number="5" data-chapter="chapter7"><h1><a href="chapter7_fragment.html#cid28" class="heading hyperref"><span class="number">Chapter 5 </span>Control Structures</a></h1>
 <p>In Chapter 7, we will learn about the aspects of conditionals and iterations that affects program’s execution flow in Ansible</p>
 <p class="noindent">Control structures are of two different type</p>
 <p class="noindent">* Conditional
 * Iterative</p>
-</div><div id="cid20" data-tralics-id="cid20" class="section" data-number="4.1"><h2><a href="chapter7_fragment.html#cid20" class="heading hyperref"><span class="number">4.1 </span>Conditionals</a></h2>
+</div><div id="cid29" data-tralics-id="cid29" class="section" data-number="5.1"><h2><a href="chapter7_fragment.html#cid29" class="heading hyperref"><span class="number">5.1 </span>Conditionals</a></h2>
 <p>Conditionals structures allow Ansible to choose an alternate path.<span class="intersentencespace"></span> Ansible does this by using <em>when</em> statements</p>
 <p class="noindent">### 7.1 <strong>When</strong> statements</p>
 <p class="noindent">When statement becomes helpful, when you will want to skip a particular step on a particular host</p>
-<div id="uid55" data-tralics-id="uid55" class="subsubsection" data-number="4.1.1.1"><h4><a href="#uid55" class="heading">Selectively calling install tasks based on platform</a></h4>
+<div id="uid92" data-tralics-id="uid92" class="subsubsection" data-number="5.1.1.1"><h4><a href="#uid92" class="heading">Selectively calling install tasks based on platform</a></h4>
 <ul>
 <li>Edit <em>roles/apache/tasks/main.yml</em>,
 “‘
@@ -23,7 +23,7 @@ when: ansible_os_family == ‘RedHat’
 <p>“‘
 * This will include <em>install.yml</em> only if the OS family is Redhat, otherwise it will skip the installation playbook</p>
 </div>
-<div id="uid60" data-tralics-id="uid60" class="subsubsection" data-number="4.1.1.2"><h4><a href="#uid60" class="heading">Configuring MySQL server based on boolean flag</a></h4>
+<div id="uid97" data-tralics-id="uid97" class="subsubsection" data-number="5.1.1.2"><h4><a href="#uid97" class="heading">Configuring MySQL server based on boolean flag</a></h4>
 <ul>
 <li>Edit <em>roles/mysql/tasks/main.yml</em> and add when statements,
 “‘
@@ -59,7 +59,7 @@ bind: “{{ ansible_eth1.ipv4.address }}”
 </li></ul>
 <p>“‘</p>
 </div>
-<div id="uid68" data-tralics-id="uid68" class="subsubsection" data-number="4.1.1.3"><h4><a href="#uid68" class="heading">Adding conditionals in Jinja2 templates</a></h4>
+<div id="uid105" data-tralics-id="uid105" class="subsubsection" data-number="5.1.1.3"><h4><a href="#uid105" class="heading">Adding conditionals in Jinja2 templates</a></h4>
 <ul>
 <li>Put the following content in <em>roles/mysql/templates/my.cnf.j2</em>
 “‘
@@ -84,7 +84,7 @@ password={{ mysql_root_db_pass }}
 <li>These conditions will run flawlessly, because we have already defined these Variables
 </li></ul>
 </div>
-<div id="uid71" data-tralics-id="uid71" class="subsubsection" data-number="4.1.1.4"><h4><a href="#uid71" class="heading">Running One Time Tasks</a></h4>
+<div id="uid108" data-tralics-id="uid108" class="subsubsection" data-number="5.1.1.4"><h4><a href="#uid108" class="heading">Running One Time Tasks</a></h4>
 <ul>
 <li>To see how this works, lets take a look at the code in <em>roles/mysql/tasks/config.yml</em>
 “‘
@@ -99,7 +99,7 @@ ignore_errors: yes
 <p>“‘</p>
 <p class="noindent">* In some cases there may be a need to only run a task one time and only on one host.<span class="intersentencespace"></span> This can be achieved by configuring “run_once” on a task</p>
 </div>
-<div id="uid74" data-tralics-id="uid74" class="subsubsection" data-number="4.1.1.5"><h4><a href="#uid74" class="heading">Conditional Execution of Roles</a></h4>
+<div id="uid111" data-tralics-id="uid111" class="subsubsection" data-number="5.1.1.5"><h4><a href="#uid111" class="heading">Conditional Execution of Roles</a></h4>
 <ul>
 <li>This will execute app playbook only if the node is running <strong>RedHat</strong> family
 </li>
