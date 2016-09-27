@@ -5,20 +5,24 @@ In this  tutorial, we  are going to make the roles that we created earlier dynam
 \section{Variables}
 
 Variables are of two types
-  * Automatic Variables/ Facts
-  * User Defined Variables
+
+\begin{itemize}
+\item Automatic Variables/ Facts
+\item User Defined Variables
+\end{itemize}
 
 Lets try to discover information about our systems by using facts.
 
-\subsection{Finding Facts About Systems}
+\section{Finding Facts About Systems}
 
 \begin{itemize}
-\item Run the following command to see to facts of db servers\newline
+\item Run the following command to see to facts of db servers
+\end{itemize}
+
 %= lang:text
 \begin{code}
-  ansible db -m setup
+ansible db -m setup
 \end{code}
-\end{itemize}
 
 [Output]\newline
 %= lang:text
@@ -73,7 +77,7 @@ Lets try to discover information about our systems by using facts.
 
 \end{code}
 
-\subsection{Filtering facts}
+\section{Filtering facts}
 
 \begin{itemize}
 \item Use filter attribute to extract specific data
@@ -81,12 +85,10 @@ Lets try to discover information about our systems by using facts.
 
 %= lang:text
 \begin{code}
-        ansible db -m setup -a "filter=ansible_distribution"
-
+ansible db -m setup -a "filter=ansible_distribution"
 \end{code}
 
-[Output]  
-
+[Output]\newline
 %= lang:text
 \begin{code}
 192.168.61.11 | SUCCESS => {
@@ -97,11 +99,12 @@ Lets try to discover information about our systems by using facts.
 }  
 \end{code}
 
-\subsection{Registering  Variables}
+\section{Registering  Variables}
 
 Lets create a playbook to run a shell command, register the result and display the value of registered variable.
 
 Create \textbf{register.yml} in chap6 directory
+
 %= lang:text
 \begin{code}
 ---
@@ -116,41 +119,42 @@ Create \textbf{register.yml} in chap6 directory
         debug: var=result
 \end{code}
 
-Execute the playbook to display information about the registered variable.
+Execute the playbook to display information about the registered variable
+
 %= lang:text
 \begin{code}
 ansible-playbook  register.yml
-
 \end{code}
 
 \section{Creating Templates for Apache}
 
 \begin{itemize}
-\item Create template for apache configuration    
-\item This template will change \textbf{port number}, \textbf{document root} and \textbf{index.html} for  apache server    
+\item Create template for apache configuration
+\item This template will change \textbf{port number}, \textbf{document root} and \textbf{index.html} for  apache server
 \item Copy \textbf{httpd.conf} file from \textbf{roles/apache/files/} to \textbf{roles/apache/templates}
 \end{itemize}
 
 %= lang:text
 \begin{code}
-    cp roles/apache/files/httpd.conf roles/apache/templates/httpd.conf.j2
-
+cp roles/apache/files/httpd.conf roles/apache/templates/httpd.conf.j2
 \end{code}
-  * Change your working directory to templates  
+
+\begin{itemize}
+\item Change your working directory to templates
+\end{itemize}
 
 %= lang:text
 \begin{code}
-    cd roles/apache/templates
-
+cd roles/apache/templates
 \end{code}
 
 \begin{itemize}
-\item Change values of following  parameters by using template variables in \textbf{httpd.conf.j2}\newline
+\item Change values of following  parameters by using template variables in \textbf{httpd.conf.j2}
 
 
 \begin{itemize}
-\item Listen  
-\item DocumentRoot  
+\item Listen
+\item DocumentRoot
 \item DirectoryIndex
 \end{itemize}
 \end{itemize}
@@ -159,47 +163,69 @@ Following code depicts only the parameters changed. Rest of the configurations i
 
 %= lang:text
 \begin{code}
-
-    Listen {{ apache_port }}
-    DocumentRoot "{{ custom_root }}"
-    DirectoryIndex {{ apache_index }} index.html.var
-
-```  
-
-  * Create a template for index.html as well  
-
+Listen {{ apache_port }}
+DocumentRoot "{{ custom_root }}"
+DirectoryIndex {{ apache_index }} index.html.var
 \end{code}
-      cp roles/apache/files/index.html roles/apache/templates/index.html.j2
-%= lang:text
-\begin{code}
 
-  * Add the following contents to index.html.j2  
-\end{code}
+\begin{itemize}
+\item Create a template for index.html as well
+\end{itemize}
 
 %= lang:text
 \begin{code}
-
-
-## Defining Default Variables  
-
-  * Define values of the variables used in the templates above.  The default values are defined in *roles/apache/defaults/main.yml* . Lets edit that file and add the following,   
-
+cp roles/apache/files/index.html roles/apache/templates/index.html.j2
 \end{code}
-  apache\_port: 80
-  custom\_root: /var/www/html
-  apache\_index: index.html
-  fav:
-    color: white
-    car: fiat
-    laptop: dell
-    fruit: apple
 
-```  
+\begin{itemize}
+\item Add the following contents to index.html.j2
+\end{itemize}
+
+%= lang:text
+\begin{code}
+<html>
+<body>
+  <h1>  Welcome to Ansible training! </h1>
+
+  <h2> SYSTEM INFO </h2>
+  <h4>  ========================= </h4>
+  <h3> Operating System : {{ ansible_distribution }} </h3>
+  <h3> IP Address : {{ ansible_eth1['ipv4']['address'] }} </h3>
+
+  <h2>  My Favourites </h2>
+  <h4>  ========================= </h4>
+
+  <h3> color     : {{ fav['color'] }} </h3>
+  <h3> fruit     : {{ fav['fruit']   }} </h3>
+  <h3> car       : {{ fav['car']   }} </h3>
+  <h3> laptop    : {{ fav['laptop']   }} </h3>
+  <h4>  ========================= </h4>
+</body>
+</html>
+\end{code}
+
+\section{Defining Default Variables}
+
+\begin{itemize}
+\item Define values of the variables used in the templates above.  The default values are defined in \emph{roles/apache/defaults/main.yml} . Lets edit that file and add the following,
+\end{itemize}
+
+%= lang:text
+\begin{code}
+apache_port: 80
+custom_root: /var/www/html
+apache_index: index.html
+fav:
+  color: white
+  car: fiat
+  laptop: dell
+  fruit: apple
+\end{code}
 
 \section{Updating Tasks to use Templates}
 
 \begin{itemize}
-\item Since we are now using template instead of static file, we need to edit \emph{roles/apache/tasks/config.yml} file and use template module  
+\item Since we are now using template instead of static file, we need to edit \emph{roles/apache/tasks/config.yml} file and use template module
 \item Replace \textbf{copy} module with \textbf{template} modules as follows,
 \end{itemize}
 
@@ -215,23 +241,30 @@ Following code depicts only the parameters changed. Rest of the configurations i
   template: src=index.html.j2
         dest=/var/www/html/index.html
         mode=0777
-```  
-
-  * Delete httpd.conf and index.html in files directory   
-
 \end{code}
-  rm roles/apache/files/httpd.conf
-  rm roles/apache/files/index.html
+
+\begin{itemize}
+\item Delete httpd.conf and index.html in files directory
+\end{itemize}
 
 %= lang:text
 \begin{code}
-
-##### Validating
-  * Let's test this template in action   
+rm roles/apache/files/httpd.conf
+rm roles/apache/files/index.html
 \end{code}
-  ansible-playbook app.yml
-```\newline
-  [Output]\newline
+
+\subsection{Validating}
+
+\begin{itemize}
+\item Let's test this template in action
+\end{itemize}
+
+%= lang:text
+\begin{code}
+ansible-playbook app.yml
+\end{code}
+
+[Output]\newline
 %= lang:text
 \begin{code}
 PLAY [Playbook to configure App Servers] ***************************************
@@ -285,22 +318,25 @@ PLAY RECAP *********************************************************************
 192.168.61.13              : ok=11   changed=3    unreachable=0    failed=0
 \end{code}
 
-\subsection{Playing with Variable Precedence Rules}
+\section{Playing with Variable Precedence Rules}
 
-Lets define the variables from couple of other places, to learn about the Precedence rules. We will create,\newline
-   * group\_vars\newline
-   * playbook vars  
+Lets define the variables from couple of other places, to learn about the Precedence rules. We will create,
 
-Since we are going to define the variables using multi level hashes, lets define the way hashes behave when defined from multiple places.  
+\begin{itemize}
+\item group\_vars
+\item playbook vars
+\end{itemize}
 
-Update chapter6/ansible.cfg and add the following,  
+Since we are going to define the variables using multi level hashes, lets define the way hashes behave when defined from multiple places.
+
+Update chapter6/ansible.cfg and add the following,
 
 %= lang:text
 \begin{code}
 hash_behaviour=merge
 \end{code}
 
-Lets create group\_vars and create a group \textbf{all} to define vars common to all.  
+Lets create group\_vars and create a group \textbf{all} to define vars common to all.
 
 %= lang:text
 \begin{code}
@@ -310,7 +346,7 @@ cd group_vars
 touch all.yml
 \end{code}
 
-Edit \textbf{group\_vars/all} file and add the following contents,  
+Edit \textbf{group\_vars/all} file and add the following contents,
 
 %= lang:text
 \begin{code}
@@ -321,7 +357,7 @@ Edit \textbf{group\_vars/all} file and add the following contents,
 
 \end{code}
 
-Lets also add vars to playbook. Edit app.yml and add vars as below,  
+Lets also add vars to playbook. Edit app.yml and add vars as below,
 
 %= lang:text
 \begin{code}
@@ -334,33 +370,28 @@ Lets also add vars to playbook. Edit app.yml and add vars as below,
         fruit: mango
     roles:
     - apache
-
 \end{code}
 
-Execute the playbook and check the output  
+Execute the playbook and check the output
 
 %= lang:text
 \begin{code}
-
 ansible-playbook app.yml
-
 \end{code}
 
-If you view the content of the html file generated, you would notice the following,  
+If you view the content of the html file generated, you would notice the following,
 
 %= lang:text
 \begin{code}
-
- <h3> color     : blue </h3>
- <h3> fruit     : mango </h3>
- <h3> car       : fiat </h3>
- <h3> laptop    : dell </h3>
-
+<h3> color     : blue </h3>
+<h3> fruit     : mango </h3>
+<h3> car       : fiat </h3>
+<h3> laptop    : dell </h3>
 \end{code}
 
 \begin{itemize}
-\item value of color comes from group\_vars/all.yml  
-\item value of fruit comes from playbook vars  
+\item value of color comes from group\_vars/all.yml
+\item value of fruit comes from playbook vars
 \item value of car and laptop comes from role defaults
 \end{itemize}
 

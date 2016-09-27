@@ -39,7 +39,7 @@
     
     <div id="book">
       <div id="frontmatter" data-number="0"><div id="title_page"><h1 class="title">Ansible Tutorial</h1><h1 class="subtitle">Learn Ansible Step by Step</h1><h2 class="author">Gourav Shah</h2></div>
-<h1 class="contents">Contents</h1><div id="table_of_contents"><ul><li class="chapter-star"><a href="#preface" class="heading hyperref">Preface</a></li><li class="chapter"><a href="#cid1" class="heading hyperref"><span class="number">Chapter 1 </span>Getting Started with Ansible (Ad Hoc Server Management)</a></li><li><ul><li class="section"><a href="#cid2" class="heading hyperref"><span class="number">1.1 </span>Creating Project Specific Ansible Configuration</a></li><li><ul><li class="subsection"><a href="#uid1" class="heading hyperref"><span class="number">1.1.1 </span>Ansible configuration file</a></li></ul></li><li class="section"><a href="#cid3" class="heading hyperref"><span class="number">1.2 </span>Creating Host Inventory</a></li><li class="section"><a href="#cid4" class="heading hyperref"><span class="number">1.3 </span>Setting up passwordless ssh access to inventory hosts</a></li><li><ul><li class="subsection"><a href="#uid5" class="heading hyperref"><span class="number">1.3.1 </span>Generating ssh keypair on control host</a></li><li class="subsection"><a href="#uid6" class="heading hyperref"><span class="number">1.3.2 </span>Copying public key to inventory hosts</a></li><li class="subsection"><a href="#uid7" class="heading hyperref"><span class="number">1.3.3 </span>Validate the passwordless login</a></li><li class="subsection"><a href="#uid8" class="heading hyperref"><span class="number">1.3.4 </span>Ansible ping</a></li></ul></li><li class="section"><a href="#cid5" class="heading hyperref"><span class="number">1.4 </span>Ad Hoc commands:</a></li><li><ul><li class="subsection"><a href="#uid9" class="heading hyperref"><span class="number">1.4.1 </span>Run <em>hostname</em> command on all hosts</a></li><li class="subsection"><a href="#uid10" class="heading hyperref"><span class="number">1.4.2 </span>Check the <em>uptime</em></a></li><li class="subsection"><a href="#uid11" class="heading hyperref"><span class="number">1.4.3 </span>Check memory info on app servers</a></li><li class="subsection"><a href="#uid12" class="heading hyperref"><span class="number">1.4.4 </span>Installing packages</a></li><li class="subsection"><a href="#uid13" class="heading hyperref"><span class="number">1.4.5 </span>Running commands one machine at a time</a></li></ul></li><li class="section"><a href="#cid6" class="heading hyperref"><span class="number">1.5 </span>Using <em>modules</em> to manage the state of infrastructure</a></li><li><ul><li class="subsection"><a href="#uid14" class="heading hyperref"><span class="number">1.5.1 </span>Creating users and groups using <em>user</em> and <em>group</em></a></li><li class="subsection"><a href="#uid15" class="heading hyperref"><span class="number">1.5.2 </span>Copy a file using <em>copy</em> modules</a></li></ul></li><li class="section"><a href="#cid7" class="heading hyperref"><span class="number">1.6 </span>Exercises :</a></li></ul></li><li class="chapter"><a href="#cid8" class="heading hyperref"><span class="number">Chapter 2 </span>Learning to Write Playbooks</a></li><li><ul><li class="section"><a href="#cid9" class="heading hyperref"><span class="number">2.1 </span>Creating our first playbook</a></li><li class="section"><a href="#cid10" class="heading hyperref"><span class="number">2.2 </span>Running the playbook</a></li><li class="section"><a href="#cid11" class="heading hyperref"><span class="number">2.3 </span>Adding second play in the playbook</a></li><li class="section"><a href="#cid12" class="heading hyperref"><span class="number">2.4 </span>Limiting the execution to a particular group</a></li><li class="section"><a href="#cid13" class="heading hyperref"><span class="number">2.5 </span>Exercise:</a></li></ul></li><li class="chapter"><a href="#cid14" class="heading hyperref"><span class="number">Chapter 3 </span>Working with Roles</a></li><li><ul><li class="section"><a href="#cid15" class="heading hyperref"><span class="number">3.1 </span>Creating Role Scaffolding for Apache</a></li><li class="section"><a href="#cid16" class="heading hyperref"><span class="number">3.2 </span>Writing Tasks to Install and Start Apache Web Service</a></li><li class="section"><a href="#cid17" class="heading hyperref"><span class="number">3.3 </span>Managing Configuration files for Apache</a></li><li class="section"><a href="#cid18" class="heading hyperref"><span class="number">3.4 </span>Adding Notifications and Handlers</a></li><li class="section"><a href="#cid19" class="heading hyperref"><span class="number">3.5 </span>Troubleshooting Exercise</a></li><li class="section"><a href="#cid20" class="heading hyperref"><span class="number">3.6 </span>Base Role and Role Nesting</a></li><li class="section"><a href="#cid21" class="heading hyperref"><span class="number">3.7 </span>Creating a Site Wide Playbook</a></li><li class="section"><a href="#cid22" class="heading hyperref"><span class="number">3.8 </span>Exercises</a></li></ul></li><li class="chapter"><a href="#cid23" class="heading hyperref"><span class="number">Chapter 4 </span>Variables and Templates</a></li><li><ul><li class="section"><a href="#cid24" class="heading hyperref"><span class="number">4.1 </span>Variables</a></li><li><ul><li class="subsection"><a href="#uid69" class="heading hyperref"><span class="number">4.1.1 </span>Finding Facts About Systems</a></li><li class="subsection"><a href="#uid71" class="heading hyperref"><span class="number">4.1.2 </span>Filtering facts</a></li><li class="subsection"><a href="#uid73" class="heading hyperref"><span class="number">4.1.3 </span>Registering Variables</a></li></ul></li><li class="section"><a href="#cid25" class="heading hyperref"><span class="number">4.2 </span>Creating Templates for Apache</a></li><li class="section"><a href="#cid26" class="heading hyperref"><span class="number">4.3 </span>Updating Tasks to use Templates</a></li><li><ul><li class="subsection"><a href="#uid83" class="heading hyperref"><span class="number">4.3.1 </span>Playing with Variable Precedence Rules</a></li></ul></li><li class="section"><a href="#cid27" class="heading hyperref"><span class="number">4.4 </span>Exercises</a></li></ul></li><li class="chapter"><a href="#cid28" class="heading hyperref"><span class="number">Chapter 5 </span>Control Structures</a></li><li><ul><li class="section"><a href="#cid29" class="heading hyperref"><span class="number">5.1 </span>Conditionals</a></li></ul></li></ul></div>
+<h1 class="contents">Contents</h1><div id="table_of_contents"><ul><li class="chapter-star"><a href="#preface" class="heading hyperref">Preface</a></li><li class="chapter"><a href="#cid1" class="heading hyperref"><span class="number">Chapter 1 </span>Getting Started with Ansible (Ad Hoc Server Management)</a></li><li><ul><li class="section"><a href="#cid2" class="heading hyperref"><span class="number">1.1 </span>Creating Project Specific Ansible Configuration</a></li><li><ul><li class="subsection"><a href="#uid1" class="heading hyperref"><span class="number">1.1.1 </span>Ansible configuration file</a></li></ul></li><li class="section"><a href="#cid3" class="heading hyperref"><span class="number">1.2 </span>Creating Host Inventory</a></li><li class="section"><a href="#cid4" class="heading hyperref"><span class="number">1.3 </span>Setting up passwordless ssh access to inventory hosts</a></li><li><ul><li class="subsection"><a href="#uid5" class="heading hyperref"><span class="number">1.3.1 </span>Generating ssh keypair on control host</a></li><li class="subsection"><a href="#uid6" class="heading hyperref"><span class="number">1.3.2 </span>Copying public key to inventory hosts</a></li><li class="subsection"><a href="#uid7" class="heading hyperref"><span class="number">1.3.3 </span>Validate the passwordless login</a></li><li class="subsection"><a href="#uid8" class="heading hyperref"><span class="number">1.3.4 </span>Ansible ping</a></li></ul></li><li class="section"><a href="#cid5" class="heading hyperref"><span class="number">1.4 </span>Ad Hoc commands:</a></li><li><ul><li class="subsection"><a href="#uid9" class="heading hyperref"><span class="number">1.4.1 </span>Run <em>hostname</em> command on all hosts</a></li><li class="subsection"><a href="#uid10" class="heading hyperref"><span class="number">1.4.2 </span>Check the <em>uptime</em></a></li><li class="subsection"><a href="#uid11" class="heading hyperref"><span class="number">1.4.3 </span>Check memory info on app servers</a></li><li class="subsection"><a href="#uid12" class="heading hyperref"><span class="number">1.4.4 </span>Installing packages</a></li><li class="subsection"><a href="#uid13" class="heading hyperref"><span class="number">1.4.5 </span>Running commands one machine at a time</a></li></ul></li><li class="section"><a href="#cid6" class="heading hyperref"><span class="number">1.5 </span>Using <em>modules</em> to manage the state of infrastructure</a></li><li><ul><li class="subsection"><a href="#uid14" class="heading hyperref"><span class="number">1.5.1 </span>Creating users and groups using <em>user</em> and <em>group</em></a></li><li class="subsection"><a href="#uid15" class="heading hyperref"><span class="number">1.5.2 </span>Copy a file using <em>copy</em> modules</a></li></ul></li><li class="section"><a href="#cid7" class="heading hyperref"><span class="number">1.6 </span>Exercises :</a></li></ul></li><li class="chapter"><a href="#cid8" class="heading hyperref"><span class="number">Chapter 2 </span>Learning to Write Playbooks</a></li><li><ul><li class="section"><a href="#cid9" class="heading hyperref"><span class="number">2.1 </span>Creating our first playbook</a></li><li class="section"><a href="#cid10" class="heading hyperref"><span class="number">2.2 </span>Running the playbook</a></li><li class="section"><a href="#cid11" class="heading hyperref"><span class="number">2.3 </span>Adding second play in the playbook</a></li><li class="section"><a href="#cid12" class="heading hyperref"><span class="number">2.4 </span>Limiting the execution to a particular group</a></li><li class="section"><a href="#cid13" class="heading hyperref"><span class="number">2.5 </span>Exercise:</a></li></ul></li><li class="chapter"><a href="#cid14" class="heading hyperref"><span class="number">Chapter 3 </span>Working with Roles</a></li><li><ul><li class="section"><a href="#cid15" class="heading hyperref"><span class="number">3.1 </span>Creating Role Scaffolding for Apache</a></li><li class="section"><a href="#cid16" class="heading hyperref"><span class="number">3.2 </span>Writing Tasks to Install and Start Apache Web Service</a></li><li class="section"><a href="#cid17" class="heading hyperref"><span class="number">3.3 </span>Managing Configuration files for Apache</a></li><li class="section"><a href="#cid18" class="heading hyperref"><span class="number">3.4 </span>Adding Notifications and Handlers</a></li><li class="section"><a href="#cid19" class="heading hyperref"><span class="number">3.5 </span>Troubleshooting Exercise</a></li><li class="section"><a href="#cid20" class="heading hyperref"><span class="number">3.6 </span>Base Role and Role Nesting</a></li><li class="section"><a href="#cid21" class="heading hyperref"><span class="number">3.7 </span>Creating a Site Wide Playbook</a></li><li class="section"><a href="#cid22" class="heading hyperref"><span class="number">3.8 </span>Exercises</a></li></ul></li><li class="chapter"><a href="#cid23" class="heading hyperref"><span class="number">Chapter 4 </span>Variables and Templates</a></li><li><ul><li class="section"><a href="#cid24" class="heading hyperref"><span class="number">4.1 </span>Variables</a></li><li class="section"><a href="#cid25" class="heading hyperref"><span class="number">4.2 </span>Finding Facts About Systems</a></li><li class="section"><a href="#cid26" class="heading hyperref"><span class="number">4.3 </span>Filtering facts</a></li><li class="section"><a href="#cid27" class="heading hyperref"><span class="number">4.4 </span>Registering Variables</a></li><li class="section"><a href="#cid28" class="heading hyperref"><span class="number">4.5 </span>Creating Templates for Apache</a></li><li class="section"><a href="#cid29" class="heading hyperref"><span class="number">4.6 </span>Defining Default Variables</a></li><li class="section"><a href="#cid30" class="heading hyperref"><span class="number">4.7 </span>Updating Tasks to use Templates</a></li><li><ul><li class="subsection"><a href="#uid87" class="heading hyperref"><span class="number">4.7.1 </span>Validating</a></li></ul></li><li class="section"><a href="#cid31" class="heading hyperref"><span class="number">4.8 </span>Playing with Variable Precedence Rules</a></li><li class="section"><a href="#cid32" class="heading hyperref"><span class="number">4.9 </span>Exercises</a></li></ul></li><li class="chapter"><a href="#cid33" class="heading hyperref"><span class="number">Chapter 5 </span>Control Structures</a></li><li><ul><li class="section"><a href="#cid34" class="heading hyperref"><span class="number">5.1 </span>Conditionals</a></li></ul></li></ul></div>
 <div class="chapter-star" id="preface"><h1><a href="#preface" class="heading hyperref">Preface</a></h1>
 <p>This is an example of “frontmatter”, which comes before the main text of the book.</p>
 </div></div>
@@ -969,16 +969,20 @@ PLAY RECAP *********************************************************************
 <p>In this tutorial, we are going to make the roles that we created earlier dynamically by adding templates and defining variables.</p>
 </div>
 <div id="cid24" data-tralics-id="cid24" class="section" data-number="4.1"><h2><a href="#cid24" class="heading hyperref"><span class="number">4.1 </span>Variables</a></h2>
-<p>Variables are of two types
-* Automatic Variables/ Facts
-* User Defined Variables</p>
+<p>Variables are of two types</p>
+<ul>
+<li>Automatic Variables/ Facts
+</li>
+<li>User Defined Variables
+</li></ul>
 <p>Lets try to discover information about our systems by using facts.</p>
-<div id="uid69" data-tralics-id="uid69" class="subsection" data-number="4.1.1"><h3><a href="#uid69" class="heading hyperref"><span class="number">4.1.1 </span>Finding Facts About Systems</a></h3>
+</div>
+<div id="cid25" data-tralics-id="cid25" class="section" data-number="4.2"><h2><a href="#cid25" class="heading hyperref"><span class="number">4.2 </span>Finding Facts About Systems</a></h2>
 <ul>
 <li>Run the following command to see to facts of db servers
-<div class="code"><div class="highlight"><pre>  ansible db -m setup
-</pre></div></div>
 </li></ul>
+<div class="code"><div class="highlight"><pre>ansible db -m setup
+</pre></div></div>
 <p>[Output]</p>
 <p class="noindent"></p><div class="code"><div class="highlight"><pre>192.168.61.11 | SUCCESS =&gt; {
         "ansible_facts": {
@@ -1029,14 +1033,14 @@ PLAY RECAP *********************************************************************
             }
 </pre></div></div>
 </div>
-<div id="uid71" data-tralics-id="uid71" class="subsection" data-number="4.1.2"><h3><a href="#uid71" class="heading hyperref"><span class="number">4.1.2 </span>Filtering facts</a></h3>
+<div id="cid26" data-tralics-id="cid26" class="section" data-number="4.3"><h2><a href="#cid26" class="heading hyperref"><span class="number">4.3 </span>Filtering facts</a></h2>
 <ul>
 <li>Use filter attribute to extract specific data
 </li></ul>
-<div class="code"><div class="highlight"><pre>        ansible db -m setup -a "filter=ansible_distribution"
+<div class="code"><div class="highlight"><pre>ansible db -m setup -a "filter=ansible_distribution"
 </pre></div></div>
 <p>[Output]</p>
-<div class="code"><div class="highlight"><pre>192.168.61.11 | SUCCESS =&gt; {
+<p class="noindent"></p><div class="code"><div class="highlight"><pre>192.168.61.11 | SUCCESS =&gt; {
   "ansible_facts": {
       "ansible_distribution": "CentOS"
   },
@@ -1044,10 +1048,10 @@ PLAY RECAP *********************************************************************
 }  
 </pre></div></div>
 </div>
-<div id="uid73" data-tralics-id="uid73" class="subsection" data-number="4.1.3"><h3><a href="#uid73" class="heading hyperref"><span class="number">4.1.3 </span>Registering Variables</a></h3>
+<div id="cid27" data-tralics-id="cid27" class="section" data-number="4.4"><h2><a href="#cid27" class="heading hyperref"><span class="number">4.4 </span>Registering Variables</a></h2>
 <p>Lets create a playbook to run a shell command, register the result and display the value of registered variable.</p>
-<p>Create <strong>register.yml</strong> in chap6 directory
-</p><div class="code"><div class="highlight"><pre>---
+<p>Create <strong>register.yml</strong> in chap6 directory</p>
+<div class="code"><div class="highlight"><pre>---
   - name: register variable example
     hosts: local
     tasks:
@@ -1058,10 +1062,11 @@ PLAY RECAP *********************************************************************
       - name: print registered variable
         debug: var=result
 </pre></div></div>
-<p>Execute the playbook to display information about the registered variable.<span class="intersentencespace"></span> </p><div class="code"><div class="highlight"><pre>ansible-playbook  register.yml
+<p>Execute the playbook to display information about the registered variable</p>
+<div class="code"><div class="highlight"><pre>ansible-playbook  register.yml
 </pre></div></div>
-</div></div>
-<div id="cid25" data-tralics-id="cid25" class="section" data-number="4.2"><h2><a href="#cid25" class="heading hyperref"><span class="number">4.2 </span>Creating Templates for Apache</a></h2>
+</div>
+<div id="cid28" data-tralics-id="cid28" class="section" data-number="4.5"><h2><a href="#cid28" class="heading hyperref"><span class="number">4.5 </span>Creating Templates for Apache</a></h2>
 <ul>
 <li>Create template for apache configuration
 </li>
@@ -1069,10 +1074,12 @@ PLAY RECAP *********************************************************************
 </li>
 <li>Copy <strong>httpd.conf</strong> file from <strong>roles/apache/files/</strong> to <strong>roles/apache/templates</strong>
 </li></ul>
-<div class="code"><div class="highlight"><pre>    cp roles/apache/files/httpd.conf roles/apache/templates/httpd.conf.j2
+<div class="code"><div class="highlight"><pre>cp roles/apache/files/httpd.conf roles/apache/templates/httpd.conf.j2
 </pre></div></div>
-<p>* Change your working directory to templates</p>
-<div class="code"><div class="highlight"><pre>    cd roles/apache/templates
+<ul>
+<li>Change your working directory to templates
+</li></ul>
+<div class="code"><div class="highlight"><pre>cd roles/apache/templates
 </pre></div></div>
 <ul>
 <li>Change values of following parameters by using template variables in <strong>httpd.conf.j2</strong>
@@ -1085,32 +1092,54 @@ PLAY RECAP *********************************************************************
 </li></ul>
 </li></ul>
 <p>Following code depicts only the parameters changed.<span class="intersentencespace"></span> Rest of the configurations in <em>httpd.conf.j2</em> remain as is</p>
-<div class="code"><div class="highlight"><pre>    Listen {{ apache_port }}
-    DocumentRoot "{{ custom_root }}"
-    DirectoryIndex {{ apache_index }} index.html.var
-
-```  
-
-  * Create a template for index.html as well  
+<div class="code"><div class="highlight"><pre>Listen {{ apache_port }}
+DocumentRoot "{{ custom_root }}"
+DirectoryIndex {{ apache_index }} index.html.var
 </pre></div></div>
-<p>cp roles/apache/files/index.html roles/apache/templates/index.html.j2
-</p><div class="code"><div class="highlight"><pre>  * Add the following contents to index.html.j2  
+<ul>
+<li>Create a template for index.html as well
+</li></ul>
+<div class="code"><div class="highlight"><pre>cp roles/apache/files/index.html roles/apache/templates/index.html.j2
 </pre></div></div>
-<div class="code"><div class="highlight"><pre>## Defining Default Variables  
+<ul>
+<li>Add the following contents to index.html.j2
+</li></ul>
+<div class="code"><div class="highlight"><pre>&lt;html&gt;
+&lt;body&gt;
+  &lt;h1&gt;  Welcome to Ansible training! &lt;/h1&gt;
 
-  * Define values of the variables used in the templates above.  The default values are defined in *roles/apache/defaults/main.yml* . Lets edit that file and add the following,   
+  &lt;h2&gt; SYSTEM INFO &lt;/h2&gt;
+  &lt;h4&gt;  ========================= &lt;/h4&gt;
+  &lt;h3&gt; Operating System : {{ ansible_distribution }} &lt;/h3&gt;
+  &lt;h3&gt; IP Address : {{ ansible_eth1['ipv4']['address'] }} &lt;/h3&gt;
+
+  &lt;h2&gt;  My Favourites &lt;/h2&gt;
+  &lt;h4&gt;  ========================= &lt;/h4&gt;
+
+  &lt;h3&gt; color     : {{ fav['color'] }} &lt;/h3&gt;
+  &lt;h3&gt; fruit     : {{ fav['fruit']   }} &lt;/h3&gt;
+  &lt;h3&gt; car       : {{ fav['car']   }} &lt;/h3&gt;
+  &lt;h3&gt; laptop    : {{ fav['laptop']   }} &lt;/h3&gt;
+  &lt;h4&gt;  ========================= &lt;/h4&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </pre></div></div>
-<p>apache_port: 80
+</div>
+<div id="cid29" data-tralics-id="cid29" class="section" data-number="4.6"><h2><a href="#cid29" class="heading hyperref"><span class="number">4.6 </span>Defining Default Variables</a></h2>
+<ul>
+<li>Define values of the variables used in the templates above.<span class="intersentencespace"></span> The default values are defined in <em>roles/apache/defaults/main.yml</em> .<span class="intersentencespace"></span> Lets edit that file and add the following,
+</li></ul>
+<div class="code"><div class="highlight"><pre>apache_port: 80
 custom_root: /var/www/html
 apache_index: index.html
 fav:
-color: white
-car: fiat
-laptop: dell
-fruit: apple</p>
-<p>“‘</p>
+  color: white
+  car: fiat
+  laptop: dell
+  fruit: apple
+</pre></div></div>
 </div>
-<div id="cid26" data-tralics-id="cid26" class="section" data-number="4.3"><h2><a href="#cid26" class="heading hyperref"><span class="number">4.3 </span>Updating Tasks to use Templates</a></h2>
+<div id="cid30" data-tralics-id="cid30" class="section" data-number="4.7"><h2><a href="#cid30" class="heading hyperref"><span class="number">4.7 </span>Updating Tasks to use Templates</a></h2>
 <ul>
 <li>Since we are now using template instead of static file, we need to edit <em>roles/apache/tasks/config.yml</em> file and use template module
 </li>
@@ -1126,18 +1155,20 @@ fruit: apple</p>
   template: src=index.html.j2
         dest=/var/www/html/index.html
         mode=0777
-```  
-
-  * Delete httpd.conf and index.html in files directory   
 </pre></div></div>
-<p>rm roles/apache/files/httpd.conf
-rm roles/apache/files/index.html</p>
-<div class="code"><div class="highlight"><pre>##### Validating
-  * Let's test this template in action   
+<ul>
+<li>Delete httpd.conf and index.html in files directory
+</li></ul>
+<div class="code"><div class="highlight"><pre>rm roles/apache/files/httpd.conf
+rm roles/apache/files/index.html
 </pre></div></div>
-<p>ansible-playbook app.yml
-“‘</p>
-<p class="noindent">[Output]</p>
+<div id="uid87" data-tralics-id="uid87" class="subsection" data-number="4.7.1"><h3><a href="#uid87" class="heading hyperref"><span class="number">4.7.1 </span>Validating</a></h3>
+<ul>
+<li>Let’s test this template in action
+</li></ul>
+<div class="code"><div class="highlight"><pre>ansible-playbook app.yml
+</pre></div></div>
+<p>[Output]</p>
 <p class="noindent"></p><div class="code"><div class="highlight"><pre>PLAY [Playbook to configure App Servers] ***************************************
 
 TASK [setup] *******************************************************************
@@ -1188,10 +1219,14 @@ PLAY RECAP *********************************************************************
 192.168.61.12              : ok=11   changed=3    unreachable=0    failed=0
 192.168.61.13              : ok=11   changed=3    unreachable=0    failed=0
 </pre></div></div>
-<div id="uid83" data-tralics-id="uid83" class="subsection" data-number="4.3.1"><h3><a href="#uid83" class="heading hyperref"><span class="number">4.3.1 </span>Playing with Variable Precedence Rules</a></h3>
+</div></div>
+<div id="cid31" data-tralics-id="cid31" class="section" data-number="4.8"><h2><a href="#cid31" class="heading hyperref"><span class="number">4.8 </span>Playing with Variable Precedence Rules</a></h2>
 <p>Lets define the variables from couple of other places, to learn about the Precedence rules.<span class="intersentencespace"></span> We will create,</p>
-<p class="noindent">* group_vars</p>
-<p class="noindent">* playbook vars</p>
+<ul>
+<li>group_vars
+</li>
+<li>playbook vars
+</li></ul>
 <p>Since we are going to define the variables using multi level hashes, lets define the way hashes behave when defined from multiple places.</p>
 <p>Update chapter6/ansible.cfg and add the following,</p>
 <div class="code"><div class="highlight"><pre>hash_behaviour=merge
@@ -1223,10 +1258,10 @@ touch all.yml
 <div class="code"><div class="highlight"><pre>ansible-playbook app.yml
 </pre></div></div>
 <p>If you view the content of the html file generated, you would notice the following,</p>
-<div class="code"><div class="highlight"><pre> &lt;h3&gt; color     : blue &lt;/h3&gt;
- &lt;h3&gt; fruit     : mango &lt;/h3&gt;
- &lt;h3&gt; car       : fiat &lt;/h3&gt;
- &lt;h3&gt; laptop    : dell &lt;/h3&gt;
+<div class="code"><div class="highlight"><pre>&lt;h3&gt; color     : blue &lt;/h3&gt;
+&lt;h3&gt; fruit     : mango &lt;/h3&gt;
+&lt;h3&gt; car       : fiat &lt;/h3&gt;
+&lt;h3&gt; laptop    : dell &lt;/h3&gt;
 </pre></div></div>
 <ul>
 <li>value of color comes from group_vars/all.yml
@@ -1235,8 +1270,8 @@ touch all.yml
 </li>
 <li>value of car and laptop comes from role defaults
 </li></ul>
-</div></div>
-<div id="cid27" data-tralics-id="cid27" class="section" data-number="4.4"><h2><a href="#cid27" class="heading hyperref"><span class="number">4.4 </span>Exercises</a></h2>
+</div>
+<div id="cid32" data-tralics-id="cid32" class="section" data-number="4.9"><h2><a href="#cid32" class="heading hyperref"><span class="number">4.9 </span>Exercises</a></h2>
 <ul>
 <li>Create host specific variables in host_vars/HOSTNAME for one of the app servers, and define some variables values specific to the host.<span class="intersentencespace"></span> See the output after applying playbook on this node.
 </li>
@@ -1250,17 +1285,17 @@ touch all.yml
 </li></ul>
 </li></ul>
 </div>
-<div id="cid28" data-tralics-id="cid28" class="chapter" data-number="5"><h1><a href="#cid28" class="heading hyperref"><span class="number">Chapter 5 </span>Control Structures</a></h1>
+<div id="cid33" data-tralics-id="cid33" class="chapter" data-number="5"><h1><a href="#cid33" class="heading hyperref"><span class="number">Chapter 5 </span>Control Structures</a></h1>
 <p>In Chapter 7, we will learn about the aspects of conditionals and iterations that affects program’s execution flow in Ansible</p>
 <p class="noindent">Control structures are of two different type</p>
 <p class="noindent">* Conditional
 * Iterative</p>
 </div>
-<div id="cid29" data-tralics-id="cid29" class="section" data-number="5.1"><h2><a href="#cid29" class="heading hyperref"><span class="number">5.1 </span>Conditionals</a></h2>
+<div id="cid34" data-tralics-id="cid34" class="section" data-number="5.1"><h2><a href="#cid34" class="heading hyperref"><span class="number">5.1 </span>Conditionals</a></h2>
 <p>Conditionals structures allow Ansible to choose an alternate path.<span class="intersentencespace"></span> Ansible does this by using <em>when</em> statements</p>
 <p class="noindent">### 7.1 <strong>When</strong> statements</p>
 <p class="noindent">When statement becomes helpful, when you will want to skip a particular step on a particular host</p>
-<div id="uid92" data-tralics-id="uid92" class="subsubsection" data-number="5.1.1.1"><h4><a href="#uid92" class="heading">Selectively calling install tasks based on platform</a></h4>
+<div id="uid99" data-tralics-id="uid99" class="subsubsection" data-number="5.1.1.1"><h4><a href="#uid99" class="heading">Selectively calling install tasks based on platform</a></h4>
 <ul>
 <li>Edit <em>roles/apache/tasks/main.yml</em>,
 “‘
@@ -1276,7 +1311,7 @@ when: ansible_os_family == ‘RedHat’
 <p>“‘
 * This will include <em>install.yml</em> only if the OS family is Redhat, otherwise it will skip the installation playbook</p>
 </div>
-<div id="uid97" data-tralics-id="uid97" class="subsubsection" data-number="5.1.1.2"><h4><a href="#uid97" class="heading">Configuring MySQL server based on boolean flag</a></h4>
+<div id="uid104" data-tralics-id="uid104" class="subsubsection" data-number="5.1.1.2"><h4><a href="#uid104" class="heading">Configuring MySQL server based on boolean flag</a></h4>
 <ul>
 <li>Edit <em>roles/mysql/tasks/main.yml</em> and add when statements,
 “‘
@@ -1312,7 +1347,7 @@ bind: “{{ ansible_eth1.ipv4.address }}”
 </li></ul>
 <p>“‘</p>
 </div>
-<div id="uid105" data-tralics-id="uid105" class="subsubsection" data-number="5.1.1.3"><h4><a href="#uid105" class="heading">Adding conditionals in Jinja2 templates</a></h4>
+<div id="uid112" data-tralics-id="uid112" class="subsubsection" data-number="5.1.1.3"><h4><a href="#uid112" class="heading">Adding conditionals in Jinja2 templates</a></h4>
 <ul>
 <li>Put the following content in <em>roles/mysql/templates/my.cnf.j2</em>
 “‘
@@ -1337,7 +1372,7 @@ password={{ mysql_root_db_pass }}
 <li>These conditions will run flawlessly, because we have already defined these Variables
 </li></ul>
 </div>
-<div id="uid108" data-tralics-id="uid108" class="subsubsection" data-number="5.1.1.4"><h4><a href="#uid108" class="heading">Running One Time Tasks</a></h4>
+<div id="uid115" data-tralics-id="uid115" class="subsubsection" data-number="5.1.1.4"><h4><a href="#uid115" class="heading">Running One Time Tasks</a></h4>
 <ul>
 <li>To see how this works, lets take a look at the code in <em>roles/mysql/tasks/config.yml</em>
 “‘
@@ -1352,7 +1387,7 @@ ignore_errors: yes
 <p>“‘</p>
 <p class="noindent">* In some cases there may be a need to only run a task one time and only on one host.<span class="intersentencespace"></span> This can be achieved by configuring “run_once” on a task</p>
 </div>
-<div id="uid111" data-tralics-id="uid111" class="subsubsection" data-number="5.1.1.5"><h4><a href="#uid111" class="heading">Conditional Execution of Roles</a></h4>
+<div id="uid118" data-tralics-id="uid118" class="subsubsection" data-number="5.1.1.5"><h4><a href="#uid118" class="heading">Conditional Execution of Roles</a></h4>
 <ul>
 <li>This will execute app playbook only if the node is running <strong>RedHat</strong> family
 </li>
