@@ -2,53 +2,56 @@
 
 In this tutorial we are going to create a simple playbook to add system users, install and start ntp service and some basic utilities.
 
-\subsection{Creating our first playbook}
+\section{Creating our first playbook}
 
 \begin{itemize}
-\item Change working directory to /vagrant/code/chap4\newline
+\item Change working directory to /vagrant/code/chap4
+\end{itemize}
+
 %= lang:text
 \begin{code}
-     cd /vagrant/code/chap4
-```  
-  * Create playbook.yml and add the content below
-
+cd /vagrant/code/chap4
 \end{code}
----
-\item name: Base Configurations for ALL hosts
-hosts: all
-become: true
-tasks:
-
 
 \begin{itemize}
-\item name: create admin user
-user: name=admin state=present uid=5001
-\item name: remove dojo
-user: name=dojo  state=absent
-\item name: install tree
-yum:  name=tree  state=present
-\item name: install ntp
-yum:  name=ntp   state=present
-\item name: start ntp service
-service: name=ntpd state=started enabled=yes
-```
-\end{itemize}
+\item Create playbook.yml and add the content below
 \end{itemize}
 
-\subsection{Running the  playbook}
+%= lang:text
+\begin{code}
+---
+  - name: Base Configurations for ALL hosts
+    hosts: all
+    become: true
+    tasks:
+      - name: create admin user
+        user: name=admin state=present uid=5001
+
+      - name: remove dojo
+        user: name=dojo  state=absent
+
+      - name: install tree
+        yum:  name=tree  state=present
+
+      - name: install ntp
+        yum:  name=ntp   state=present
+
+      - name: start ntp service
+        service: name=ntpd state=started enabled=yes
+\end{code}
+
+\section{Running the  playbook}
 
 To run the playbook, we are going to execute \textbf{ansible-playbook} command. Lets first examine the options that this command supports.
 
 %= lang:text
 \begin{code}
 ansible-playbook --help
-
 \end{code}
 
+[Output]\newline
 %= lang:text
 \begin{code}
-[output]
-
 Usage: ansible-playbook playbook.yml
 
 Options:
@@ -62,8 +65,6 @@ Options:
                         privilege escalation method to use (default=sudo),
                         valid choices: [ sudo | su | pbrun | pfexec | runas |
                         doas ]
-
-.......
 \end{code}
 
 To run the playbook, we could call YAML file as an argument. Since we have already defined the inventory and configurations, additional options are not necessary at this time.
@@ -73,10 +74,9 @@ To run the playbook, we could call YAML file as an argument. Since we have alrea
 ansible-playbook playbook.yml
 \end{code}
 
+[Output]\newline
 %= lang:text
 \begin{code}
-[output]
-
 PLAY [Base Configurations for ALL hosts] ***************************************
 
 TASK [setup] *******************************************************************
@@ -122,9 +122,9 @@ changed: [192.168.61.12]
 changed: [192.168.61.14]
 \end{code}
 
-\subsection{Adding second play in the playbook}
+\section{Adding second play in the playbook}
 
-Lets add a second play specific to app servers. Add the following block of code in playbook.yml file and save   
+Lets add a second play specific to app servers. Add the following block of code in playbook.yml file and save
 
 %= lang:text
 \begin{code}
@@ -137,165 +137,175 @@ Lets add a second play specific to app servers. Add the following block of code 
 
     - name: install git
       yum:  name=git  state=present
-
-```  
-
-Run the playbook again...  
-
 \end{code}
-ansible-playbook playbook.yml
+
+Run the playbook again\ldots{}
+
 %= lang:text
 \begin{code}
-
+ansible-playbook playbook.yml
 \end{code}
 
-PLAY [Base Configurations for ALL hosts] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}***
+[Output]\newline
+%= lang:text
+\begin{code}
+PLAY [Base Configurations for ALL hosts] ***************************************
 
-TASK [setup] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*
+TASK [setup] *******************************************************************
 ok: [localhost]
 ok: [192.168.61.14]
 ok: [192.168.61.13]
 ok: [192.168.61.12]
 ok: [192.168.61.11]
 
-TASK [create admin user] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*
+TASK [create admin user] *******************************************************
 ok: [192.168.61.14]
 ok: [localhost]
 ok: [192.168.61.13]
 ok: [192.168.61.12]
 ok: [192.168.61.11]
 
-TASK [remove dojo] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*
+TASK [remove dojo] *************************************************************
 ok: [192.168.61.14]
 ok: [192.168.61.12]
 ok: [192.168.61.11]
 ok: [localhost]
 ok: [192.168.61.13]
 
-TASK [install tree] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}
+TASK [install tree] ************************************************************
 ok: [192.168.61.11]
 ok: [192.168.61.12]
 ok: [localhost]
 ok: [192.168.61.13]
 ok: [192.168.61.14]
 
-TASK [install ntp] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*
+TASK [install ntp] *************************************************************
 ok: [192.168.61.12]
 ok: [192.168.61.13]
 ok: [192.168.61.14]
 ok: [192.168.61.11]
 ok: [localhost]
 
-TASK [start ntp service] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*
+TASK [start ntp service] *******************************************************
 ok: [192.168.61.13]
 ok: [192.168.61.14]
 ok: [localhost]
 ok: [192.168.61.11]
 ok: [192.168.61.12]
 
-PLAY [App Server Configurations] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*****
+PLAY [App Server Configurations] ***********************************************
 
-TASK [setup] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*
+TASK [setup] *******************************************************************
 ok: [192.168.61.13]
 ok: [192.168.61.12]
 
-TASK [create app user] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}***
+TASK [create app user] *********************************************************
 changed: [192.168.61.12]
 changed: [192.168.61.13]
 
-TASK [install git] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*
+TASK [install git] *************************************************************
 ok: [192.168.61.13]
 ok: [192.168.61.12]
 
-PLAY RECAP \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}***
+PLAY RECAP *********************************************************************
 192.168.61.11              : ok=6    changed=0    unreachable=0    failed=0
 192.168.61.12              : ok=9    changed=1    unreachable=0    failed=0
 192.168.61.13              : ok=9    changed=1    unreachable=0    failed=0
 192.168.61.14              : ok=6    changed=0    unreachable=0    failed=0
 localhost                  : ok=6    changed=0    unreachable=0    failed=0
+\end{code}
+
+\section{Limiting the execution to a particular group}
+
+Now run the following command to restrict the playbook execution to \emph{app servers}
+
 %= lang:text
 \begin{code}
-
-### Limiting the execution to a particular group  
-
-Now run the following command to restrict the playbook execution to *app servers*  
-
-\end{code}
 ansible-playbook playbook.yml --limit app
+\end{code}
 
+This will give us the following output, plays will be executed only on app servers\ldots{}
+
+[Output]\newline
 %= lang:text
 \begin{code}
+PLAY [Base Configurations for ALL hosts] ***************************************
 
-This will give us the following output, plays will be executed only on app servers...  
-
-
-\end{code}
-PLAY [Base Configurations for ALL hosts] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}***
-
-TASK [setup] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*
+TASK [setup] *******************************************************************
 ok: [192.168.61.13]
 ok: [192.168.61.12]
 
-TASK [create admin user] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*
+TASK [create admin user] *******************************************************
 ok: [192.168.61.13]
 ok: [192.168.61.12]
 
-TASK [remove dojo] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*
+TASK [remove dojo] *************************************************************
 ok: [192.168.61.12]
 ok: [192.168.61.13]
 
-TASK [install tree] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}
+TASK [install tree] ************************************************************
 ok: [192.168.61.13]
 ok: [192.168.61.12]
 
-TASK [install ntp] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*
+TASK [install ntp] *************************************************************
 ok: [192.168.61.12]
 ok: [192.168.61.13]
 
-TASK [start ntp service] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*
+TASK [start ntp service] *******************************************************
 ok: [192.168.61.12]
 ok: [192.168.61.13]
 
-PLAY [App Server Configurations] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*****
+PLAY [App Server Configurations] ***********************************************
 
-TASK [setup] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*
+TASK [setup] *******************************************************************
 ok: [192.168.61.13]
 ok: [192.168.61.12]
 
-TASK [create app user] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}***
+TASK [create app user] *********************************************************
 ok: [192.168.61.13]
 ok: [192.168.61.12]
 
-TASK [install git] \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}*
+TASK [install git] *************************************************************
 ok: [192.168.61.12]
 ok: [192.168.61.13]
 
-PLAY RECAP \textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}\textbf{**}***
+PLAY RECAP *********************************************************************
 192.168.61.12              : ok=9    changed=0    unreachable=0    failed=0
 192.168.61.13              : ok=9    changed=0    unreachable=0    failed=0
-
-%= lang:text
-\begin{code}
-
-
-## Exercise:
-Create a Playbook with the following specifications,
-  * It should apply only on local host (ansible host)
-  * Should use become method
-  * Should create a **user** called webadmin with shell as "/bin/sh"
-  * Should install and start **nginx** service
-  * Should **deploy** a sample html app into the default web root directory of nginx using ansible's **git** module.
-    * Source repo:  https://github.com/schoolofdevops/html-sample-app
-    * Deploy Path : /usr/share/nginx/html/app
-    * The user to deploy the app would be nginx
-
-
-#####  TODO for Course Creator:
-   - Fail the task (w.g. service name = ntp).
-   - It will create a retry file
-   Use that to feed into to ansible-playbook with --limit option
-   e.g.
-   ```
-    ansible-playbook playbook.yml --limit @/tmp/playbook.rerty
-   ```
 \end{code}
+
+\section{Exercise:}
+
+Create a Playbook with the following specifications,
+
+\begin{itemize}
+\item It should apply only on local host (ansible host)
+\item Should use become method
+\item Should create a \textbf{user} called webadmin with shell as ``/bin/sh''
+\item Should install and start \textbf{nginx} service
+\item Should \textbf{deploy} a sample html app into the default web root directory of nginx using ansible's \textbf{git} module.
+
+
+\begin{itemize}
+\item Source repo:
+https://github.com/schoolofdevops/html-sample-app
+
+
+\begin{itemize}
+\item Deploy Path : /usr/share/nginx/html/app
+\item The user to deploy the app would be nginx
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+\paragraph{\textbf{TODO for Course Creator:}}
+
+\begin{itemize}
+\item Fail the task (w.g. service name = ntp).  
+\item It will create a retry file\newline
+   Use that to feed into to ansible-playbook with --limit option\newline
+   e.g.\newline
+   \kode{
+    ansible-playbook playbook.yml --limit @/tmp/playbook.rerty
+  }
+\end{itemize}

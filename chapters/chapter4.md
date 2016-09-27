@@ -1,14 +1,14 @@
-# Learning to Write Playbooks
-
+# Learning to Write Playbooks  
 In this tutorial we are going to create a simple playbook to add system users, install and start ntp service and some basic utilities.
 
+## Creating our first playbook
 
-### Creating our first playbook
+  * Change working directory to /vagrant/code/chap4
 
-  * Change working directory to /vagrant/code/chap4  
 ```
-     cd /vagrant/code/chap4
-```  
+cd /vagrant/code/chap4
+```
+
   * Create playbook.yml and add the content below
 
 ```
@@ -31,19 +31,17 @@ In this tutorial we are going to create a simple playbook to add system users, i
 
       - name: start ntp service
         service: name=ntpd state=started enabled=yes
-```  
+```
 
-### Running the  playbook  
+## Running the  playbook  
 To run the playbook, we are going to execute **ansible-playbook** command. Lets first examine the options that this command supports.
 
 ```
 ansible-playbook --help
-
 ```
 
+[Output]  
 ```
-[output]
-
 Usage: ansible-playbook playbook.yml
 
 Options:
@@ -57,8 +55,6 @@ Options:
                         privilege escalation method to use (default=sudo),
                         valid choices: [ sudo | su | pbrun | pfexec | runas |
                         doas ]
-
-.......
 ```
 
 To run the playbook, we could call YAML file as an argument. Since we have already defined the inventory and configurations, additional options are not necessary at this time.
@@ -67,9 +63,8 @@ To run the playbook, we could call YAML file as an argument. Since we have alrea
 ansible-playbook playbook.yml
 ```
 
+[Output]  
 ```
-[output]
-
 PLAY [Base Configurations for ALL hosts] ***************************************
 
 TASK [setup] *******************************************************************
@@ -115,9 +110,8 @@ changed: [192.168.61.12]
 changed: [192.168.61.14]
 ```
 
-### Adding second play in the playbook  
-
-Lets add a second play specific to app servers. Add the following block of code in playbook.yml file and save   
+## Adding second play in the playbook  
+Lets add a second play specific to app servers. Add the following block of code in playbook.yml file and save
 
 ```
 - name: App Server Configurations
@@ -129,17 +123,16 @@ Lets add a second play specific to app servers. Add the following block of code 
 
     - name: install git
       yum:  name=git  state=present
+```
 
-```  
-
-Run the playbook again...  
+Run the playbook again...
 
 ```
 ansible-playbook playbook.yml
 ```
 
+[Output]  
 ```
-
 PLAY [Base Configurations for ALL hosts] ***************************************
 
 TASK [setup] *******************************************************************
@@ -206,18 +199,16 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=6    changed=0    unreachable=0    failed=0
 ```
 
-### Limiting the execution to a particular group  
-
-Now run the following command to restrict the playbook execution to *app servers*  
+## Limiting the execution to a particular group  
+Now run the following command to restrict the playbook execution to *app servers*
 
 ```
 ansible-playbook playbook.yml --limit app
-
 ```
 
-This will give us the following output, plays will be executed only on app servers...  
+This will give us the following output, plays will be executed only on app servers...
 
-
+[Output]  
 ```
 PLAY [Base Configurations for ALL hosts] ***************************************
 
@@ -262,27 +253,26 @@ ok: [192.168.61.13]
 PLAY RECAP *********************************************************************
 192.168.61.12              : ok=9    changed=0    unreachable=0    failed=0
 192.168.61.13              : ok=9    changed=0    unreachable=0    failed=0
-
 ```
 
-
-## Exercise:
+## Exercise:  
 Create a Playbook with the following specifications,
-  * It should apply only on local host (ansible host)
-  * Should use become method
-  * Should create a **user** called webadmin with shell as "/bin/sh"
-  * Should install and start **nginx** service
-  * Should **deploy** a sample html app into the default web root directory of nginx using ansible's **git** module.
-    * Source repo:  https://github.com/schoolofdevops/html-sample-app
+
+* It should apply only on local host (ansible host)
+* Should use become method
+* Should create a **user** called webadmin with shell as "/bin/sh"
+* Should install and start **nginx** service
+* Should **deploy** a sample html app into the default web root directory of nginx using ansible's **git** module.
+  * Source repo:
+  https://github.com/schoolofdevops/html-sample-app
     * Deploy Path : /usr/share/nginx/html/app
     * The user to deploy the app would be nginx
 
-
-#####  TODO for Course Creator:
-   - Fail the task (w.g. service name = ntp).
-   - It will create a retry file
-   Use that to feed into to ansible-playbook with --limit option
-   e.g.
+#####  **TODO for Course Creator:**  
+   - Fail the task (w.g. service name = ntp).  
+   - It will create a retry file  
+   Use that to feed into to ansible-playbook with --limit option  
+   e.g.  
    ```
     ansible-playbook playbook.yml --limit @/tmp/playbook.rerty
    ```
