@@ -6,16 +6,17 @@ In this tutorial we are going to create simple, static role for apache which wil
   * Start httpd service
   * Add a notification and a  handler so that whenever the configuration is updated, service is automatically restarted.
 
-### 5.1 Creating Role Scaffolding for Apache
+### 5.1 Creating Role Scaffolding for Apache  
   * Change working  directory to **/vagrant/code/chap5**
 
 ```
-       cd  /vagrant/code/chap5
+cd  /vagrant/code/chap5
 ```
 
   * Create roles directory
 
-```         mkdir roles
+```
+mkdir roles
 ```
 
   * Generate role scaffolding using ansible-galaxy
