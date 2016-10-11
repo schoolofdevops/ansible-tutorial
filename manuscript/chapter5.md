@@ -17,18 +17,22 @@ In this tutorial we are going to create simple, static role for apache which wil
 
 ```         mkdir roles
 ```
+
   * Generate role scaffolding using ansible-galaxy
 
-```         ansible-galaxy init --offline --init-path=roles  apache
 ```
+ansible-galaxy init --offline --init-path=roles  apache
+```
+
   * Validate
 
-```       tree roles/
-       ```     
-
 ```
+tree roles/
+```
+
 [Output]
 
+```
   roles/
     └── apache
         ├── defaults
