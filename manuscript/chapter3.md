@@ -9,6 +9,7 @@ The default configurations for ansible resides at /etc/ansible/ansible.cfg. Inst
 Change into /vagrant/code/chapter3 directory on your ansible host. Create a file called ansible.cfg  Add  the following contents to the file.
 
 ```
+[defaults]
 remote_user = vagrant
 inventory   = myhosts.ini
 ```  
@@ -413,7 +414,9 @@ ansible app -m copy -a "src=/vagrant/test.txt dest=/tmp/test.txt"
 
 File will be copied over to our app server machines...  
 
-```192.168.61.13 | SUCCESS => {
+```
+
+192.168.61.13 | SUCCESS => {
     "changed": true,
     "checksum": "3160f8f941c330444aac253a9e6420cd1a65bfe2",
     "dest": "/tmp/test.txt",
@@ -441,9 +444,16 @@ File will be copied over to our app server machines...
     "state": "file",
     "uid": 500
 }
+
 ```  
 
 ## 3.6 Exercises :  
-1. Add another group called *lb* in inventory with respective host ip 
-2. Add a user called *joe* in app servers. Make sure that user has a home directory  
-3. Install the package git using the correct *Ad-Hoc* command  
+1. Add another group called *lb* in inventory with respective host ip
+2. Add a user called *joe* on all  app servers. Make sure that the user has a home directory  
+3. Install  package *git* using the correct *Ad-Hoc* command
+1. Examine all the available module
+http://docs.ansible.com/ansible/modules_by_category.html
+4. Find out the difference between the *command* module and *shell* module
+5. Use command module to show *uptime* on the host  
+1. Install docker-engine using the yum/apt module
+6. Using docker-image module, pull *hello-world* image on web server
