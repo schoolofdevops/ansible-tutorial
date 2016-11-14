@@ -6,8 +6,16 @@ The default configurations for ansible resides at /etc/ansible/ansible.cfg. Inst
 
 ###  Ansible configuration file
 
-Change into /vagrant/code/chapter3 directory on your ansible host. Create a file called ansible.cfg  Add  the following contents to the file.
+Change into /vagrant/code/chap3 directory on your ansible host. Create a file called ansible.cfg  Add  the following contents to the file.
 
+On Ansible Control node,
+
+```
+  mkdir /vagrant/code/chap3
+  cd /vagrant/code/chap3
+```
+
+Create **ansible.cfg** in chap3
 ```
 [defaults]
 remote_user = vagrant
