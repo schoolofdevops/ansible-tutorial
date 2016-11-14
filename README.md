@@ -1,10 +1,10 @@
 # Ansible Tutorial
 
-* [Chapter 3: Ad Hoc Server Management](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/chapter3.md)
-* [ Chapter 4: Learning to Write Playbooks ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/chapter4.md)
-* [Chapter 5: Working with Roles ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/chapter5.md)
-* [Chapter 6: Variables and Templates](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/chapter6.md)
-* [Chapter 7: Control Structures](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/chapter7.md)
+* [Chapter 3: Ad Hoc Server Management](https://github.com/schoolofdevops/ansible-tutorial/blob/master/manuscript/chapter3.md)
+* [ Chapter 4: Learning to Write Playbooks ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/manuscript/chapter4.md)
+* [Chapter 5: Working with Roles ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/manuscript/chapter5.md)
+* [Chapter 6: Variables and Templates](https://github.com/schoolofdevops/ansible-tutorial/blob/master/manuscript/chapter6.md)
+* [Chapter 7: Control Structures](https://github.com/schoolofdevops/ansible-tutorial/blob/master/manuscript/chapter7.md)
 
 
 ### License (CC-BY-NC-ND)
