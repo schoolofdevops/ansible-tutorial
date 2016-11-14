@@ -456,8 +456,8 @@ File will be copied over to our app server machines...
 ```  
 
 ## 3.6 Exercises :  
-1. Add another group called *lb* in inventory with respective host ip
-2. Add a user called *joe* on all  app servers. Make sure that the user has a home directory  
+1. Add another system group (not inventory group) called *lb* in inventory with respective host ip
+2. Add a system user called *joe* on all  app servers. Make sure that the user has a home directory  
 3. Install  package *vim* using the correct *Ad-Hoc* command
 1. Examine all the available module
 http://docs.ansible.com/ansible/modules_by_category.html
