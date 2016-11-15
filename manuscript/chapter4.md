@@ -9,7 +9,18 @@ In this tutorial we are going to create a simple playbook to add system users, i
 ```
      cd /vagrant/code/chap4
 ```  
-  * Create playbook.yml and add the content below
+
+
+  * Edit myhosts.ini if required and comment the hosts which are absent.
+
+  * Add the following configuration to ansible.cfg.   
+
+  ``` retry_files_save_path = /tmp ```
+
+  This defines the path where retry files are created in case of failed ansible run. We will learn about this in later in this chapter.
+
+
+  * Create a new file with name *playbook.yml* and add the following content to it
 
 ```
 ---
@@ -29,11 +40,9 @@ In this tutorial we are going to create a simple playbook to add system users, i
       - name: install ntp
         yum:  name=ntp   state=present
 
-      - name: start ntp service
-        service: name=ntpd state=started enabled=yes
-```  
+```
 
-### 4.2 Running the  playbook  
+### 4.2 Applying  playbook  
 To run the playbook, we are going to execute **ansible-playbook** command. Lets first examine the options that this command supports.
 
 ```
@@ -107,15 +116,47 @@ changed: [192.168.61.11]
 changed: [localhost]
 changed: [192.168.61.14]
 
-TASK [start ntp service] *******************************************************
-changed: [192.168.61.11]
-changed: [localhost]
-changed: [192.168.61.13]
-changed: [192.168.61.12]
-changed: [192.168.61.14]
 ```
 
-### 4.3 Adding second play in the playbook  
+### 4.3 Adding a new task to the play , Troubleshooting
+
+
+Add the following task to start ntp service to the same playbook. When you add this taks, make sure the indentation is correct.
+
+```
+      - name: start ntp service
+        service: name=ntp state=started enabled=yes
+```  
+
+  * Apply playbook again, check the output
+
+
+```
+ansible-playbook playbook.yml
+
+```
+
+[output]
+```
+TASK [start ntp service] *******************************************************
+fatal: [localhost]: FAILED! => {"changed": false, "failed": true, "msg": "no service or tool found for: ntp"}
+fatal: [192.168.61.11]: FAILED! => {"changed": false, "failed": true, "msg": "no service or tool found for: ntp"}
+fatal: [192.168.61.12]: FAILED! => {"changed": false, "failed": true, "msg": "no service or tool found for: ntp"}
+
+NO MORE HOSTS LEFT *************************************************************
+	to retry, use: --limit @/tmp/playbook.retry
+
+PLAY RECAP *********************************************************************
+192.168.61.11              : ok=5    changed=0    unreachable=0    failed=1
+192.168.61.12              : ok=5    changed=0    unreachable=0    failed=1
+localhost                  : ok=5    changed=0    unreachable=0    failed=1
+```
+Exercise : There was a intentional error introduced in the code. Identify the error from the log message above, correct it  and run the playbook again. This time you should run it  only on the failed hosts by limiting  with the retry file mentioned above (e.g. --limit @/tmp/playbook.retry )
+
+
+
+
+### 4.4 Adding second play in the playbook  
 
 Lets add a second play specific to app servers. Add the following block of code in playbook.yml file and save   
 
@@ -206,7 +247,7 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=6    changed=0    unreachable=0    failed=0
 ```
 
-### 4.4 Limiting the execution to a particular group  
+### 4.5 Limiting the execution to a particular group  
 
 Now run the following command to restrict the playbook execution to *app servers*  
 
@@ -277,11 +318,8 @@ Create a Playbook with the following specifications,
     * The user to deploy the app would be nginx
 
 
-#####  TODO for Course Creator:
-   - Fail the task (w.g. service name = ntp).
-   - It will create a retry file
-   Use that to feed into to ansible-playbook with --limit option
-   e.g.
-   ```
-    ansible-playbook playbook.yml --limit @/tmp/playbook.rerty
-   ```
+Disable Facts Gathering
+  * Run ansible playbook and observe the output
+  * Add the following configuration parameter to ansible.cfg
+    ``` gathering = explicit ```
+  * Launch ansible playbook run again, observe the output and compare it with the previous run. 
