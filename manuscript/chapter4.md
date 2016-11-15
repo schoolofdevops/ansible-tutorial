@@ -307,7 +307,7 @@ PLAY RECAP *********************************************************************
 
 
 ## Exercise:
-Create a Playbook with the following specifications,
+Exercise1: Create a Playbook with the following specifications,
   * It should apply only on local host (ansible host)
   * Should use become method
   * Should create a **user** called webadmin with shell as "/bin/sh"
@@ -318,8 +318,8 @@ Create a Playbook with the following specifications,
     * The user to deploy the app would be nginx
 
 
-Disable Facts Gathering
+Exercise 2: Disable Facts Gathering
   * Run ansible playbook and observe the output
   * Add the following configuration parameter to ansible.cfg
     ``` gathering = explicit ```
-  * Launch ansible playbook run again, observe the output and compare it with the previous run. 
+  * Launch ansible playbook run again, observe the output and compare it with the previous run.
