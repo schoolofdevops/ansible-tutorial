@@ -338,10 +338,11 @@ PLAY RECAP *********************************************************************
 
 ## Exercises
 
-  Exercise 1: Update Apache Configurations
+##### Exercise 1: Update Apache Configurations
   * Update httpd.conf and change some configuration parameters. Validate the service restarts on configuration updates by applying the sitewide playbook.
 
-  Exercise 2: Create MySQL Role
+
+##### Exercise 2: Create MySQL Role
   * Create a Role to install and configure MySQL server   
      *    Create role scaffold for mysql  using ansible-galaxy init  
      *   Create task to install "mysql-server" and "MySQL-python" packages using yum module   
