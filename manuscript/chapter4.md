@@ -315,8 +315,7 @@ Exercise1: Create a Playbook with the following specifications,
   * Should **deploy** a sample html app into the default web root directory of nginx using ansible's **git** module.
     * Source repo:  https://github.com/schoolofdevops/html-sample-app
     * Deploy Path : /usr/share/nginx/html/app
-    * The user to deploy the app would be nginx
-
+  * Once deployed, validate the site by visting http://CONTROL_HOST_IP/app
 
 Exercise 2: Disable Facts Gathering
   * Run ansible playbook and observe the output

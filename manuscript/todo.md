@@ -6,23 +6,35 @@ Additional chapters
   * Ansible Tower
   * Ansible with Rundeck
   * Ansible with Docker
+  * Ansible and windows
 
 Chap3:
   *  add group of groups for inventory [blr:children]
   *  windows inventory example
   *  add host patterns, and filters
   *  more examples on modules
+  *  ansible-doc -l to list modules available
+
+chap4:
+  * Error handling in playbooks
+
+chap5:
+  * Add a exercise to download/install a role from galaxy and apply
 
 Playbook
   * disable fact finding to improve performance  ( gathering = implicit )
+   When to disable facts caching ?
+
 
 
 Additional Topics
+
   * Running Ansible Programatically
   * Windows Integration
   * Ansible and Docker
   * Ansible Pull
 
+  * Registered variable examples
 
 Chap 5 deprecated
 * Pre Task to be run before creating MySQL Role
