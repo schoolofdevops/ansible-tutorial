@@ -1,7 +1,9 @@
 ### Preparing Ansible host
 
+```
 sudo yum install python-pip
-sudo pip install pywinrm
+sudo pip install "pywinrm>=0.1.1"
+```
 
 ### Preparing Windows Host
 
