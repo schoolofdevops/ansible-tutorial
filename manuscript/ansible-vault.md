@@ -14,7 +14,7 @@ Howe ?
      * include_vars or  var_files
      * var files passed at command line with "-e @file"
    * Tasks (however not very common)
-   * Files
+   * Arbitory Files
 
 What can not be encrypted ?
   * Templates
