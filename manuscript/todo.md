@@ -36,6 +36,7 @@ Playbook
 
 Additional Topics
 
+  * Ansible Vault
   * Running Ansible Programatically : k
   * Windows Integration : k
   * Ansible and Docker : k

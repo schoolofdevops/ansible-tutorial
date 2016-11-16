@@ -47,6 +47,10 @@ Automating Rekeying Process
 
 Lab:
 
+```
+ansible-vault encrypt roles/mysql/defaults/main.yml
 ansible-vault encrypt group_vars/all.yml
-ansible-vault edit group_vars/all.yml
-ansible-vault decrypt group_vars/all.yml
+ansible-vault view group_vars/all.yml
+ansible-playbook site.yml --ask-vault-pass
+
+```
