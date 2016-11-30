@@ -1,0 +1,10 @@
+[mysqld]
+datadir={{ mysql['config']['datadir'] }}
+socket={{ mysql['config']['socket'] }}
+symbolic-links=0
+log-error=/var/log/mysqld.log
+pid-file={{ mysql['config']['pid']}}
+
+[client]
+user=root
+password={{ mysql_root_db_pass }}

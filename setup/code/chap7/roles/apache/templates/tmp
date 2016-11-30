@@ -1,0 +1,2 @@
+Listen {{ httpd_port }}
+ServerName www.{{ansible_hostname}}.com

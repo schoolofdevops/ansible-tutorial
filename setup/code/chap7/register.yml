@@ -1,0 +1,11 @@
+---
+  - name: register variable example
+    hosts: local
+    tasks:
+      - name: run a shell command and rerister result
+        shell: "/sbin/ifconfig eth1"
+        register: result
+
+      - name: print registered variable
+        debug: var=result
+...

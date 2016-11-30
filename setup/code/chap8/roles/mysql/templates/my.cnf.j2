@@ -1,0 +1,20 @@
+[mysqld]
+
+{% if mysql.config.datadir is defined %}
+datadir={{ mysql['config']['datadir'] }}
+{% endif %}
+
+{% if mysql.config.socket is defined %}
+socket={{ mysql['config']['socket'] }}
+{% endif %}
+
+symbolic-links=0
+log-error=/var/log/mysqld.log
+
+{% if mysql.config.pid is defined %}
+pid-file={{ mysql['config']['pid']}}
+{% endif %}
+
+[client]
+user=root
+password={{ mysql_root_db_pass }}
