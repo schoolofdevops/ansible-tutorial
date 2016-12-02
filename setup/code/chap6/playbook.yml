@@ -1,18 +1,19 @@
 ---
-  - name: Application server installtion
-    hosts: app
+  - name: Base Configurations for ALL hosts
+    hosts: all
     become: true
-    roles:
-      - apache
+    tasks:
+      - name: create admin user
+        user: name=admin state=present uid=5001
 
-  - name: Database installation
-    hosts: db
-    become: true
-    roles:
-      - mysql
+      - name: remove dojo
+        user: name=dojo  state=present
 
-  - name: Loadbalancer installation
-    hosts: lb
-    become: true
-    roles:
-      - nginxlb
+      - name: install tree
+        yum:  name=tree  state=present
+
+      - name: install ntp
+        yum:  name=ntp   state=present
+
+      - name: start ntp service
+        service: name=ntpd state=started enabled=yes

@@ -1,0 +1,11 @@
+---
+  - name: Playbook to configure DB Servers
+    hosts: db
+    become: true
+    roles:
+    - mysql
+    vars:
+      mysql:
+        server: true
+        config:
+          bind: "{{ ansible_eth1.ipv4.address }}"

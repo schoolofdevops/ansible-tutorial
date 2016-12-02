@@ -1,0 +1,22 @@
+---
+  fav:
+    color: blue
+    fruit: peach
+  mysql_bind: "{{ ansible_eth0.ipv4.address }}"
+  mysql:
+    databases:
+      infinity:
+        state: present
+      peace:
+        state: present
+    users:
+      dojo:
+        pass: PassWord@1234
+        host: '%'
+        priv: '*.*:ALL'
+        state: present
+      koko:
+        pass: f8Usg3ord@1we28
+        host: '%'
+        priv: '*.*:ALL'
+        state: present

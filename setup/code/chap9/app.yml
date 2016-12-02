@@ -6,4 +6,4 @@
       fav:
         fruit: mango
     roles:
-    - apache
+    - { role: apache, when: ansible_os_family == 'RedHat' }
