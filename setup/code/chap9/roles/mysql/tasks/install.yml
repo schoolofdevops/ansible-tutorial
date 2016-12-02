@@ -1,0 +1,6 @@
+---
+  - name: Install mysql servers
+    yum: name=mysql-server state=installed
+
+  - name: Install mysql servers
+    yum: name=MySQL-python state=installed

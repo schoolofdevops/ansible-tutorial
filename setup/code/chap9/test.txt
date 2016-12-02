@@ -1,0 +1,23 @@
+This is a test file. 
+
+Created purely to learn copying a file from control node to managed nodes. 
+
+Part of the School of Devops's Ansible Training. 
+
+Trainings Conducted by School of Devops 
+ - Ansible
+ - Docker
+ - Kubernetes  
+ - Mesos and Marathon  
+ - Puppet 
+ - Chef
+ - AWS Sysops
+ - AWS Architects 
+ - CI/CD Workshop with Jenkins, GIT, Artifactory, Sonarqube, Tomcat etc. 
+ - Monitoring Tools
+ - Devops Workshops
+ 
+ 
+To learn more, visit http://www.schoolofdevops.com 
+
+

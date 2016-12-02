@@ -1,0 +1,47 @@
+---
+- name: Copying configuration files...
+  copy: >
+    src=my.cnf
+    dest=/etc/my.cnf
+    owner=root group=root mode=0644
+  notify: restart mysql
+
+- name: Set default password as variable
+  script: fetch_defaultpass.sh
+  register: mysqlpass
+
+- name: set fact for mysql default password
+  set_fact: MYSQL_DEFAULT_PASS="{{ mysqlpass.stdout_lines[0] }}"
+
+
+- name: copy file to reset mysql pass
+  template: >
+    src=mysql_reset_pass.sql
+    dest=/root/.mysql_reset_pass.sql
+
+- name: reset default root password
+  shell: mysql --user=root --password="{{ MYSQL_DEFAULT_PASS }}" --connect-expired-password mysql < /root/.mysql_reset_pass.sql
+  run_once: true
+  ignore_errors: yes
+
+- name: create mysql creds file
+  template: >
+    src=my.cnf.j2
+    dest=/root/.my.cnf
+
+- mysql_user: name=gojo password=yodojo priv=*.*:ALL,GRANT state=present
+
+- name: create mysql databases
+  mysql_db:
+    name: "{{ item.key }}"
+    state: "{{ item.value.state }}"
+  with_dict: "{{ mysql['databases'] }}"
+
+- name: create mysql users
+  mysql_user:
+    name: "{{ item.key }}"
+    host: "{{ item.value.host }}"
+    password: "{{ item.value.pass }}"
+    priv: "{{ item.value.priv }}"
+    state: "{{ item.value.state }}"
+  with_dict: "{{ mysql['users'] }}"

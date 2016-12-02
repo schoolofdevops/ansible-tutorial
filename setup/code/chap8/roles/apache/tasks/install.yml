@@ -1,0 +1,3 @@
+---
+- name: Installing Apache...
+  yum: name=httpd state=latest

@@ -1,0 +1,59 @@
+version: '2'
+
+networks:
+  custom:
+    driver: bridge
+
+services:
+  control:
+    build: ./control
+    image: codebox
+    ports:
+      - "80:8000"
+      - "2222:22"
+    environment:
+      CODEBOX_USERNAME: admin
+      CODEBOX_PASSWORD: schoolofdevops
+    volumes:
+      - ./code:/workspace
+    networks:
+      - custom
+    container_name: control
+    domainname: schoolofdevops.com
+    hostname: control
+  lb:
+    build: ./nodes
+    container_name: lb
+    ports:
+       - "2223:22"
+    networks:
+      - custom
+    domainname: schoolofdevops.com
+    hostname: lb
+  app1:
+    build: ./nodes
+    ports:
+       - "2224:22"
+    networks:
+      - custom
+    container_name: app1
+    domainname: schoolofdevops.com
+    hostname: app1
+  app2:
+    build: ./nodes
+    ports:
+      - "2225:22"
+    networks:
+      - custom
+    container_name: app2
+    domainname: schoolofdevops.com
+    hostname: app2
+  db:
+    build: ./nodes
+    ports:
+      - "2226:22"
+    networks:
+      - custom
+    container_name: db
+    domainname: schoolofdevops.com
+    hostname: db

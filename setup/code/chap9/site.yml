@@ -1,0 +1,5 @@
+---
+  # This is a sitewide playbook
+  # filename: site.yml
+  - include: db.yml
+  - include: app.yml
