@@ -39,348 +39,42 @@
     
     <div id="book">
       <div id="frontmatter" data-number="0"><div id="title_page"><h1 class="title">Ansible Tutorial</h1><h1 class="subtitle">Learn Ansible Step by Step</h1><h2 class="author">Gourav Shah</h2></div>
-<h1 class="contents">Contents</h1><div id="table_of_contents"><ul><li class="chapter-star"><a href="#preface" class="heading hyperref">Preface</a></li><li class="chapter"><a href="#cid1" class="heading hyperref"><span class="number">Chapter 1 </span>Getting Started with Ansible (Ad Hoc Server Management)</a></li><li><ul><li class="section"><a href="#cid2" class="heading hyperref"><span class="number">1.1 </span>Creating Project Specific Ansible Configuration</a></li><li><ul><li class="subsection"><a href="#uid1" class="heading hyperref"><span class="number">1.1.1 </span>Ansible configuration file</a></li></ul></li><li class="section"><a href="#cid3" class="heading hyperref"><span class="number">1.2 </span>Creating Host Inventory</a></li><li class="section"><a href="#cid4" class="heading hyperref"><span class="number">1.3 </span>Setting up passwordless ssh access to inventory hosts</a></li><li><ul><li class="subsection"><a href="#uid5" class="heading hyperref"><span class="number">1.3.1 </span>Generating ssh keypair on control host</a></li><li class="subsection"><a href="#uid6" class="heading hyperref"><span class="number">1.3.2 </span>Copying public key to inventory hosts</a></li><li class="subsection"><a href="#uid7" class="heading hyperref"><span class="number">1.3.3 </span>Validate the passwordless login</a></li><li class="subsection"><a href="#uid8" class="heading hyperref"><span class="number">1.3.4 </span>Ansible ping</a></li></ul></li><li class="section"><a href="#cid5" class="heading hyperref"><span class="number">1.4 </span>Ad Hoc commands:</a></li><li><ul><li class="subsection"><a href="#uid9" class="heading hyperref"><span class="number">1.4.1 </span>Run <em>hostname</em> command on all hosts</a></li><li class="subsection"><a href="#uid10" class="heading hyperref"><span class="number">1.4.2 </span>Check the <em>uptime</em></a></li><li class="subsection"><a href="#uid11" class="heading hyperref"><span class="number">1.4.3 </span>Check memory info on app servers</a></li><li class="subsection"><a href="#uid12" class="heading hyperref"><span class="number">1.4.4 </span>Installing packages</a></li><li class="subsection"><a href="#uid13" class="heading hyperref"><span class="number">1.4.5 </span>Running commands one machine at a time</a></li></ul></li><li class="section"><a href="#cid6" class="heading hyperref"><span class="number">1.5 </span>Using <em>modules</em> to manage the state of infrastructure</a></li><li><ul><li class="subsection"><a href="#uid14" class="heading hyperref"><span class="number">1.5.1 </span>Creating users and groups using <em>user</em> and <em>group</em></a></li><li class="subsection"><a href="#uid15" class="heading hyperref"><span class="number">1.5.2 </span>Copy a file using <em>copy</em> modules</a></li></ul></li><li class="section"><a href="#cid7" class="heading hyperref"><span class="number">1.6 </span>Exercises :</a></li></ul></li><li class="chapter"><a href="#cid8" class="heading hyperref"><span class="number">Chapter 2 </span>Learning to Write Playbooks</a></li><li><ul><li class="section"><a href="#cid9" class="heading hyperref"><span class="number">2.1 </span>Creating our first playbook</a></li><li class="section"><a href="#cid10" class="heading hyperref"><span class="number">2.2 </span>Running the playbook</a></li><li class="section"><a href="#cid11" class="heading hyperref"><span class="number">2.3 </span>Adding second play in the playbook</a></li><li class="section"><a href="#cid12" class="heading hyperref"><span class="number">2.4 </span>Limiting the execution to a particular group</a></li><li class="section"><a href="#cid13" class="heading hyperref"><span class="number">2.5 </span>Exercise:</a></li></ul></li><li class="chapter"><a href="#cid14" class="heading hyperref"><span class="number">Chapter 3 </span>Working with Roles</a></li><li><ul><li class="section"><a href="#cid15" class="heading hyperref"><span class="number">3.1 </span>Creating Role Scaffolding for Apache</a></li><li class="section"><a href="#cid16" class="heading hyperref"><span class="number">3.2 </span>Writing Tasks to Install and Start Apache Web Service</a></li><li class="section"><a href="#cid17" class="heading hyperref"><span class="number">3.3 </span>Managing Configuration files for Apache</a></li><li class="section"><a href="#cid18" class="heading hyperref"><span class="number">3.4 </span>Adding Notifications and Handlers</a></li><li class="section"><a href="#cid19" class="heading hyperref"><span class="number">3.5 </span>Troubleshooting Exercise</a></li><li class="section"><a href="#cid20" class="heading hyperref"><span class="number">3.6 </span>Base Role and Role Nesting</a></li><li class="section"><a href="#cid21" class="heading hyperref"><span class="number">3.7 </span>Creating a Site Wide Playbook</a></li><li class="section"><a href="#cid22" class="heading hyperref"><span class="number">3.8 </span>Exercises</a></li></ul></li><li class="chapter"><a href="#cid23" class="heading hyperref"><span class="number">Chapter 4 </span>Variables and Templates</a></li><li><ul><li class="section"><a href="#cid24" class="heading hyperref"><span class="number">4.1 </span>Variables</a></li><li class="section"><a href="#cid25" class="heading hyperref"><span class="number">4.2 </span>Finding Facts About Systems</a></li><li class="section"><a href="#cid26" class="heading hyperref"><span class="number">4.3 </span>Filtering facts</a></li><li class="section"><a href="#cid27" class="heading hyperref"><span class="number">4.4 </span>Registering Variables</a></li><li class="section"><a href="#cid28" class="heading hyperref"><span class="number">4.5 </span>Creating Templates for Apache</a></li><li class="section"><a href="#cid29" class="heading hyperref"><span class="number">4.6 </span>Defining Default Variables</a></li><li class="section"><a href="#cid30" class="heading hyperref"><span class="number">4.7 </span>Updating Tasks to use Templates</a></li><li><ul><li class="subsection"><a href="#uid87" class="heading hyperref"><span class="number">4.7.1 </span>Validating</a></li></ul></li><li class="section"><a href="#cid31" class="heading hyperref"><span class="number">4.8 </span>Playing with Variable Precedence Rules</a></li><li class="section"><a href="#cid32" class="heading hyperref"><span class="number">4.9 </span>Exercises</a></li></ul></li><li class="chapter"><a href="#cid33" class="heading hyperref"><span class="number">Chapter 5 </span>Control Structures</a></li><li><ul><li class="section"><a href="#cid34" class="heading hyperref"><span class="number">5.1 </span>Conditionals</a></li><li class="section"><a href="#cid35" class="heading hyperref"><span class="number">5.2 </span><strong>When</strong> statements</a></li><li><ul><li class="subsection"><a href="#uid101" class="heading hyperref"><span class="number">5.2.1 </span>Selectively calling install tasks based on platform</a></li><li class="subsection"><a href="#uid104" class="heading hyperref"><span class="number">5.2.2 </span>Configuring MySQL server based on boolean flag</a></li><li class="subsection"><a href="#uid107" class="heading hyperref"><span class="number">5.2.3 </span>Adding conditionals in Jinja2 templates</a></li><li class="subsection"><a href="#uid110" class="heading hyperref"><span class="number">5.2.4 </span>Running One Time Tasks</a></li><li class="subsection"><a href="#uid113" class="heading hyperref"><span class="number">5.2.5 </span>Conditional Execution of Roles</a></li><li class="subsection"><a href="#uid117" class="heading hyperref"><span class="number">5.2.6 </span>Exercise</a></li></ul></li><li class="section"><a href="#cid36" class="heading hyperref"><span class="number">5.3 </span>Iterations</a></li><li><ul><li class="subsection"><a href="#uid118" class="heading hyperref"><span class="number">5.3.1 </span>Iteration over list</a></li><li class="subsection"><a href="#uid124" class="heading hyperref"><span class="number">5.3.2 </span>Iterating over a Hash Table/Dictionary</a></li></ul></li><li class="section"><a href="#cid37" class="heading hyperref"><span class="number">5.4 </span>Exercises</a></li></ul></li></ul></div>
+<h1 class="contents">Contents</h1><div id="table_of_contents"><ul><li class="chapter-star"><a href="#preface" class="heading hyperref">Preface</a></li><li class="chapter"><a href="#cid1" class="heading hyperref"><span class="number">Chapter 1 </span>Learning to Write Playbooks</a></li><li><ul><li class="section"><a href="#cid2" class="heading hyperref"><span class="number">1.1 </span>Anatomy of a Playbook</a></li><li class="section"><a href="#cid3" class="heading hyperref"><span class="number">1.2 </span>YAML - The Language to write Playbooks</a></li><li class="section"><a href="#cid4" class="heading hyperref"><span class="number">1.3 </span>Writing and executing our first Playbook</a></li><li><ul><li class="subsection"><a href="#uid5" class="heading hyperref"><span class="number">1.3.1 </span>Validating Syntax</a></li><li class="subsection"><a href="#uid7" class="heading hyperref"><span class="number">1.3.2 </span>Using ansible-playbook utility</a></li><li class="subsection"><a href="#uid9" class="heading hyperref"><span class="number">1.3.3 </span>Listing Hosts, Tasks and Tags in a Playbook</a></li><li class="subsection"><a href="#uid10" class="heading hyperref"><span class="number">1.3.4 </span>Executing Actions with Playbooks</a></li></ul></li><li class="section"><a href="#cid5" class="heading hyperref"><span class="number">1.4 </span>Error Handling and Debugging</a></li><li><ul><li class="subsection"><a href="#uid12" class="heading hyperref"><span class="number">1.4.1 </span>Debugging Technique : Step By Step Execution</a></li><li class="subsection"><a href="#uid13" class="heading hyperref"><span class="number">1.4.2 </span>Adding Additional Play</a></li><li class="subsection"><a href="#uid17" class="heading hyperref"><span class="number">1.4.3 </span>Limiting the execution to a particular group</a></li></ul></li><li class="section"><a href="#cid6" class="heading hyperref"><span class="number">1.5 </span>Exercise:</a></li><li><ul><li class="subsection"><a href="#uid18" class="heading hyperref"><span class="number">1.5.1 </span><strong>Exercise1</strong>: Create a Playbook with the following specifications,</a></li><li class="subsection"><a href="#uid27" class="heading hyperref"><span class="number">1.5.2 </span><strong>Exercise 2</strong>: Disable Facts Gathering</a></li></ul></li></ul></li></ul></div>
 <div class="chapter-star" id="preface"><h1><a href="#preface" class="heading hyperref">Preface</a></h1>
 <p>This is an example of “frontmatter”, which comes before the main text of the book.</p>
 </div></div>
 
-<div id="cid1" data-tralics-id="cid1" class="chapter" data-number="1"><h1><a href="#cid1" class="heading hyperref"><span class="number">Chapter 1 </span>Getting Started with Ansible (Ad Hoc Server Management)</a></h1>
-</div>
-<div id="cid2" data-tralics-id="cid2" class="section" data-number="1.1"><h2><a href="#cid2" class="heading hyperref"><span class="number">1.1 </span>Creating Project Specific Ansible Configuration</a></h2>
-<p>The default configurations for ansible resides at /etc/ansible/ansible.cfg.<span class="intersentencespace"></span> Instead of relying on defaults, we are going to creates a custom configuration file for our project.<span class="intersentencespace"></span> The advantage with that is we could take this configurations on any host and execute it the same way, without touching the default system configurations.<span class="intersentencespace"></span> This custom configurations will essentially override the values in /etc/ansible/ansible/cfg.</p>
-<div id="uid1" data-tralics-id="uid1" class="subsection" data-number="1.1.1"><h3><a href="#uid1" class="heading hyperref"><span class="number">1.1.1 </span>Ansible configuration file</a></h3>
-<p>Change into /vagrant/code/chapter3 directory on your ansible host.<span class="intersentencespace"></span> Create a file called ansible.cfg Add the following contents to the file.</p>
-<div class="code"><div class="highlight"><pre>remote_user = vagrant
-inventory   = myhosts.ini
-</pre></div></div>
-</div></div>
-<div id="cid3" data-tralics-id="cid3" class="section" data-number="1.2"><h2><a href="#cid3" class="heading hyperref"><span class="number">1.2 </span>Creating Host Inventory</a></h2>
-<p>Create a new file called <em>myhosts.ini</em> in the same directory.</p>
-<p class="noindent">Let’s create three groups as follows,</p>
-<div class="code"><div class="highlight"><pre>[local]
-localhost ansible_connection=local
-
-[app]
-192.168.61.12
-192.168.61.13
-
-[db]
-192.168.61.11
-</pre></div></div>
-<ul>
-<li>First group contains the localhost, the control host.<span class="intersentencespace"></span> Since it does not need to be connected over ssh, it mandates we add ansible_connection=local option
-</li>
-<li>Second group contains Application Servers.<span class="intersentencespace"></span> We will add two app servers to this group.<span class="intersentencespace"></span>
-</li>
-<li>Third group holds the information about the database servers.<span class="intersentencespace"></span>
-</li></ul>
-</div>
-<div id="cid4" data-tralics-id="cid4" class="section" data-number="1.3"><h2><a href="#cid4" class="heading hyperref"><span class="number">1.3 </span>Setting up passwordless ssh access to inventory hosts</a></h2>
-<div id="uid5" data-tralics-id="uid5" class="subsection" data-number="1.3.1"><h3><a href="#uid5" class="heading hyperref"><span class="number">1.3.1 </span>Generating ssh keypair on control host</a></h3>
-<p>Now on control host, execute the following command</p>
-<div class="code"><div class="highlight"><pre>ssh-keygen -t rsa
-</pre></div></div>
-<p>Now press enter for the passphrase and other queries.</p>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>Generating public/private rsa key pair.
-Enter file in which to save the key (/root/.ssh/id_rsa):
-Created directory '/root/.ssh'.
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-Your identification has been saved in /root/.ssh/id_rsa.
-Your public key has been saved in /root/.ssh/id_rsa.pub.
-The key fingerprint is:
-c5:a5:6d:60:56:5a:7b:3c:60:23:b5:0f:1b:cf:f9:fd root@ansible
-The key's randomart image is:
-+--[ RSA 2048]----+
-|          =oO    |
-|         + X *   |
-|          = B +  |
-|         . . O o |
-|        S   . =  |
-|               ..|
-|                o|
-|                .|
-|                E|
-+-----------------+
-</pre></div></div>
-</div>
-<div id="uid6" data-tralics-id="uid6" class="subsection" data-number="1.3.2"><h3><a href="#uid6" class="heading hyperref"><span class="number">1.3.2 </span>Copying public key to inventory hosts</a></h3>
-<p>Copy public key of control node to other hosts</p>
-<div class="code"><div class="highlight"><pre>ssh-copy-id vagrant@192.168.61.11
-
-ssh-copy-id vagrant@192.168.61.12
-
-ssh-copy-id vagrant@192.168.61.13
-
-ssh-copy-id vagrant@192.168.61.14
-</pre></div></div>
-<p>See this example output to verify with your output</p>
-<div class="code"><div class="highlight"><pre>The authenticity of host '192.168.61.11 (192.168.61.11)' can't be established.
-RSA key fingerprint is 32:7f:ad:d7:da:63:32:b6:a9:ff:59:af:09:1e:56:22.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added '192.168.61.11' (RSA) to the list of known hosts.
-</pre></div></div>
-<p>The password for user <em>vagrant</em> is <em>vagrant</em></p>
-</div>
-<div id="uid7" data-tralics-id="uid7" class="subsection" data-number="1.3.3"><h3><a href="#uid7" class="heading hyperref"><span class="number">1.3.3 </span>Validate the passwordless login</a></h3>
-<p>Let us check the connection of control node with other hosts</p>
-<div class="code"><div class="highlight"><pre>ssh vagrant@192.168.61.11
-
-ssh vagrant@192.168.61.12
-
-ssh vagrant@192.168.61.13
-
-ssh vagrant@192.168.61.14
-</pre></div></div>
-</div>
-<div id="uid8" data-tralics-id="uid8" class="subsection" data-number="1.3.4"><h3><a href="#uid8" class="heading hyperref"><span class="number">1.3.4 </span>Ansible ping</a></h3>
-<p>We will use Ansible to make sure all the hosts are reachable</p>
-<div class="code"><div class="highlight"><pre>ansible all -m ping
-</pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>192.168.61.13 | SUCCESS =&gt; {
-    "changed": false,
-    "ping": "pong"
-}
-192.168.61.11 | SUCCESS =&gt; {
-    "changed": false,
-    "ping": "pong"
-}
-192.168.61.12 | SUCCESS =&gt; {
-    "changed": false,
-    "ping": "pong"
-}
-localhost | SUCCESS =&gt; {
-    "changed": false,
-    "ping": "pong"
-}
-</pre></div></div>
-</div></div>
-<div id="cid5" data-tralics-id="cid5" class="section" data-number="1.4"><h2><a href="#cid5" class="heading hyperref"><span class="number">1.4 </span>Ad Hoc commands:</a></h2>
-<p>Try running following <em>fire-and-forget</em> Ad-Hoc commands…</p>
-<div id="uid9" data-tralics-id="uid9" class="subsection" data-number="1.4.1"><h3><a href="#uid9" class="heading hyperref"><span class="number">1.4.1 </span>Run <em>hostname</em> command on all hosts</a></h3>
-<p>Let us print the hostname of all the hosts</p>
-<div class="code"><div class="highlight"><pre>ansible all -a hostname
-</pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>localhost | SUCCESS | rc=0 &gt;&gt;
-ansible
-
-192.168.61.11 | SUCCESS | rc=0 &gt;&gt;
-db
-
-192.168.61.12 | SUCCESS | rc=0 &gt;&gt;
-app
-
-192.168.61.13 | SUCCESS | rc=0 &gt;&gt;
-app
-</pre></div></div>
-</div>
-<div id="uid10" data-tralics-id="uid10" class="subsection" data-number="1.4.2"><h3><a href="#uid10" class="heading hyperref"><span class="number">1.4.2 </span>Check the <em>uptime</em></a></h3>
-<p>How long the hosts are <em>up</em>?</p>
-<div class="code"><div class="highlight"><pre>ansible all -a uptime
-</pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>localhost | SUCCESS | rc=0 &gt;&gt;
- 13:17:13 up  2:21,  1 user,  load average: 0.16, 0.03, 0.01
-
-192.168.61.12 | SUCCESS | rc=0 &gt;&gt;
- 13:17:14 up  1:50,  2 users,  load average: 0.00, 0.00, 0.00
-
-192.168.61.13 | SUCCESS | rc=0 &gt;&gt;
- 13:17:14 up  1:47,  2 users,  load average: 0.00, 0.00, 0.00
-
-192.168.61.11 | SUCCESS | rc=0 &gt;&gt;
- 13:17:14 up  1:36,  2 users,  load average: 0.00, 0.00, 0.00
-</pre></div></div>
-</div>
-<div id="uid11" data-tralics-id="uid11" class="subsection" data-number="1.4.3"><h3><a href="#uid11" class="heading hyperref"><span class="number">1.4.3 </span>Check memory info on app servers</a></h3>
-<p>Does my app servers have any disk space <em>free</em>?</p>
-<div class="code"><div class="highlight"><pre>ansible app -a free
-</pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>192.168.61.13 | SUCCESS | rc=0 &gt;&gt;
-             total       used       free     shared    buffers     cached
-Mem:        372916     121480     251436        776      11160      46304
--/+ buffers/cache:      64016     308900
-Swap:      4128764          0    4128764
-
-192.168.61.12 | SUCCESS | rc=0 &gt;&gt;
-             total       used       free     shared    buffers     cached
-Mem:        372916     121984     250932        776      11228      46336
--/+ buffers/cache:      64420     308496
-Swap:      4128764          0    4128764
-</pre></div></div>
-</div>
-<div id="uid12" data-tralics-id="uid12" class="subsection" data-number="1.4.4"><h3><a href="#uid12" class="heading hyperref"><span class="number">1.4.4 </span>Installing packages</a></h3>
-<p>Let us <em>install</em> Docker on app servers</p>
-<div class="code"><div class="highlight"><pre>ansible app -a "yum install -y docker-engine"
-</pre></div></div>
-<p>This command will fail.</p>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>192.168.61.13 | FAILED | rc=1 &gt;&gt;
-Loaded plugins: fastestmirror, prioritiesYou need to be root to perform this command.
-
-192.168.61.12 | FAILED | rc=1 &gt;&gt;
-Loaded plugins: fastestmirror, prioritiesYou need to be root to perform this command.
-</pre></div></div>
-<p>Run the following command with <em>sudo</em> permissions.</p>
-<div class="code"><div class="highlight"><pre>ansible app -s -a "yum install -y docker-engine"
-</pre></div></div>
-<p>This will install docker in our app servers</p>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>192.168.61.12 | SUCCESS | rc=0 &gt;&gt;
-Loaded plugins: fastestmirror, priorities
-Setting up Install Process
-Loading mirror speeds from cached hostfile
- * base: mirrors.nhanhoa.com
- * epel: mirror.rise.ph
- * extras: mirror.fibergrid.in
- * updates: mirror.fibergrid.in
-283 packages excluded due to repository priority protections
-Resolving Dependencies
---&gt; Running transaction check
----&gt; Package docker-engine.x86_64 0:1.7.1-1.el6 will be installed
---&gt; Finished Dependency Resolution
-
-Dependencies Resolved
-
-================================================================================
- Package             Arch         Version              Repository          Size
-================================================================================
-Installing:
- docker-engine       x86_64       1.7.1-1.el6          local_docker       4.5 M
-                              [...]
-Total download size: 4.5 M
-Installed size: 19 M
-Downloading Packages:
-Running rpm_check_debug
-Running Transaction Test
-Transaction Test Succeeded
-Running Transaction
-  Installing : docker-engine-1.7.1-1.el6.x86_64                             1/1
-  Verifying  : docker-engine-1.7.1-1.el6.x86_64                             1/1
-
-Installed:
-  docker-engine.x86_64 0:1.7.1-1.el6
-
-Complete!
-</pre></div></div>
-</div>
-<div id="uid13" data-tralics-id="uid13" class="subsection" data-number="1.4.5"><h3><a href="#uid13" class="heading hyperref"><span class="number">1.4.5 </span>Running commands one machine at a time</a></h3>
-<p>Do you want a command to run on <em>one machine at a time</em> ?</p>
-<div class="code"><div class="highlight"><pre>ansible all -f 1 -a "free"
-</pre></div></div>
-</div></div>
-<div id="cid6" data-tralics-id="cid6" class="section" data-number="1.5"><h2><a href="#cid6" class="heading hyperref"><span class="number">1.5 </span>Using <em>modules</em> to manage the state of infrastructure</a></h2>
-<div id="uid14" data-tralics-id="uid14" class="subsection" data-number="1.5.1"><h3><a href="#uid14" class="heading hyperref"><span class="number">1.5.1 </span>Creating users and groups using <em>user</em> and <em>group</em></a></h3>
-<p>To create a group</p>
-<div class="code"><div class="highlight"><pre>ansible app -s -m group -a "name=admin state=present"
-</pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>192.168.61.13 | SUCCESS =&gt; {
-    "changed": true,
-    "gid": 501,
-    "name": "admin",
-    "state": "present",
-    "system": false
-}
-192.168.61.12 | SUCCESS =&gt; {
-    "changed": true,
-    "gid": 501,
-    "name": "admin",
-    "state": "present",
-    "system": false
-}
-</pre></div></div>
-<p>To create a user…</p>
-<div class="code"><div class="highlight"><pre>ansible app -s -m user -a "name=devops group=admin createhome=yes"
-</pre></div></div>
-<p>This will create user <em>devops</em>,</p>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>192.168.61.13 | SUCCESS =&gt; {
-    "changed": true,
-    "comment": "",
-    "createhome": true,
-    "group": 501,
-    "home": "/home/devops",
-    "name": "devops",
-    "shell": "/bin/bash",
-    "state": "present",
-    "system": false,
-    "uid": 501
-}
-192.168.61.12 | SUCCESS =&gt; {
-    "changed": true,
-    "comment": "",
-    "createhome": true,
-    "group": 501,
-    "home": "/home/devops",
-    "name": "devops",
-    "shell": "/bin/bash",
-    "state": "present",
-    "system": false,
-    "uid": 501
-}
-</pre></div></div>
-</div>
-<div id="uid15" data-tralics-id="uid15" class="subsection" data-number="1.5.2"><h3><a href="#uid15" class="heading hyperref"><span class="number">1.5.2 </span>Copy a file using <em>copy</em> modules</a></h3>
-<p>We will copy file from control node to app servers.</p>
-<div class="code"><div class="highlight"><pre>ansible app -m copy -a "src=/vagrant/test.txt dest=/tmp/test.txt"
-</pre></div></div>
-<p>File will be copied over to our app server machines…</p>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>192.168.61.13 | SUCCESS =&gt; {
-    "changed": true,
-    "checksum": "3160f8f941c330444aac253a9e6420cd1a65bfe2",
-    "dest": "/tmp/test.txt",
-    "gid": 500,
-    "group": "vagrant",
-    "md5sum": "9052de4cff7e8a18de586f785e711b97",
-    "mode": "0664",
-    "owner": "vagrant",
-    "size": 11,
-    "src": "/home/vagrant/.ansible/tmp/ansible-tmp-1472991990.29-63683023616899/source",
-    "state": "file",
-    "uid": 500
-}
-192.168.61.12 | SUCCESS =&gt; {
-    "changed": true,
-    "checksum": "3160f8f941c330444aac253a9e6420cd1a65bfe2",
-    "dest": "/tmp/test.txt",
-    "gid": 500,
-    "group": "vagrant",
-    "md5sum": "9052de4cff7e8a18de586f785e711b97",
-    "mode": "0664",
-    "owner": "vagrant",
-    "size": 11,
-    "src": "/home/vagrant/.ansible/tmp/ansible-tmp-1472991990.26-218089785548663/source",
-    "state": "file",
-    "uid": 500
-}
-</pre></div></div>
-</div></div>
-<div id="cid7" data-tralics-id="cid7" class="section" data-number="1.6"><h2><a href="#cid7" class="heading hyperref"><span class="number">1.6 </span>Exercises :</a></h2>
-<ol>
-<li>Add another group called <em>lb</em> in inventory with respective host ip
-</li>
-<li>Add a user called <em>joe</em> in app servers.<span class="intersentencespace"></span> Make sure that user has a home directory.<span class="intersentencespace"></span>
-</li>
-<li>Install the package git using the correct Ad-Hoc command.<span class="intersentencespace"></span>
-</li></ol>
-</div>
-<div id="cid8" data-tralics-id="cid8" class="chapter" data-number="2"><h1><a href="#cid8" class="heading hyperref"><span class="number">Chapter 2 </span>Learning to Write Playbooks</a></h1>
+<div id="cid1" data-tralics-id="cid1" class="chapter" data-number="1"><h1><a href="#cid1" class="heading hyperref"><span class="number">Chapter 1 </span>Learning to Write Playbooks</a></h1>
 <p>In this tutorial we are going to create a simple playbook to add system users, install and start ntp service and some basic utilities.</p>
 </div>
-<div id="cid9" data-tralics-id="cid9" class="section" data-number="2.1"><h2><a href="#cid9" class="heading hyperref"><span class="number">2.1 </span>Creating our first playbook</a></h2>
+<div id="cid2" data-tralics-id="cid2" class="section" data-number="1.1"><h2><a href="#cid2" class="heading hyperref"><span class="number">1.1 </span>Anatomy of a Playbook</a></h2>
+</div>
+<div id="cid3" data-tralics-id="cid3" class="section" data-number="1.2"><h2><a href="#cid3" class="heading hyperref"><span class="number">1.2 </span>YAML - The Language to write Playbooks</a></h2>
+</div>
+<div id="cid4" data-tralics-id="cid4" class="section" data-number="1.3"><h2><a href="#cid4" class="heading hyperref"><span class="number">1.3 </span>Writing and executing our first Playbook</a></h2>
+<p><strong>Problem Statement</strong></p>
+<p>You have to create a playbook which will</p>
+<p class="noindent">* create a admin user with uid 5001
+* remove user dojo
+* install tree utility
+* install ntp</p>
+<p>on all systems which belong to prod group in the inventory</p>
+<p>To create playbook,</p>
 <ul>
-<li>Change working directory to /vagrant/code/chap4
+<li>Change working directory to /vagrant/code/chap5
 </li></ul>
-<div class="code"><div class="highlight"><pre>cd /vagrant/code/chap4
+<div class="code"><div class="highlight"><pre>cd /vagrant/code/chap5
 </pre></div></div>
 <ul>
-<li>Create playbook.yml and add the content below
+<li>Edit myhosts.ini if required and comment the hosts which are absent.<span class="intersentencespace"></span>
+</li>
+<li>Add the following configuration to ansible.cfg.<span class="intersentencespace"></span>
+</li></ul>
+<div class="code"><div class="highlight"><pre>retry_files_save_path = /tmp
+</pre></div></div>
+<p>This defines the path where retry files are created in case of failed ansible run.<span class="intersentencespace"></span> We will learn about this in later in this chapter.</p>
+<ul>
+<li>Create a new file with name <em>playbook.yml</em> and add the following content to it
 </li></ul>
 <div class="code"><div class="highlight"><pre>---
   - name: Base Configurations for ALL hosts
@@ -398,17 +92,27 @@ Complete!
 
       - name: install ntp
         yum:  name=ntp   state=present
-
-      - name: start ntp service
-        service: name=ntpd state=started enabled=yes
 </pre></div></div>
+<div id="uid5" data-tralics-id="uid5" class="subsection" data-number="1.3.1"><h3><a href="#uid5" class="heading hyperref"><span class="number">1.3.1 </span>Validating Syntax</a></h3>
+<p>Option 1 : Using –syntax-check option with ansible-playbook</p>
+<div class="code"><div class="highlight"><pre>ansible-playbook playbook.yml --syntax-check
+</pre></div></div>
+<p><strong>Exercise:</strong> Break the syntax, run playbook with –syntax check again, and learn how it works.</p>
+<p>Option 2 : Using YAML Linter Online</p>
+<p>Another way to validate syntax</p>
+<ul>
+<li>Visit http://www.yamllinter.com
+</li></ul>
+<div class="graphics image"><img src="../images/ansible/yaml_lint.png" alt="" /></div>
 </div>
-<div id="cid10" data-tralics-id="cid10" class="section" data-number="2.2"><h2><a href="#cid10" class="heading hyperref"><span class="number">2.2 </span>Running the playbook</a></h2>
-<p>To run the playbook, we are going to execute <strong>ansible-playbook</strong> command.<span class="intersentencespace"></span> Lets first examine the options that this command supports.</p>
-<div class="code"><div class="highlight"><pre>ansible-playbook --help
+<div id="uid7" data-tralics-id="uid7" class="subsection" data-number="1.3.2"><h3><a href="#uid7" class="heading hyperref"><span class="number">1.3.2 </span>Using ansible-playbook utility</a></h3>
+<p>We will start using ansible-playbook utility to execute playbooks.</p>
+<p>To learn how to use ansible-playbook execute the following command,</p>
+<div class="code"><div class="highlight"><pre>  ansible-playbook --help
 </pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>Usage: ansible-playbook playbook.yml
+<div class="code"><div class="highlight"><pre>[output]
+
+Usage: ansible-playbook playbook.yml
 
 Options:
   --ask-become-pass     ask for privilege escalation password
@@ -421,12 +125,32 @@ Options:
                         privilege escalation method to use (default=sudo),
                         valid choices: [ sudo | su | pbrun | pfexec | runas |
                         doas ]
+
+.......
 </pre></div></div>
-<p>To run the playbook, we could call YAML file as an argument.<span class="intersentencespace"></span> Since we have already defined the inventory and configurations, additional options are not necessary at this time.</p>
+<div id="uid8" data-tralics-id="uid8" class="subsubsection" data-number="1.3.2.1"><h4><a href="#uid8" class="heading">Dry Run</a></h4>
+<p>To execute ansible in a check mode, which will simulate tasks on the remote nodes, without actually committing, ansible provides –check or -C option.<span class="intersentencespace"></span> This can be invoked as ,</p>
+<div class="code"><div class="highlight"><pre>ansible-playbook playbook.yml --check
+</pre></div></div>
+<p>or
+</p><div class="code"><div class="highlight"><pre>ansible-playbook playbook.yml -C
+</pre></div></div>
+</div></div>
+<div id="uid9" data-tralics-id="uid9" class="subsection" data-number="1.3.3"><h3><a href="#uid9" class="heading hyperref"><span class="number">1.3.3 </span>Listing Hosts, Tasks and Tags in a Playbook</a></h3>
+<div class="code"><div class="highlight"><pre>ansible-playbook playbook.yml --list-hosts
+
+ansible-playbook playbook.yml --list-tasks
+
+ansible-playbook playbook.yml --list-tags
+</pre></div></div>
+</div>
+<div id="uid10" data-tralics-id="uid10" class="subsection" data-number="1.3.4"><h3><a href="#uid10" class="heading hyperref"><span class="number">1.3.4 </span>Executing Actions with Playbooks</a></h3>
+<p>To execute the playbook, we are going to execute <strong>ansible-playbook</strong> comman with playbook YAML file as an argument.<span class="intersentencespace"></span> Since we have already defined the inventory and configurations, additional options are not necessary at this time.</p>
 <div class="code"><div class="highlight"><pre>ansible-playbook playbook.yml
 </pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>PLAY [Base Configurations for ALL hosts] ***************************************
+<div class="code"><div class="highlight"><pre>[output]
+
+PLAY [Base Configurations for ALL hosts] ***************************************
 
 TASK [setup] *******************************************************************
 ok: [192.168.61.14]
@@ -462,16 +186,78 @@ changed: [192.168.61.13]
 changed: [192.168.61.11]
 changed: [localhost]
 changed: [192.168.61.14]
+</pre></div></div>
+</div></div>
+<div id="cid5" data-tralics-id="cid5" class="section" data-number="1.4"><h2><a href="#cid5" class="heading hyperref"><span class="number">1.4 </span>Error Handling and Debugging</a></h2>
+<p>We are now going to add a new task to the playbook that we created.<span class="intersentencespace"></span> This task would start ntp service on all prod hosts.</p>
+<p>When you add this task, make sure the indentation is correct.</p>
+<div class="code"><div class="highlight"><pre>      - name: start ntp service
+        service: name=ntp state=started enabled=yes
+</pre></div></div>
+<ul>
+<li>Apply playbook again, check the output
+</li></ul>
+<div class="code"><div class="highlight"><pre>ansible-playbook playbook.yml
+</pre></div></div>
+<p>[output]
+</p><div class="code"><div class="highlight"><pre>TASK [start ntp service] *******************************************************
+fatal: [localhost]: FAILED! =&gt; {"changed": false, "failed": true, "msg": "no service or tool found for: ntp"}
+fatal: [192.168.61.11]: FAILED! =&gt; {"changed": false, "failed": true, "msg": "no service or tool found for: ntp"}
+fatal: [192.168.61.12]: FAILED! =&gt; {"changed": false, "failed": true, "msg": "no service or tool found for: ntp"}
 
-TASK [start ntp service] *******************************************************
-changed: [192.168.61.11]
-changed: [localhost]
-changed: [192.168.61.13]
-changed: [192.168.61.12]
-changed: [192.168.61.14]
+NO MORE HOSTS LEFT *************************************************************
+	to retry, use: --limit @/tmp/playbook.retry
+
+PLAY RECAP *********************************************************************
+192.168.61.11              : ok=5    changed=0    unreachable=0    failed=1
+192.168.61.12              : ok=5    changed=0    unreachable=0    failed=1
+localhost                  : ok=5    changed=0    unreachable=0    failed=1
+</pre></div></div>
+<p>Exercise : There was a intentional error introduced in the code.<span class="intersentencespace"></span> Identify the error from the log message above, correct it and run the playbook again.<span class="intersentencespace"></span> This time you should run it only on the failed hosts by limiting with the retry file mentioned above (e.g.<span class="intersentencespace"></span> –limit @/tmp/playbook.retry )</p>
+<div id="uid12" data-tralics-id="uid12" class="subsection" data-number="1.4.1"><h3><a href="#uid12" class="heading hyperref"><span class="number">1.4.1 </span>Debugging Technique : Step By Step Execution</a></h3>
+<p>Ansible provides a way to execute tasks step by step, asking you whether to run or skip each task.<span class="intersentencespace"></span> This can be useful while debugging issues.</p>
+<div class="code"><div class="highlight"><pre>ansible-playbook playbook.yml --step
+</pre></div></div>
+<p>[Output]</p>
+<div class="code"><div class="highlight"><pre>root@control:/workspace/chap5# ansible-playbook playbook.yml --step                             
+
+PLAY [Base Configurations for ALL hosts] ***************************************                
+Perform task: TASK: setup (N)o/(y)es/(c)ontinue: y                                              
+
+
+TASK [setup] *******************************************************************                
+y                                                                                               
+ok: [app1]                                                                                      
+ok: [db]                                                                                        
+ok: [app2]                                                                                      
+ok: [lb]                                                                                        
+Perform task: TASK: create admin user (N)o/(y)es/(c)ontinue:                                    
+
+TASK [create admin user] *******************************************************                
+yok: [app2]                                                                                     
+ok: [app1]                                                                                      
+ok: [db]                                                                                        
+ok: [lb]                                                                                        
+
+Perform task: TASK: install tree (N)o/(y)es/(c)ontinue: y                                       
+
+TASK [install tree] ************************************************************                
+ok: [app2]                                                                                      
+ok: [lb]                                                                                        
+ok: [app1]                                                                                      
+ok: [db]                                                  
 </pre></div></div>
 </div>
-<div id="cid11" data-tralics-id="cid11" class="section" data-number="2.3"><h2><a href="#cid11" class="heading hyperref"><span class="number">2.3 </span>Adding second play in the playbook</a></h2>
+<div id="uid13" data-tralics-id="uid13" class="subsection" data-number="1.4.2"><h3><a href="#uid13" class="heading hyperref"><span class="number">1.4.2 </span>Adding Additional Play</a></h3>
+<p>Problem Statement:</p>
+<p>You have to a new play to existing playbook which will</p>
+<ul>
+<li>create a app user with uid 5003
+</li>
+<li>install git
+</li>
+<li>on all app servers in the inventory
+</li></ul>
 <p>Lets add a second play specific to app servers.<span class="intersentencespace"></span> Add the following block of code in playbook.yml file and save</p>
 <div class="code"><div class="highlight"><pre>- name: App Server Configurations
   hosts: app
@@ -486,50 +272,7 @@ changed: [192.168.61.14]
 <p>Run the playbook again…</p>
 <div class="code"><div class="highlight"><pre>ansible-playbook playbook.yml
 </pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>PLAY [Base Configurations for ALL hosts] ***************************************
-
-TASK [setup] *******************************************************************
-ok: [localhost]
-ok: [192.168.61.14]
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-ok: [192.168.61.11]
-
-TASK [create admin user] *******************************************************
-ok: [192.168.61.14]
-ok: [localhost]
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-ok: [192.168.61.11]
-
-TASK [remove dojo] *************************************************************
-ok: [192.168.61.14]
-ok: [192.168.61.12]
-ok: [192.168.61.11]
-ok: [localhost]
-ok: [192.168.61.13]
-
-TASK [install tree] ************************************************************
-ok: [192.168.61.11]
-ok: [192.168.61.12]
-ok: [localhost]
-ok: [192.168.61.13]
-ok: [192.168.61.14]
-
-TASK [install ntp] *************************************************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
-ok: [192.168.61.14]
-ok: [192.168.61.11]
-ok: [localhost]
-
-TASK [start ntp service] *******************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.14]
-ok: [localhost]
-ok: [192.168.61.11]
-ok: [192.168.61.12]
+<div class="code"><div class="highlight"><pre>.......
 
 PLAY [App Server Configurations] ***********************************************
 
@@ -553,33 +296,18 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=6    changed=0    unreachable=0    failed=0
 </pre></div></div>
 </div>
-<div id="cid12" data-tralics-id="cid12" class="section" data-number="2.4"><h2><a href="#cid12" class="heading hyperref"><span class="number">2.4 </span>Limiting the execution to a particular group</a></h2>
+<div id="uid17" data-tralics-id="uid17" class="subsection" data-number="1.4.3"><h3><a href="#uid17" class="heading hyperref"><span class="number">1.4.3 </span>Limiting the execution to a particular group</a></h3>
 <p>Now run the following command to restrict the playbook execution to <em>app servers</em></p>
 <div class="code"><div class="highlight"><pre>ansible-playbook playbook.yml --limit app
 </pre></div></div>
 <p>This will give us the following output, plays will be executed only on app servers…</p>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>PLAY [Base Configurations for ALL hosts] ***************************************
+<div class="code"><div class="highlight"><pre>PLAY [Base Configurations for ALL hosts] ***************************************
 
 TASK [setup] *******************************************************************
 ok: [192.168.61.13]
 ok: [192.168.61.12]
 
-TASK [create admin user] *******************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [remove dojo] *************************************************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
-
-TASK [install tree] ************************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [install ntp] *************************************************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
+.........
 
 TASK [start ntp service] *******************************************************
 ok: [192.168.61.12]
@@ -587,13 +315,7 @@ ok: [192.168.61.13]
 
 PLAY [App Server Configurations] ***********************************************
 
-TASK [setup] *******************************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [create app user] *********************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
+........
 
 TASK [install git] *************************************************************
 ok: [192.168.61.12]
@@ -603,9 +325,9 @@ PLAY RECAP *********************************************************************
 192.168.61.12              : ok=9    changed=0    unreachable=0    failed=0
 192.168.61.13              : ok=9    changed=0    unreachable=0    failed=0
 </pre></div></div>
-</div>
-<div id="cid13" data-tralics-id="cid13" class="section" data-number="2.5"><h2><a href="#cid13" class="heading hyperref"><span class="number">2.5 </span>Exercise:</a></h2>
-<p>Create a Playbook with the following specifications,</p>
+</div></div>
+<div id="cid6" data-tralics-id="cid6" class="section" data-number="1.5"><h2><a href="#cid6" class="heading hyperref"><span class="number">1.5 </span>Exercise:</a></h2>
+<div id="uid18" data-tralics-id="uid18" class="subsection" data-number="1.5.1"><h3><a href="#uid18" class="heading hyperref"><span class="number">1.5.1 </span><strong>Exercise1</strong>: Create a Playbook with the following specifications,</a></h3>
 <ul>
 <li>It should apply only on local host (ansible host)
 </li>
@@ -617,942 +339,26 @@ PLAY RECAP *********************************************************************
 </li>
 <li>Should <strong>deploy</strong> a sample html app into the default web root directory of nginx using ansible’s <strong>git</strong> module.
 <ul>
-<li>Source repo:
-https://github.com/schoolofdevops/html-sample-app
-<ul>
+<li>Source repo: https://github.com/schoolofdevops/html-sample-app
+</li>
 <li>Deploy Path : /usr/share/nginx/html/app
-</li>
-<li>The user to deploy the app would be nginx
 </li></ul>
-</li></ul>
-</li></ul>
-<div3 id="uid29" data-tralics-id="uid29" data-number=""><strong>TODO for Course Creator:</strong>
-<ul>
-<li>Fail the task (w.g.<span class="intersentencespace"></span> service name = ntp).
 </li>
-<li>It will create a retry file
-Use that to feed into to ansible-playbook with –limit option
-e.g.
-<code>
-ansible-playbook playbook.yml –limit @/tmp/playbook.rerty
-</code>
-</li></ul>
-</div3></div>
-<div id="cid14" data-tralics-id="cid14" class="chapter" data-number="3"><h1><a href="#cid14" class="heading hyperref"><span class="number">Chapter 3 </span>Working with Roles</a></h1>
-<p>In this tutorial we are going to create simple, static role for apache which will,</p>
-<ul>
-<li>Install <strong>httpd</strong> package
-</li>
-<li>Configure <strong>httpd.conf</strong>, manage it as a static file
-</li>
-<li>Start httpd service
-</li>
-<li>Add a notification and a handler so that whenever the configuration is updated, service is automatically restarted.<span class="intersentencespace"></span>
+<li>Once deployed, validate the site by visting http://CONTROL_HOST_IP/app
 </li></ul>
 </div>
-<div id="cid15" data-tralics-id="cid15" class="section" data-number="3.1"><h2><a href="#cid15" class="heading hyperref"><span class="number">3.1 </span>Creating Role Scaffolding for Apache</a></h2>
+<div id="uid27" data-tralics-id="uid27" class="subsection" data-number="1.5.2"><h3><a href="#uid27" class="heading hyperref"><span class="number">1.5.2 </span><strong>Exercise 2</strong>: Disable Facts Gathering</a></h3>
 <ul>
-<li>Change working directory to <strong>/vagrant/code/chap5</strong>
-</li></ul>
-<div class="code"><div class="highlight"><pre>cd  /vagrant/code/chap5
-</pre></div></div>
-<ul>
-<li>Create roles directory
-</li></ul>
-<div class="code"><div class="highlight"><pre>mkdir roles
-</pre></div></div>
-<ul>
-<li>Generate role scaffolding using ansible-galaxy
-</li></ul>
-<div class="code"><div class="highlight"><pre>ansible-galaxy init --offline --init-path=roles  apache
-</pre></div></div>
-<ul>
-<li>Validate
-</li></ul>
-<div class="code"><div class="highlight"><pre>tree roles/
-</pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>roles/
-  └── apache
-      ├── defaults
-      │   └── main.yml
-      ├── files
-      ├── handlers
-      │   └── main.yml
-      ├── meta
-      │   └── main.yml
-      ├── README.md
-      ├── tasks
-      │   └── main.yml
-      ├── templates
-      ├── tests
-      │   ├── inventory
-      │   └── test.yml
-      └── vars
-          └── main.yml
-</pre></div></div>
-</div>
-<div id="cid16" data-tralics-id="cid16" class="section" data-number="3.2"><h2><a href="#cid16" class="heading hyperref"><span class="number">3.2 </span>Writing Tasks to Install and Start Apache Web Service</a></h2>
-<p>We are going to create three different tasks files, one for each phase of application lifecycle</p>
-<ul>
-<li>Install
+<li>Run ansible playbook and observe the output
 </li>
-<li>Configure
-</li>
-<li>Start Service
+<li>Add the following configuration parameter to ansible.cfg
 </li></ul>
-<p>To begin with, in this part, we will install and start apache.</p>
-<ul>
-<li>To install apache, Create <strong>roles/apache/tasks/install.yml</strong>
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-- name: Install Apache...
-  yum: name=httpd state=latest
+<div class="code"><div class="highlight"><pre>gathering = explicit
 </pre></div></div>
 <ul>
-<li>To start the service, create <strong>roles/apache/tasks/start.yml</strong> with the following content
+<li>Launch ansible playbook run again, observe the output and compare it with the previous run.<span class="intersentencespace"></span>
 </li></ul>
-<div class="code"><div class="highlight"><pre>---
-- name: Starting Apache...
-  service: name=httpd state=started
-</pre></div></div>
-<p>To have these tasks being called, include them into main task.</p>
-<ul>
-<li>Edit roles/apache/tasks/main.yml
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-# tasks file for apache
-- include: install.yml
-- include: start.yml
-</pre></div></div>
-<ul>
-<li>Create a playbook for app servers at /vagrant/chap5/app.yml with following contents
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-- hosts: app
-  become: true
-  roles:
-    - apache
-</pre></div></div>
-<ul>
-<li>Apply app.yml with ansible-playbook
-</li></ul>
-<div class="code"><div class="highlight"><pre>ansible-playbook app.yml
-</pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>PLAY [Playbook to configure App Servers] ***************************************
-
-TASK [setup] *******************************************************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
-
-TASK [apache : Install Apache...] **********************************************
-changed: [192.168.61.13]
-changed: [192.168.61.12]
-
-TASK [apache : Starting Apache...] *********************************************
-changed: [192.168.61.13]
-changed: [192.168.61.12]
-
-PLAY RECAP *********************************************************************
-192.168.61.12              : ok=3    changed=2    unreachable=0    failed=0
-192.168.61.13              : ok=3    changed=2    unreachable=0    failed=0
-</pre></div></div>
-</div>
-<div id="cid17" data-tralics-id="cid17" class="section" data-number="3.3"><h2><a href="#cid17" class="heading hyperref"><span class="number">3.3 </span>Managing Configuration files for Apache</a></h2>
-<ul>
-<li>Copy <strong>index.html</strong> and <strong>httpd.conf</strong> from <strong>chap5/helper</strong> to <strong>/roles/apache/files/</strong> directory
-</li></ul>
-<div class="code"><div class="highlight"><pre>cp helper/index.html helper/httpd.conf roles/apache/files/  
-</pre></div></div>
-<ul>
-<li>Create a task file at <strong>roles/apache/tasks/config.yml</strong> to manage files.<span class="intersentencespace"></span>
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-- name: Copying configuration files...
-  copy: src=httpd.conf
-        dest=/etc/httpd.conf
-        owner=root group=root mode=0644
-
-- name: Copying index.html file...
-  copy: src=index.html
-        dest=/var/www/html/index.html
-        mode=0777
-</pre></div></div>
-</div>
-<div id="cid18" data-tralics-id="cid18" class="section" data-number="3.4"><h2><a href="#cid18" class="heading hyperref"><span class="number">3.4 </span>Adding Notifications and Handlers</a></h2>
-<ul>
-<li>Previously we have create a task in roles/apache/tasks/config.yml to copy over httpd.conf to the app server.<span class="intersentencespace"></span> Update this file to send a notification to restart service on configuration update.<span class="intersentencespace"></span> You simply have to add the line which starts with <strong>notify</strong>
-</li></ul>
-<div class="code"><div class="highlight"><pre>- name: Copying configuration files...
-  copy: src=httpd.conf
-        dest=/etc/httpd.conf
-        owner=root group=root mode=0644
-  notify: Restart apache service
-</pre></div></div>
-<ul>
-<li>Create the notification handler by updating <strong>roles/apache/handlers/main.yml</strong>
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-- name: Restart apache service
-  service: name=httpd state=restarted
-</pre></div></div>
-<p>Then run the app role</p>
-<div class="code"><div class="highlight"><pre>ansible-playbook app.yml
-</pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>PLAY [Playbook to configure App Servers] ***************************************
-
-TASK [setup] *******************************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [apache : Installing Apache...] *******************************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
-
-TASK [apache : Starting Apache...] *********************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [apache : Copying configuration files...] *********************************
-changed: [192.168.61.12]
-changed: [192.168.61.13]
-
-TASK [apache : Copying index.html file...] *************************************
-changed: [192.168.61.12]
-changed: [192.168.61.13]
-
-RUNNING HANDLER [apache : Restart apache service] ******************************
-changed: [192.168.61.12]
-changed: [192.168.61.13]
-
-PLAY RECAP *********************************************************************
-192.168.61.12              : ok=6    changed=3    unreachable=0    failed=0
-192.168.61.13              : ok=6    changed=3    unreachable=0    failed=0
-</pre></div></div>
-</div>
-<div id="cid19" data-tralics-id="cid19" class="section" data-number="3.5"><h2><a href="#cid19" class="heading hyperref"><span class="number">3.5 </span>Troubleshooting Exercise</a></h2>
-<p>Did the above command added the configuration files and restarted the service?<span class="intersentencespace"></span> But we have already written <strong>config.yml</strong>.<span class="intersentencespace"></span> Troubleshoot why its not being run and fix it before you proceed.</p>
-</div>
-<div id="cid20" data-tralics-id="cid20" class="section" data-number="3.6"><h2><a href="#cid20" class="heading hyperref"><span class="number">3.6 </span>Base Role and Role Nesting</a></h2>
-<ul>
-<li>Create a base role with ansible-galaxy utility,
-</li></ul>
-<div class="code"><div class="highlight"><pre>ansible-galaxy init --offline --init-path=roles base
-</pre></div></div>
-<ul>
-<li>Create tasks for base role by editing <strong>/roles/base/tasks/main.yml</strong>
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-# tasks file for base
-# file: roles/base/tasks/main.yml
-  - name: create admin user
-    user: name=admin state=present uid=5001
-
-  - name: remove dojo
-    user: name=dojo  state=present
-
-  - name: install tree
-    yum:  name=tree  state=present
-
-  - name: install ntp
-    yum:  name=ntp   state=present
-
-  - name: start ntp service
-    service: name=ntpd state=started enabled=yes  
-</pre></div></div>
-<ul>
-<li>Define base role as a dependency for apache role,
-</li>
-<li>Update meta data for Apache by editing <strong>roles/apache/meta/main.yml</strong> and adding the following
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-dependencies:
- - {role: base}
-</pre></div></div>
-</div>
-<div id="cid21" data-tralics-id="cid21" class="section" data-number="3.7"><h2><a href="#cid21" class="heading hyperref"><span class="number">3.7 </span>Creating a Site Wide Playbook</a></h2>
-<p>We will create a site wide playbook, which will call all the plays required to configure the complete infrastructure.<span class="intersentencespace"></span> Currently we have a single playbook for App Servers.<span class="intersentencespace"></span> However, in future we would create many.</p>
-<ul>
-<li>Create <strong>site.yml</strong> in /vagrant/chap5 directory and add the following content
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-# This is a site-wide playbook
-# filename: site.yml
-- include: app.yml
-</pre></div></div>
-<ul>
-<li>Execute site-wide playbook as
-</li></ul>
-<div class="code"><div class="highlight"><pre>ansible-playbook site.yml
-</pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>PLAY [Playbook to configure App Servers] ***************************************
-
-TASK [setup] *******************************************************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
-
-TASK [base : create admin user] ************************************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
-
-TASK [base : remove dojo] ******************************************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
-
-TASK [base : install tree] *****************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [base : install ntp] ******************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [base : start ntp service] ************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [apache : Installing Apache...] *******************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [apache : Starting Apache...] *********************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [apache : Copying configuration files...] *********************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
-
-TASK [apache : Copying index.html file...] *************************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
-
-PLAY RECAP *********************************************************************
-192.168.61.12              : ok=10   changed=0    unreachable=0    failed=0
-192.168.61.13              : ok=10   changed=0    unreachable=0    failed=0
-</pre></div></div>
-</div>
-<div id="cid22" data-tralics-id="cid22" class="section" data-number="3.8"><h2><a href="#cid22" class="heading hyperref"><span class="number">3.8 </span>Exercises</a></h2>
-<ul>
-<li>Update httpd.conf and change some configuration parameters.<span class="intersentencespace"></span> Validate the service restarts on configuration updates by applying the sitewide playbook.<span class="intersentencespace"></span>
-</li>
-<li>Pre Task to be run before creating MySQL Role
-<ul>
-<li>From Ansible Control node run the following command to enable repositories.<span class="intersentencespace"></span> This is needed in order to install some of the db packages.<span class="intersentencespace"></span>
-</li></ul>
-</li></ul>
-<div class="code"><div class="highlight"><pre>ansible db -s -a "cp -r /etc/yum.repos.d/repo.bkp/* /etc/yum.repos.d/"
-</pre></div></div>
-<ul>
-<li>Create a Role to install and configure MySQL server
-<ul>
-<li>Create role scaffold for mysql using ansible-galaxy init
-</li>
-<li>Create task to install “mysql-server” and “MySQL-python” packages using yum module
-</li>
-<li>Create a task to start mysqld service
-</li>
-<li>Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts.<span class="intersentencespace"></span> Use helper/my.cnf as a reference.<span class="intersentencespace"></span> The destination for this file is /etv/my.cnf on db servers.<span class="intersentencespace"></span>
-</li>
-<li>Write a handler to restart the service on configuration change.<span class="intersentencespace"></span> Add a notification from the copy resource created earlier.<span class="intersentencespace"></span>
-</li>
-<li>Add a dependency on base role in the metadata for mysql role.<span class="intersentencespace"></span>
-</li>
-<li>Create <strong>db.yml</strong> playbook for configuring all database servers.<span class="intersentencespace"></span> Create definitions to configure <strong>db</strong> group and to apply <strong>mysql</strong> role.<span class="intersentencespace"></span>
-</li></ul>
-</li></ul>
-</div>
-<div id="cid23" data-tralics-id="cid23" class="chapter" data-number="4"><h1><a href="#cid23" class="heading hyperref"><span class="number">Chapter 4 </span>Variables and Templates</a></h1>
-<p>In this tutorial, we are going to make the roles that we created earlier dynamically by adding templates and defining variables.</p>
-</div>
-<div id="cid24" data-tralics-id="cid24" class="section" data-number="4.1"><h2><a href="#cid24" class="heading hyperref"><span class="number">4.1 </span>Variables</a></h2>
-<p>Variables are of two types</p>
-<ul>
-<li>Automatic Variables/ Facts
-</li>
-<li>User Defined Variables
-</li></ul>
-<p>Lets try to discover information about our systems by using facts.</p>
-</div>
-<div id="cid25" data-tralics-id="cid25" class="section" data-number="4.2"><h2><a href="#cid25" class="heading hyperref"><span class="number">4.2 </span>Finding Facts About Systems</a></h2>
-<ul>
-<li>Run the following command to see to facts of db servers
-</li></ul>
-<div class="code"><div class="highlight"><pre>ansible db -m setup
-</pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>192.168.61.11 | SUCCESS =&gt; {
-        "ansible_facts": {
-            "ansible_all_ipv4_addresses": [
-                "10.0.2.15",
-                "192.168.61.11"
-            ],
-            "ansible_all_ipv6_addresses": [
-                "fe80::a00:27ff:fe30:3251",
-                "fe80::a00:27ff:fe8e:83e0"
-            ],
-            "ansible_architecture": "x86_64",
-            "ansible_bios_date": "12/01/2006",
-            "ansible_bios_version": "VirtualBox",
-            "ansible_cmdline": {
-                "KEYBOARDTYPE": "pc",
-                "KEYTABLE": "us",
-                "LANG": "en_GB.UTF-8",
-                "SYSFONT": "latarcyrheb-sun16",
-                "quiet": true,
-                "rd_LVM_LV": "VolGroup/lv_root",
-                "rd_NO_DM": true,
-                "rd_NO_LUKS": true,
-                "rd_NO_MD": true,
-                "rhgb": true,
-                "ro": true,
-                "root": "/dev/mapper/VolGroup-lv_root"
-            },
-            "ansible_date_time": {
-                "date": "2016-09-05",
-                "day": "05",
-                "epoch": "1473104372",
-                "hour": "20",
-                "iso8601": "2016-09-05T19:39:32Z",
-                "iso8601_basic": "20160905T203932677277",
-                "iso8601_basic_short": "20160905T203932",
-                "iso8601_micro": "2016-09-05T19:39:32.677365Z",
-                "minute": "39",
-                "month": "09",
-                "second": "32",
-                "time": "20:39:32",
-                "tz": "BST",
-                "tz_offset": "+0100",
-                "weekday": "Monday",
-                "weekday_number": "1",
-                "weeknumber": "36",
-                "year": "2016"
-            }
-</pre></div></div>
-</div>
-<div id="cid26" data-tralics-id="cid26" class="section" data-number="4.3"><h2><a href="#cid26" class="heading hyperref"><span class="number">4.3 </span>Filtering facts</a></h2>
-<ul>
-<li>Use filter attribute to extract specific data
-</li></ul>
-<div class="code"><div class="highlight"><pre>ansible db -m setup -a "filter=ansible_distribution"
-</pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>192.168.61.11 | SUCCESS =&gt; {
-  "ansible_facts": {
-      "ansible_distribution": "CentOS"
-  },
-  "changed": false
-}  
-</pre></div></div>
-</div>
-<div id="cid27" data-tralics-id="cid27" class="section" data-number="4.4"><h2><a href="#cid27" class="heading hyperref"><span class="number">4.4 </span>Registering Variables</a></h2>
-<p>Lets create a playbook to run a shell command, register the result and display the value of registered variable.</p>
-<p>Create <strong>register.yml</strong> in chap6 directory</p>
-<div class="code"><div class="highlight"><pre>---
-  - name: register variable example
-    hosts: local
-    tasks:
-      - name: run a shell command and register result
-        shell: "/sbin/ifconfig eth1"
-        register: result
-
-      - name: print registered variable
-        debug: var=result
-</pre></div></div>
-<p>Execute the playbook to display information about the registered variable</p>
-<div class="code"><div class="highlight"><pre>ansible-playbook  register.yml
-</pre></div></div>
-</div>
-<div id="cid28" data-tralics-id="cid28" class="section" data-number="4.5"><h2><a href="#cid28" class="heading hyperref"><span class="number">4.5 </span>Creating Templates for Apache</a></h2>
-<ul>
-<li>Create template for apache configuration
-</li>
-<li>This template will change <strong>port number</strong>, <strong>document root</strong> and <strong>index.html</strong> for apache server
-</li>
-<li>Copy <strong>httpd.conf</strong> file from <strong>roles/apache/files/</strong> to <strong>roles/apache/templates</strong>
-</li></ul>
-<div class="code"><div class="highlight"><pre>cp roles/apache/files/httpd.conf roles/apache/templates/httpd.conf.j2
-</pre></div></div>
-<ul>
-<li>Change your working directory to templates
-</li></ul>
-<div class="code"><div class="highlight"><pre>cd roles/apache/templates
-</pre></div></div>
-<ul>
-<li>Change values of following parameters by using template variables in <strong>httpd.conf.j2</strong>
-<ul>
-<li>Listen
-</li>
-<li>DocumentRoot
-</li>
-<li>DirectoryIndex
-</li></ul>
-</li></ul>
-<p>Following code depicts only the parameters changed.<span class="intersentencespace"></span> Rest of the configurations in <em>httpd.conf.j2</em> remain as is</p>
-<div class="code"><div class="highlight"><pre>Listen {{ apache_port }}
-DocumentRoot "{{ custom_root }}"
-DirectoryIndex {{ apache_index }} index.html.var
-</pre></div></div>
-<ul>
-<li>Create a template for index.html as well
-</li></ul>
-<div class="code"><div class="highlight"><pre>cp roles/apache/files/index.html roles/apache/templates/index.html.j2
-</pre></div></div>
-<ul>
-<li>Add the following contents to index.html.j2
-</li></ul>
-<div class="code"><div class="highlight"><pre>&lt;html&gt;
-&lt;body&gt;
-  &lt;h1&gt;  Welcome to Ansible training! &lt;/h1&gt;
-
-  &lt;h2&gt; SYSTEM INFO &lt;/h2&gt;
-  &lt;h4&gt;  ========================= &lt;/h4&gt;
-  &lt;h3&gt; Operating System : {{ ansible_distribution }} &lt;/h3&gt;
-  &lt;h3&gt; IP Address : {{ ansible_eth1['ipv4']['address'] }} &lt;/h3&gt;
-
-  &lt;h2&gt;  My Favourites &lt;/h2&gt;
-  &lt;h4&gt;  ========================= &lt;/h4&gt;
-
-  &lt;h3&gt; color     : {{ fav['color'] }} &lt;/h3&gt;
-  &lt;h3&gt; fruit     : {{ fav['fruit']   }} &lt;/h3&gt;
-  &lt;h3&gt; car       : {{ fav['car']   }} &lt;/h3&gt;
-  &lt;h3&gt; laptop    : {{ fav['laptop']   }} &lt;/h3&gt;
-  &lt;h4&gt;  ========================= &lt;/h4&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</pre></div></div>
-</div>
-<div id="cid29" data-tralics-id="cid29" class="section" data-number="4.6"><h2><a href="#cid29" class="heading hyperref"><span class="number">4.6 </span>Defining Default Variables</a></h2>
-<ul>
-<li>Define values of the variables used in the templates above.<span class="intersentencespace"></span> The default values are defined in <em>roles/apache/defaults/main.yml</em> .<span class="intersentencespace"></span> Lets edit that file and add the following,
-</li></ul>
-<div class="code"><div class="highlight"><pre>apache_port: 80
-custom_root: /var/www/html
-apache_index: index.html
-fav:
-  color: white
-  car: fiat
-  laptop: dell
-  fruit: apple
-</pre></div></div>
-</div>
-<div id="cid30" data-tralics-id="cid30" class="section" data-number="4.7"><h2><a href="#cid30" class="heading hyperref"><span class="number">4.7 </span>Updating Tasks to use Templates</a></h2>
-<ul>
-<li>Since we are now using template instead of static file, we need to edit <em>roles/apache/tasks/config.yml</em> file and use template module
-</li>
-<li>Replace <strong>copy</strong> module with <strong>template</strong> modules as follows,
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-- name: Creating configuration from templates...
-  template: src=httpd.conf.j2
-            dest=/etc/httpd.conf
-            owner=root group=root mode=0644
-  notify: Restart apache service
-- name: Copying index.html file...
-  template: src=index.html.j2
-        dest=/var/www/html/index.html
-        mode=0777
-</pre></div></div>
-<ul>
-<li>Delete httpd.conf and index.html in files directory
-</li></ul>
-<div class="code"><div class="highlight"><pre>rm roles/apache/files/httpd.conf
-rm roles/apache/files/index.html
-</pre></div></div>
-<div id="uid87" data-tralics-id="uid87" class="subsection" data-number="4.7.1"><h3><a href="#uid87" class="heading hyperref"><span class="number">4.7.1 </span>Validating</a></h3>
-<ul>
-<li>Let’s test this template in action
-</li></ul>
-<div class="code"><div class="highlight"><pre>ansible-playbook app.yml
-</pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>PLAY [Playbook to configure App Servers] ***************************************
-
-TASK [setup] *******************************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [base : create admin user] ************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [base : remove dojo] ******************************************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
-
-TASK [base : install tree] *****************************************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
-
-TASK [base : install ntp] ******************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [base : start ntp service] ************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [apache : Installing Apache...] *******************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [apache : Starting Apache...] *********************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [apache : Creating configuration templates...] ****************************
-changed: [192.168.61.12]
-changed: [192.168.61.13]
-
-TASK [apache : Copying index.html file...] *************************************
-changed: [192.168.61.12]
-changed: [192.168.61.13]
-
-RUNNING HANDLER [apache : Restart apache service] ******************************
-changed: [192.168.61.12]
-changed: [192.168.61.13]
-
-PLAY RECAP *********************************************************************
-192.168.61.12              : ok=11   changed=3    unreachable=0    failed=0
-192.168.61.13              : ok=11   changed=3    unreachable=0    failed=0
-</pre></div></div>
 </div></div>
-<div id="cid31" data-tralics-id="cid31" class="section" data-number="4.8"><h2><a href="#cid31" class="heading hyperref"><span class="number">4.8 </span>Playing with Variable Precedence Rules</a></h2>
-<p>Lets define the variables from couple of other places, to learn about the Precedence rules.<span class="intersentencespace"></span> We will create,</p>
-<ul>
-<li>group_vars
-</li>
-<li>playbook vars
-</li></ul>
-<p>Since we are going to define the variables using multi level hashes, lets define the way hashes behave when defined from multiple places.</p>
-<p>Update chapter6/ansible.cfg and add the following,</p>
-<div class="code"><div class="highlight"><pre>hash_behaviour=merge
-</pre></div></div>
-<p>Lets create group_vars and create a group <strong>all</strong> to define vars common to all.</p>
-<div class="code"><div class="highlight"><pre>cd /vagrant/code/chap6
-mkdir group_vars
-cd group_vars
-touch all.yml
-</pre></div></div>
-<p>Edit <strong>group_vars/all</strong> file and add the following contents,</p>
-<div class="code"><div class="highlight"><pre>---
-  fav:
-    color: blue
-    fruit: peach
-</pre></div></div>
-<p>Lets also add vars to playbook.<span class="intersentencespace"></span> Edit app.yml and add vars as below,</p>
-<div class="code"><div class="highlight"><pre>---
-  - name: Playbook to configure App Servers
-    hosts: app
-    become: true
-    vars:
-      fav:
-        fruit: mango
-    roles:
-    - apache
-</pre></div></div>
-<p>Execute the playbook and check the output</p>
-<div class="code"><div class="highlight"><pre>ansible-playbook app.yml
-</pre></div></div>
-<p>If you view the content of the html file generated, you would notice the following,</p>
-<div class="code"><div class="highlight"><pre>&lt;h3&gt; color     : blue &lt;/h3&gt;
-&lt;h3&gt; fruit     : mango &lt;/h3&gt;
-&lt;h3&gt; car       : fiat &lt;/h3&gt;
-&lt;h3&gt; laptop    : dell &lt;/h3&gt;
-</pre></div></div>
-<ul>
-<li>value of color comes from group_vars/all.yml
-</li>
-<li>value of fruit comes from playbook vars
-</li>
-<li>value of car and laptop comes from role defaults
-</li></ul>
-</div>
-<div id="cid32" data-tralics-id="cid32" class="section" data-number="4.9"><h2><a href="#cid32" class="heading hyperref"><span class="number">4.9 </span>Exercises</a></h2>
-<ul>
-<li>Create host specific variables in host_vars/HOSTNAME for one of the app servers, and define some variables values specific to the host.<span class="intersentencespace"></span> See the output after applying playbook on this node.
-</li>
-<li>Generate MySQL Configurations dynamically using templates and modules.
-<ul>
-<li>Create a template for my.cnf.<span class="intersentencespace"></span> Name it as roles/mysql/templates/my.cnf.j2
-</li>
-<li>Replace parameter values with templates variables
-</li>
-<li>Define variables in role defaults.<span class="intersentencespace"></span>
-</li></ul>
-</li></ul>
-</div>
-<div id="cid33" data-tralics-id="cid33" class="chapter" data-number="5"><h1><a href="#cid33" class="heading hyperref"><span class="number">Chapter 5 </span>Control Structures</a></h1>
-<p>In Chapter 7, we will learn about the aspects of conditionals and iterations that affects program’s execution flow in Ansible</p>
-<p class="noindent">Control structures are of two different type</p>
-<ul>
-<li>Conditional
-</li>
-<li>Iterative
-</li></ul>
-</div>
-<div id="cid34" data-tralics-id="cid34" class="section" data-number="5.1"><h2><a href="#cid34" class="heading hyperref"><span class="number">5.1 </span>Conditionals</a></h2>
-<p>Conditionals structures allow Ansible to choose an alternate path.<span class="intersentencespace"></span> Ansible does this by using <em>when</em> statements</p>
-</div>
-<div id="cid35" data-tralics-id="cid35" class="section" data-number="5.2"><h2><a href="#cid35" class="heading hyperref"><span class="number">5.2 </span><strong>When</strong> statements</a></h2>
-<p>When statement becomes helpful, when you will want to skip a particular step on a particular host</p>
-<div id="uid101" data-tralics-id="uid101" class="subsection" data-number="5.2.1"><h3><a href="#uid101" class="heading hyperref"><span class="number">5.2.1 </span>Selectively calling install tasks based on platform</a></h3>
-<ul>
-<li>Edit <em>roles/apache/tasks/main.yml</em>,
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-- include: install.yml
-  when: ansible_os_family == 'RedHat'
-- include: start.yml
-- include: config.yml
-</pre></div></div>
-<ul>
-<li>This will include <em>install.yml</em> only if the OS family is Redhat, otherwise it will skip the installation playbook
-</li></ul>
-</div>
-<div id="uid104" data-tralics-id="uid104" class="subsection" data-number="5.2.2"><h3><a href="#uid104" class="heading hyperref"><span class="number">5.2.2 </span>Configuring MySQL server based on boolean flag</a></h3>
-<ul>
-<li>Edit <em>roles/mysql/tasks/main.yml</em> and add when statements,
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-# tasks file for mysql
-- include: install.yml
-
-- include: start.yml
-  when: mysql.server
-
-- include: config.yml
-  when: mysql.server
-</pre></div></div>
-<ul>
-<li>Edit <em>db.yml</em> as follows,
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-  - name: Playbook to configure DB Servers
-    hosts: db
-    become: true
-    roles:
-    - mysql
-    vars:
-      mysql:
-        server: true
-        config:
-          bind: "{{ ansible_eth1.ipv4.address }}"
-</pre></div></div>
-</div>
-<div id="uid107" data-tralics-id="uid107" class="subsection" data-number="5.2.3"><h3><a href="#uid107" class="heading hyperref"><span class="number">5.2.3 </span>Adding conditionals in Jinja2 templates</a></h3>
-<ul>
-<li>Put the following content in <em>roles/mysql/templates/my.cnf.j2</em>
-</li></ul>
-<div class="code"><div class="highlight"><pre>[mysqld]
-
-{% if mysql.config.datadir is defined %}
-datadir={{ mysql['config']['datadir'] }}
-{% endif %}
-
-{% if mysql.config.socket is defined %}
-socket={{ mysql['config']['socket'] }}
-{% endif %}
-
-symbolic-links=0
-log-error=/var/log/mysqld.log
-
-{% if mysql.config.pid is defined %}
-pid-file={{ mysql['config']['pid']}}
-{% endif %}
-
-[client]
-user=root
-password={{ mysql_root_db_pass }}
-</pre></div></div>
-<ul>
-<li>These conditions will run flawlessly, because we have already defined these Variables
-</li></ul>
-</div>
-<div id="uid110" data-tralics-id="uid110" class="subsection" data-number="5.2.4"><h3><a href="#uid110" class="heading hyperref"><span class="number">5.2.4 </span>Running One Time Tasks</a></h3>
-<ul>
-<li>To see how this works, lets take a look at the code in <em>roles/mysql/tasks/config.yml</em>
-</li></ul>
-<div class="code"><div class="highlight"><pre>        [...]
-- name: reset default root password
-shell: mysql --user=root --password="{{ MYSQL_DEFAULT_PASS }}" --connect-expired-password mysql &lt; /root/.mysql_reset_pass.sql
-run_once: true
-ignore_errors: yes
-       [...]
-</pre></div></div>
-<ul>
-<li>In some cases there may be a need to only run a task one time and only on one host.<span class="intersentencespace"></span> This can be achieved by configuring “run_once” on a task
-</li></ul>
-</div>
-<div id="uid113" data-tralics-id="uid113" class="subsection" data-number="5.2.5"><h3><a href="#uid113" class="heading hyperref"><span class="number">5.2.5 </span>Conditional Execution of Roles</a></h3>
-<ul>
-<li>This will execute app playbook only if the node is running <strong>RedHat</strong> family
-</li>
-<li>Update app.yml to restrict role to be run only on RedHat platform.<span class="intersentencespace"></span>
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-  - name: Playbook to configure App Servers
-    hosts: app
-    become: true
-    vars:
-      fav:
-        fruit: mango
-    roles:
-    - { role: apache, when: ansible_os_family == 'RedHat' }
-</pre></div></div>
-<ul>
-<li>Let’s run this code
-</li></ul>
-<div class="code"><div class="highlight"><pre>ansible-playbook site.yml
-</pre></div></div>
-<p>[Output]</p>
-<p class="noindent"></p><div class="code"><div class="highlight"><pre>TASK [setup] *****************************************************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
-
-TASK [base : create admin user] **********************************************
-skipping: [192.168.61.12]
-skipping: [192.168.61.13]
-
-TASK [base : remove dojo] ****************************************************
-skipping: [192.168.61.12]
-skipping: [192.168.61.13]
-
-TASK [base : install tree] ***************************************************
-skipping: [192.168.61.12]
-skipping: [192.168.61.13]
-
-TASK [base : install ntp] ****************************************************
-skipping: [192.168.61.12]
-skipping: [192.168.61.13]
-
-TASK [base : start ntp service] **********************************************
-skipping: [192.168.61.12]
-skipping: [192.168.61.13]
-
-TASK [apache : Installing Apache...] *****************************************
-skipping: [192.168.61.12]
-skipping: [192.168.61.13]
-
-TASK [apache : Starting Apache...] *******************************************
-skipping: [192.168.61.12]
-skipping: [192.168.61.13]
-
-TASK [apache : Creating configuration from templates...] *********************
-skipping: [192.168.61.12]
-skipping: [192.168.61.13]
-
-TASK [apache : Copying index.html file...] ***********************************
-skipping: [192.168.61.12]
-skipping: [192.168.61.13]
-</pre></div></div>
-</div>
-<div id="uid117" data-tralics-id="uid117" class="subsection" data-number="5.2.6"><h3><a href="#uid117" class="heading hyperref"><span class="number">5.2.6 </span>Exercise</a></h3>
-<p>Try using <strong>Debian</strong> instead of <strong>RedHat</strong> .<span class="intersentencespace"></span> You shall see app role being skipped altogether.<span class="intersentencespace"></span> Don’t forget to put it back after you try this out.</p>
-</div></div>
-<div id="cid36" data-tralics-id="cid36" class="section" data-number="5.3"><h2><a href="#cid36" class="heading hyperref"><span class="number">5.3 </span>Iterations</a></h2>
-<div id="uid118" data-tralics-id="uid118" class="subsection" data-number="5.3.1"><h3><a href="#uid118" class="heading hyperref"><span class="number">5.3.1 </span>Iteration over list</a></h3>
-<ul>
-<li>Create a list of packages
-<ul>
-<li>Let us create the following list of packages in base role.<span class="intersentencespace"></span>
-</li>
-<li>Edit <em>roles/base/defaults/main.yml</em> and put
-</li></ul>
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-# packages list
-demolist:
-  packages:
-    - atk
-    - flac
-    - eggdbus
-    - pixman
-    - polkit
-</pre></div></div>
-<ul>
-<li>Also edit <em>roles/base/tasks/main.yml</em> to iterate over this list of items and install packages
-</li></ul>
-<div class="code"><div class="highlight"><pre>- name: install a list of packages
-  yum:
-    name: "{{ item }}"
-  with_items: {{ demolist.packages }}
-</pre></div></div>
-<ul>
-<li>Let’s check the output
-</li></ul>
-<div class="code"><div class="highlight"><pre>TASK [base : install a list of packages] ***************************************
-changed: [192.168.61.12] =&gt; (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pixman'])
-changed: [192.168.61.13] =&gt; (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pixman'])
-</pre></div></div>
-</div>
-<div id="uid124" data-tralics-id="uid124" class="subsection" data-number="5.3.2"><h3><a href="#uid124" class="heading hyperref"><span class="number">5.3.2 </span>Iterating over a Hash Table/Dictionary</a></h3>
-<ul>
-<li>This iteration can be done with using <strong>with_dict</strong> statement, let us see how
-</li>
-<li>Edit <em>group_vars/all</em> file from the <strong>parent directory</strong> and define a dictionary of mysql databases and users to be created
-</li></ul>
-<div class="code"><div class="highlight"><pre>---
-  fav:
-    color: blue
-    fruit: peach
-  mysql_bind: "{{ ansible_eth0.ipv4.address }}"
-  mysql:
-    databases:
-      infinity:
-        state: present
-      peace:
-        state: present
-    users:
-      dojo:
-        pass: PassWord@1234
-        host: '%'
-        priv: '*.*:ALL'
-        state: present
-      koko:
-        pass: f8Usg3ord@1we28
-        host: '%'
-        priv: '*.*:ALL'
-        state: present
-</pre></div></div>
-<ul>
-<li><strong>Append</strong> the following iteration in <em>roles/mysql/tasks/config.yml</em>
-</li></ul>
-<div class="code"><div class="highlight"><pre>- name: create mysql databases
-  mysql_db:
-    name: "{{ item.key }}"
-    state: "{{ item.value.state }}"
-  with_dict: "{{ mysql['databases'] }}"
-
-- name: create mysql users
-  mysql_user:
-    name: "{{ item.key }}"
-    host: "{{ item.value.host }}"
-    password: "{{ item.value.pass }}"
-    priv: "{{ item.value.priv }}"
-    state: "{{ item.value.state }}"
-  with_dict: "{{ mysql['users'] }}"
-</pre></div></div>
-<ul>
-<li>Execute the <em>db</em> playbook to verify the output
-</li></ul>
-<div class="code"><div class="highlight"><pre>ansible-playbook db.yml
-</pre></div></div>
-</div></div>
-<div id="cid37" data-tralics-id="cid37" class="section" data-number="5.4"><h2><a href="#cid37" class="heading hyperref"><span class="number">5.4 </span>Exercises</a></h2>
-<ul>
-<li>Define dictionary of properties for a new database user in group_vars/all.<span class="intersentencespace"></span> Observe if it gets created automatically output by running db.yml playbook.<span class="intersentencespace"></span> Validate if the user is been actually present by logging on to the mysql server and checking status.<span class="intersentencespace"></span>
-</li>
-<li>Update index.html.j2 to iterate over the dictionary of favorites and generate html content to display it instead of adding multiple lines.<span class="intersentencespace"></span>
-</li>
-<li>Define a hash/dictionary of apache virtual hosts to be created and create a template which would iterate over that dictionary and create vhost configurations.<span class="intersentencespace"></span>
-</li>
-<li>Learn about what else you could loop over, as well as how to do so by reading this document http://docs.ansible.com/ansible/playbooks_loops.html#id12
-</li></ul>
-</div>
     </div>
   </body>
 </html>

@@ -1,0 +1,16 @@
+Ansible Tutorial
+
+	Chapter 01  :  Introduction to Ansible
+	Chapter 02  :  Setting up the Learning Environment
+	Chapter xx 	:	 Inventory, Host Patterns etc.
+	Chapter 03  :  Getting Started with Ansible - Ad Hoc Server Management
+	Chapter 04  :  Writing our first Playbook
+								 Exploring Modules
+	Chapter 05  :  Roles
+	Chapter 06  :  Variables and Templates
+	Chapter 07  :  Control Structures - Conditionals and Iterators
+	Chapter xx	:  Ansible Vault
+	Chapter 08  :  Node Discovery and Clustering
+	Chapter 09  :  Managing Multiple Environments
+	Chapter 10  :  Deployment Orchestration
+	Chapter xx  :  Ansible Tower

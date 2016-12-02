@@ -1,15 +1,15 @@
-This is tralics 2.15.1, a LaTeX to XML translator, running on vagrant
+This is tralics 2.15.1, a LaTeX to XML translator, running on Gouravs-MacBook-Pro-2
 Copyright INRIA/MIAOU/APICS/MARELLE 2002-2012, Jos\'e Grimm
 Licensed under the CeCILL Free Software Licensing Agreement
-Starting translation of file /tmp/polytex20160927-5895-1t8p9hi.tex.
+Starting translation of file /var/folders/2d/cbz7kdk13rlgp6g0_x3fyjtr0000gn/T/polytex20161202-57563-cithio.tex.
 Dummy default configuration file used.
 Bib stats: seen 0 entries.
 Math stats: formulas 0, kernels 0, trivial 0, \mbox 0, large 0, small 0.
-Buffer realloc 1, string 1368, size 12986, merge 0
+Buffer realloc 1, string 1368, size 13282, merge 0
 Macros created 198, deleted 10; hash size 2388; foonotes 0.
 Save stack +18 -18.
 Attribute list search 1512(1505) found 1071 in 1122 elements (1120 at boot).
 Number of ref 0, of used labels 0, of defined labels 0, of ext. ref. 0.
-Output written on /tmp/polytex20160927-5895-1t8p9hi.xml (192 bytes).
+Output written on /var/folders/2d/cbz7kdk13rlgp6g0_x3fyjtr0000gn/T/polytex20161202-57563-cithio.xml (201 bytes).
 No error found.
-(For more information, see transcript file /tmp/polytex20160927-5895-1t8p9hi.log)
+(For more information, see transcript file /var/folders/2d/cbz7kdk13rlgp6g0_x3fyjtr0000gn/T/polytex20161202-57563-cithio.log)

@@ -13,4 +13,4 @@ Ansible vs Chef/Puppet
 
  * Ansible Tower is expensive, not per node.
 
- * 
+ * Custom modules for ansible can be written in any language. Does not have to be python. Modules return JSON data.

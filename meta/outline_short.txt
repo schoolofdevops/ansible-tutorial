@@ -1,17 +1,45 @@
-Docker Primer
+Ansible Primer
 
 	Chapter 01  :  Introduction to Ansible
 	Chapter 02  :  Setting up the Learning Envioronment
+	Chapter xx 	:	 Inventory, Host Patterns etc.
 	Chapter 03  :  Getting Started with Ansible - Ad Hoc Server Management
 	Chapter 04  :  Writing our first Playbook
+								 Exploring Modules
 	Chapter 05  :  Roles
 	Chapter 06  :  Variables and Templates
 	Chapter 07  :  Control Structures - Conditionals and Iterators
+	Chapter xx	:  Ansible Vault
 	Chapter 08  :  Node Discovery and Clustering
 	Chapter 09  :  Managing Multiple Environments
 	Chapter 10  :  Deployment Orchestration
+	Chapter xx  :  Ansible Tower
+
+  Chapter xx  :  Ansible and windows
 	Chapter 11  :  Extending Ansible
 	Chapter 12  :  Ansible and Docker
 	Chapter 13  :  Ansible and Cloud (AWS)
 	Chapter 14  :  Ansible Best Practices
 	Chapter 15  :  Demos
+
+  Testing Ansible Code 
+	Tags
+
+Course Goals
+
+Pre requisites
+ - Linux/Unix Fundamentals
+ - Scripting
+ - Familiarity with Command Line Interface
+ - Familiarity with a Text Editor
+ - Systems Administration Tasks
+
+ Target Audience
+  - This course is for Systems Administrators,
+	  Operations Folks,
+		Build and Release Engineers who are
+		managing systems at scale using scripts or manual approaches.
+
+Who would like to learn
+  - how to effectively provision and configure systems at scale
+	  with ease.
