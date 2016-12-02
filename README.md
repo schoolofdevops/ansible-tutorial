@@ -2,12 +2,12 @@
 
 * [ Chapter 1: Introduction to Ansible ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/intro.md)
 * [ Chapter 2: Setting up Learning Environment ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/setup.md)
-* [Chapter 3: Ad Hoc Server Management  Management](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/chapter3.md)
+* [Chapter 3: Ad Hoc Server Management  Management](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/ad_hoc.md)
 * [ Chapter 4: Modules - The Batteries Included ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/modules.md)
 * [ Chapter 5: Playbooks - Learning to Write Infrastructure as a Code ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/playbooks.md)
-* [Chapter 6: Working with Roles ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/manuscript/chapter5.md)
-* [Chapter 7: Variables and Templates](https://github.com/schoolofdevops/ansible-tutorial/blob/master/manuscript/chapter6.md)
-* [Chapter 8: Control Structures](https://github.com/schoolofdevops/ansible-tutorial/blob/master/manuscript/chapter7.md)
+* [Chapter 6: Working with Roles ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/manuscript/roles.md)
+* [Chapter 7: Variables and Templates](https://github.com/schoolofdevops/ansible-tutorial/blob/master/manuscript/templates_and_variables.md)
+* [Chapter 8: Control Structures](https://github.com/schoolofdevops/ansible-tutorial/blob/master/manuscript/control_structures.md)
 
 
 ### License (CC-BY-NC-ND)
