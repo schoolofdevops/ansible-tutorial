@@ -10,7 +10,7 @@ In this tutorial we are going to create simple, static role for apache which wil
   * Change working  directory to **/vagrant/code/chap5**
 
 ```
-cd  /vagrant/code/chap5
+cd  chap6
 ```
 
   * Create roles directory
