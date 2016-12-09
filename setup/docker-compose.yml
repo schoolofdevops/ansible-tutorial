@@ -41,7 +41,7 @@ services:
     domainname: schoolofdevops.com
     hostname: app1
   app2:
-    image: schoolofdevops/ubuntu-node:v1.0
+    image: schoolofdevops/ubuntu-node:v2.0
     ports:
       - "2225:22"
       - "8002:80"
