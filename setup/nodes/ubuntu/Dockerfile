@@ -3,7 +3,7 @@ MAINTAINER Babu <babu@initcron.org>
 
 RUN apt-get update
 
-RUN apt-get install -y openssh-server sudo vim python
+RUN apt-get install -y openssh-server sudo vim python python-apt python-pip
 RUN mkdir /var/run/sshd
 
 COPY motd.sh /opt/
