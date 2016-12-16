@@ -6,7 +6,7 @@ networks:
 
 services:
   control:
-    image: schoolofdevops/ansible-controller:v1.0
+    image: schoolofdevops/ansible-controller:v1.1
     ports:
       - "80:8000"
       - "2222:22"
