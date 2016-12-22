@@ -224,7 +224,7 @@ cd group_vars
 touch prod.yml
 ```
 
-Edit **group_vars/prod** file and add the following contents,  
+Edit **group_vars/prod.yml** file and add the following contents,  
 
 ```
 ---
@@ -268,12 +268,13 @@ If you view the content of the html file generated, you would notice the followi
 
 ```
 
+
 | fav item | role defaults     | group_vars     | playbook_vars |
-| color | :------------- | :------------- | :------------- |
-| color | white | **blue** |  |
+| :------------- | :------------- | :------------- | :------------- |
+| color | white | **blue** |   |
 | fruit | fiat      |  peach     | **mango** |
-| car | **dell**       |        | |
-| laptop | **apple**       |        | |
+| car | **dell**       |        |  |
+| laptop | **apple**       |        |  |
 
   * value of color comes from group_vars/all.yml  
   * value of fruit comes from playbook vars  
@@ -282,10 +283,12 @@ If you view the content of the html file generated, you would notice the followi
 
 ##### Registered  Variables
 
-    Lets create a playbook to run a shell command, register the result and display the value of registered variable.
+Lets create a playbook to run a shell command, register the result and display the value of registered variable.
 
-    Create **register.yml** in chap6 directory
-  ```
+
+Create **register.yml** in chap6 directory
+
+```
   ---
     - name: register variable example
       hosts: local
@@ -296,13 +299,15 @@ If you view the content of the html file generated, you would notice the followi
 
         - name: print registered variable
           debug: var=result
-  ```
+```
 
   Execute the playbook to display information about the registered variable.
-  ```
+
+```
   ansible-playbook  register.yml
 
-  ```
+```
+
 
 
 
