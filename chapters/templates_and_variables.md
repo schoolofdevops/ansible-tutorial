@@ -1,4 +1,4 @@
-# Chapter 6: Variables and Templates  
+# Templates and Variables  
 In this  tutorial, we  are going to make the roles that we created earlier dynamically by adding templates and defining variables.
 
 ### Variables  
@@ -9,7 +9,7 @@ Variables are of two types
 
 Lets try to discover information about our systems by using facts.
 
-#### 6.1  Finding Facts About Systems
+#### Finding Facts About Systems
 
   * Run the following command to see to facts of db servers  
 ```
@@ -28,38 +28,9 @@ Lets try to discover information about our systems by using facts.
             "ansible_all_ipv6_addresses": [
                 "fe80::a00:27ff:fe30:3251",
                 "fe80::a00:27ff:fe8e:83e0"
-            ],
-            "ansible_architecture": "x86_64",
-            "ansible_bios_date": "12/01/2006",
-            "ansible_bios_version": "VirtualBox",
-            "ansible_cmdline": {
-                "KEYBOARDTYPE": "pc",
-                "KEYTABLE": "us",
-                "LANG": "en_GB.UTF-8",
-                "SYSFONT": "latarcyrheb-sun16",
-                "quiet": true,
-                "rd_LVM_LV": "VolGroup/lv_root",
-                "rd_NO_DM": true,
-                "rd_NO_LUKS": true,
-                "rd_NO_MD": true,
-                "rhgb": true,
-                "ro": true,
-                "root": "/dev/mapper/VolGroup-lv_root"
-            },
-            "ansible_date_time": {
-                "date": "2016-09-05",
-                "day": "05",
-                "epoch": "1473104372",
-                "hour": "20",
-                "iso8601": "2016-09-05T19:39:32Z",
-                "iso8601_basic": "20160905T203932677277",
-                "iso8601_basic_short": "20160905T203932",
-                "iso8601_micro": "2016-09-05T19:39:32.677365Z",
-                "minute": "39",
-                "month": "09",
-                "second": "32",
-                "time": "20:39:32",
-                "tz": "BST",
+
+
+.....
                 "tz_offset": "+0100",
                 "weekday": "Monday",
                 "weekday_number": "1",
@@ -89,31 +60,7 @@ Lets try to discover information about our systems by using facts.
 }  
 ```
 
-##### Registering  Variables
-  Lets create a playbook to run a shell command, register the result and display the value of registered variable.
-
-  Create **register.yml** in chap6 directory
-```
----
-  - name: register variable example
-    hosts: local
-    tasks:
-      - name: run a shell command and register result
-        shell: "/sbin/ifconfig eth1"
-        register: result
-
-      - name: print registered variable
-        debug: var=result
-```
-
-Execute the playbook to display information about the registered variable.
-```
-ansible-playbook  register.yml
-
-```
-
-
-### 6.2 Creating Templates for Apache
+### Creating Templates for Apache
   * Create template for apache configuration    
   * This template will change **port number**, **document root** and **index.html** for  apache server    
   * Copy **httpd.conf** file from **roles/apache/files/** to **roles/apache/templates**    
@@ -141,9 +88,10 @@ Following code depicts only the parameters changed. Rest of the configurations i
 
 ```
 
-    Listen {{ apache_port }}
-    DocumentRoot "{{ custom_root }}"
-    DirectoryIndex {{ apache_index }} index.html.var
+   Listen {{ apache_port }}
+   DocumentRoot "{{ custom_root }}"
+   DirectoryIndex {{ apache_index }} index.html.var
+
 
 ```  
 
@@ -162,7 +110,7 @@ Following code depicts only the parameters changed. Rest of the configurations i
     <h2> SYSTEM INFO </h2>
     <h4>  ========================= </h4>
     <h3> Operating System : {{ ansible_distribution }} </h3>
-    <h3> IP Address : {{ ansible_eth1['ipv4']['address'] }} </h3>
+    <h3> IP Address : {{ ansible_eth0['ipv4']['address'] }} </h3>
 
 
     <h2>  My Favourites </h2>
@@ -180,7 +128,7 @@ Following code depicts only the parameters changed. Rest of the configurations i
 ```
 
 
-### 6.3 Defining Default Variables  
+### Defining Default Variables  
 
   * Define values of the variables used in the templates above.  The default values are defined in *roles/apache/defaults/main.yml* . Lets edit that file and add the following,   
 
@@ -196,7 +144,7 @@ Following code depicts only the parameters changed. Rest of the configurations i
 
 ```  
 
-### 6.4 Updating Tasks to use Templates
+### Updating Tasks to use Templates
 
   * Since we are now using template instead of static file, we need to edit *roles/apache/tasks/config.yml* file and use template module  
   * Replace **copy** module with **template** modules as follows,    
@@ -205,14 +153,20 @@ Following code depicts only the parameters changed. Rest of the configurations i
 ```
 ---
 - name: Creating configuration from templates...
-  template: src=httpd.conf.j2
-            dest=/etc/httpd.conf
-            owner=root group=root mode=0644
+  template: >
+    src=httpd.conf.j2
+    dest=/etc/httpd.conf
+    owner=root
+    group=root
+    mode=0644
   notify: Restart apache service
+
 - name: Copying index.html file...
-  template: src=index.html.j2
-        dest=/var/www/html/index.html
-        mode=0777
+  template: >
+    src=index.html.j2
+    dest=/var/www/html/index.html
+    mode=0777
+
 ```  
 
   * Delete httpd.conf and index.html in files directory   
@@ -236,41 +190,7 @@ TASK [setup] *******************************************************************
 ok: [192.168.61.13]
 ok: [192.168.61.12]
 
-TASK [base : create admin user] ************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [base : remove dojo] ******************************************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
-
-TASK [base : install tree] *****************************************************
-ok: [192.168.61.12]
-ok: [192.168.61.13]
-
-TASK [base : install ntp] ******************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [base : start ntp service] ************************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [apache : Installing Apache...] *******************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [apache : Starting Apache...] *********************************************
-ok: [192.168.61.13]
-ok: [192.168.61.12]
-
-TASK [apache : Creating configuration templates...] ****************************
-changed: [192.168.61.12]
-changed: [192.168.61.13]
-
-TASK [apache : Copying index.html file...] *************************************
-changed: [192.168.61.12]
-changed: [192.168.61.13]
+.....
 
 RUNNING HANDLER [apache : Restart apache service] ******************************
 changed: [192.168.61.12]
@@ -281,7 +201,7 @@ PLAY RECAP *********************************************************************
 192.168.61.13              : ok=11   changed=3    unreachable=0    failed=0
 ```
 
-### 6.5 Playing with Variable Precedence Rules  
+### Variable Precedence Rules in Action
 
 Lets define the variables from couple of other places, to learn about the Precedence rules. We will create,  
    * group_vars  
@@ -289,22 +209,22 @@ Lets define the variables from couple of other places, to learn about the Preced
 
 Since we are going to define the variables using multi level hashes, lets define the way hashes behave when defined from multiple places.  
 
-Update chapter6/ansible.cfg and add the following,  
+Update chap7/ansible.cfg and add the following,  
 
 ```
 hash_behaviour=merge
 ```
 
-Lets create group_vars and create a group **all** to define vars common to all.  
+Lets create group_vars and create a group **prod** to define vars common to all prod hosts.  
 
 ```
-cd /vagrant/code/chap6
+cd chap7
 mkdir group_vars
 cd group_vars
-touch all.yml
+touch prod.yml
 ```
 
-Edit **group_vars/all** file and add the following contents,  
+Edit **group_vars/prod** file and add the following contents,  
 
 ```
 ---
@@ -348,9 +268,43 @@ If you view the content of the html file generated, you would notice the followi
 
 ```
 
+| fav item | role defaults     | group_vars     | playbook_vars |
+| color | :------------- | :------------- | :------------- |
+| color | white | **blue** |  |
+| fruit | fiat      |  peach     | **mango** |
+| car | **dell**       |        | |
+| laptop | **apple**       |        | |
+
   * value of color comes from group_vars/all.yml  
   * value of fruit comes from playbook vars  
   * value of car and laptop comes from role defaults  
+
+
+##### Registered  Variables
+
+    Lets create a playbook to run a shell command, register the result and display the value of registered variable.
+
+    Create **register.yml** in chap6 directory
+  ```
+  ---
+    - name: register variable example
+      hosts: local
+      tasks:
+        - name: run a shell command and register result
+          shell: "/sbin/ifconfig eth1"
+          register: result
+
+        - name: print registered variable
+          debug: var=result
+  ```
+
+  Execute the playbook to display information about the registered variable.
+  ```
+  ansible-playbook  register.yml
+
+  ```
+
+
 
 
 ## Exercises
