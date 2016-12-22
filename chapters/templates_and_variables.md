@@ -273,7 +273,7 @@ If you view the content of the html file generated, you would notice the followi
 | :------------- | :------------- | :------------- | :------------- |
 | color | white | **blue** |   |
 | fruit | fiat      |  peach     | **mango** |
-| car | **dell**       |        |  |
+| car | **fiat**       |        |  |
 | laptop | **apple**       |        |  |
 
   * value of color comes from group_vars/all.yml  
