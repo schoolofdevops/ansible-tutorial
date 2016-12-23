@@ -47,7 +47,7 @@ When statement becomes helpful, when you will want to skip a particular step on 
         mysql:
           server: true
           config:
-            bind: "{{ ansible_eth1.ipv4.address }}"
+            bind: "{{ ansible_eth0.ipv4.address }}"
 
   ```  
 
@@ -163,7 +163,8 @@ skipping: [192.168.61.13]
 * Create a list of packages  
   * Let us create the following list of packages in base role.  
   * Edit *roles/base/defaults/main.yml* and put  
-  ```
+
+```
 ---
 # packages list
 demolist:
@@ -174,7 +175,8 @@ demolist:
     - pixman
     - polkit
 
-  ```  
+```  
+
   * Also edit *roles/base/tasks/main.yml* to iterate over this list of items and install packages
 
 ```
