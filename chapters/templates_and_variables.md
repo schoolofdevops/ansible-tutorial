@@ -1,7 +1,7 @@
 # Templates and Variables  
 In this  tutorial, we  are going to make the roles that we created earlier dynamically by adding templates and defining variables.
 
-### Variables  
+## Variables  
 
 Variables are of two types
   * Automatic Variables/ Facts
@@ -9,7 +9,7 @@ Variables are of two types
 
 Lets try to discover information about our systems by using facts.
 
-#### Finding Facts About Systems
+### Finding Facts About Systems
 
   * Run the following command to see to facts of db servers  
 ```
@@ -40,7 +40,7 @@ Lets try to discover information about our systems by using facts.
 
 ```
 
-##### Filtering facts  
+### Filtering facts  
 
   * Use filter attribute to extract specific data  
 
@@ -60,7 +60,7 @@ Lets try to discover information about our systems by using facts.
 }  
 ```
 
-### Creating Templates for Apache
+## Creating Templates for Apache
   * Create template for apache configuration    
   * This template will change **port number**, **document root** and **index.html** for  apache server    
   * Copy **httpd.conf** file from **roles/apache/files/** to **roles/apache/templates**    
@@ -177,7 +177,8 @@ Following code depicts only the parameters changed. Rest of the configurations i
 
 ```
 
-##### Validating
+#### Validating
+
   * Let's test this template in action   
 ```
   ansible-playbook app.yml
@@ -201,7 +202,7 @@ PLAY RECAP *********************************************************************
 192.168.61.13              : ok=11   changed=3    unreachable=0    failed=0
 ```
 
-### Variable Precedence Rules in Action
+## Variable Precedence in Action
 
 Lets define the variables from couple of other places, to learn about the Precedence rules. We will create,  
    * group_vars  
@@ -281,7 +282,7 @@ If you view the content of the html file generated, you would notice the followi
   * value of car and laptop comes from role defaults  
 
 
-##### Registered  Variables
+## Registered  Variables
 
 Lets create a playbook to run a shell command, register the result and display the value of registered variable.
 
@@ -308,9 +309,100 @@ Create **register.yml** in chap6 directory
 
 ```
 
+## Adding support for Ubuntu
 
+Apache role that we have developed supports only RedHat based systems at the moment. To add support for ubuntu (app2), we must handle platform specific differences.
 
+e.g.
 
+|   | RedHat | Debian     |
+| :------------- | :------------- | :------------- |
+| Package Name | httpd       | apache2       |
+| Service Name | httpd       | apache2       |
+
+OS specific configurations can be defined by creating role vars and by including those in tasks.
+
+file: roles/apache/vars/RedHat.yml  
+```
+---
+apache:
+  package:
+    name: httpd
+  service:
+    name: httpd
+    status: started
+```
+
+file: roles/apache/vars/Debian.yml  
+```
+---
+apache:
+  package:
+    name: apache2
+  service:
+    name: apache2
+    status: started
+```
+
+Lets now selectively include those var files from tasks/main.yml .  Also selectively call configurations.
+file: role/apache/tasks/main.yml
+
+```
+---
+# tasks file for apache
+  - include_vars: "{{ ansible_os_family }}.yml"
+  - include: install.yml
+  - include: start.yml
+  - include: config_{{ ansible_os_family }}.yml  
+```
+
+We are now going to create two different config tasks. Since the current config is applicable to RedHat, lets rename it to config_RedHat.yml
+
+```
+mv roles/apache/tasks/config.yml roles/apache/tasks/config_RedHat.yml
+```
+
+We will now create a new config for Debian
+
+file: roles/apache/tasks/config_Debian.yml  
+```
+- name: Copying index.html file...
+  template: >
+    src=index.html.j2
+    dest=/var/www/html/index.html
+    mode=0777
+
+```
+
+Update tasks and handlers to install and start the correct service
+
+tasks/install.yml  
+```
+---
+  - name: install httpd on centos
+    package: >
+      name={{ apache['package']['name']}}
+      state=installed
+```
+
+tasks/start.yml  
+```
+---
+  - name: start httpd service
+    service: >
+      name={{ apache['service']['name']}}
+      state={{ apache['service']['status']}}
+```
+
+handlers/main.yml  
+```
+---
+# handlers file for apache
+  - name: restart apache service
+    service: >
+      name={{ apache['service']['name']}}
+      state=restarted
+```
 
 ## Exercises
   * Create host specific variables in host_vars/HOSTNAME for one of the app servers, and define some variables values specific to the host. See the output after applying playbook on this node.  
