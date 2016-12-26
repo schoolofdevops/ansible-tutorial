@@ -6,9 +6,9 @@ networks:
 
 services:
   control:
-    image: schoolofdevops/ansible-controller
+    image: schoolofdevops/ansible-controller:v1.1
     ports:
-      - "80:8000"
+      - "8000:8000"
       - "2222:22"
     environment:
       CODEBOX_USERNAME: admin
@@ -21,7 +21,7 @@ services:
     domainname: schoolofdevops.com
     hostname: control
   lb:
-    image: schoolofdevops/centos-node
+    image: schoolofdevops/centos-node:v1.0
     container_name: lb
     ports:
        - "2223:22"
@@ -31,27 +31,27 @@ services:
     domainname: schoolofdevops.com
     hostname: lb
   app1:
-    image: schoolofdevops/centos-node
+    image: schoolofdevops/centos-node:v1.0
     ports:
        - "2224:22"
-       - "8001:80"
+       - "81:80"
     networks:
       - custom
     container_name: app1
     domainname: schoolofdevops.com
     hostname: app1
   app2:
-    image: schoolofdevops/ubuntu-node
+    image: schoolofdevops/ubuntu-node:v2.1
     ports:
       - "2225:22"
-      - "8002:80"
+      - "82:80"
   networks:
       - custom
     container_name: app2
     domainname: schoolofdevops.com
     hostname: app2
   db:
-    image: schoolofdevops/centos-node
+    image: schoolofdevops/centos-node:v1.0
     ports:
       - "2226:22"
       - "3306:3306"
