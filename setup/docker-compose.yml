@@ -45,7 +45,7 @@ services:
     ports:
       - "2225:22"
       - "82:80"
-  networks:
+    networks:
       - custom
     container_name: app2
     domainname: schoolofdevops.com
