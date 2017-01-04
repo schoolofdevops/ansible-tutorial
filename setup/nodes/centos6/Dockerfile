@@ -13,7 +13,7 @@ RUN chmod +x /opt/motd.sh && \
 
 RUN echo -e "service sshd start && service sshd stop && \
     useradd devops && \
-    echo 'devops:schoolofdevops' | chpasswd && \
+    echo 'devops:codespaces' | chpasswd && \
     /usr/sbin/sshd -D" > /bootstrap.sh
 
 RUN echo 'devops ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers

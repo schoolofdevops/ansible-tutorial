@@ -15,7 +15,7 @@ RUN chmod +x /opt/motd.sh && \
 #RUN echo 'root:123456' |chpasswd
 
 RUN useradd -ms /bin/bash devops && \
-    echo 'devops:schoolofdevops' |chpasswd && \
+    echo 'devops:codespaces' |chpasswd && \
     adduser devops sudo
 
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
