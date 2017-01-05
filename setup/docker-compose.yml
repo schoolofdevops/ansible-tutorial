@@ -12,7 +12,7 @@ services:
       - "2222:22"
     environment:
       CODEBOX_USERNAME: admin
-      CODEBOX_PASSWORD: schoolofdevops
+      CODEBOX_PASSWORD: codespaces
     volumes:
       - ./code:/workspace
     networks:
