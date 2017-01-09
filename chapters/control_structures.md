@@ -1,16 +1,17 @@
-# Chapter 7: Control Structures
+# Control Structures  
 In Chapter 7, we will learn about the aspects of conditionals and iterations that affects program's execution flow in Ansible  
 Control structures are of two different type  
-* Conditional
+* Conditional  
 * Iterative  
 
 ## Conditionals  
 Conditionals structures allow Ansible to choose an alternate path. Ansible does this by using *when* statements  
-### 7.1 **When** statements  
-When statement becomes helpful, when you will want to skip a particular step on a particular host
 
-#### 7.1.1 Selectively calling install tasks based on platform  
-  * Edit *roles/apache/tasks/main.yml*,
+### **When** statements  
+When statement becomes helpful, when you will want to skip a particular step on a particular host  
+
+#### Selectively calling install tasks based on platform  
+  * Edit *roles/apache/tasks/main.yml*,  
   ```
   ---
   - include: install.yml
@@ -18,10 +19,10 @@ When statement becomes helpful, when you will want to skip a particular step on 
   - include: start.yml
   - include: config.yml
 
-  ```
+  ```  
   * This will include *install.yml* only if the OS family is Redhat, otherwise it will skip the installation playbook  
 
-#### 7.1.2 Configuring MySQL server based on boolean flag
+#### Configuring MySQL server based on boolean flag  
   * Edit *roles/mysql/tasks/main.yml* and add when statements,  
   ```
   ---
@@ -35,7 +36,7 @@ When statement becomes helpful, when you will want to skip a particular step on 
     when: mysql.server
   ```  
 
-  * Edit *db.yml* as follows,
+  * Edit *db.yml* as follows,  
   ```
   ---
     - name: Playbook to configure DB Servers
@@ -51,7 +52,7 @@ When statement becomes helpful, when you will want to skip a particular step on 
 
   ```  
 
-#### 7.1.3 Adding conditionals in Jinja2 templates  
+#### Adding conditionals in Jinja2 templates  
   * Put the following content in *roles/mysql/templates/my.cnf.j2*  
   ```
   [mysqld]
@@ -78,7 +79,7 @@ When statement becomes helpful, when you will want to skip a particular step on 
 
   * These conditions will run flawlessly, because we have already defined these Variables  
 
-#### 7.1.4 Running One Time Tasks
+#### Running One Time Tasks  
   * To see how this works, lets take a look at the code in *roles/mysql/tasks/config.yml*  
   ```
           [...]
@@ -88,12 +89,12 @@ When statement becomes helpful, when you will want to skip a particular step on 
   ignore_errors: yes
          [...]
 
-  ```   
+  ```  
   * In some cases there may be a need to only run a task one time and only on one host. This can be achieved by configuring “run_once” on a task  
 
-#### 7.1.5 Conditional Execution of Roles  
+#### Conditional Execution of Roles  
   * This will execute app playbook only if the node is running **RedHat** family  
-  * Update app.yml to restrict role to be run only on RedHat platform.
+  * Update app.yml to restrict role to be run only on RedHat platform.  
 
 ```
   ---
@@ -113,7 +114,7 @@ When statement becomes helpful, when you will want to skip a particular step on 
   ```
   [Output]  
   ```
-  TASK [setup] *******************************************************************
+TASK [setup] *******************************************************************
 ok: [192.168.61.12]
 ok: [192.168.61.13]
 
@@ -155,15 +156,14 @@ skipping: [192.168.61.13]
 
   ```  
 
-**Exercise**: Try using **Debian** instead of **RedHat** . You shall see app role being skipped altogether. Don't forget to put it back after you try this out.
+**Exercise**: Try using **Debian** instead of **RedHat** . You shall see app role being skipped altogether. Don't forget to put it back after you try this out.  
 
 
-### 7.2 Iterations  
-#### 7.2.1 Iteration over list  
-* Create a list of packages  
+### Iterations  
+#### Iteration over list  
+  * Create a list of packages  
   * Let us create the following list of packages in base role.  
   * Edit *roles/base/defaults/main.yml* and put  
-
 ```
 ---
 # packages list
@@ -176,9 +176,7 @@ demolist:
     - polkit
 
 ```  
-
-  * Also edit *roles/base/tasks/main.yml* to iterate over this list of items and install packages
-
+  * Also edit *roles/base/tasks/main.yml* to iterate over this list of items and install packages  
 ```
   - name: install a list of packages
     yum:
@@ -186,16 +184,16 @@ demolist:
     with_items: {{ demolist.packages }}
 
 ```  
-  * Let's check the output
+  * Let's check the output  
   ```
   TASK [base : install a list of packages] ***************************************
 changed: [192.168.61.12] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pixman'])
 changed: [192.168.61.13] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pixman'])
 
   ```  
-#### 7.2.2 Iterating over a Hash Table/Dictionary
+#### Iterating over a Hash Table/Dictionary
   * This iteration can be done with using **with_dict** statement, let us see how  
-  * Edit *group_vars/all* file from the **parent directory** and define a dictionary of mysql databases and users to be created
+  * Edit *group_vars/all* file from the **parent directory** and define a dictionary of mysql databases and users to be created  
 
 ```
 ---
@@ -221,8 +219,8 @@ changed: [192.168.61.13] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pix
         priv: '*.*:ALL'
         state: present
 
-```
-  * **Append** the following iteration in *roles/mysql/tasks/config.yml*
+```  
+  * **Append** the following iteration in *roles/mysql/tasks/config.yml*  
 
 ```
   - name: create mysql databases
@@ -244,13 +242,9 @@ changed: [192.168.61.13] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pix
   * Execute the *db* playbook to verify the output  
    ```
     ansible-playbook db.yml
-   ```
-
-## Exercises
-  * Define dictionary of properties for a new database user  in group_vars/all. Observe if it gets created automatically  output by running db.yml playbook. Validate if the user is been actually present by logging on to the mysql server and checking status.
-
-  * Update index.html.j2 to iterate over the dictionary of favorites and generate html content to display it instead of adding multiple lines.
-
-  * Define a hash/dictionary  of apache virtual hosts to be created  and create a template which would iterate over that dictionary and create vhost configurations.
-
-  * Learn about what else you could loop over, as well as how to do so by reading this document http://docs.ansible.com/ansible/playbooks_loops.html#id12
+   ```  
+## Exercises  
+  * Define dictionary of properties for a new database user  in group_vars/all. Observe if it gets created automatically  output by running db.yml playbook. Validate if the user is been actually present by logging on to the mysql server and checking status.  
+  * Update index.html.j2 to iterate over the dictionary of favorites and generate html content to display it instead of adding multiple lines.  
+  * Define a hash/dictionary  of apache virtual hosts to be created  and create a template which would iterate over that dictionary and create vhost configurations.  
+  * Learn about what else you could loop over, as well as how to do so by reading this document http://docs.ansible.com/ansible/playbooks_loops.html#id12  
