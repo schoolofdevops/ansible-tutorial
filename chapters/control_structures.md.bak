@@ -19,7 +19,8 @@ When statement becomes helpful, when you will want to skip a particular step on 
   - include: start.yml
   - include: config.yml
 
-  ```  
+  ```
+  
   * This will include *install.yml* only if the OS family is Redhat, otherwise it will skip the installation playbook  
 
 #### Configuring MySQL server based on boolean flag  
