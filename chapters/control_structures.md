@@ -23,3 +23,33 @@ When statement becomes helpful, when you will want to skip a particular step on 
 ```
 
 * This will include *install.yml* only if the OS family is Redhat, otherwise it will skip the installation playbook  
+
+#### Configuring MySQL server based on boolean flag  
+* Edit *roles/mysql/tasks/main.yml* and add when statements,
+
+```
+---
+# tasks file for mysql
+- include: install.yml
+
+- include: start.yml
+  when: mysql.server
+
+- include: config.yml
+  when: mysql.server
+```
+
+* Edit *db.yml* as follows,  
+```
+---
+  - name: Playbook to configure DB Servers
+    hosts: db
+    become: true
+    roles:
+    - mysql
+    vars:
+      mysql:
+        server: true
+        config:
+          bind: "{{ ansible_eth0.ipv4.address }}"
+```
