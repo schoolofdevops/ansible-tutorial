@@ -82,3 +82,17 @@ password={{ mysql_root_db_pass }}
 ```
 
 * These conditions will run flawlessly, because we have already defined these Variables  
+
+#### Running One Time Tasks  
+* To see how this works, lets take a look at the code in *roles/mysql/tasks/config.yml*
+
+```
+      [...]
+- name: reset default root password
+shell: mysql --user=root --password="{{ MYSQL_DEFAULT_PASS }}" --connect-expired-password mysql < /root/.mysql_reset_pass.sql
+run_once: true
+ignore_errors: yes
+     [...]
+```
+
+* In some cases there may be a need to only run a task one time and only on one host. This can be achieved by configuring “run_once” on a task
