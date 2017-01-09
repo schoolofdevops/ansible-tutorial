@@ -12,7 +12,8 @@ Conditionals structures allow Ansible to choose an alternate path. Ansible does 
 When statement becomes helpful, when you will want to skip a particular step on a particular host  
 
 #### Selectively calling install tasks based on platform  
-* Edit *roles/apache/tasks/main.yml*,  
+* Edit *roles/apache/tasks/main.yml*,
+
 ```
 ---
 - include: install.yml
