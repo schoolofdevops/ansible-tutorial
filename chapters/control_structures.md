@@ -1,8 +1,10 @@
 # Control Structures
 In Chapter 7, we will learn about the aspects of conditionals and iterations that affects program's execution flow in Ansible  
-Control structures are of two different type  
+Control structures are of two different type
+
 * Conditional  
 * Iterative  
+
 ## Conditionals  
 Conditionals structures allow Ansible to choose an alternate path. Ansible does this by using *when* statements  
 
