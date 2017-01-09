@@ -87,7 +87,7 @@ password={{ mysql_root_db_pass }}
 * To see how this works, lets take a look at the code in *roles/mysql/tasks/config.yml*
 
 ```
-      [...]
+    [...]
 - name: reset default root password
 shell: mysql --user=root --password="{{ MYSQL_DEFAULT_PASS }}" --connect-expired-password mysql < /root/.mysql_reset_pass.sql
 run_once: true
@@ -96,3 +96,71 @@ ignore_errors: yes
 ```
 
 * In some cases there may be a need to only run a task one time and only on one host. This can be achieved by configuring “run_once” on a task
+
+#### Conditional Execution of Roles  
+* This will execute app playbook only if the node is running **RedHat** family
+* Update app.yml to restrict role to be run only on RedHat platform.
+
+```
+---
+  - name: Playbook to configure App Servers
+    hosts: app
+    become: true
+    vars:
+      fav:
+        fruit: mango
+    roles:
+    - { role: apache, when: ansible_os_family == 'RedHat' }
+```
+
+* Let's run this code
+
+```
+ansible-playbook site.yml
+```
+[Output]
+
+```
+TASK [setup] *******************************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [base : create admin user] ************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [base : remove dojo] ******************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [base : install tree] *****************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [base : install ntp] ******************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [base : start ntp service] ************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [apache : Installing Apache...] *******************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [apache : Starting Apache...] *********************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [apache : Creating configuration from templates...] ***********************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [apache : Copying index.html file...] *************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+```
+
+**Exercise**: Try using **Debian** instead of **RedHat** . You shall see app role being skipped altogether. Don't forget to put it back after you try this out.  
