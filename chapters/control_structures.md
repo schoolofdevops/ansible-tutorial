@@ -12,7 +12,7 @@ Conditionals structures allow Ansible to choose an alternate path. Ansible does 
 
 ### **When** statements
 
-When statement becomes helpful, when you will want to skip a particular step on a particular host  
+When statement becomes helpful, when you will want to skip a particular step on a particular host
 
 #### Selectively calling install tasks based on platform
 
@@ -26,7 +26,7 @@ When statement becomes helpful, when you will want to skip a particular step on 
 - include: config.yml
 ```
 
-* This will include *install.yml* only if the OS family is Redhat, otherwise it will skip the installation playbook  
+* This will include *install.yml* only if the OS family is Redhat, otherwise it will skip the installation playbook
 
 #### Configuring MySQL server based on boolean flag
 
@@ -60,6 +60,7 @@ When statement becomes helpful, when you will want to skip a particular step on 
         bind: "{{ ansible_eth0.ipv4.address }}"
 ```
 
+
 #### Adding conditionals in Jinja2 templates
 
 * Put the following content in *roles/mysql/templates/my.cnf.j2*
@@ -87,7 +88,7 @@ user=root
 password={{ mysql_root_db_pass }}
 ```
 
-* These conditions will run flawlessly, because we have already defined these Variables  
+* These conditions will run flawlessly, because we have already defined these Variables
 
 #### Running One Time Tasks
 
