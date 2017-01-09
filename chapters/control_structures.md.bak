@@ -18,8 +18,8 @@ When statement becomes helpful, when you will want to skip a particular step on 
     when: ansible_os_family == 'RedHat'
   - include: start.yml
   - include: config.yml
-  ```
 
+  ```  
   * This will include *install.yml* only if the OS family is Redhat, otherwise it will skip the installation playbook  
 
 #### Configuring MySQL server based on boolean flag  
@@ -159,8 +159,10 @@ skipping: [192.168.61.13]
 **Exercise**: Try using **Debian** instead of **RedHat** . You shall see app role being skipped altogether. Don't forget to put it back after you try this out.  
 
 
-### Iterations  
-#### Iteration over list  
+### Iterations
+
+#### Iteration over list
+
   * Create a list of packages  
   * Let us create the following list of packages in base role.  
   * Edit *roles/base/defaults/main.yml* and put  
@@ -246,5 +248,7 @@ changed: [192.168.61.13] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pix
 ## Exercises  
   * Define dictionary of properties for a new database user  in group_vars/all. Observe if it gets created automatically  output by running db.yml playbook. Validate if the user is been actually present by logging on to the mysql server and checking status.  
   * Update index.html.j2 to iterate over the dictionary of favorites and generate html content to display it instead of adding multiple lines.  
-  * Define a hash/dictionary  of apache virtual hosts to be created  and create a template which would iterate over that dictionary and create vhost configurations.  
-  * Learn about what else you could loop over, as well as how to do so by reading this document http://docs.ansible.com/ansible/playbooks_loops.html#id12  
+
+  * Define a hash/dictionary  of apache virtual hosts to be created  and create a template which would iterate over that dictionary and create vhost configurations.
+
+  * Learn about what else you could loop over, as well as how to do so by reading this document http://docs.ansible.com/ansible/playbooks_loops.html#id12
