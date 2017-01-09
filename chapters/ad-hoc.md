@@ -22,7 +22,7 @@ remote_user = vagrant
 inventory   = myhosts.ini
 ```  
 
-## 3.2 Creating Host Inventory  
+## Creating Host Inventory  
 
 Create a new file called *myhosts.ini* in the same directory.
 Let's create three groups as follows,
@@ -45,8 +45,8 @@ localhost ansible_connection=local
 
 The inventory file should look like below.  
 
-## 3.3 Setting up passwordless ssh access to inventory hosts  
-### 3.3.1 Generating ssh keypair on control host  
+## Setting up passwordless ssh access to inventory hosts  
+### Generating ssh keypair on control host  
 
 Now on control host, execute the following command  
 
@@ -79,7 +79,7 @@ The key's randomart image is:
 +-----------------+
 ```
 
-### 3.3.2 Copying public key to inventory hosts  
+### Copying public key to inventory hosts  
 
 Copy public key of control node to other hosts  
 
@@ -104,7 +104,7 @@ Warning: Permanently added '192.168.61.11' (RSA) to the list of known hosts.
 
 The password for user *vagrant* is *vagrant*  
 
-### 3.3.3 Validate the passwordless login  
+### Validate the passwordless login  
 
 Let us check the connection of control node with other hosts  
 
@@ -118,7 +118,7 @@ ssh vagrant@192.168.61.13
 ssh vagrant@192.168.61.14
 ```  
 
-### 3.3.4 Ansible ping  
+### Ansible ping  
 
 We will use Ansible to make sure all the hosts are reachable  
 
@@ -150,11 +150,11 @@ localhost | SUCCESS => {
 }
 ```  
 
-## 3.4 Ad Hoc commands:  
+## Ad Hoc commands:  
 
 Try running following *fire-and-forget* Ad-Hoc commands...  
 
-### 3.4.1 Run *hostname* command on all hosts  
+### Run *hostname* command on all hosts  
 
 Let us print the hostname of all the hosts  
 
@@ -178,7 +178,7 @@ app
 app
 ```  
 
-### 3.4.2 Check the *uptime*  
+### Check the *uptime*  
 
 How long the hosts are *up*?  
 
@@ -203,7 +203,7 @@ localhost | SUCCESS | rc=0 >>
  13:17:14 up  1:36,  2 users,  load average: 0.00, 0.00, 0.00
 ```
 
-### 3.4.3 Check memory info on app servers  
+### Check memory info on app servers  
 Does my app servers have any disk space *free*?  
 
 ```
@@ -226,7 +226,7 @@ Mem:        372916     121984     250932        776      11228      46336
 Swap:      4128764          0    4128764
 ```
 
-### 3.4.4 Installing packages  
+### Installing packages  
 
 Let us *install* Docker on app servers  
 
@@ -340,7 +340,7 @@ Installed:
 Complete!
 ```
 
-### 3.4.5 Running commands one machine at a time  
+### Running commands one machine at a time  
 
 Do you want a command to run on *one machine at a time* ?  
 
@@ -348,8 +348,8 @@ Do you want a command to run on *one machine at a time* ?
 ansible all -f 1 -a "free"
 ```   
 
-## 3.5 Using *modules* to manage the state of infrastructure  
-### 3.5.1 Creating users and groups using *user* and *group*  
+## Using *modules* to manage the state of infrastructure  
+### Creating users and groups using *user* and *group*  
 To create a group  
 
 ```
@@ -412,7 +412,7 @@ This will create user *devops*,
 
 ```  
 
-### 3.5.2 Copy a file using *copy* modules  
+### Copy a file using *copy* modules  
 We will copy file from control node to app servers.  
 
 
@@ -455,7 +455,7 @@ File will be copied over to our app server machines...
 
 ```  
 
-## 3.6 Exercises :  
+## Exercises :  
 1. Add another system group (not inventory group) called *lb* in inventory with respective host ip
 2. Add a system user called *joe* on all  app servers. Make sure that the user has a home directory  
 3. Install  package *vim* using the correct *Ad-Hoc* command
