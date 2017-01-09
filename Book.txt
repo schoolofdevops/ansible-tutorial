@@ -4,4 +4,4 @@ maketitle
 tableofcontents
 preface.md
 mainmatter:
-ad-hoc.md
+modules.md
