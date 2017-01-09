@@ -163,4 +163,40 @@ skipping: [192.168.61.13]
 
 ```
 
-**Exercise**: Try using **Debian** instead of **RedHat** . You shall see app role being skipped altogether. Don't forget to put it back after you try this out.  
+**Exercise**: Try using **Debian** instead of **RedHat** . You shall see app role being skipped altogether. Don't forget to put it back after you try this out.
+
+### Iterations
+#### Iteration over list
+* Create a list of packages  
+* Let us create the following list of packages in base role.  
+* Edit *roles/base/defaults/main.yml* and put
+
+```
+---
+# packages list
+demolist:
+  packages:
+    - atk
+    - flac
+    - eggdbus
+    - pixman
+    - polkit
+
+```
+
+* Also edit *roles/base/tasks/main.yml* to iterate over this list of items and install packages
+
+```
+- name: install a list of packages
+  yum:
+    name: "{{ item }}"
+  with_items: {{ demolist.packages }}
+```
+
+* Let's check the output
+
+```
+TASK [base : install a list of packages] ***************************************
+changed: [192.168.61.12] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pixman'])
+changed: [192.168.61.13] => (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pixman'])
+```  
