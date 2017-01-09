@@ -106,3 +106,47 @@ Warning: Permanently added '192.168.61.11' (RSA) to the list of known hosts.
 ```
 
 The password for user *vagrant* is *vagrant*
+
+### Validate the passwordless login
+
+Let us check the connection of control node with other hosts
+
+```
+ssh vagrant@192.168.61.11
+
+ssh vagrant@192.168.61.12
+
+ssh vagrant@192.168.61.13
+
+ssh vagrant@192.168.61.14
+```
+
+### Ansible ping
+
+We will use Ansible to make sure all the hosts are reachable
+
+```
+ansible all -m ping
+
+```
+
+[Output]
+
+```
+192.168.61.13 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+192.168.61.11 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+192.168.61.12 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+localhost | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+```
