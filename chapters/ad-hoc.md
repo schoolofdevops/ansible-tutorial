@@ -1,4 +1,4 @@
-# Chapter : Getting Started with Ansible (Ad Hoc Server Management)  
+# Getting Started with Ansible (Ad Hoc Server Management)  
 ## Creating Project Specific Ansible Configuration  
 
 The default configurations for ansible resides at /etc/ansible/ansible.cfg. Instead of relying on defaults, we are going to creates  a custom configuration file for our project. The advantage with that is we could take this configurations on any host and execute it the same way, without touching the default system configurations.  This custom configurations will essentially  override the values in /etc/ansible/ansible/cfg.
@@ -143,7 +143,7 @@ localhost | SUCCESS => {
 }
 ```  
 
-## Ad Hoc commands:  
+## Ad Hoc commands  
 Try running following *fire-and-forget* Ad-Hoc commands...  
 
 ### Run *hostname* command on all hosts  
