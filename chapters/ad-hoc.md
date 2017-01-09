@@ -1,11 +1,9 @@
-# Chapter : Getting Started with Ansible (Ad Hoc Server Management)
-
-## Creating Project Specific Ansible Configuration
+# Chapter : Getting Started with Ansible (Ad Hoc Server Management)  
+## Creating Project Specific Ansible Configuration  
 
 The default configurations for ansible resides at /etc/ansible/ansible.cfg. Instead of relying on defaults, we are going to creates  a custom configuration file for our project. The advantage with that is we could take this configurations on any host and execute it the same way, without touching the default system configurations.  This custom configurations will essentially  override the values in /etc/ansible/ansible/cfg.
 
-###  Ansible configuration file
-
+###  Ansible configuration file  
 Change into /vagrant/code/chap3 directory on your ansible host. Create a file called ansible.cfg  Add  the following contents to the file.
 
 On Ansible Control node,
@@ -23,7 +21,6 @@ inventory   = myhosts.ini
 ```  
 
 ## Creating Host Inventory  
-
 Create a new file called *myhosts.ini* in the same directory.
 Let's create three groups as follows,
 
@@ -47,7 +44,6 @@ The inventory file should look like below.
 
 ## Setting up passwordless ssh access to inventory hosts  
 ### Generating ssh keypair on control host  
-
 Now on control host, execute the following command  
 
 ```
@@ -80,7 +76,6 @@ The key's randomart image is:
 ```
 
 ### Copying public key to inventory hosts  
-
 Copy public key of control node to other hosts  
 
 ```
@@ -105,7 +100,6 @@ Warning: Permanently added '192.168.61.11' (RSA) to the list of known hosts.
 The password for user *vagrant* is *vagrant*  
 
 ### Validate the passwordless login  
-
 Let us check the connection of control node with other hosts  
 
 ```
@@ -119,7 +113,6 @@ ssh vagrant@192.168.61.14
 ```  
 
 ### Ansible ping  
-
 We will use Ansible to make sure all the hosts are reachable  
 
 ```
@@ -151,11 +144,9 @@ localhost | SUCCESS => {
 ```  
 
 ## Ad Hoc commands:  
-
 Try running following *fire-and-forget* Ad-Hoc commands...  
 
 ### Run *hostname* command on all hosts  
-
 Let us print the hostname of all the hosts  
 
 ```
@@ -179,7 +170,6 @@ app
 ```  
 
 ### Check the *uptime*  
-
 How long the hosts are *up*?  
 
 ```
@@ -227,7 +217,6 @@ Swap:      4128764          0    4128764
 ```
 
 ### Installing packages  
-
 Let us *install* Docker on app servers  
 
 ```
@@ -341,7 +330,6 @@ Complete!
 ```
 
 ### Running commands one machine at a time  
-
 Do you want a command to run on *one machine at a time* ?  
 
 ```
@@ -455,7 +443,7 @@ File will be copied over to our app server machines...
 
 ```  
 
-## Exercises :  
+## Exercises:  
 1. Add another system group (not inventory group) called *lb* in inventory with respective host ip
 2. Add a system user called *joe* on all  app servers. Make sure that the user has a home directory  
 3. Install  package *vim* using the correct *Ad-Hoc* command
