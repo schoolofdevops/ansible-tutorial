@@ -1,6 +1,5 @@
 # Getting Started with Ansible (Ad Hoc Server Management)  
 ## Creating Project Specific Ansible Configuration  
-
 The default configurations for ansible resides at /etc/ansible/ansible.cfg. Instead of relying on defaults, we are going to creates  a custom configuration file for our project. The advantage with that is we could take this configurations on any host and execute it the same way, without touching the default system configurations.  This custom configurations will essentially  override the values in /etc/ansible/ansible/cfg.
 
 ###  Ansible configuration file  
@@ -218,7 +217,6 @@ Swap:      4128764          0    4128764
 
 ### Installing packages  
 Let us *install* Docker on app servers  
-
 ```
 ansible app -a "yum install -y docker-engine"
 ```
@@ -244,7 +242,6 @@ ansible app -s -a "yum install -y docker-engine"
 This will install docker in our app servers  
 
 [Output]  
-
 ```
 192.168.61.12 | SUCCESS | rc=0 >>
 Loaded plugins: fastestmirror, priorities
@@ -402,8 +399,6 @@ This will create user *devops*,
 
 ### Copy a file using *copy* modules  
 We will copy file from control node to app servers.  
-
-
 ```
 ansible app -m copy -a "src=/vagrant/test.txt dest=/tmp/test.txt"
 ```   
