@@ -340,3 +340,74 @@ Installed:
 
 Complete!
 ```
+
+### Running commands one machine at a time  
+Do you want a command to run on *one machine at a time* ?  
+
+```
+ansible all -f 1 -a "free"
+```   
+
+## Using *modules* to manage the state of infrastructure
+
+### Creating users and groups using *user* and *group*
+
+To create a group
+
+```
+ansible app -s -m group -a "name=admin state=present"
+```
+
+The output will be,
+
+```
+192.168.61.13 | SUCCESS => {
+    "changed": true,
+    "gid": 501,
+    "name": "admin",
+    "state": "present",
+    "system": false
+}
+192.168.61.12 | SUCCESS => {
+    "changed": true,
+    "gid": 501,
+    "name": "admin",
+    "state": "present",
+    "system": false
+}
+```
+
+To create a user
+
+```
+ansible app -s -m user -a "name=devops group=admin createhome=yes"
+```
+
+This will create user *devops*,
+
+```
+192.168.61.13 | SUCCESS => {
+    "changed": true,
+    "comment": "",
+    "createhome": true,
+    "group": 501,
+    "home": "/home/devops",
+    "name": "devops",
+    "shell": "/bin/bash",
+    "state": "present",
+    "system": false,
+    "uid": 501
+}
+192.168.61.12 | SUCCESS => {
+    "changed": true,
+    "comment": "",
+    "createhome": true,
+    "group": 501,
+    "home": "/home/devops",
+    "name": "devops",
+    "shell": "/bin/bash",
+    "state": "present",
+    "system": false,
+    "uid": 501
+}
+```
