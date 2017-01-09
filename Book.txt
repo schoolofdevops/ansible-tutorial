@@ -5,3 +5,4 @@ tableofcontents
 preface.md
 mainmatter:
 modules.md
+playbooks.md
