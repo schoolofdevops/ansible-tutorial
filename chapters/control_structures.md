@@ -6,12 +6,15 @@ Control structures are of two different type
 * Iterative  
 
 ## Conditionals  
+
 Conditionals structures allow Ansible to choose an alternate path. Ansible does this by using *when* statements  
 
 ### **When** statements  
+
 When statement becomes helpful, when you will want to skip a particular step on a particular host  
 
 #### Selectively calling install tasks based on platform  
+
 * Edit *roles/apache/tasks/main.yml*,
 
 ```
@@ -25,6 +28,7 @@ When statement becomes helpful, when you will want to skip a particular step on 
 * This will include *install.yml* only if the OS family is Redhat, otherwise it will skip the installation playbook  
 
 #### Configuring MySQL server based on boolean flag  
+
 * Edit *roles/mysql/tasks/main.yml* and add when statements,
 
 ```
@@ -56,6 +60,7 @@ When statement becomes helpful, when you will want to skip a particular step on 
 ```
 
 #### Adding conditionals in Jinja2 templates  
+
 * Put the following content in *roles/mysql/templates/my.cnf.j2*
 
 ```
@@ -84,6 +89,7 @@ password={{ mysql_root_db_pass }}
 * These conditions will run flawlessly, because we have already defined these Variables  
 
 #### Running One Time Tasks  
+
 * To see how this works, lets take a look at the code in *roles/mysql/tasks/config.yml*
 
 ```
@@ -98,6 +104,7 @@ ignore_errors: yes
 * In some cases there may be a need to only run a task one time and only on one host. This can be achieved by configuring “run_once” on a task
 
 #### Conditional Execution of Roles  
+
 * This will execute app playbook only if the node is running **RedHat** family
 * Update app.yml to restrict role to be run only on RedHat platform.
 
@@ -168,6 +175,7 @@ skipping: [192.168.61.13]
 ### Iterations
 
 #### Iteration over list  
+
 * Create a list of packages  
 * Let us create the following list of packages in base role.  
 * Edit *roles/base/defaults/main.yml* and put
