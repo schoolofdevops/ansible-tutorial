@@ -39,17 +39,46 @@ When statement becomes helpful, when you will want to skip a particular step on 
   when: mysql.server
 ```
 
-* Edit *db.yml* as follows,  
+* Edit *db.yml* as follows,
+
 ```
 ---
-  - name: Playbook to configure DB Servers
-    hosts: db
-    become: true
-    roles:
-    - mysql
-    vars:
-      mysql:
-        server: true
-        config:
-          bind: "{{ ansible_eth0.ipv4.address }}"
+- name: Playbook to configure DB Servers
+  hosts: db
+  become: true
+  roles:
+  - mysql
+  vars:
+    mysql:
+      server: true
+      config:
+        bind: "{{ ansible_eth0.ipv4.address }}"
 ```
+
+#### Adding conditionals in Jinja2 templates  
+* Put the following content in *roles/mysql/templates/my.cnf.j2*
+
+```
+[mysqld]
+
+{% if mysql.config.datadir is defined %}
+datadir={{ mysql['config']['datadir'] }}
+{% endif %}
+
+{% if mysql.config.socket is defined %}
+socket={{ mysql['config']['socket'] }}
+{% endif %}
+
+symbolic-links=0
+log-error=/var/log/mysqld.log
+
+{% if mysql.config.pid is defined %}
+pid-file={{ mysql['config']['pid']}}
+{% endif %}
+
+[client]
+user=root
+password={{ mysql_root_db_pass }}
+```
+
+* These conditions will run flawlessly, because we have already defined these Variables  
