@@ -34,7 +34,6 @@ When statement becomes helpful, when you will want to skip a particular step on 
 
 ```
 ---
-# tasks file for mysql
 - include: install.yml
 
 - include: start.yml
