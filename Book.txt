@@ -4,4 +4,7 @@ maketitle
 tableofcontents
 preface.md
 mainmatter:
+modules.md
 playbooks.md
+templates_and_variables.md
+control_structures.md
