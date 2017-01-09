@@ -343,11 +343,11 @@ Complete!
 
 ### Running commands one machine at a time
 
-Do you want a command to run on *one machine at a time* ?  
+Do you want a command to run on *one machine at a time* ?
 
 ```
 ansible all -f 1 -a "free"
-```   
+```
 
 ## Using *modules* to manage the state of infrastructure
 
