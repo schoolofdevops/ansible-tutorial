@@ -165,7 +165,8 @@ skipping: [192.168.61.13]
 
 **Exercise**: Try using **Debian** instead of **RedHat** . You shall see app role being skipped altogether. Don't forget to put it back after you try this out.
 
-### Iterations  
+### Iterations
+
 #### Iteration over list  
 * Create a list of packages  
 * Let us create the following list of packages in base role.  
