@@ -8,7 +8,7 @@ Control structures are of two different type
 
 ## Conditionals
 
-Conditionals structures allow Ansible to choose an alternate path. Ansible does this by using *when* statements  
+Conditionals structures allow Ansible to choose an alternate path. Ansible does this by using *when* statements
 
 ### **When** statements
 
