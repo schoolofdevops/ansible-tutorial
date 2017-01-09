@@ -12,7 +12,7 @@ Conditionals structures allow Ansible to choose an alternate path. Ansible does 
 When statement becomes helpful, when you will want to skip a particular step on a particular host  
 
 #### Selectively calling install tasks based on platform  
-  * Edit *roles/apache/tasks/main.yml*,  
+* Edit *roles/apache/tasks/main.yml*,  
 ```
 ---
 - include: install.yml
@@ -20,4 +20,4 @@ When statement becomes helpful, when you will want to skip a particular step on 
 - include: start.yml
 - include: config.yml
 ```  
-  * This will include *install.yml* only if the OS family is Redhat, otherwise it will skip the installation playbook  
+* This will include *install.yml* only if the OS family is Redhat, otherwise it will skip the installation playbook  
