@@ -412,3 +412,61 @@ This will create user *devops*,
     "uid": 501
 }
 ```
+
+### Copy a file using *copy* modules
+
+We will copy file from control node to app servers.
+
+```
+ansible app -m copy -a "src=/vagrant/test.txt dest=/tmp/test.txt"
+```
+
+File will be copied over to our app server machines...
+
+```
+192.168.61.13 | SUCCESS => {
+    "changed": true,
+    "checksum": "3160f8f941c330444aac253a9e6420cd1a65bfe2",
+    "dest": "/tmp/test.txt",
+    "gid": 500,
+    "group": "vagrant",
+    "md5sum": "9052de4cff7e8a18de586f785e711b97",
+    "mode": "0664",
+    "owner": "vagrant",
+    "size": 11,
+    "src": "/home/vagrant/.ansible/tmp/ansible-tmp-1472991990.29-63683023616899/source",
+    "state": "file",
+    "uid": 500
+}
+192.168.61.12 | SUCCESS => {
+    "changed": true,
+    "checksum": "3160f8f941c330444aac253a9e6420cd1a65bfe2",
+    "dest": "/tmp/test.txt",
+    "gid": 500,
+    "group": "vagrant",
+    "md5sum": "9052de4cff7e8a18de586f785e711b97",
+    "mode": "0664",
+    "owner": "vagrant",
+    "size": 11,
+    "src": "/home/vagrant/.ansible/tmp/ansible-tmp-1472991990.26-218089785548663/source",
+    "state": "file",
+    "uid": 500
+}
+
+```
+
+## Exercises:
+1. Add another system group (not inventory group) called *lb* in inventory with respective host ip
+2. Add a system user called *joe* on all  app servers. Make sure that the user has a home directory
+3. Install  package *vim* using the correct *Ad-Hoc* command
+4. Examine all the available module
+http://docs.ansible.com/ansible/modules_by_category.html
+5. Find out the difference between the *command* module and *shell* module. Try running the following command with both these modules,
+
+```
+"free | grep -i swap"
+```
+
+6. Use command module to show *uptime* on the host  
+7. Install docker-engine using the yum/apt module
+8. Using docker-image module, pull *hello-world* image on web server
