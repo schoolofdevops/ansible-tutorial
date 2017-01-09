@@ -1,4 +1,4 @@
-# Chapter 3 : Getting Started with Ansible (Ad Hoc Server Management)
+# Chapter : Getting Started with Ansible (Ad Hoc Server Management)
 
 ## Creating Project Specific Ansible Configuration
 
