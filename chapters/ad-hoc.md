@@ -226,3 +226,117 @@ Mem:        372916     121984     250932        776      11228      46336
 -/+ buffers/cache:      64420     308496
 Swap:      4128764          0    4128764
 ```
+
+### Installing packages
+
+Let us *install* Docker on app servers
+
+```
+ansible app -a "yum install -y docker-engine"
+```
+
+This command will fail.
+
+[Output]
+
+```
+192.168.61.13 | FAILED | rc=1 >>
+Loaded plugins: fastestmirror, prioritiesYou need to be root to perform this command.
+
+192.168.61.12 | FAILED | rc=1 >>
+Loaded plugins: fastestmirror, prioritiesYou need to be root to perform this command.
+```
+
+Run the fillowing command with sudo permissions.
+
+```
+ansible app -s -a "yum install -y docker-engine"
+```
+
+This will install docker in our app servers
+
+[Output]
+
+```
+192.168.61.12 | SUCCESS | rc=0 >>
+Loaded plugins: fastestmirror, priorities
+Setting up Install Process
+Loading mirror speeds from cached hostfile
+ * base: mirrors.nhanhoa.com
+ * epel: mirror.rise.ph
+ * extras: mirror.fibergrid.in
+ * updates: mirror.fibergrid.in
+283 packages excluded due to repository priority protections
+Resolving Dependencies
+--> Running transaction check
+---> Package docker-engine.x86_64 0:1.7.1-1.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package             Arch         Version              Repository          Size
+================================================================================
+Installing:
+ docker-engine       x86_64       1.7.1-1.el6          local_docker       4.5 M
+
+Transaction Summary
+================================================================================
+Install       1 Package(s)
+
+Total download size: 4.5 M
+Installed size: 19 M
+Downloading Packages:
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : docker-engine-1.7.1-1.el6.x86_64                             1/1
+  Verifying  : docker-engine-1.7.1-1.el6.x86_64                             1/1
+
+Installed:
+  docker-engine.x86_64 0:1.7.1-1.el6
+
+Complete!
+
+192.168.61.13 | SUCCESS | rc=0 >>
+Loaded plugins: fastestmirror, priorities
+Setting up Install Process
+Loading mirror speeds from cached hostfile
+ * base: mirror.fibergrid.in
+ * epel: mirror.rise.ph
+ * extras: mirror.fibergrid.in
+ * updates: mirror.fibergrid.in
+283 packages excluded due to repository priority protections
+Resolving Dependencies
+--> Running transaction check
+---> Package docker-engine.x86_64 0:1.7.1-1.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package             Arch         Version              Repository          Size
+================================================================================
+Installing:
+ docker-engine       x86_64       1.7.1-1.el6          local_docker       4.5 M
+
+Transaction Summary
+================================================================================
+Install       1 Package(s)
+
+Total download size: 4.5 M
+Installed size: 19 M
+Downloading Packages:
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : docker-engine-1.7.1-1.el6.x86_64                             1/1
+  Verifying  : docker-engine-1.7.1-1.el6.x86_64                             1/1
+
+Installed:
+  docker-engine.x86_64 0:1.7.1-1.el6
+
+Complete!
+```
