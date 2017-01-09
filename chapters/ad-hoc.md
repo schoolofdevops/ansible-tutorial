@@ -150,3 +150,79 @@ localhost | SUCCESS => {
     "ping": "pong"
 }
 ```
+
+## Ad Hoc commands
+
+Try running following *fire-and-forget* Ad-Hoc commands...
+
+### Run *hostname* command on all hosts
+
+Let us print the hostname of all the hosts
+
+```
+ansible all -a hostname
+```
+
+[output]
+
+```
+localhost | SUCCESS | rc=0 >>
+ansible
+
+192.168.61.11 | SUCCESS | rc=0 >>
+db
+
+192.168.61.12 | SUCCESS | rc=0 >>
+app
+
+192.168.61.13 | SUCCESS | rc=0 >>
+app
+```
+
+### Check the *uptime*
+
+How long the hosts are *up*?
+
+```
+ansible all -a uptime
+```
+
+[Output]
+
+```
+localhost | SUCCESS | rc=0 >>
+ 13:17:13 up  2:21,  1 user,  load average: 0.16, 0.03, 0.01
+
+192.168.61.12 | SUCCESS | rc=0 >>
+ 13:17:14 up  1:50,  2 users,  load average: 0.00, 0.00, 0.00
+
+192.168.61.13 | SUCCESS | rc=0 >>
+ 13:17:14 up  1:47,  2 users,  load average: 0.00, 0.00, 0.00
+
+192.168.61.11 | SUCCESS | rc=0 >>
+ 13:17:14 up  1:36,  2 users,  load average: 0.00, 0.00, 0.00
+```
+
+### Check memory info on app servers
+
+Does my app servers have any disk space *free*?
+
+```
+ansible app -a free
+```
+
+[Output]
+
+```
+192.168.61.13 | SUCCESS | rc=0 >>
+             total       used       free     shared    buffers     cached
+Mem:        372916     121480     251436        776      11160      46304
+-/+ buffers/cache:      64016     308900
+Swap:      4128764          0    4128764
+
+192.168.61.12 | SUCCESS | rc=0 >>
+             total       used       free     shared    buffers     cached
+Mem:        372916     121984     250932        776      11228      46336
+-/+ buffers/cache:      64420     308496
+Swap:      4128764          0    4128764
+```
