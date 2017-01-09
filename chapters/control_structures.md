@@ -11,12 +11,11 @@ When statement becomes helpful, when you will want to skip a particular step on 
 
 #### Selectively calling install tasks based on platform  
   * Edit *roles/apache/tasks/main.yml*,  
-  ```
-  ---
-  - include: install.yml
-    when: ansible_os_family == 'RedHat'
-  - include: start.yml
-  - include: config.yml
-
-  ```  
+```
+---
+- include: install.yml
+  when: ansible_os_family == 'RedHat'
+- include: start.yml
+- include: config.yml
+```  
   * This will include *install.yml* only if the OS family is Redhat, otherwise it will skip the installation playbook  
