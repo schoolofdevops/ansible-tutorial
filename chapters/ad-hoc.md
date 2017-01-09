@@ -341,7 +341,8 @@ Installed:
 Complete!
 ```
 
-### Running commands one machine at a time  
+### Running commands one machine at a time
+
 Do you want a command to run on *one machine at a time* ?  
 
 ```
