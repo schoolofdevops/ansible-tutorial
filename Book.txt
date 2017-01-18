@@ -4,6 +4,7 @@ maketitle
 tableofcontents
 preface.md
 mainmatter:
+ad-hoc.md
 modules.md
 playbooks.md
 templates_and_variables.md

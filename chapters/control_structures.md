@@ -269,5 +269,7 @@ ansible-playbook db.yml
 
 ## Exercises
 
-* Define dictionary of properties for a new database user  in group_vars/all. Observe if it gets created automatically  output by running db.yml playbook. Validate if the user is been actually present by logging on to the mysql server and checking status.  
-* Update index.html.j2 to iterate over the dictionary of favorites and generate html content to display it instead of adding multiple lines.  
+* Define dictionary of properties for a new database user  in group_vars/all. Observe if it gets created automatically  output by running db.yml playbook. Validate if the user is been actually present by logging on to the mysql server and checking status.
+* Update index.html.j2 to iterate over the dictionary of favorites and generate html content to display it instead of adding multiple lines.
+* Define a hash/dictionary  of apache virtual hosts to be created  and create a template which would iterate over that dictionary and create vhost configurations.
+* Learn about what else you could loop over, as well as how to do so by reading this document http://docs.ansible.com/ansible/playbooks_loops.html#id12
