@@ -1,4 +1,4 @@
-# Chapter 5  : Working with Roles
+# Chapter 6  : Working with Roles
 
 In this tutorial we are going to create simple, static role for apache which will,
   * Install **httpd** package
@@ -6,7 +6,7 @@ In this tutorial we are going to create simple, static role for apache which wil
   * Start httpd service
   * Add a notification and a  handler so that whenever the configuration is updated, service is automatically restarted.
 
-### 5.1 Creating Role Scaffolding for Apache  
+### 6.1 Creating Role Scaffolding for Apache  
   * Change working  directory to **/vagrant/code/chap5**
 
 ```
@@ -56,7 +56,7 @@ tree roles/
 ```
 
 
-### 5.2 Writing Tasks to Install and Start  Apache Web Service
+### 6.2 Writing Tasks to Install and Start  Apache Web Service
 
 We are going to create three different tasks files, one for each phase of application lifecycle
   * Install
@@ -133,7 +133,7 @@ PLAY RECAP *********************************************************************
 ```
 
 
-### 5.3 Managing Configuration files for Apache
+### 6.3 Managing Configuration files for Apache
   * Copy **index.html** and **httpd.conf** from **chap5/helper** to **/roles/apache/files/** directory    
 
 ```
@@ -155,7 +155,7 @@ PLAY RECAP *********************************************************************
         mode=0777
 ```  
 
-#### 5.3.2 Adding Notifications and Handlers   
+#### 6.3.2 Adding Notifications and Handlers   
 
   * Previously we have create a task in roles/apache/tasks/config.yml to copy over httpd.conf to the app server. Update this file to send a notification to restart  service on configuration update.  You simply have to add the line which starts with **notify**
 
@@ -220,7 +220,7 @@ PLAY RECAP *********************************************************************
 Did the above command added the configuration files and restarted the service ? But we have already written **config.yml**. Troubleshoot why its not being run and fix it before you proceed.
 
 
-### 5.4 Base Role and Role Nesting
+### 6.4 Base Role and Role Nesting
 
   * Create a base role with ansible-galaxy utility,  
 ```
@@ -261,7 +261,7 @@ dependencies:
 
 
 
-### 5.5  Creating a Site Wide Playbook
+### 6.5  Creating a Site Wide Playbook
 
 We will create a site wide playbook, which will call all the plays required to configure the complete infrastructure. Currently we have a single  playbook for App Servers. However, in future we would create many.
 
