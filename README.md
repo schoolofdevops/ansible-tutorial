@@ -1,8 +1,8 @@
 # Ansible Tutorial
 
-* [ Chapter 1: Introduction to Ansible ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/intro.md)
-* [ Chapter 2: Setting up Learning Environment ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/setup.md)
-* [Chapter 3: Ad Hoc Server Management  Management](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/ad_hoc.md)
+* [ Chapter 1: Introduction to Ansible (TBA) ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/intro.md)
+* [ Chapter 2: Setting up Learning Environment (TBA) ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/setup.md)
+* [Chapter 3: Ad Hoc Server Management  Management](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/ad-hoc.md)
 * [ Chapter 4: Modules - The Batteries Included ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/modules.md)
 * [ Chapter 5: Playbooks - Learning to Write Infrastructure as a Code ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/playbooks.md)
 * [Chapter 6: Working with Roles ](https://github.com/schoolofdevops/ansible-tutorial/blob/master/chapters/roles.md)
