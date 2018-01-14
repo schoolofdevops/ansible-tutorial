@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Working with Roles - Ultimate Ansible Bootcamp</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Working with Roles";
+    var mkdocs_page_input_path = "roles.md";
+    var mkdocs_page_url = "/roles/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Ultimate Ansible Bootcamp</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Quick Dive</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ad-hoc/">Ad Hoc Server Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../modules/">Modules - The Batteries Included</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../playbooks/">Learning to Write Infrastructure as a Code</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Working with Roles</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#chapter-6-working-with-roles">Chapter 6  : Working with Roles</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#61-creating-role-scaffolding-for-apache">6.1 Creating Role Scaffolding for Apache</a></li>
+        
+            <li><a class="toctree-l4" href="#62-writing-tasks-to-install-and-start-apache-web-service">6.2 Writing Tasks to Install and Start  Apache Web Service</a></li>
+        
+            <li><a class="toctree-l4" href="#63-managing-configuration-files-for-apache">6.3 Managing Configuration files for Apache</a></li>
+        
+            <li><a class="toctree-l4" href="#troubleshooting-exercise">Troubleshooting Exercise</a></li>
+        
+            <li><a class="toctree-l4" href="#exercises">Exercises</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../templates_and_variables/">Variables and Templates</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../control_structures/">Control Structures</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Deep Dive</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ansible-vault/">Ansible Vault</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-windows/">Ansible on Windows</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-pull/">Ansible Pull</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-pull/">Ansible Tower</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../registered_variables/">Registered Variable</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Troubleshooting</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../troubleshooting/">Troubleshooting Techniques</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Ultimate Ansible Bootcamp</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Quick Dive &raquo;</li>
+        
+      
+    
+    <li>Working with Roles</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="chapter-6-working-with-roles">Chapter 6  : Working with Roles</h1>
+<p>In this tutorial we are going to create simple, static role for apache which will,
+  * Install <strong>httpd</strong> package
+  * Configure <strong>httpd.conf</strong>, manage it as a static file
+  * Start httpd service
+  * Add a notification and a  handler so that whenever the configuration is updated, service is automatically restarted.</p>
+<h3 id="61-creating-role-scaffolding-for-apache">6.1 Creating Role Scaffolding for Apache</h3>
+<ul>
+<li>Change working  directory to <strong>/vagrant/code/chap5</strong></li>
+</ul>
+<pre><code>cd  chap6
+</code></pre>
+
+<ul>
+<li>Create roles directory</li>
+</ul>
+<pre><code>mkdir roles
+</code></pre>
+
+<ul>
+<li>Generate role scaffolding using ansible-galaxy</li>
+</ul>
+<pre><code>ansible-galaxy init --offline --init-path=roles  apache
+</code></pre>
+
+<ul>
+<li>Validate</li>
+</ul>
+<pre><code>tree roles/
+</code></pre>
+
+<p>[Output]</p>
+<pre><code>  roles/
+    └── apache
+        ├── defaults
+        │   └── main.yml
+        ├── files
+        ├── handlers
+        │   └── main.yml
+        ├── meta
+        │   └── main.yml
+        ├── README.md
+        ├── tasks
+        │   └── main.yml
+        ├── templates
+        ├── tests
+        │   ├── inventory
+        │   └── test.yml
+        └── vars
+            └── main.yml
+
+</code></pre>
+
+<h3 id="62-writing-tasks-to-install-and-start-apache-web-service">6.2 Writing Tasks to Install and Start  Apache Web Service</h3>
+<p>We are going to create three different tasks files, one for each phase of application lifecycle
+  * Install
+  * Configure
+  * Start Service</p>
+<p>To begin with, in this part, we will install and start apache.</p>
+<ul>
+<li>To install apache, Create <strong>roles/apache/tasks/install.yml</strong></li>
+</ul>
+<pre><code>---
+- name: Install Apache...
+  yum: name=httpd state=latest
+</code></pre>
+
+<ul>
+<li>To start the service, create  <strong>roles/apache/tasks/start.yml</strong> with the following content  </li>
+</ul>
+<pre><code>---
+- name: Starting Apache...
+  service: name=httpd state=started
+</code></pre>
+
+<p>To have these tasks being called, include them into main task.</p>
+<ul>
+<li>Edit roles/apache/tasks/main.yml</li>
+</ul>
+<pre><code>---
+# tasks file for apache
+- include: install.yml
+- include: start.yml
+</code></pre>
+
+<ul>
+<li>Create a playbook for app servers at /vagrant/chap5/app.yml with following contents</li>
+</ul>
+<pre><code>  ---
+  - hosts: app
+    become: true
+    roles:
+      - apache
+</code></pre>
+
+<ul>
+<li>Apply app.yml with ansible-playbook</li>
+</ul>
+<pre><code>  ansible-playbook app.yml
+</code></pre>
+
+<p>[Output]</p>
+<pre><code>PLAY [Playbook to configure App Servers] *********************************************************************
+
+TASK [setup] *******************************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [apache : Install Apache...] **********************************************
+changed: [192.168.61.13]
+changed: [192.168.61.12]
+
+TASK [apache : Starting Apache...] *********************************************
+changed: [192.168.61.13]
+changed: [192.168.61.12]
+
+PLAY RECAP *********************************************************************
+192.168.61.12              : ok=3    changed=2    unreachable=0    failed=0
+192.168.61.13              : ok=3    changed=2    unreachable=0    failed=0
+</code></pre>
+
+<h3 id="63-managing-configuration-files-for-apache">6.3 Managing Configuration files for Apache</h3>
+<ul>
+<li>Copy <strong>index.html</strong> and <strong>httpd.conf</strong> from <strong>chap5/helper</strong> to <strong>/roles/apache/files/</strong> directory    </li>
+</ul>
+<pre><code>    cp helper/index.html helper/httpd.conf roles/apache/files/  
+</code></pre>
+
+<ul>
+<li>Create a task file at <strong>roles/apache/tasks/config.yml</strong> to manage files.    </li>
+</ul>
+<pre><code>---
+- name: Copying configuration files...
+  copy: src=httpd.conf
+        dest=/etc/httpd.conf
+        owner=root group=root mode=0644
+
+- name: Copying index.html file...
+  copy: src=index.html
+        dest=/var/www/html/index.html
+        mode=0777
+</code></pre>
+
+<h4 id="632-adding-notifications-and-handlers">6.3.2 Adding Notifications and Handlers</h4>
+<ul>
+<li>Previously we have create a task in roles/apache/tasks/config.yml to copy over httpd.conf to the app server. Update this file to send a notification to restart  service on configuration update.  You simply have to add the line which starts with <strong>notify</strong></li>
+</ul>
+<pre><code>  - name: Copying configuration files...
+    copy: src=httpd.conf
+          dest=/etc/httpd.conf
+          owner=root group=root mode=0644
+    notify: Restart apache service
+</code></pre>
+
+<ul>
+<li>Create the notification handler by updating   <strong>roles/apache/handlers/main.yml</strong>  </li>
+</ul>
+<pre><code>---
+- name: Restart apache service
+  service: name=httpd state=restarted
+</code></pre>
+
+<pre><code>  ansible-playbook app.yml
+</code></pre>
+
+<p>[Output]  </p>
+<pre><code>
+PLAY [Playbook to configure App Servers] ***************************************
+
+TASK [setup] *******************************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [apache : Installing Apache...] *******************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [apache : Starting Apache...] *********************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [apache : Copying configuration files...] *********************************
+changed: [192.168.61.12]
+changed: [192.168.61.13]
+
+TASK [apache : Copying index.html file...] *************************************
+changed: [192.168.61.12]
+changed: [192.168.61.13]
+
+RUNNING HANDLER [apache : Restart apache service] ******************************
+changed: [192.168.61.12]
+changed: [192.168.61.13]
+
+PLAY RECAP *********************************************************************
+192.168.61.12              : ok=6    changed=3    unreachable=0    failed=0
+192.168.61.13              : ok=6    changed=3    unreachable=0    failed=0
+
+</code></pre>
+
+<h2 id="troubleshooting-exercise">Troubleshooting Exercise</h2>
+<p>Did the above command added the configuration files and restarted the service ? But we have already written <strong>config.yml</strong>. Troubleshoot why its not being run and fix it before you proceed.</p>
+<h3 id="64-base-role-and-role-nesting">6.4 Base Role and Role Nesting</h3>
+<ul>
+<li>Create a base role with ansible-galaxy utility,  </li>
+</ul>
+<pre><code>  ansible-galaxy init --offline --init-path=roles base
+</code></pre>
+
+<ul>
+<li>Create tasks for base role by editing  <strong>/roles/base/tasks/main.yml</strong>  </li>
+</ul>
+<pre><code>---
+# tasks file for base
+# file: roles/base/tasks/main.yml
+  - name: create admin user
+    user: name=admin state=present uid=5001
+
+  - name: remove dojo
+    user: name=dojo  state=present
+
+  - name: install tree
+    yum:  name=tree  state=present
+
+  - name: install ntp
+    yum:  name=ntp   state=present
+
+  - name: start ntp service
+    service: name=ntpd state=started enabled=yes
+
+</code></pre>
+
+<ul>
+<li>Define base role as a dependency for  apache role,  </li>
+<li>Update meta data for Apache by editing <strong>roles/apache/meta/main.yml</strong> and adding the following</li>
+</ul>
+<pre><code>---
+dependencies:
+ - {role: base}
+</code></pre>
+
+<h3 id="65-creating-a-site-wide-playbook">6.5  Creating a Site Wide Playbook</h3>
+<p>We will create a site wide playbook, which will call all the plays required to configure the complete infrastructure. Currently we have a single  playbook for App Servers. However, in future we would create many.</p>
+<ul>
+<li>Create <strong>site.yml</strong> in /vagrant/chap5 directory and add the following content</li>
+</ul>
+<pre><code>  ---
+  # This is a sitewide playbook
+  # filename: site.yml
+  - include: app.yml
+
+</code></pre>
+
+<ul>
+<li>Execute sitewide playbook as</li>
+</ul>
+<pre><code>ansible-playbook site.yml
+</code></pre>
+
+<p>[Output]</p>
+<pre><code>
+PLAY [Playbook to configure App Servers] ***************************************
+
+TASK [setup] *******************************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [base : create admin user] ************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [base : remove dojo] ******************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [base : install tree] *****************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [base : install ntp] ******************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [base : start ntp service] ************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [apache : Installing Apache...] *******************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [apache : Starting Apache...] *********************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [apache : Copying configuration files...] *********************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [apache : Copying index.html file...] *************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+PLAY RECAP *********************************************************************
+192.168.61.12              : ok=10   changed=0    unreachable=0    failed=0
+192.168.61.13              : ok=10   changed=0    unreachable=0    failed=0
+</code></pre>
+
+<h2 id="exercises">Exercises</h2>
+<h5 id="exercise-1-update-apache-configurations">Exercise 1: Update Apache Configurations</h5>
+<ul>
+<li>Update httpd.conf and change some configuration parameters. Validate the service restarts on configuration updates by applying the sitewide playbook.</li>
+</ul>
+<h5 id="exercise-2-create-mysql-role">Exercise 2: Create MySQL Role</h5>
+<ul>
+<li>Create a Role to install and configure MySQL server   <ul>
+<li>Create role scaffold for mysql  using ansible-galaxy init  </li>
+<li>Create task to install "mysql-server" and "MySQL-python" packages using yum module   </li>
+<li>Create a task to start mysqld service   </li>
+<li>Manage my.cnf by creating a centralized copy in role and writing a task to copy it to all db hosts. Use helper/my.cnf as a reference. The destination for this file is /etv/my.cnf on db servers.</li>
+<li>Write a handler to restart the service on configuration change. Add a notification from the copy resource created earlier.</li>
+<li>Add a dependency on base role in the metadata for mysql role.  </li>
+<li>Create  <strong>db.yml</strong> playbook for configuring all database servers. Create definitions to configure <strong>db</strong> group and to apply <strong>mysql</strong> role.   </li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../templates_and_variables/" class="btn btn-neutral float-right" title="Variables and Templates">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../playbooks/" class="btn btn-neutral" title="Learning to Write Infrastructure as a Code"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../playbooks/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../templates_and_variables/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

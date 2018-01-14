@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Ad Hoc Server Management - Ultimate Ansible Bootcamp</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Ad Hoc Server Management";
+    var mkdocs_page_input_path = "ad-hoc.md";
+    var mkdocs_page_url = "/ad-hoc/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Ultimate Ansible Bootcamp</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Quick Dive</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Ad Hoc Server Management</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#getting-started-with-ansible-ad-hoc-server-management">Getting Started with Ansible (Ad Hoc Server Management)</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#creating-project-specific-ansible-configuration">Creating Project Specific Ansible Configuration</a></li>
+        
+            <li><a class="toctree-l4" href="#creating-host-inventory">Creating Host Inventory</a></li>
+        
+            <li><a class="toctree-l4" href="#setting-up-passwordless-ssh-access-to-inventory-hosts">Setting up passwordless ssh access to inventory hosts</a></li>
+        
+            <li><a class="toctree-l4" href="#ad-hoc-commands">Ad Hoc commands</a></li>
+        
+            <li><a class="toctree-l4" href="#using-modules-to-manage-the-state-of-infrastructure">Using modules to manage the state of infrastructure</a></li>
+        
+            <li><a class="toctree-l4" href="#exercises">Exercises:</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../modules/">Modules - The Batteries Included</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../playbooks/">Learning to Write Infrastructure as a Code</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../roles/">Working with Roles</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../templates_and_variables/">Variables and Templates</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../control_structures/">Control Structures</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Deep Dive</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ansible-vault/">Ansible Vault</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-windows/">Ansible on Windows</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-pull/">Ansible Pull</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-pull/">Ansible Tower</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../registered_variables/">Registered Variable</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Troubleshooting</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../troubleshooting/">Troubleshooting Techniques</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Ultimate Ansible Bootcamp</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Quick Dive &raquo;</li>
+        
+      
+    
+    <li>Ad Hoc Server Management</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="getting-started-with-ansible-ad-hoc-server-management">Getting Started with Ansible (Ad Hoc Server Management)</h1>
+<h2 id="creating-project-specific-ansible-configuration">Creating Project Specific Ansible Configuration</h2>
+<p>The default configurations for ansible resides at /etc/ansible/ansible.cfg. Instead of relying on defaults, we are going to creates  a custom configuration file for our project. The advantage with that is we could take this configurations on any host and execute it the same way, without touching the default system configurations.  This custom configurations will essentially  override the values in /etc/ansible/ansible/cfg.</p>
+<h3 id="ansible-configuration-file">Ansible configuration file</h3>
+<p>Change into /vagrant/code/chap3 directory on your ansible host. Create a file called ansible.cfg  Add  the following contents to the file.</p>
+<p>On Ansible Control node,</p>
+<pre><code>mkdir /vagrant/code/chap3
+cd /vagrant/code/chap3
+</code></pre>
+
+<p>Create <strong>ansible.cfg</strong> in chap3</p>
+<pre><code>[defaults]
+remote_user = vagrant
+inventory   = myhosts.ini
+</code></pre>
+
+<h2 id="creating-host-inventory">Creating Host Inventory</h2>
+<p>Create a new file called <em>myhosts.ini</em> in the same directory.
+Let's create three groups as follows,</p>
+<pre><code>[local]
+localhost ansible_connection=local
+
+[app]
+192.168.61.12
+192.168.61.13
+
+[db]
+192.168.61.11
+</code></pre>
+
+<ul>
+<li>First group contains the localhost, the control host. Since it does not need to be connected over ssh, it mandates we add ansible_connection=local option</li>
+<li>Second group contains  Application Servers. We will add  two app servers to this group.</li>
+<li>Third group holds the information about the database servers.</li>
+</ul>
+<p>The inventory file should look like below.</p>
+<h2 id="setting-up-passwordless-ssh-access-to-inventory-hosts">Setting up passwordless ssh access to inventory hosts</h2>
+<h3 id="generating-ssh-keypair-on-control-host">Generating ssh keypair on control host</h3>
+<p>Now on control host, execute the following command</p>
+<pre><code>ssh-keygen -t rsa
+</code></pre>
+
+<p>Now press enter for the passphrase and other queries.</p>
+<pre><code>Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):
+Created directory '/root/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+c5:a5:6d:60:56:5a:7b:3c:60:23:b5:0f:1b:cf:f9:fd root@ansible
+The key's randomart image is:
++--[ RSA 2048]----+
+|          =oO    |
+|         + X *   |
+|          = B +  |
+|         . . O o |
+|        S   . =  |
+|               ..|
+|                o|
+|                .|
+|                E|
++-----------------+
+</code></pre>
+
+<h3 id="copying-public-key-to-inventory-hosts">Copying public key to inventory hosts</h3>
+<p>Copy public key of control node to other hosts</p>
+<pre><code>ssh-copy-id vagrant@192.168.61.11
+
+ssh-copy-id vagrant@192.168.61.12
+
+ssh-copy-id vagrant@192.168.61.13
+
+ssh-copy-id vagrant@192.168.61.14
+</code></pre>
+
+<p>See this example output to verify with your output</p>
+<pre><code>The authenticity of host '192.168.61.11 (192.168.61.11)' can't be established.
+RSA key fingerprint is 32:7f:ad:d7:da:63:32:b6:a9:ff:59:af:09:1e:56:22.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '192.168.61.11' (RSA) to the list of known hosts.
+</code></pre>
+
+<p>The password for user <em>vagrant</em> is <em>vagrant</em></p>
+<h3 id="validate-the-passwordless-login">Validate the passwordless login</h3>
+<p>Let us check the connection of control node with other hosts</p>
+<pre><code>ssh vagrant@192.168.61.11
+
+ssh vagrant@192.168.61.12
+
+ssh vagrant@192.168.61.13
+
+ssh vagrant@192.168.61.14
+</code></pre>
+
+<h3 id="ansible-ping">Ansible ping</h3>
+<p>We will use Ansible to make sure all the hosts are reachable</p>
+<pre><code>ansible all -m ping
+
+</code></pre>
+
+<p>[Output]</p>
+<pre><code>192.168.61.13 | SUCCESS =&gt; {
+    &quot;changed&quot;: false,
+    &quot;ping&quot;: &quot;pong&quot;
+}
+192.168.61.11 | SUCCESS =&gt; {
+    &quot;changed&quot;: false,
+    &quot;ping&quot;: &quot;pong&quot;
+}
+192.168.61.12 | SUCCESS =&gt; {
+    &quot;changed&quot;: false,
+    &quot;ping&quot;: &quot;pong&quot;
+}
+localhost | SUCCESS =&gt; {
+    &quot;changed&quot;: false,
+    &quot;ping&quot;: &quot;pong&quot;
+}
+</code></pre>
+
+<h2 id="ad-hoc-commands">Ad Hoc commands</h2>
+<p>Try running following <em>fire-and-forget</em> Ad-Hoc commands...</p>
+<h3 id="run-hostname-command-on-all-hosts">Run <em>hostname</em> command on all hosts</h3>
+<p>Let us print the hostname of all the hosts</p>
+<pre><code>ansible all -a hostname
+</code></pre>
+
+<p>[output]</p>
+<pre><code>localhost | SUCCESS | rc=0 &gt;&gt;
+ansible
+
+192.168.61.11 | SUCCESS | rc=0 &gt;&gt;
+db
+
+192.168.61.12 | SUCCESS | rc=0 &gt;&gt;
+app
+
+192.168.61.13 | SUCCESS | rc=0 &gt;&gt;
+app
+</code></pre>
+
+<h3 id="check-the-uptime">Check the <em>uptime</em></h3>
+<p>How long the hosts are <em>up</em>?</p>
+<pre><code>ansible all -a uptime
+</code></pre>
+
+<p>[Output]</p>
+<pre><code>localhost | SUCCESS | rc=0 &gt;&gt;
+ 13:17:13 up  2:21,  1 user,  load average: 0.16, 0.03, 0.01
+
+192.168.61.12 | SUCCESS | rc=0 &gt;&gt;
+ 13:17:14 up  1:50,  2 users,  load average: 0.00, 0.00, 0.00
+
+192.168.61.13 | SUCCESS | rc=0 &gt;&gt;
+ 13:17:14 up  1:47,  2 users,  load average: 0.00, 0.00, 0.00
+
+192.168.61.11 | SUCCESS | rc=0 &gt;&gt;
+ 13:17:14 up  1:36,  2 users,  load average: 0.00, 0.00, 0.00
+</code></pre>
+
+<h3 id="check-memory-info-on-app-servers">Check memory info on app servers</h3>
+<p>Does my app servers have any disk space <em>free</em>?</p>
+<pre><code>ansible app -a free
+</code></pre>
+
+<p>[Output]</p>
+<pre><code>192.168.61.13 | SUCCESS | rc=0 &gt;&gt;
+             total       used       free     shared    buffers     cached
+Mem:        372916     121480     251436        776      11160      46304
+-/+ buffers/cache:      64016     308900
+Swap:      4128764          0    4128764
+
+192.168.61.12 | SUCCESS | rc=0 &gt;&gt;
+             total       used       free     shared    buffers     cached
+Mem:        372916     121984     250932        776      11228      46336
+-/+ buffers/cache:      64420     308496
+Swap:      4128764          0    4128764
+</code></pre>
+
+<h3 id="installing-packages">Installing packages</h3>
+<p>Let us <em>install</em> Docker on app servers</p>
+<pre><code>ansible app -a &quot;yum install -y docker-engine&quot;
+</code></pre>
+
+<p>This command will fail.</p>
+<p>[Output]</p>
+<pre><code>192.168.61.13 | FAILED | rc=1 &gt;&gt;
+Loaded plugins: fastestmirror, prioritiesYou need to be root to perform this command.
+
+192.168.61.12 | FAILED | rc=1 &gt;&gt;
+Loaded plugins: fastestmirror, prioritiesYou need to be root to perform this command.
+</code></pre>
+
+<p>Run the fillowing command with sudo permissions.</p>
+<pre><code>ansible app -s -a &quot;yum install -y docker-engine&quot;
+</code></pre>
+
+<p>This will install docker in our app servers</p>
+<p>[Output]</p>
+<pre><code>192.168.61.12 | SUCCESS | rc=0 &gt;&gt;
+Loaded plugins: fastestmirror, priorities
+Setting up Install Process
+Loading mirror speeds from cached hostfile
+ * base: mirrors.nhanhoa.com
+ * epel: mirror.rise.ph
+ * extras: mirror.fibergrid.in
+ * updates: mirror.fibergrid.in
+283 packages excluded due to repository priority protections
+Resolving Dependencies
+--&gt; Running transaction check
+---&gt; Package docker-engine.x86_64 0:1.7.1-1.el6 will be installed
+--&gt; Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package             Arch         Version              Repository          Size
+================================================================================
+Installing:
+ docker-engine       x86_64       1.7.1-1.el6          local_docker       4.5 M
+
+Transaction Summary
+================================================================================
+Install       1 Package(s)
+
+Total download size: 4.5 M
+Installed size: 19 M
+Downloading Packages:
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : docker-engine-1.7.1-1.el6.x86_64                             1/1
+  Verifying  : docker-engine-1.7.1-1.el6.x86_64                             1/1
+
+Installed:
+  docker-engine.x86_64 0:1.7.1-1.el6
+
+Complete!
+
+192.168.61.13 | SUCCESS | rc=0 &gt;&gt;
+Loaded plugins: fastestmirror, priorities
+Setting up Install Process
+Loading mirror speeds from cached hostfile
+ * base: mirror.fibergrid.in
+ * epel: mirror.rise.ph
+ * extras: mirror.fibergrid.in
+ * updates: mirror.fibergrid.in
+283 packages excluded due to repository priority protections
+Resolving Dependencies
+--&gt; Running transaction check
+---&gt; Package docker-engine.x86_64 0:1.7.1-1.el6 will be installed
+--&gt; Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package             Arch         Version              Repository          Size
+================================================================================
+Installing:
+ docker-engine       x86_64       1.7.1-1.el6          local_docker       4.5 M
+
+Transaction Summary
+================================================================================
+Install       1 Package(s)
+
+Total download size: 4.5 M
+Installed size: 19 M
+Downloading Packages:
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : docker-engine-1.7.1-1.el6.x86_64                             1/1
+  Verifying  : docker-engine-1.7.1-1.el6.x86_64                             1/1
+
+Installed:
+  docker-engine.x86_64 0:1.7.1-1.el6
+
+Complete!
+</code></pre>
+
+<h3 id="running-commands-one-machine-at-a-time">Running commands one machine at a time</h3>
+<p>Do you want a command to run on <em>one machine at a time</em> ?</p>
+<pre><code>ansible all -f 1 -a &quot;free&quot;
+</code></pre>
+
+<h2 id="using-modules-to-manage-the-state-of-infrastructure">Using <em>modules</em> to manage the state of infrastructure</h2>
+<h3 id="creating-users-and-groups-using-user-and-group">Creating users and groups using <em>user</em> and <em>group</em></h3>
+<p>To create a group</p>
+<pre><code>ansible app -s -m group -a &quot;name=admin state=present&quot;
+</code></pre>
+
+<p>The output will be,</p>
+<pre><code>192.168.61.13 | SUCCESS =&gt; {
+    &quot;changed&quot;: true,
+    &quot;gid&quot;: 501,
+    &quot;name&quot;: &quot;admin&quot;,
+    &quot;state&quot;: &quot;present&quot;,
+    &quot;system&quot;: false
+}
+192.168.61.12 | SUCCESS =&gt; {
+    &quot;changed&quot;: true,
+    &quot;gid&quot;: 501,
+    &quot;name&quot;: &quot;admin&quot;,
+    &quot;state&quot;: &quot;present&quot;,
+    &quot;system&quot;: false
+}
+</code></pre>
+
+<p>To create a user</p>
+<pre><code>ansible app -s -m user -a &quot;name=devops group=admin createhome=yes&quot;
+</code></pre>
+
+<p>This will create user <em>devops</em>,</p>
+<pre><code>192.168.61.13 | SUCCESS =&gt; {
+    &quot;changed&quot;: true,
+    &quot;comment&quot;: &quot;&quot;,
+    &quot;createhome&quot;: true,
+    &quot;group&quot;: 501,
+    &quot;home&quot;: &quot;/home/devops&quot;,
+    &quot;name&quot;: &quot;devops&quot;,
+    &quot;shell&quot;: &quot;/bin/bash&quot;,
+    &quot;state&quot;: &quot;present&quot;,
+    &quot;system&quot;: false,
+    &quot;uid&quot;: 501
+}
+192.168.61.12 | SUCCESS =&gt; {
+    &quot;changed&quot;: true,
+    &quot;comment&quot;: &quot;&quot;,
+    &quot;createhome&quot;: true,
+    &quot;group&quot;: 501,
+    &quot;home&quot;: &quot;/home/devops&quot;,
+    &quot;name&quot;: &quot;devops&quot;,
+    &quot;shell&quot;: &quot;/bin/bash&quot;,
+    &quot;state&quot;: &quot;present&quot;,
+    &quot;system&quot;: false,
+    &quot;uid&quot;: 501
+}
+</code></pre>
+
+<h3 id="copy-a-file-using-copy-modules">Copy a file using <em>copy</em> modules</h3>
+<p>We will copy file from control node to app servers.</p>
+<pre><code>ansible app -m copy -a &quot;src=/vagrant/test.txt dest=/tmp/test.txt&quot;
+</code></pre>
+
+<p>File will be copied over to our app server machines...</p>
+<pre><code>192.168.61.13 | SUCCESS =&gt; {
+    &quot;changed&quot;: true,
+    &quot;checksum&quot;: &quot;3160f8f941c330444aac253a9e6420cd1a65bfe2&quot;,
+    &quot;dest&quot;: &quot;/tmp/test.txt&quot;,
+    &quot;gid&quot;: 500,
+    &quot;group&quot;: &quot;vagrant&quot;,
+    &quot;md5sum&quot;: &quot;9052de4cff7e8a18de586f785e711b97&quot;,
+    &quot;mode&quot;: &quot;0664&quot;,
+    &quot;owner&quot;: &quot;vagrant&quot;,
+    &quot;size&quot;: 11,
+    &quot;src&quot;: &quot;/home/vagrant/.ansible/tmp/ansible-tmp-1472991990.29-63683023616899/source&quot;,
+    &quot;state&quot;: &quot;file&quot;,
+    &quot;uid&quot;: 500
+}
+192.168.61.12 | SUCCESS =&gt; {
+    &quot;changed&quot;: true,
+    &quot;checksum&quot;: &quot;3160f8f941c330444aac253a9e6420cd1a65bfe2&quot;,
+    &quot;dest&quot;: &quot;/tmp/test.txt&quot;,
+    &quot;gid&quot;: 500,
+    &quot;group&quot;: &quot;vagrant&quot;,
+    &quot;md5sum&quot;: &quot;9052de4cff7e8a18de586f785e711b97&quot;,
+    &quot;mode&quot;: &quot;0664&quot;,
+    &quot;owner&quot;: &quot;vagrant&quot;,
+    &quot;size&quot;: 11,
+    &quot;src&quot;: &quot;/home/vagrant/.ansible/tmp/ansible-tmp-1472991990.26-218089785548663/source&quot;,
+    &quot;state&quot;: &quot;file&quot;,
+    &quot;uid&quot;: 500
+}
+
+</code></pre>
+
+<h2 id="exercises">Exercises:</h2>
+<ol>
+<li>Add another system group (not inventory group) called <em>lb</em> in inventory with respective host ip</li>
+<li>Add a system user called <em>joe</em> on all  app servers. Make sure that the user has a home directory</li>
+<li>Install  package <em>vim</em> using the correct <em>Ad-Hoc</em> command</li>
+<li>Examine all the available module
+http://docs.ansible.com/ansible/modules_by_category.html</li>
+<li>Find out the difference between the <em>command</em> module and <em>shell</em> module. Try running the following command with both these modules,</li>
+</ol>
+<pre><code>&quot;free | grep -i swap&quot;
+</code></pre>
+
+<ol>
+<li>Use command module to show <em>uptime</em> on the host  </li>
+<li>Install docker-engine using the yum/apt module</li>
+<li>Using docker-image module, pull <em>hello-world</em> image on web server</li>
+</ol>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../modules/" class="btn btn-neutral float-right" title="Modules - The Batteries Included">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../modules/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

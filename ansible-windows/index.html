@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Ansible on Windows - Ultimate Ansible Bootcamp</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Ansible on Windows";
+    var mkdocs_page_input_path = "ansible-windows.md";
+    var mkdocs_page_url = "/ansible-windows/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Ultimate Ansible Bootcamp</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Quick Dive</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ad-hoc/">Ad Hoc Server Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../modules/">Modules - The Batteries Included</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../playbooks/">Learning to Write Infrastructure as a Code</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../roles/">Working with Roles</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../templates_and_variables/">Variables and Templates</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../control_structures/">Control Structures</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Deep Dive</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ansible-vault/">Ansible Vault</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Ansible on Windows</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#preparing-ansible-host">Preparing Ansible host</a></li>
+    
+
+    <li class="toctree-l3"><a href="#preparing-windows-host">Preparing Windows Host</a></li>
+    
+
+    <li class="toctree-l3"><a href="#setting-up-inventory-and-inventory-vars">Setting up inventory and inventory vars</a></li>
+    
+
+    <li class="toctree-l3"><a href="#reference">Reference</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-pull/">Ansible Pull</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-pull/">Ansible Tower</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../registered_variables/">Registered Variable</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Troubleshooting</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../troubleshooting/">Troubleshooting Techniques</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Ultimate Ansible Bootcamp</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Deep Dive &raquo;</li>
+        
+      
+    
+    <li>Ansible on Windows</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="preparing-ansible-host">Preparing Ansible host</h3>
+<pre><code>sudo yum install python-pip
+sudo pip install &quot;pywinrm&gt;=0.1.1&quot;
+</code></pre>
+
+<h3 id="preparing-windows-host">Preparing Windows Host</h3>
+<ul>
+<li>Create a file and paste the below github content and save “PowerShell Scripts (* .ps1)”.</li>
+</ul>
+<p>https://github.com/ansible/ansible/blob/devel/examples/scripts/ConfigureRemotingForAnsible.ps1</p>
+<ul>
+<li>Double Click the file or open powershell and Execute it from the file path. winrm will be configured</li>
+</ul>
+<h3 id="setting-up-inventory-and-inventory-vars">Setting up inventory and inventory vars</h3>
+<ul>
+<li>Add windows host to inventory by editing myhosts.ini</li>
+</ul>
+<pre><code>    [windows]
+  windows_host_ip_or_hostname
+</code></pre>
+
+<p>Create group vars for windows group
+    - Create group_vars/windows.yml</p>
+<pre><code>    ansible_ssh_user: &lt;admin user&gt;
+    ansible_ssh_pass: &lt;admin user password&gt;
+    ansible_ssh_port: 5986
+    ansible_connection: winrm
+    ansible_winrm_server_cert_validation: ignore
+</code></pre>
+
+<p>Validate Connectivity</p>
+<pre><code>ansible windows -i host -m win_ping
+ansible windows -i host -m setup
+
+</code></pre>
+
+<p>Create a Sample Playbook : windows.yml</p>
+<pre><code>---
+- name: test raw module
+  hosts: windows
+  tasks:
+    - name: run ipconfig
+      raw: ipconfig
+      register: ipconfig
+
+    - debug: var=ipconfig
+
+    - name: test stat module on file
+      win_stat: path=&quot;C:/Windows/win.ini&quot;
+      register: stat_file
+
+    - debug: var=stat_file
+
+    - name: check stat_file result
+      assert:
+          that:
+             - &quot;stat_file.stat.exists&quot;
+             - &quot;not stat_file.stat.isdir&quot;
+             - &quot;stat_file.stat.size &gt; 0&quot;
+             - &quot;stat_file.stat.md5&quot;
+
+    - name: Install IIS
+      win_feature:
+        name: &quot;Web-Server&quot;
+        state: absent
+        restart: yes
+        include_sub_features: yes
+        include_management_tools: yes
+</code></pre>
+
+<p>Execute Playbook as</p>
+<pre><code>ansible-playbook windows.yml
+
+</code></pre>
+
+<h1 id="reference">Reference</h1>
+<p>http://darrylcauldwell.com/how-to-setup-an-ansible-test-lab-for-windows-managed-nodes-custom-windows-modules/
+http://docs.ansible.com/ansible/intro_windows.html</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ansible-pull/" class="btn btn-neutral float-right" title="Ansible Pull">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../ansible-vault/" class="btn btn-neutral" title="Ansible Vault"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../ansible-vault/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../ansible-pull/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

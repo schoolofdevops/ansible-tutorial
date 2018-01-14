@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Variables and Templates - Ultimate Ansible Bootcamp</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Variables and Templates";
+    var mkdocs_page_input_path = "templates_and_variables.md";
+    var mkdocs_page_url = "/templates_and_variables/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Ultimate Ansible Bootcamp</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Quick Dive</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ad-hoc/">Ad Hoc Server Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../modules/">Modules - The Batteries Included</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../playbooks/">Learning to Write Infrastructure as a Code</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../roles/">Working with Roles</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Variables and Templates</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#templates-and-variables">Templates and Variables</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#variables">Variables</a></li>
+        
+            <li><a class="toctree-l4" href="#creating-templates-for-apache">Creating Templates for Apache</a></li>
+        
+            <li><a class="toctree-l4" href="#variable-precedence-in-action">Variable Precedence in Action</a></li>
+        
+            <li><a class="toctree-l4" href="#registered-variables">Registered  Variables</a></li>
+        
+            <li><a class="toctree-l4" href="#adding-support-for-ubuntu">Adding support for Ubuntu</a></li>
+        
+            <li><a class="toctree-l4" href="#exercises">Exercises</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../control_structures/">Control Structures</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Deep Dive</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ansible-vault/">Ansible Vault</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-windows/">Ansible on Windows</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-pull/">Ansible Pull</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-pull/">Ansible Tower</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../registered_variables/">Registered Variable</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Troubleshooting</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../troubleshooting/">Troubleshooting Techniques</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Ultimate Ansible Bootcamp</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Quick Dive &raquo;</li>
+        
+      
+    
+    <li>Variables and Templates</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="templates-and-variables">Templates and Variables</h1>
+<p>In this  tutorial, we  are going to make the roles that we created earlier dynamically by adding templates and defining variables.</p>
+<h2 id="variables">Variables</h2>
+<p>Variables are of two types</p>
+<ul>
+<li>Automatic Variables/ Facts</li>
+<li>User Defined Variables</li>
+</ul>
+<p>Lets try to discover information about our systems by using facts.</p>
+<h3 id="finding-facts-about-systems">Finding Facts About Systems</h3>
+<ul>
+<li>Run the following command to see to facts of db servers  </li>
+</ul>
+<pre><code>ansible db -m setup
+</code></pre>
+
+<p>[Output]</p>
+<pre><code>192.168.61.11 | SUCCESS =&gt; {
+        &quot;ansible_facts&quot;: {
+            &quot;ansible_all_ipv4_addresses&quot;: [
+                &quot;10.0.2.15&quot;,
+                &quot;192.168.61.11&quot;
+            ],
+            &quot;ansible_all_ipv6_addresses&quot;: [
+                &quot;fe80::a00:27ff:fe30:3251&quot;,
+                &quot;fe80::a00:27ff:fe8e:83e0&quot;
+.....
+                &quot;tz_offset&quot;: &quot;+0100&quot;,
+                &quot;weekday&quot;: &quot;Monday&quot;,
+                &quot;weekday_number&quot;: &quot;1&quot;,
+                &quot;weeknumber&quot;: &quot;36&quot;,
+                &quot;year&quot;: &quot;2016&quot;
+            }
+</code></pre>
+
+<h3 id="filtering-facts">Filtering facts</h3>
+<ul>
+<li>Use filter attribute to extract specific data</li>
+</ul>
+<pre><code>ansible db -m setup -a &quot;filter=ansible_distribution&quot;
+</code></pre>
+
+<p>[Output]</p>
+<pre><code>192.168.61.11 | SUCCESS =&gt; {
+  &quot;ansible_facts&quot;: {
+      &quot;ansible_distribution&quot;: &quot;CentOS&quot;
+  },
+  &quot;changed&quot;: false
+}  
+</code></pre>
+
+<h2 id="creating-templates-for-apache">Creating Templates for Apache</h2>
+<ul>
+<li>Create template for apache configuration    </li>
+<li>This template will change <strong>port number</strong>, <strong>document root</strong> and <strong>index.html</strong> for  apache server    </li>
+<li>Copy <strong>httpd.conf</strong> file from <strong>roles/apache/files/</strong> to <strong>roles/apache/templates</strong>    </li>
+</ul>
+<pre><code>cp roles/apache/files/httpd.conf roles/apache/templates/httpd.conf.j2
+</code></pre>
+
+<ul>
+<li>Change your working directory to templates</li>
+</ul>
+<pre><code>cd roles/apache/templates
+</code></pre>
+
+<ul>
+<li>Change values of following  parameters by using template variables in <strong>httpd.conf.j2</strong>  </li>
+<li>Listen</li>
+<li>DocumentRoot</li>
+<li>DirectoryIndex</li>
+</ul>
+<p>Following code depicts only the parameters changed. Rest of the configurations in <em>httpd.conf.j2</em> remain as is</p>
+<pre><code>Listen {{ apache_port }}
+DocumentRoot &quot;{{ custom_root }}&quot;
+DirectoryIndex {{ apache_index }} index.html.var
+</code></pre>
+
+<ul>
+<li>Create a template for index.html as well</li>
+</ul>
+<pre><code>cp roles/apache/files/index.html roles/apache/templates/index.html.j2
+</code></pre>
+
+<ul>
+<li>Add the following contents to index.html.j2</li>
+</ul>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+  &lt;h1&gt;  Welcome to Ansible training! &lt;/h1&gt;
+
+  &lt;h2&gt; SYSTEM INFO &lt;/h2&gt;
+  &lt;h4&gt;  ========================= &lt;/h4&gt;
+  &lt;h3&gt; Operating System : {{ ansible_distribution }} &lt;/h3&gt;
+  &lt;h3&gt; IP Address : {{ ansible_eth0['ipv4']['address'] }} &lt;/h3&gt;
+
+  &lt;h2&gt;  My Favourites &lt;/h2&gt;
+  &lt;h4&gt;  ========================= &lt;/h4&gt;
+
+  &lt;h3&gt; color     : {{ fav['color'] }} &lt;/h3&gt;
+  &lt;h3&gt; fruit     : {{ fav['fruit']   }} &lt;/h3&gt;
+  &lt;h3&gt; car       : {{ fav['car']   }} &lt;/h3&gt;
+  &lt;h3&gt; laptop    : {{ fav['laptop']   }} &lt;/h3&gt;
+  &lt;h4&gt;  ========================= &lt;/h4&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+
+<h3 id="defining-default-variables">Defining Default Variables</h3>
+<ul>
+<li>Define values of the variables used in the templates above.  The default values are defined in <em>roles/apache/defaults/main.yml</em> . Lets edit that file and add the following,</li>
+</ul>
+<pre><code>apache_port: 80
+custom_root: /var/www/html
+apache_index: index.html
+fav:
+  color: white
+  car: fiat
+  laptop: dell
+  fruit: apple
+</code></pre>
+
+<h3 id="updating-tasks-to-use-templates">Updating Tasks to use Templates</h3>
+<ul>
+<li>Since we are now using template instead of static file, we need to edit <em>roles/apache/tasks/config.yml</em> file and use template module</li>
+<li>Replace <strong>copy</strong> module with <strong>template</strong> modules as follows,</li>
+</ul>
+<pre><code>---
+- name: Creating configuration from templates...
+  template: &gt;
+    src=httpd.conf.j2
+    dest=/etc/httpd.conf
+    owner=root
+    group=root
+    mode=0644
+  notify: Restart apache service
+
+- name: Copying index.html file...
+  template: &gt;
+    src=index.html.j2
+    dest=/var/www/html/index.html
+    mode=0777
+
+</code></pre>
+
+<ul>
+<li>Delete httpd.conf and index.html in files directory</li>
+</ul>
+<pre><code>  rm roles/apache/files/httpd.conf
+  rm roles/apache/files/index.html
+</code></pre>
+
+<h3 id="validating">Validating</h3>
+<ul>
+<li>Let's test this template in action</li>
+</ul>
+<pre><code>ansible-playbook app.yml
+</code></pre>
+
+<p>[Output]</p>
+<pre><code>PLAY [Playbook to configure App Servers] ***************************************
+
+TASK [setup] *******************************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+.....
+
+RUNNING HANDLER [apache : Restart apache service] ******************************
+changed: [192.168.61.12]
+changed: [192.168.61.13]
+
+PLAY RECAP *********************************************************************
+192.168.61.12              : ok=11   changed=3    unreachable=0    failed=0
+192.168.61.13              : ok=11   changed=3    unreachable=0    failed=0
+</code></pre>
+
+<h2 id="variable-precedence-in-action">Variable Precedence in Action</h2>
+<p>Lets define the variables from couple of other places, to learn about the Precedence rules. We will create,
+<em> group_vars
+</em> playbook vars</p>
+<p>Since we are going to define the variables using multi level hashes, lets define the way hashes behave when defined from multiple places.</p>
+<p>Update chap7/ansible.cfg and add the following,</p>
+<pre><code>hash_behaviour=merge
+</code></pre>
+
+<p>Lets create group_vars and create a group <strong>prod</strong> to define vars common to all prod hosts.</p>
+<pre><code>cd chap7
+mkdir group_vars
+cd group_vars
+touch prod.yml
+</code></pre>
+
+<p>Edit <strong>group_vars/prod.yml</strong> file and add the following contents,</p>
+<pre><code>---
+  fav:
+    color: blue
+    fruit: peach
+</code></pre>
+
+<p>Lets also add vars to playbook. Edit app.yml and add vars as below,</p>
+<pre><code>---
+  - name: Playbook to configure App Servers
+    hosts: app
+    become: true
+    vars:
+      fav:
+        fruit: mango
+    roles:
+    - apache
+</code></pre>
+
+<p>Execute the playbook and check the output</p>
+<pre><code>ansible-playbook app.yml
+</code></pre>
+
+<p>If you view the content of the html file generated, you would notice the following,</p>
+<pre><code>&lt;h3&gt; color     : blue &lt;/h3&gt;
+&lt;h3&gt; fruit     : mango &lt;/h3&gt;
+&lt;h3&gt; car       : fiat &lt;/h3&gt;
+&lt;h3&gt; laptop    : dell &lt;/h3&gt;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">fav item</th>
+<th align="left">role defaults</th>
+<th align="left">group_vars</th>
+<th align="left">playbook_vars</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">color</td>
+<td align="left">white</td>
+<td align="left"><strong>blue</strong></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">fruit</td>
+<td align="left">fiat</td>
+<td align="left">peach</td>
+<td align="left"><strong>mango</strong></td>
+</tr>
+<tr>
+<td align="left">car</td>
+<td align="left"><strong>fiat</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">laptop</td>
+<td align="left"><strong>apple</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>value of color comes from group_vars/all.yml</li>
+<li>value of fruit comes from playbook vars</li>
+<li>value of car and laptop comes from role defaults</li>
+</ul>
+<h2 id="registered-variables">Registered  Variables</h2>
+<p>Lets create a playbook to run a shell command, register the result and display the value of registered variable.</p>
+<p>Create <strong>register.yml</strong> in chap6 directory</p>
+<pre><code>---
+  - name: register variable example
+    hosts: local
+    tasks:
+      - name: run a shell command and register result
+        shell: &quot;/sbin/ifconfig eth1&quot;
+        register: result
+
+      - name: print registered variable
+        debug: var=result
+</code></pre>
+
+<p>Execute the playbook to display information about the registered variable.</p>
+<pre><code>ansible-playbook  register.yml
+</code></pre>
+
+<h2 id="adding-support-for-ubuntu">Adding support for Ubuntu</h2>
+<p>Apache role that we have developed supports only RedHat based systems at the moment. To add support for ubuntu (app2), we must handle platform specific differences.</p>
+<p>e.g.</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">RedHat</th>
+<th align="left">Debian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Package Name</td>
+<td align="left">httpd</td>
+<td align="left">apache2</td>
+</tr>
+<tr>
+<td align="left">Service Name</td>
+<td align="left">httpd</td>
+<td align="left">apache2</td>
+</tr>
+</tbody>
+</table>
+<p>OS specific configurations can be defined by creating role vars and by including those in tasks.</p>
+<p>file: roles/apache/vars/RedHat.yml</p>
+<pre><code>---
+apache:
+  package:
+    name: httpd
+  service:
+    name: httpd
+    status: started
+</code></pre>
+
+<p>file: roles/apache/vars/Debian.yml</p>
+<pre><code>---
+apache:
+  package:
+    name: apache2
+  service:
+    name: apache2
+    status: started
+</code></pre>
+
+<p>Lets now selectively include those var files from tasks/main.yml .  Also selectively call configurations.
+file: role/apache/tasks/main.yml</p>
+<pre><code>---
+# tasks file for apache
+  - include_vars: &quot;{{ ansible_os_family }}.yml&quot;
+  - include: install.yml
+  - include: start.yml
+  - include: config_{{ ansible_os_family }}.yml  
+</code></pre>
+
+<p>We are now going to create two different config tasks. Since the current config is applicable to RedHat, lets rename it to config_RedHat.yml</p>
+<pre><code>mv roles/apache/tasks/config.yml roles/apache/tasks/config_RedHat.yml
+</code></pre>
+
+<p>We will now create a new config for Debian</p>
+<p>file: roles/apache/tasks/config_Debian.yml</p>
+<pre><code>- name: Copying index.html file...
+  template: &gt;
+    src=index.html.j2
+    dest=/var/www/html/index.html
+    mode=0777
+</code></pre>
+
+<p>Update tasks and handlers to install and start the correct service</p>
+<p>tasks/install.yml</p>
+<pre><code>---
+  - name: install httpd on centos
+    package: &gt;
+      name={{ apache['package']['name']}}
+      state=installed
+</code></pre>
+
+<p>tasks/start.yml</p>
+<pre><code>---
+  - name: start httpd service
+    service: &gt;
+      name={{ apache['service']['name']}}
+      state={{ apache['service']['status']}}
+</code></pre>
+
+<p>handlers/main.yml</p>
+<pre><code>---
+# handlers file for apache
+  - name: restart apache service
+    service: &gt;
+      name={{ apache['service']['name']}}
+      state=restarted
+</code></pre>
+
+<h2 id="exercises">Exercises</h2>
+<ul>
+<li>Create host specific variables in host_vars/HOSTNAME for one of the app servers, and define some variables values specific to the host. See the output after applying playbook on this node.</li>
+<li>Generate MySQL Configurations dynamically using templates and modules.</li>
+<li>Create a template for my.cnf.  Name it as roles/mysql/templates/my.cnf.j2</li>
+<li>Replace parameter values with templates variables</li>
+<li>Define variables in role defaults.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../control_structures/" class="btn btn-neutral float-right" title="Control Structures">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../roles/" class="btn btn-neutral" title="Working with Roles"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../roles/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../control_structures/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

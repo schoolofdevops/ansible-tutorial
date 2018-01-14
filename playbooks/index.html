@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Learning to Write Infrastructure as a Code - Ultimate Ansible Bootcamp</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Learning to Write Infrastructure as a Code";
+    var mkdocs_page_input_path = "playbooks.md";
+    var mkdocs_page_url = "/playbooks/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Ultimate Ansible Bootcamp</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Quick Dive</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ad-hoc/">Ad Hoc Server Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../modules/">Modules - The Batteries Included</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Learning to Write Infrastructure as a Code</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#learning-to-write-playbooks">Learning to Write Playbooks</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#anatomy-of-a-playbook">Anatomy of a Playbook</a></li>
+        
+            <li><a class="toctree-l4" href="#yaml-the-language-to-write-playbooks">YAML - The Language to write Playbooks</a></li>
+        
+            <li><a class="toctree-l4" href="#writing-and-executing-our-first-playbook">Writing and executing our first Playbook</a></li>
+        
+            <li><a class="toctree-l4" href="#error-handling-and-debugging">Error Handling and Debugging</a></li>
+        
+            <li><a class="toctree-l4" href="#exercise">Exercise:</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../roles/">Working with Roles</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../templates_and_variables/">Variables and Templates</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../control_structures/">Control Structures</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Deep Dive</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ansible-vault/">Ansible Vault</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-windows/">Ansible on Windows</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-pull/">Ansible Pull</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-pull/">Ansible Tower</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../registered_variables/">Registered Variable</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Troubleshooting</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../troubleshooting/">Troubleshooting Techniques</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Ultimate Ansible Bootcamp</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Quick Dive &raquo;</li>
+        
+      
+    
+    <li>Learning to Write Infrastructure as a Code</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="learning-to-write-playbooks">Learning to Write Playbooks</h1>
+<p>In this tutorial we are going to create a simple playbook to add system users, install and start ntp service and some basic utilities.</p>
+<h2 id="anatomy-of-a-playbook">Anatomy of a Playbook</h2>
+<h2 id="yaml-the-language-to-write-playbooks">YAML - The Language to write Playbooks</h2>
+<h2 id="writing-and-executing-our-first-playbook">Writing and executing our first Playbook</h2>
+<p><strong>Problem Statement</strong>  </p>
+<p>You have to create a playbook which will<br />
+  * create a admin user with uid 5001
+  * remove  user dojo
+  * install tree  utility
+  * install ntp</p>
+<p>on all systems which belong to  prod group in the inventory</p>
+<p>To create playbook,</p>
+<ul>
+<li>Change working directory to /vagrant/code/chap5  </li>
+</ul>
+<pre><code>cd /vagrant/code/chap5
+</code></pre>
+
+<ul>
+<li>
+<p>Edit myhosts.ini if required and comment the hosts which are absent.</p>
+</li>
+<li>
+<p>Add the following configuration to ansible.cfg.   </p>
+</li>
+</ul>
+<pre><code>retry_files_save_path = /tmp
+</code></pre>
+
+<p>This defines the path where retry files are created in case of failed ansible run. We will learn about this in later in this chapter.</p>
+<ul>
+<li>Create a new file with name <em>playbook.yml</em> and add the following content to it</li>
+</ul>
+<pre><code>---
+  - name: Base Configurations for ALL hosts
+    hosts: all
+    become: true
+    tasks:
+      - name: create admin user
+        user: name=admin state=present uid=5001
+
+      - name: remove dojo
+        user: name=dojo  state=absent
+
+      - name: install tree
+        yum:  name=tree  state=present
+
+      - name: install ntp
+        yum:  name=ntp   state=present
+
+</code></pre>
+
+<h3 id="validating-syntax">Validating Syntax</h3>
+<p>Option 1 : Using --syntax-check option with ansible-playbook</p>
+<pre><code>ansible-playbook playbook.yml --syntax-check
+</code></pre>
+
+<p><strong>Exercise:</strong>   Break the syntax, run playbook with --syntax check again, and learn how it works.</p>
+<p>Option 2 : Using YAML Linter Online</p>
+<p>Another way to validate syntax</p>
+<ul>
+<li>Visit http://www.yamllinter.com
+    <img alt="YAML Linter" src="../../images/ansible/yaml_lint.png" /></li>
+</ul>
+<h3 id="using-ansible-playbook-utility">Using ansible-playbook utility</h3>
+<p>We will start using ansible-playbook utility to execute playbooks.</p>
+<p>To learn how to use ansible-playbook execute the following command,</p>
+<pre><code>  ansible-playbook --help
+
+</code></pre>
+
+<pre><code>[output]
+
+Usage: ansible-playbook playbook.yml
+
+Options:
+  --ask-become-pass     ask for privilege escalation password
+  -k, --ask-pass        ask for connection password
+  --ask-su-pass         ask for su password (deprecated, use become)
+  -K, --ask-sudo-pass   ask for sudo password (deprecated, use become)
+  --ask-vault-pass      ask for vault password
+  -b, --become          run operations with become (nopasswd implied)
+  --become-method=BECOME_METHOD
+                        privilege escalation method to use (default=sudo),
+                        valid choices: [ sudo | su | pbrun | pfexec | runas |
+                        doas ]
+
+.......
+</code></pre>
+
+<h4 id="dry-run">Dry Run</h4>
+<p>To execute ansible in a check mode, which will simulate tasks on the remote nodes, without actually committing, ansible provides --check or -C option. This can be invoked as ,</p>
+<pre><code>ansible-playbook playbook.yml --check
+
+</code></pre>
+
+<p>or</p>
+<pre><code>ansible-playbook playbook.yml -C
+</code></pre>
+
+<h3 id="listing-hosts-tasks-and-tags-in-a-playbook">Listing Hosts, Tasks and Tags in a Playbook</h3>
+<pre><code>ansible-playbook playbook.yml --list-hosts
+
+ansible-playbook playbook.yml --list-tasks
+
+ansible-playbook playbook.yml --list-tags
+</code></pre>
+
+<h3 id="executing-actions-with-playbooks">Executing Actions with Playbooks</h3>
+<p>To execute  the playbook, we are going to execute <strong>ansible-playbook</strong> comman with playbook  YAML file as an argument. Since we have already defined the inventory and configurations, additional options are not necessary at this time.</p>
+<pre><code>ansible-playbook playbook.yml
+</code></pre>
+
+<pre><code>[output]
+
+PLAY [Base Configurations for ALL hosts] ***************************************
+
+TASK [setup] *******************************************************************
+ok: [192.168.61.14]
+ok: [192.168.61.11]
+ok: [localhost]
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [create admin user] *******************************************************
+changed: [192.168.61.13]
+changed: [192.168.61.12]
+changed: [localhost]
+changed: [192.168.61.11]
+changed: [192.168.61.14]
+
+TASK [remove dojo] *************************************************************
+changed: [192.168.61.14]
+changed: [localhost]
+changed: [192.168.61.12]
+changed: [192.168.61.11]
+changed: [192.168.61.13]
+
+TASK [install tree] ************************************************************
+ok: [localhost]
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+ok: [192.168.61.14]
+ok: [192.168.61.11]
+
+TASK [install ntp] *************************************************************
+changed: [192.168.61.12]
+changed: [192.168.61.13]
+changed: [192.168.61.11]
+changed: [localhost]
+changed: [192.168.61.14]
+
+</code></pre>
+
+<h2 id="error-handling-and-debugging">Error Handling and Debugging</h2>
+<p>We are now going to add a new task to the playbook that we created. This task would start ntp service on all prod hosts.</p>
+<p>When you add this task, make sure the indentation is correct.</p>
+<pre><code>
+      - name: start ntp service
+        service: name=ntp state=started enabled=yes
+
+</code></pre>
+
+<ul>
+<li>Apply playbook again, check the output</li>
+</ul>
+<pre><code>ansible-playbook playbook.yml
+
+</code></pre>
+
+<p>[output]</p>
+<pre><code>TASK [start ntp service] *******************************************************
+fatal: [localhost]: FAILED! =&gt; {&quot;changed&quot;: false, &quot;failed&quot;: true, &quot;msg&quot;: &quot;no service or tool found for: ntp&quot;}
+fatal: [192.168.61.11]: FAILED! =&gt; {&quot;changed&quot;: false, &quot;failed&quot;: true, &quot;msg&quot;: &quot;no service or tool found for: ntp&quot;}
+fatal: [192.168.61.12]: FAILED! =&gt; {&quot;changed&quot;: false, &quot;failed&quot;: true, &quot;msg&quot;: &quot;no service or tool found for: ntp&quot;}
+
+NO MORE HOSTS LEFT *************************************************************
+    to retry, use: --limit @/tmp/playbook.retry
+
+PLAY RECAP *********************************************************************
+192.168.61.11              : ok=5    changed=0    unreachable=0    failed=1
+192.168.61.12              : ok=5    changed=0    unreachable=0    failed=1
+localhost                  : ok=5    changed=0    unreachable=0    failed=1
+</code></pre>
+
+<p>Exercise : There was a intentional error introduced in the code. Identify the error from the log message above, correct it  and run the playbook again. This time you should run it  only on the failed hosts by limiting  with the retry file mentioned above (e.g. --limit @/tmp/playbook.retry )</p>
+<h3 id="debugging-technique-step-by-step-execution">Debugging Technique : Step By Step Execution</h3>
+<p>Ansible provides a way to execute tasks step by step, asking you whether to run or skip each task. This can be useful while debugging issues.</p>
+<pre><code>ansible-playbook playbook.yml --step
+</code></pre>
+
+<p>[Output]</p>
+<pre><code>root@control:/workspace/chap5# ansible-playbook playbook.yml --step                             
+
+PLAY [Base Configurations for ALL hosts] ***************************************                
+Perform task: TASK: setup (N)o/(y)es/(c)ontinue: y                                              
+
+
+TASK [setup] *******************************************************************                
+y                                                                                               
+ok: [app1]                                                                                      
+ok: [db]                                                                                        
+ok: [app2]                                                                                      
+ok: [lb]                                                                                        
+Perform task: TASK: create admin user (N)o/(y)es/(c)ontinue:                                    
+
+TASK [create admin user] *******************************************************                
+yok: [app2]                                                                                     
+ok: [app1]                                                                                      
+ok: [db]                                                                                        
+ok: [lb]                                                                                        
+
+Perform task: TASK: install tree (N)o/(y)es/(c)ontinue: y                                       
+
+TASK [install tree] ************************************************************                
+ok: [app2]                                                                                      
+ok: [lb]                                                                                        
+ok: [app1]                                                                                      
+ok: [db]                                                  
+</code></pre>
+
+<h3 id="adding-additional-play">Adding Additional  Play</h3>
+<p>Problem Statement:</p>
+<p>You have to a new play to existing playbook  which will</p>
+<ul>
+<li>create a app user with uid 5003</li>
+<li>install git</li>
+<li>on all app servers in the inventory</li>
+</ul>
+<p>Lets add a second play specific to app servers. Add the following block of code in playbook.yml file and save   </p>
+<pre><code>- name: App Server Configurations
+  hosts: app
+  become: true
+  tasks:
+    - name: create app user
+      user: name=app state=present uid=5003
+
+    - name: install git
+      yum:  name=git  state=present
+</code></pre>
+
+<p>Run the playbook again...  </p>
+<pre><code>ansible-playbook playbook.yml
+</code></pre>
+
+<pre><code>.......
+
+PLAY [App Server Configurations] ***********************************************
+
+TASK [setup] *******************************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+TASK [create app user] *********************************************************
+changed: [192.168.61.12]
+changed: [192.168.61.13]
+
+TASK [install git] *************************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+PLAY RECAP *********************************************************************
+192.168.61.11              : ok=6    changed=0    unreachable=0    failed=0
+192.168.61.12              : ok=9    changed=1    unreachable=0    failed=0
+192.168.61.13              : ok=9    changed=1    unreachable=0    failed=0
+192.168.61.14              : ok=6    changed=0    unreachable=0    failed=0
+localhost                  : ok=6    changed=0    unreachable=0    failed=0
+</code></pre>
+
+<h3 id="limiting-the-execution-to-a-particular-group">Limiting the execution to a particular group</h3>
+<p>Now run the following command to restrict the playbook execution to <em>app servers</em>  </p>
+<pre><code>ansible-playbook playbook.yml --limit app
+</code></pre>
+
+<p>This will give us the following output, plays will be executed only on app servers...  </p>
+<pre><code>
+PLAY [Base Configurations for ALL hosts] ***************************************
+
+TASK [setup] *******************************************************************
+ok: [192.168.61.13]
+ok: [192.168.61.12]
+
+.........
+
+TASK [start ntp service] *******************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+PLAY [App Server Configurations] ***********************************************
+
+........
+
+TASK [install git] *************************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+PLAY RECAP *********************************************************************
+192.168.61.12              : ok=9    changed=0    unreachable=0    failed=0
+192.168.61.13              : ok=9    changed=0    unreachable=0    failed=0
+
+</code></pre>
+
+<h2 id="exercise">Exercise:</h2>
+<h3 id="exercise1-create-a-playbook-with-the-following-specifications"><strong>Exercise1</strong>: Create a Playbook with the following specifications,</h3>
+<ul>
+<li>It should apply only on local host (ansible host)</li>
+<li>Should use become method</li>
+<li>Should create a <strong>user</strong> called webadmin with shell as "/bin/sh"</li>
+<li>Should install and start <strong>nginx</strong> service</li>
+<li>Should <strong>deploy</strong> a sample html app into the default web root directory of nginx using ansible's <strong>git</strong> module.<ul>
+<li>Source repo:  https://github.com/schoolofdevops/html-sample-app</li>
+<li>Deploy Path : /usr/share/nginx/html/app</li>
+</ul>
+</li>
+<li>Once deployed, validate the site by visting http://CONTROL_HOST_IP/app</li>
+</ul>
+<h3 id="exercise-2-disable-facts-gathering"><strong>Exercise 2</strong>: Disable Facts Gathering</h3>
+<ul>
+<li>Run ansible playbook and observe the output</li>
+<li>Add the following configuration parameter to ansible.cfg</li>
+</ul>
+<pre><code>gathering = explicit
+</code></pre>
+
+<ul>
+<li>Launch ansible playbook run again, observe the output and compare it with the previous run.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../roles/" class="btn btn-neutral float-right" title="Working with Roles">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../modules/" class="btn btn-neutral" title="Modules - The Batteries Included"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../modules/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../roles/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Control Structures - Ultimate Ansible Bootcamp</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Control Structures";
+    var mkdocs_page_input_path = "control_structures.md";
+    var mkdocs_page_url = "/control_structures/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Ultimate Ansible Bootcamp</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Quick Dive</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ad-hoc/">Ad Hoc Server Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../modules/">Modules - The Batteries Included</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../playbooks/">Learning to Write Infrastructure as a Code</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../roles/">Working with Roles</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../templates_and_variables/">Variables and Templates</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Control Structures</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#control-structures">Control Structures</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#conditionals">Conditionals</a></li>
+        
+            <li><a class="toctree-l4" href="#when-statements">When statements</a></li>
+        
+            <li><a class="toctree-l4" href="#iterations">Iterations</a></li>
+        
+            <li><a class="toctree-l4" href="#exercises">Exercises</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Deep Dive</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ansible-vault/">Ansible Vault</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-windows/">Ansible on Windows</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-pull/">Ansible Pull</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ansible-pull/">Ansible Tower</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../registered_variables/">Registered Variable</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Troubleshooting</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../troubleshooting/">Troubleshooting Techniques</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Ultimate Ansible Bootcamp</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Quick Dive &raquo;</li>
+        
+      
+    
+    <li>Control Structures</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="control-structures">Control Structures</h1>
+<p>In Chapter 7, we will learn about the aspects of conditionals and iterations that affects program's execution flow in Ansible<br />
+Control structures are of two different type</p>
+<ul>
+<li>Conditional  </li>
+<li>Iterative  </li>
+</ul>
+<h2 id="conditionals">Conditionals</h2>
+<p>Conditionals structures allow Ansible to choose an alternate path. Ansible does this by using <em>when</em> statements</p>
+<h2 id="when-statements"><strong>When</strong> statements</h2>
+<p>When statement becomes helpful, when you will want to skip a particular step on a particular host</p>
+<h3 id="selectively-calling-install-tasks-based-on-platform">Selectively calling install tasks based on platform</h3>
+<ul>
+<li>Edit <em>roles/apache/tasks/main.yml</em>,</li>
+</ul>
+<pre><code>---
+- include: install.yml
+  when: ansible_os_family == 'RedHat'
+- include: start.yml
+- include: config.yml
+</code></pre>
+
+<ul>
+<li>This will include <em>install.yml</em> only if the OS family is Redhat, otherwise it will skip the installation playbook</li>
+</ul>
+<h3 id="configuring-mysql-server-based-on-boolean-flag">Configuring MySQL server based on boolean flag</h3>
+<ul>
+<li>Edit <em>roles/mysql/tasks/main.yml</em> and add when statements,</li>
+</ul>
+<pre><code>---
+- include: install.yml
+
+- include: start.yml
+  when: mysql.server
+
+- include: config.yml
+  when: mysql.server
+</code></pre>
+
+<ul>
+<li>Edit <em>db.yml</em> as follows,</li>
+</ul>
+<pre><code>---
+- name: Playbook to configure DB Servers
+  hosts: db
+  become: true
+  roles:
+  - mysql
+  vars:
+    mysql:
+      server: true
+      config:
+        bind: &quot;{{ ansible_eth0.ipv4.address }}&quot;
+</code></pre>
+
+<h3 id="adding-conditionals-in-jinja2-templates">Adding conditionals in Jinja2 templates</h3>
+<ul>
+<li>Put the following content in <em>roles/mysql/templates/my.cnf.j2</em></li>
+</ul>
+<pre><code>[mysqld]
+
+{% if mysql.config.datadir is defined %}
+datadir={{ mysql['config']['datadir'] }}
+{% endif %}
+
+{% if mysql.config.socket is defined %}
+socket={{ mysql['config']['socket'] }}
+{% endif %}
+
+symbolic-links=0
+log-error=/var/log/mysqld.log
+
+{% if mysql.config.pid is defined %}
+pid-file={{ mysql['config']['pid']}}
+{% endif %}
+
+[client]
+user=root
+password={{ mysql_root_db_pass }}
+</code></pre>
+
+<ul>
+<li>These conditions will run flawlessly, because we have already defined these Variables</li>
+</ul>
+<h3 id="running-one-time-tasks">Running One Time Tasks</h3>
+<ul>
+<li>To see how this works, lets take a look at the code in <em>roles/mysql/tasks/config.yml</em></li>
+</ul>
+<pre><code>    [...]
+- name: reset default root password
+  shell: mysql --user=root --password=&quot;{{ MYSQL_DEFAULT_PASS }}&quot; --connect-expired-password mysql &lt; /root/.mysql_reset_pass.sql
+  run_once: true
+  ignore_errors: yes
+     [...]
+</code></pre>
+
+<ul>
+<li>In some cases there may be a need to only run a task one time and only on one host. This can be achieved by configuring “run_once” on a task</li>
+</ul>
+<h3 id="conditional-execution-of-roles">Conditional Execution of Roles</h3>
+<ul>
+<li>This will execute app playbook only if the node is running <strong>RedHat</strong> family</li>
+<li>Update app.yml to restrict role to be run only on RedHat platform.</li>
+</ul>
+<pre><code>---
+  - name: Playbook to configure App Servers
+    hosts: app
+    become: true
+    vars:
+      fav:
+        fruit: mango
+    roles:
+    - { role: apache, when: ansible_os_family == 'RedHat' }
+</code></pre>
+
+<ul>
+<li>Let's run this code</li>
+</ul>
+<pre><code>ansible-playbook site.yml
+</code></pre>
+
+<p>[Output]</p>
+<pre><code>TASK [setup] *******************************************************************
+ok: [192.168.61.12]
+ok: [192.168.61.13]
+
+TASK [base : create admin user] ************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [base : remove dojo] ******************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [base : install tree] *****************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [base : install ntp] ******************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [base : start ntp service] ************************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [apache : Installing Apache...] *******************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [apache : Starting Apache...] *********************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [apache : Creating configuration from templates...] ***********************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+TASK [apache : Copying index.html file...] *************************************
+skipping: [192.168.61.12]
+skipping: [192.168.61.13]
+
+</code></pre>
+
+<p><strong>Exercise</strong>: Try using <strong>Debian</strong> instead of <strong>RedHat</strong> . You shall see app role being skipped altogether. Don't forget to put it back after you try this out.</p>
+<h2 id="iterations">Iterations</h2>
+<h3 id="iteration-over-list">Iteration over list</h3>
+<ul>
+<li>Create a list of packages  </li>
+<li>Let us create the following list of packages in base role.  </li>
+<li>Edit <em>roles/base/defaults/main.yml</em> and put</li>
+</ul>
+<pre><code>---
+# packages list
+demolist:
+  packages:
+    - atk
+    - flac
+    - eggdbus
+    - pixman
+    - polkit
+
+</code></pre>
+
+<ul>
+<li>Also edit <em>roles/base/tasks/main.yml</em> to iterate over this list of items and install packages</li>
+</ul>
+<pre><code>- name: install a list of packages
+  yum:
+    name: &quot;{{ item }}&quot;
+  with_items: {{ demolist.packages }}
+</code></pre>
+
+<ul>
+<li>Let's check the output</li>
+</ul>
+<pre><code>TASK [base : install a list of packages] ***************************************
+changed: [192.168.61.12] =&gt; (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pixman'])
+changed: [192.168.61.13] =&gt; (item=[u'atk', u'flac', u'eggdbus', u'polkit', u'pixman'])
+</code></pre>
+
+<h3 id="iterating-over-a-hash-tabledictionary">Iterating over a Hash Table/Dictionary</h3>
+<ul>
+<li>This iteration can be done with using <strong>with_dict</strong> statement, let us see how.</li>
+<li>Edit <em>group_vars/all</em> file from the <strong>parent directory</strong> and define a dictionary of mysql databases and users to be created</li>
+</ul>
+<pre><code>---
+  fav:
+    color: blue
+    fruit: peach
+  mysql_bind: &quot;{{ ansible_eth0.ipv4.address }}&quot;
+  mysql:
+    databases:
+      infinity:
+        state: present
+      peace:
+        state: present
+    users:
+      dojo:
+        pass: PassWord@1234
+        host: '%'
+        priv: '*.*:ALL'
+        state: present
+      koko:
+        pass: f8Usg3ord@1we28
+        host: '%'
+        priv: '*.*:ALL'
+        state: present
+
+</code></pre>
+
+<ul>
+<li><strong>Append</strong> the following iteration in <em>roles/mysql/tasks/config.yml</em></li>
+</ul>
+<pre><code>- name: create mysql databases
+  mysql_db:
+    name: &quot;{{ item.key }}&quot;
+    state: &quot;{{ item.value.state }}&quot;
+  with_dict: &quot;{{ mysql['databases'] }}&quot;
+
+- name: create mysql users
+  mysql_user:
+    name: &quot;{{ item.key }}&quot;
+    host: &quot;{{ item.value.host }}&quot;
+    password: &quot;{{ item.value.pass }}&quot;
+    priv: &quot;{{ item.value.priv }}&quot;
+    state: &quot;{{ item.value.state }}&quot;
+  with_dict: &quot;{{ mysql['users'] }}&quot;
+</code></pre>
+
+<ul>
+<li>Execute the <em>db</em> playbook to verify the output</li>
+</ul>
+<pre><code>ansible-playbook db.yml
+</code></pre>
+
+<h2 id="exercises">Exercises</h2>
+<ul>
+<li>Define dictionary of properties for a new database user  in group_vars/all. Observe if it gets created automatically  output by running db.yml playbook. Validate if the user is been actually present by logging on to the mysql server and checking status.</li>
+<li>Update index.html.j2 to iterate over the dictionary of favorites and generate html content to display it instead of adding multiple lines.</li>
+<li>Define a hash/dictionary  of apache virtual hosts to be created  and create a template which would iterate over that dictionary and create vhost configurations.</li>
+<li>Learn about what else you could loop over, as well as how to do so by reading this document http://docs.ansible.com/ansible/playbooks_loops.html#id12</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ansible-vault/" class="btn btn-neutral float-right" title="Ansible Vault">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../templates_and_variables/" class="btn btn-neutral" title="Variables and Templates"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../templates_and_variables/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../ansible-vault/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>
